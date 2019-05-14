@@ -1,0 +1,69 @@
+.post-area-wap img {
+    height: 50px;
+}
+
+.post-area {
+    border: solid 1px #dfdfdf;
+    border-radius: 10px;
+    height: 45px;
+    width: 79vw;
+    padding: 11px;
+    color: #9b9595;
+}
+
+#postList {
+    padding: 0;
+}
+
+.card {
+    margin-bottom: 10px;
+    border-radius: 0;
+}
+
+.card-header {
+    display: flex;
+    padding: 5px;
+    padding-bottom: 0;
+    margin-bottom: 10px;
+    background-color: unset;
+    border-bottom: none;
+}
+.card-header img {
+    height: 40px;
+}
+
+.card-header div { display: flex; }
+.card-header div p {
+    margin: 0;
+}
+.card-header div p:nth-child(1) {
+    font-weight: bold;
+}
+.card-header div p:nth-child(2) {
+    font-size: 12px;
+    position: absolute;
+    top: 25px;
+    right: 15px;
+}
+
+.card-body {
+    padding: 5px;
+    padding-top: 0;
+}
+.card-body div:nth-child(1) {
+    margin-bottom: 10px;
+}
+.card-body div:nth-child(2) {
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+.card-body div:nth-child(3) {
+    display: flex;
+    justify-content: space-between;
+}
+.card-body div:nth-child(4) {
+    display: flex;
+}
+.card-body div:nth-child(4) a {
+    margin-right: 10px;
+}
