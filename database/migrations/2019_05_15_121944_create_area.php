@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateGroupTags extends Migration
+class CreateArea extends Migration
 {
     /**
      * Run the migrations.
@@ -14,13 +14,14 @@ class CreateGroupTags extends Migration
      */
     public function up()
     {
-        Schema::create('group_tags', function (Blueprint $table) {
+        Schema::create('area', function (Blueprint $table) {
 
-            $table->integer('group_id')->unsigned();
-            $table->integer('tag_id')->unsigned();
+            $table->increments('id');
+            $table->string('area_cd')->unsigned()->unique();
+            $table->string('name');
+            $table->tinyInteger('is_deleted')->unsigned()->default(0);
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
-
-            $table->primary(['group_id', 'tag_id']);
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
         });
     }
 
@@ -31,6 +32,6 @@ class CreateGroupTags extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('group_tags');
+        Schema::dropIfExists('area');
     }
 }

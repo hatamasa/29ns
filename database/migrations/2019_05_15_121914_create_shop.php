@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTags extends Migration
+class CreateShop extends Migration
 {
     /**
      * Run the migrations.
@@ -14,13 +14,11 @@ class CreateTags extends Migration
      */
     public function up()
     {
-        Schema::create('tags', function (Blueprint $table) {
+        Schema::create('shop', function (Blueprint $table) {
 
             $table->increments('id');
-            $table->integer('created_user_id')->unsigned();
-            $table->string('name', 255);
-            $table->tinyInteger('type')->unsigned()->comment('1:グループ 2:投稿');
-            $table->tinyInteger('is_deleted')->unsigned()->default(0);
+            $table->string('shop_id', 64)->unique();
+            $table->integer('score')->unsigned();
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
         });
@@ -33,6 +31,6 @@ class CreateTags extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tags');
+        Schema::dropIfExists('shop');
     }
 }

@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUserThreads extends Migration
+class CreateUserAccessToken extends Migration
 {
     /**
      * Run the migrations.
@@ -14,15 +14,14 @@ class CreateUserThreads extends Migration
      */
     public function up()
     {
-        Schema::create('user_threads', function (Blueprint $table) {
+        Schema::create('user_access_token', function (Blueprint $table) {
 
             $table->integer('user_id')->unsigned();
-            $table->integer('thread_id')->unsigned();
-            $table->tinyInteger('is_resigned')->unsigned()->default(0);
+            $table->text('access_token');
+            $table->timestamp('expired_at');
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
 
-            $table->primary(['user_id', 'thread_id']);
+            $table->primary('user_id');
         });
     }
 
@@ -33,6 +32,6 @@ class CreateUserThreads extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_threads');
+        Schema::dropIfExists('user_access_token');
     }
 }

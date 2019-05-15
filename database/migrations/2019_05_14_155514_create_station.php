@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePostRequests extends Migration
+class CreateStation extends Migration
 {
     /**
      * Run the migrations.
@@ -14,13 +14,14 @@ class CreatePostRequests extends Migration
      */
     public function up()
     {
-        Schema::create('post_requests', function (Blueprint $table) {
+        Schema::create('station', function (Blueprint $table) {
 
-            $table->integer('post_id')->unsigned();
-            $table->integer('request_id')->unsigned();
+            $table->integer('station_cd')->unsigned()->unique();
+            $table->string('name');
+            $table->integer('line_code')->unsigned();
+            $table->tinyInteger('is_deleted')->unsigned()->default(0);
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
-
-            $table->primary(['post_id', 'request_id']);
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
         });
     }
 
@@ -31,6 +32,6 @@ class CreatePostRequests extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('post_requests');
+        Schema::dropIfExists('station');
     }
 }

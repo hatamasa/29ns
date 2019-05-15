@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateThreadMessages extends Migration
+class CreateStationLine extends Migration
 {
     /**
      * Run the migrations.
@@ -14,14 +14,13 @@ class CreateThreadMessages extends Migration
      */
     public function up()
     {
-        Schema::create('thread_messages', function (Blueprint $table) {
+        Schema::create('station_line', function (Blueprint $table) {
 
-            $table->integer('thread_id')->unsigned();
-            $table->integer('user_id')->unsigned();
-            $table->text('contents')->nullable()->default(null);
+            $table->integer('line_code')->unsigned()->unique();
+            $table->string('name');
+            $table->tinyInteger('is_deleted')->unsigned()->default(0);
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
-
-            $table->primary(['thread_id', 'user_id']);
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
         });
     }
 
@@ -32,6 +31,6 @@ class CreateThreadMessages extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('thread_messages');
+        Schema::dropIfExists('station_line');
     }
 }

@@ -20,11 +20,13 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
+            $table->tinyInteger('sex')->unsigned()->default(0)->comment('1:男性 2:女性');
+            $table->integer('birth_ym')->nullable()->default(null);
+            $table->text('contents')->nullable()->default(null);
+            $table->string('thumbnail_url')->nullable()->default(null);
             $table->string('password');
             $table->rememberToken();
-            $table->string('thumbnail_url')->nullable()->default(null);
             $table->tinyInteger('is_resigned')->unsigned()->default(0);
-            $table->text('access_token')->nullable()->default(null);
             $table->timestamp('resigned_at')->nullable();
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));

@@ -1,11 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRequests extends Migration
+class CreateCity extends Migration
 {
     /**
      * Run the migrations.
@@ -14,11 +13,9 @@ class CreateRequests extends Migration
      */
     public function up()
     {
-        Schema::create('requests', function (Blueprint $table) {
-
+        Schema::create('city', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name', 255);
-            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamps();
         });
     }
 
@@ -29,6 +26,6 @@ class CreateRequests extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('requests');
+        Schema::dropIfExists('city');
     }
 }

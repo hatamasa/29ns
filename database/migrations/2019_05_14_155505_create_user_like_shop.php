@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePostFeedbackTable extends Migration
+class CreateUserLikeShop extends Migration
 {
     /**
      * Run the migrations.
@@ -14,12 +14,13 @@ class CreatePostFeedbackTable extends Migration
      */
     public function up()
     {
-        Schema::create('post_feedback', function (Blueprint $table) {
+        Schema::create('user_like_shop', function (Blueprint $table) {
 
-            $table->integer('post_id')->unsigned();
-            $table->text('contents');
+            $table->integer('user_id')->unsigned();
+            $table->string('shop_id');
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
+
+            $table->primary('user_id');
         });
     }
 
@@ -30,6 +31,6 @@ class CreatePostFeedbackTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('post_feedback');
+        Schema::dropIfExists('user_like_shop');
     }
 }
