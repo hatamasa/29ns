@@ -16,7 +16,7 @@ class CreateAreas extends Migration
     {
         Schema::create('areas', function (Blueprint $table) {
 
-            $table->string('area_cd')->unsigned();
+            $table->string('area_cd');
             $table->string('name');
             $table->tinyInteger('is_deleted')->unsigned()->default(0);
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
