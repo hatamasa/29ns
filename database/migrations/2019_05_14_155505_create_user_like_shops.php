@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateStationLine extends Migration
+class CreateUserLikeShops extends Migration
 {
     /**
      * Run the migrations.
@@ -14,13 +14,13 @@ class CreateStationLine extends Migration
      */
     public function up()
     {
-        Schema::create('station_line', function (Blueprint $table) {
+        Schema::create('user_like_shops', function (Blueprint $table) {
 
-            $table->integer('line_code')->unsigned()->unique();
-            $table->string('name');
-            $table->tinyInteger('is_deleted')->unsigned()->default(0);
+            $table->integer('user_id')->unsigned();
+            $table->string('shop_id');
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
+
+            $table->primary('user_id');
         });
     }
 
@@ -31,6 +31,6 @@ class CreateStationLine extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('station_line');
+        Schema::dropIfExists('user_like_shops');
     }
 }
