@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Create29logLikeUsers extends Migration
+class CreatePostLikeUsers extends Migration
 {
     /**
      * Run the migrations.
@@ -14,9 +14,9 @@ class Create29logLikeUsers extends Migration
      */
     public function up()
     {
-        Schema::create('29log_like_users', function (Blueprint $table) {
+        Schema::create('post_like_users', function (Blueprint $table) {
 
-            $table->integer('log_id')->unsigned();
+            $table->integer('post_id')->unsigned();
             $table->integer('user_id')->unsigned();
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
         });
@@ -29,6 +29,6 @@ class Create29logLikeUsers extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('29log_like_users');
+        Schema::dropIfExists('post_like_users');
     }
 }

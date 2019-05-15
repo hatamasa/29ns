@@ -16,12 +16,13 @@ class CreateArea extends Migration
     {
         Schema::create('area', function (Blueprint $table) {
 
-            $table->increments('id');
-            $table->string('area_cd')->unsigned()->unique();
+            $table->string('area_cd')->unsigned();
             $table->string('name');
             $table->tinyInteger('is_deleted')->unsigned()->default(0);
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
+
+            $table->primary('area_cd');
         });
     }
 

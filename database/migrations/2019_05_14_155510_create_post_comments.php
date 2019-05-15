@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Create29logComments extends Migration
+class CreatePostComments extends Migration
 {
     /**
      * Run the migrations.
@@ -14,10 +14,10 @@ class Create29logComments extends Migration
      */
     public function up()
     {
-        Schema::create('29log_comments', function (Blueprint $table) {
+        Schema::create('post_comments', function (Blueprint $table) {
 
             $table->increments('id');
-            $table->integer('log_id')->unsigned();
+            $table->integer('post_id')->unsigned();
             $table->integer('user_id')->unsigned();
             $table->text('contents')->nullable()->default(null);
             $table->tinyInteger('is_deleted')->unsigned()->default(0);
@@ -33,6 +33,6 @@ class Create29logComments extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('29log_comments');
+        Schema::dropIfExists('post_comments');
     }
 }
