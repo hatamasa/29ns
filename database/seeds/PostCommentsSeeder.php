@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class UserInvalidTableSeeder extends Seeder
+class PostCommentsSeeder extends Seeder
 {
     /**
      * Run the database seeds.

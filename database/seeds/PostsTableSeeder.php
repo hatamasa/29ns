@@ -13,7 +13,7 @@ class PostsTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('Posts')->truncate();
+        DB::table('post')->truncate();
 
         $faker = Faker::create('ja_JP');
 

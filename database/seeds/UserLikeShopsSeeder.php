@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class PasswordResetsTableSeeder extends Seeder
+class UserLikeShopsSeeder extends Seeder
 {
     /**
      * Run the database seeds.

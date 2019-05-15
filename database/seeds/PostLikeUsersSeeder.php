@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class UserLoginLogTableSeeder extends Seeder
+class PostLikeUsersSeeder extends Seeder
 {
     /**
      * Run the database seeds.
