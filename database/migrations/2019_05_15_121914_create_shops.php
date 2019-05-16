@@ -19,6 +19,8 @@ class CreateShops extends Migration
             $table->increments('id');
             $table->string('shop_id', 64)->unique();
             $table->integer('score')->unsigned();
+            $table->integer('post_count')->unsigned();
+            $table->integer('like_count')->unsigned();
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
         });
