@@ -20,7 +20,7 @@ class CreateUserLikeShops extends Migration
             $table->string('shop_id');
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
 
-            $table->primary('user_id');
+            $table->primary(['user_id', 'shop_id']);
         });
     }
 

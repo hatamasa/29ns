@@ -25,13 +25,22 @@ class PostCommentsSeeder extends Seeder
                 DB::table('post_comments')->insert([
                     'post_id'    => $faker->randomElement($post_ids),
                     'user_id'    => $faker->randomElement($user_ids),
-                    'contents'   => $faker->realText(),
+                    'contents'   => $faker->realText(64),
                     'is_deleted' => $faker->numberBetween(0, 1),
                 ]);
             } catch (Exception $e) {
-
             }
         }
+        // postsのcomment_countを更新
+        $sql = '
+            update
+                posts p inner join (select post_id, count(user_id) as comment_count from post_comments group by post_id) pc
+                on p.id = pc.post_id
+            set
+                p.comment_count = pc.comment_count
+            ';
+
+        DB::update($sql);
 
     }
 }

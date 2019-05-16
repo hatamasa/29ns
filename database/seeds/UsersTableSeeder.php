@@ -19,11 +19,15 @@ class UsersTableSeeder extends Seeder
         $faker = Faker::create('ja_JP');
 
         $data = [];
-        for($i = 0; $i < 15; $i++){
+        for($i = 0; $i < 30; $i++){
             $data[] = [
                 'name'              => 'test'.($i+1),
                 'email'             => 'test'.($i+1).'@nrt.com',
                 'email_verified_at' => $faker->dateTime,
+                'sex'               => $faker->numberBetween(1, 2),
+                'birth_ym'          => (new \DateTimeImmutable($faker->dateTimeBetween('-100 years', 'now')))->format('Ym'),
+                'contents'          => $faker->realText(),
+                'thumbnail_url'     => $faker->imageUrl(),
                 'password'          => Hash::make('test'.($i+1)),
                 'remember_token'    => null,
                 'is_resigned'       => (($i+1)%5 == 0) ? 1 : 0,

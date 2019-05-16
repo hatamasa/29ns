@@ -39,5 +39,14 @@ return [
             'tolerance' => env('STRIPE_WEBHOOK_TOLERANCE', 300),
         ],
     ],
+    // ぐるなびAPI
+    'gnavi' => [
+        'key'      => env('GNAVI_KEY'),
+        'base_url' => 'https://api.gnavi.co.jp/',
+        'api_path' => [
+            'restSearch' => 'RestSearchAPI/v3/',
+            'erea'       => 'master/GAreaMiddleSearchAPI/v3/',
+        ],
+    ],
 
 ];

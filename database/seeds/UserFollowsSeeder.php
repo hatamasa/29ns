@@ -17,7 +17,7 @@ class UserFollowsSeeder extends Seeder
 
         $faker = Faker::create('ja_JP');
 
-        $user_ids  = DB::table('Users')->pluck('id');
+        $user_ids = DB::table('Users')->pluck('id');
 
         foreach ($user_ids as $id) {
             $user_ids_other = DB::table('Users')->where('id', '!=', $id)->pluck('id');

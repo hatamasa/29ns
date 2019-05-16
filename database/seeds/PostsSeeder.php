@@ -1,5 +1,6 @@
 <?php
 
+use App\Services\ApiService;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Faker\Factory as Faker;
@@ -17,20 +18,44 @@ class PostsSeeder extends Seeder
 
         $faker = Faker::create('ja_JP');
 
-        $group_ids = DB::table('Groups')->pluck('id');
+        $options = [
+            // 田町, 三田
+            'areacode_m' => 'AREAM2175',
+        ];
+        $result = (new ApiService())->callGnaviRestSearchApi($options);
+
         $user_ids  = DB::table('Users')->pluck('id');
 
         $data = [];
-        for($i = 0; $i < 200; $i++){
+        for($i = 0; $i < 100; $i++){
             $data[] = [
-                'user_id'    => $faker->randomElement($user_ids),
-                'group_id'   => (($i+1)%3 == 0) ? null : $faker->randomElement($group_ids),
-                'title'      => $faker->realText(30),
-                'contents'   => $faker->realText(),
-                'is_deleted' => (($i+1)%5 == 0) ? 1 : 0,
+                'user_id'       => $faker->randomElement($user_ids),
+                'shop_id'       => $faker->randomElement($result['rest'])['id'],
+                'score'         => $faker->numberBetween(0, 10),
+                'visit_count'   => $faker->numberBetween(1, 5),
+                'title'         => $faker->realText(30),
+                'contents'      => $faker->realText(),
+                'img_url_1'     => $faker->imageUrl(),
+                'img_url_2'     => $faker->imageUrl(),
+                'img_url_3'     => $faker->imageUrl(),
+                'like_count'    => 0,
+                'comment_count' => 0,
+                'is_deleted'    => (($i+1)%5 == 0) ? 1 : 0,
             ];
         }
 
         DB::table('Posts')->insert($data);
+
+        // shopsのscore, post_countを更新
+        $sql = '
+            update
+                shops s inner join (select shop_id, count(id) as post_count, average(score) as score from posts group by shop_id) p
+                on s.id = p.shop_id
+            set
+                s.score = p.score,
+                s.post_count = p.post_count
+            ';
+
+        DB::update($sql);
     }
 }
