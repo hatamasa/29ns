@@ -17,10 +17,10 @@ class CreateUserLikeShops extends Migration
         Schema::create('user_like_shops', function (Blueprint $table) {
 
             $table->integer('user_id')->unsigned();
-            $table->string('shop_id');
+            $table->string('shop_cd');
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
 
-            $table->primary(['user_id', 'shop_id']);
+            $table->primary(['user_id', 'shop_cd']);
         });
     }
 

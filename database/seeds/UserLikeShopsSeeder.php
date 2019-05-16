@@ -18,12 +18,12 @@ class UserLikeShopsSeeder extends Seeder
         $faker = Faker::create('ja_JP');
 
         $user_ids = DB::table('Users')->pluck('id');
-        $shop_ids = DB::table('shops')->pluck('id');
+        $shop_cds = DB::table('shops')->pluck('shop_cd');
         for($i = 0; $i < 1000; $i++){
             try {
                 DB::table('user_like_shops')->insert([
                     'user_id' => $faker->randomElement($user_ids),
-                    'shop_id' => $faker->randomElement($shop_ids),
+                    'shop_cd' => $faker->randomElement($shop_cds),
                 ]);
             } catch (Exception $e) {
             }
@@ -31,8 +31,8 @@ class UserLikeShopsSeeder extends Seeder
         // shopsのlike_countを更新
         $sql = '
             update
-                shops s inner join (select shop_id, count(user_id) as like_count from user_like_shops group by shop_id) uls
-                on s.id = uls.shop_id
+                shops s inner join (select shop_cd, count(user_id) as like_count from user_like_shops group by shop_cd) uls
+                on s.shop_cd = cast(uls.shop_cd as char(7))
             set
                 s.like_count = uls.like_count
             ';

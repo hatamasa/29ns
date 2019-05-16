@@ -16,7 +16,7 @@ class CreateStationLines extends Migration
     {
         Schema::create('station_lines', function (Blueprint $table) {
 
-            $table->integer('line_code')->unsigned()->unique();
+            $table->integer('line_cd')->unsigned()->unique();
             $table->string('name');
             $table->tinyInteger('is_deleted')->unsigned()->default(0);
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));

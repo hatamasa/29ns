@@ -14,7 +14,7 @@ class PostsSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('post')->truncate();
+        DB::table('posts')->truncate();
 
         $faker = Faker::create('ja_JP');
 
@@ -30,7 +30,7 @@ class PostsSeeder extends Seeder
         for($i = 0; $i < 100; $i++){
             $data[] = [
                 'user_id'       => $faker->randomElement($user_ids),
-                'shop_id'       => $faker->randomElement($result['rest'])['id'],
+                'shop_cd'       => $faker->randomElement($result['rest'])['id'],
                 'score'         => $faker->numberBetween(0, 10),
                 'visit_count'   => $faker->numberBetween(1, 5),
                 'title'         => $faker->realText(30),
@@ -45,17 +45,5 @@ class PostsSeeder extends Seeder
         }
 
         DB::table('Posts')->insert($data);
-
-        // shopsのscore, post_countを更新
-        $sql = '
-            update
-                shops s inner join (select shop_id, count(id) as post_count, average(score) as score from posts group by shop_id) p
-                on s.id = p.shop_id
-            set
-                s.score = p.score,
-                s.post_count = p.post_count
-            ';
-
-        DB::update($sql);
     }
 }

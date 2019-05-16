@@ -14,7 +14,7 @@ class StationsSeeder extends Seeder
     {
         DB::table('stations')->truncate();
 
-        $file = new SplFileObject('/resources/csv/station.csv');
+        $file = new SplFileObject(base_path().'/resources/csv/station.csv');
         $file->setFlags(SplFileObject::READ_CSV);
         $data = [];
         foreach ($file as $key => $line) {
@@ -26,9 +26,11 @@ class StationsSeeder extends Seeder
             }
             // 東京の駅のみ処理
             if ($line[6] == 13) {
-                $data['station_cd'] = $line[0];
-                $data['name']       = $line[2];
-                $data['line_cd']    = $line[5];
+                $data[] = [
+                    'station_cd' => (int)$line[0],
+                    'name'       => (string)$line[2],
+                    'line_cd'    => (int)$line[5],
+                ];
             }
         }
 

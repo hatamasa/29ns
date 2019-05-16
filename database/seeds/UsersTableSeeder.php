@@ -25,7 +25,7 @@ class UsersTableSeeder extends Seeder
                 'email'             => 'test'.($i+1).'@nrt.com',
                 'email_verified_at' => $faker->dateTime,
                 'sex'               => $faker->numberBetween(1, 2),
-                'birth_ym'          => (new \DateTimeImmutable($faker->dateTimeBetween('-100 years', 'now')))->format('Ym'),
+                'birth_ym'          => ($faker->dateTimeBetween('-100 years', 'now'))->format('Ym'),
                 'contents'          => $faker->realText(),
                 'thumbnail_url'     => $faker->imageUrl(),
                 'password'          => Hash::make('test'.($i+1)),

@@ -18,8 +18,8 @@ class CreatePosts extends Migration
 
             $table->increments('id');
             $table->integer('user_id')->unsigned();
-            $table->string('shop_id');
-            $table->integer('score')->unsigned();
+            $table->string('shop_cd');
+            $table->float('score');
             $table->integer('visit_count')->unsigned();
             $table->string('title', 255);
             $table->text('contents')->nullable()->default(null);

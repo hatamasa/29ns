@@ -14,13 +14,15 @@ class StationLinesSeeder extends Seeder
     {
         DB::table('station_lines')->truncate();
         // 東京の沿線を取得
-        $response = file_get_contents('http://www.ekidata.jp/api/p/13.json');
+        $response = file_get_contents(base_path().'/resources/json/lines.json');
         $result = json_decode($response, true);
 
         $data = [];
         foreach ($result['line'] as $line) {
-            $data['line_cd'] = $line['line_cd'];
-            $data['name']    = $line['line_name'];
+            $data[] = [
+                'line_cd' => (int)$line['line_cd'],
+                'name'    => (string)$line['line_name'],
+            ];
         }
 
         DB::table('station_lines')->insert($data);

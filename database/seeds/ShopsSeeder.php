@@ -15,22 +15,36 @@ class ShopsSeeder extends Seeder
      */
     public function run()
     {
-        DB:table('shops')->truncate();
+        DB::table('shops')->truncate();
 
         // 投稿されている店舗を取得
         $shops = DB::table('posts')
-            ->select('shop_id')
-            ->groupBy('shop_id')
+            ->select('shop_cd')
+            ->groupBy('shop_cd')
             ->get();
 
         $data = [];
         foreach($shops as $shop){
-            $data['shop_id']    = $shop['shop_id'];
-            $data['score']      = 0;
-            $data['post_count'] = 0;
-            $data['like_count'] = 0;
+            $data[] = [
+                'shop_cd'    => $shop->shop_cd,
+                'score'      => 0,
+                'post_count' => 0,
+                'like_count' => 0,
+            ];
         }
 
-        DB:table('shops')->insert($data);
+        DB::table('shops')->insert($data);
+
+        // shopsのscore, post_countを更新
+        $sql = '
+            update
+                shops s inner join (select shop_cd, count(id) as post_count, avg(score) as score from posts group by shop_cd) p
+                on s.shop_cd = cast(p.shop_cd as char(7))
+            set
+                s.score = p.score,
+                s.post_count = p.post_count
+            ';
+
+        DB::update($sql);
     }
 }
