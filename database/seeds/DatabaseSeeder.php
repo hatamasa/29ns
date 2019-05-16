@@ -12,18 +12,19 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call(AreasSeeder::class);
-
-        $this->call(UsersTableSeeder::class);
-        $this->call(PostsSeeder::class);
-        $this->call(ShopsSeeder::class);
-
-        $this->call(UserLikeShopsSeeder::class);
-        $this->call(PostLikeUsersSeeder::class);
-        $this->call(PostCommentsSeeder::class);
-
-        $this->call(UserFollowsSeeder::class);
-
         $this->call(StationLinesSeeder::class);
         $this->call(StationsSeeder::class);
+
+        if (env('APP_ENV') != 'prod') {
+            $this->call(UsersTableSeeder::class);
+            $this->call(PostsSeeder::class);
+            $this->call(ShopsSeeder::class);
+
+            $this->call(UserLikeShopsSeeder::class);
+            $this->call(PostLikeUsersSeeder::class);
+            $this->call(PostCommentsSeeder::class);
+
+            $this->call(UserFollowsSeeder::class);
+        }
     }
 }
