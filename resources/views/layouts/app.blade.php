@@ -28,14 +28,18 @@
     <input type="hidden" id="token" value="{{ $user->access_token ?? '' }}">
     <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
         <div class="nav-header">
-            <div class="col-2"><a href="{{ url('/') }}">NRT</a></div>
-            <div class="col-2"><a href="{{ url('/myPage') }}"><img src="{{ asset('images/mypage.png') }}"></a></div>
-            <div class="col-2"><a href="{{ url('/follower') }}"><img src="{{ asset('images/follower.png') }}"></a></div>
-            <div class="col-2"><a href="{{ url('/groups') }}"><img src="{{ asset('images/group.png') }}"></a></div>
-            <div class="col-2"><a href="{{ url('/search') }}"><img src="{{ asset('images/search.png') }}"></a></div>
+            <a href="{{ url('/home') }}" class="col-4">東京29NS</a>
+            <a href="{{ url('/home') }}" class="col-2">ホーム</a>
+            <a href="{{ url('/search') }}" class="col-2">検索</a>
+            <a href="{{ url('/posts') }}" class="col-2">みんなの29ログ</a>
             <input id="nav-input" type="checkbox" class="display-none">
             <label id="nav-open" class="side-open col-2" for="nav-input">
-                <span class="navbar-toggler-icon"></span>
+                @guest
+                    ゲストさん
+                @else
+                    {{ Auth::user()->name }}さん
+                @endguest
+                <span></span>
             </label>
 
             <label id="nav-close" class="display-none" for="nav-input"></label>
@@ -45,26 +49,21 @@
                     <!-- Authentication Links -->
                     @guest
                         <li class="nav-item">
-                            <div><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></div>
+                            <a class="nav-link" href="{{ route('login') }}">ログイン</a>
                         </li>
                         @if (Route::has('register'))
                         <li class="nav-item">
-                            <div><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></div>
+                            <a class="nav-link" href="{{ route('register') }}">会員登録</a>
                         </li>
                         @endif
                     @else
-                        <li class="nav-item">
-                            <a id="" class="" href="#">
-                                <div>{{ Auth::user()->name }}</div>
-                            </a>
-                        </li>
                         <li>
-                            <div><a href="/message">MESSAGE</a></div>
+                            <a href="{{ url('/myPage') }}">Myページ</a>
                         </li>
                         <li>
                             <div class="">
                                 <a class="" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
+                                    ログアウト
                                 </a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     @csrf
