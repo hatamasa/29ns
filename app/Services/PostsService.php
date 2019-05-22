@@ -1,7 +1,7 @@
 <?php
 namespace App\Services;
 
-use App\Repositories\Posts\PostsRepository;
+use App\Repositories\PostsRepository;
 
 class PostsService extends Service
 {

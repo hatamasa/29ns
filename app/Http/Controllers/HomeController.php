@@ -16,6 +16,7 @@ class HomeController extends Controller
 
     public function __construct(PostsRepository $posts, ShopsRepository $shops)
     {
+        parent::__construct();
         $this->Posts = $posts;
         $this->Shops = $shops;
 
@@ -27,9 +28,9 @@ class HomeController extends Controller
         // 認証ユーザIDを取得
         $user = Auth::user();
         // 29ログ一覧を取得
-        $posts = $this->Posts->getList(self::POSTS_LIST_LIMIT);
+        $posts = $this->Posts->getRecentlyList(self::POSTS_LIST_LIMIT);
         // 人気のお店を取得
-        $shops = $this->Shops->getPopularity(self::SHOPS_LIST_LIMIT);
+        $shops = $this->Shops->getPopularityList(self::SHOPS_LIST_LIMIT);
 
         return view('Home.index', compact('user', 'posts', 'shops'));
     }

@@ -1,17 +1,29 @@
 <?php
-namespace App\Repositories\Posts;
+namespace App\Repositories;
 
 use Illuminate\Support\Facades\DB;
 
-class PostsRepository implements PostsRepositoryInterface
+class ShopsRepository implements ShopsRepositoryInterface
 {
-    // ページ表示件数
-    const LIST_LIMIT = 20;
-
     private $Posts;
 
     public function __construct()
     {
+    }
+
+    /**
+     * 人気の店一覧を取得する
+     * @param int $limit
+     * @return \Illuminate\Support\Collection
+     */
+    public function getPopularityList(int $limit)
+    {
+        $query = DB::table('shops')
+            ->orderBy('score', 'desc')
+            ->limit($limit)
+            ;
+
+        return $query->get();
     }
 
     /**

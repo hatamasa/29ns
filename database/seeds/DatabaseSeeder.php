@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
         $this->call(StationsSeeder::class);
 
         if (env('APP_ENV') != 'prod') {
-            $this->call(UsersTableSeeder::class);
+            $this->call(UsersSeeder::class);
             $this->call(PostsSeeder::class);
             $this->call(ShopsSeeder::class);
 

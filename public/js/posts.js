@@ -2,13 +2,6 @@
 
     let page = 1; // 一覧の現在のページ
 
-    let token = document.getElementById("token").value;
-    $.ajaxSetup({
-        headers: {
-            'Authorization' : 'bearer '+token
-        }
-    });
-
     /** 投稿一覧スクロールイベント登録 */
     $('#postList').on('inview', '#inviewLoad',(event, isInView) => {
             console.log("inview");

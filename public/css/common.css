@@ -62,16 +62,16 @@ ul {
 }
 .nav-header .side-open {
     border: solid 1px #e1e2e1;
-    font-size: 12px;
+    font-size: 10px;
     text-align: center;
-    padding: 15px 0px;
+    padding: 0;
     margin: 0;
-    display: flex;
+    line-height: 55px;
 }
 
 .nav-header .side-open span:before {
     position: absolute;
-    top: 22px;
+    top: 25px;
     content: '';
     border-top: 4px solid #fff;
     border-left: 4px solid transparent;

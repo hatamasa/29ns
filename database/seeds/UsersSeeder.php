@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Faker\Factory as Faker;
 
-class UsersTableSeeder extends Seeder
+class UsersSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -22,7 +22,7 @@ class UsersTableSeeder extends Seeder
         for($i = 0; $i < 30; $i++){
             $data[] = [
                 'name'              => 'test'.($i+1),
-                'email'             => 'test'.($i+1).'@nrt.com',
+                'email'             => 'test'.($i+1).'@29ns.com',
                 'email_verified_at' => $faker->dateTime,
                 'sex'               => $faker->numberBetween(1, 2),
                 'birth_ym'          => ($faker->dateTimeBetween('-100 years', 'now'))->format('Ym'),

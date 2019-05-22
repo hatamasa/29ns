@@ -12,11 +12,9 @@ class Controller extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
 
-    // public function main()
-    // {
-    //
-    //   echo 'nrt!!;
-    // }
+    public function __construct()
+    {
+        $this->middleware('before');
+    }
 
-    // 01_login
 }

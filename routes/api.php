@@ -21,6 +21,7 @@ Route::group(["middleware" => "guest:api"], function () {
 Route::group(["middleware" => "auth:api"], function () {
     Route::prefix('v1')->group(function () {
         Route::get("/me", "Api\AuthController@me");
+        Route::get("/refresh", "Api\AuthController@refresh");
         Route::get('getPostList', 'Api\PostsApiController@getPostList');
     });
 });
