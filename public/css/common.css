@@ -26,7 +26,7 @@ ul {
     }
 }
 
-
+/* ナビ */
 .navbar {
     position: fixed;
     width: 100vw;
@@ -68,7 +68,6 @@ ul {
     margin: 0;
     line-height: 55px;
 }
-
 .nav-header .side-open span:before {
     position: absolute;
     top: 25px;
@@ -77,13 +76,10 @@ ul {
     border-left: 4px solid transparent;
     border-right: 4px solid transparent;
 }
-
-/*チェックが入ったらもろもろ表示*/
 #nav-input:checked ~ #nav-close {
   display: block;/*カバーを表示*/
   opacity: .5;
 }
-
 #nav-input:checked ~ #nav-side {
   -webkit-transform: translateX(calc(100vw - 330px));
   transform: translateX(calc(100vw - 330px));/*中身を表示（左へスライド）*/
@@ -95,8 +91,6 @@ ul {
         transform: translateX(calc(100vw - 200px));/*中身を表示（左へスライド）*/
     }
 }
-
-/*閉じる用の薄黒カバー*/
 #nav-close {
   display: none;/*はじめは隠しておく*/
   position: fixed;
@@ -107,8 +101,6 @@ ul {
   height: 100%;
   opacity: 0;
 }
-
-/*中身*/
 #nav-side {
     overflow: auto;
     position: fixed;
@@ -135,4 +127,52 @@ ul {
     border: unset;
     text-align: left;
     padding-left: 10px;
+}
+
+/* フォーム */
+.form-group {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 15px;
+}
+.form-group input::placeholder
+{
+    text-align: center;
+}
+
+/* チェックボックス */
+.form-check {
+    line-height: 1;
+}
+.form-check-label {
+    position: relative;
+}
+.form-check-label:before {
+    position: absolute;
+    top: 0em;
+    left: -2em;
+    width: 14px;
+    height: 14px;
+    content: '';
+    border: 1px solid #BDBDBD;
+    border-radius: 3px;
+}
+.form-check-input:checked + label:after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: -2px;
+    left: -24px;
+    width: 7px;
+    height: 12px;
+    transform: rotate(40deg);
+    border-bottom: 3px solid #666766;
+    border-right: 3px solid #666766;
+}
+
+
+.content-head {
+    font-size: 21px;
+    margin-bottom: 10px;
 }
