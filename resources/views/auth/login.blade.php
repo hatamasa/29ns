@@ -44,9 +44,7 @@
             <div class="form-group form-login">
                 <button type="submit" class="btn btn-primary btn-block">ログイン</button>
                 <a class="btn btn-info btn-block" href="{{ route('register') }}">新規会員登録はこちら</a>
-                @if (Route::has('password.request'))
-                    <a class="btn btn-link" href="{{ route('password.request') }}">パスワードを忘れた方はこちら</a>
-                @endif
+                <a href="{{ route('password.request') }}">パスワードを忘れた方はこちら</a>
             </div>
         </form>
 

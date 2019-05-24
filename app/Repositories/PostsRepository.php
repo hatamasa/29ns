@@ -21,13 +21,23 @@ class PostsRepository implements PostsRepositoryInterface
      */
     public function getRecentlyList(int $limit)
     {
-        $query = DB::table('posts')
-            ->where('is_deleted', 0)
-            ->orderBy('score', 'desc')
+        $query = DB::table('posts as p')
+            ->select(
+                'p.shop_cd',
+                'p.title',
+                'p.contents',
+                'p.score',
+                'p.img_url_1',
+                'p.created_at as post_created_at',
+                'u.name as user_name'
+            )
+            ->join('users as u', 'p.user_id', '=', 'u.id')
+            ->where('p.is_deleted', 0)
+            ->orderBy('p.id', 'desc')
             ->limit($limit)
             ;
 
-        return $query->get();
+        return $query->get()->toArray();
     }
 
     /**

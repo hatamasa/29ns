@@ -52,8 +52,13 @@ class ApiService extends Service
             'keyid' => Config::get('services.gnavi.key')
         ], $options);
 
+        $query = [];
+        foreach ($options as $key => $val) {
+            $query[] = $key."=".$val;
+        }
+
         $response = file_get_contents(
-                $base_url.$path.'?'.http_build_query($options)
+                $base_url.$path.'?'.implode('&', $query)
             );
 
         $result = json_decode($response, true);

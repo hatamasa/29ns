@@ -2,9 +2,6 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use App\Services\ApiService;
-use Faker\Factory as Faker;
-use Symfony\Component\Console\Helper\Table;
 
 class ShopsSeeder extends Seeder
 {

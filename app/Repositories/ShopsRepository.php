@@ -23,7 +23,7 @@ class ShopsRepository implements ShopsRepositoryInterface
             ->limit($limit)
             ;
 
-        return $query->get();
+        return $query->get()->toArray();
     }
 
     /**
