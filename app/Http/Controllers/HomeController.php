@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Services\HomeService;
 
+/**
+ * ホーム表示用コントローラ
+ * @author hatamasa
+ *
+ */
 class HomeController extends Controller
 {
     // 29ログ表示件数

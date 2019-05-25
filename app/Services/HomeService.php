@@ -6,8 +6,6 @@ use App\Repositories\ShopsRepository;
 
 class HomeService extends Service
 {
-    private $PostsRepo;
-
     public function __construct(PostsRepository $posts, ShopsRepository $shops)
     {
         $this->Posts = $posts;
