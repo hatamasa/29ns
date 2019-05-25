@@ -23,10 +23,13 @@ class PostsRepository implements PostsRepositoryInterface
     {
         $query = DB::table('posts as p')
             ->select(
+                'p.id',
                 'p.shop_cd',
                 'p.title',
                 'p.score',
                 'p.img_url_1',
+                'p.like_count',
+                'p.comment_count',
                 'p.created_at as post_created_at',
                 'u.id as user_id',
                 'u.name as user_name',
