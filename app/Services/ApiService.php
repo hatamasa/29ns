@@ -2,6 +2,7 @@
 namespace App\Services;
 
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Log;
 
 class ApiService extends Service
 {
@@ -24,9 +25,10 @@ class ApiService extends Service
             'keyid' => Config::get('services.gnavi.key')
         ];
 
-        $response = file_get_contents(
-            $base_url.$path.'?'.http_build_query($options)
-            );
+        $url = $base_url.$path.'?'.http_build_query($options);
+        $this->_log("request url: ".$url);
+
+        $response = file_get_contents($url);
 
         $result = json_decode($response, true);
 
@@ -57,9 +59,10 @@ class ApiService extends Service
             $query[] = $key."=".$val;
         }
 
-        $response = file_get_contents(
-                $base_url.$path.'?'.implode('&', $query)
-            );
+        $url = $base_url.$path.'?'.implode('&', $query);
+        $this->_log("request url: ".$url);
+
+        $response = file_get_contents($url);
 
         $result = json_decode($response, true);
 
