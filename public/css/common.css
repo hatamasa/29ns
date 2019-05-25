@@ -29,6 +29,7 @@ ul p {
     margin-bottom: -100px;
     background-color:#EFEFEF;
     position: relative;
+    display: table-cell;
 }
 @media screen and (max-width:480px){
     .container{
@@ -188,4 +189,11 @@ ul p {
 .content-head {
     font-size: 21px;
     margin-bottom: 10px;
+}
+
+.footer {
+    height: 100px;
+    background-color: #950000;
+    display: block;
+    position: relative;
 }

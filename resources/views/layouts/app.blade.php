@@ -75,6 +75,7 @@
             @yield('content')
         </main>
     </div>
+    <div class="footer"></div>
     <script src="{{ asset('js/common.js') }}"></script>
     @yield('script')
 </body>
