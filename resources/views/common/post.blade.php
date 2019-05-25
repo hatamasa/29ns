@@ -9,14 +9,14 @@
                 <li class="post-text-top">
                     <p>{{ $post->score }}点</p>
                     <p>
-                        <a href="{{ url('/users/$post->user_id')}}">
+                        <a href='{{ url("/users/{$post->user_id}")}}'>
                             <img alt="" src="{{ $post->user_thumbnail_url }}">{{ $post->user_name }}
                         </a>
                     </p>
                     <p>@time_diff($post->post_created_at)</p>
                 </li>
                 <li class="post-text-center">
-                    <a href="{{ url('/posts/$post->id') }}"><span>{{ $post->title }}</span> ...詳細を見る</a>
+                    <a href='{{ url("/posts/{$post->id}") }}'><span>{{ $post->title }}</span> ...詳細を見る</a>
                 </li>
             </ul>
         </div>
