@@ -37,11 +37,21 @@
             @else
                 <input id="nav-input" type="checkbox" class="display-none">
                 <label id="nav-open" class="side-open col-2" for="nav-input">
-                    {{ Auth::user()->name }}さん<span></span>
+                @if ($user->thumbnail_url)
+                    <img alt="" src="{{ $user->thumbnail_url }}">
+                @elseif ($user->sex == 1)
+                    <img alt="" src="{{ asset('/images/man.png') }}">
+                @elseif ($user->sex == 2)
+                    <img alt="" src="{{ asset('/images/woman.png') }}">
+                @endif
+                    <span></span>
                 </label>
                 <label id="nav-close" class="display-none" for="nav-input"></label>
                 <div id="nav-side">
                     <ul>
+                        <li>
+                            {{ $user->name }}さん
+                        </li>
                         <li>
                             <a href="{{ url('/myPage') }}">Myページ</a>
                         </li>

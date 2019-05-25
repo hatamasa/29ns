@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use App\Services\HomeService;
 
 class HomeController extends Controller
@@ -24,14 +23,12 @@ class HomeController extends Controller
 
     public function index(Request $request)
     {
-        // 認証ユーザIDを取得
-        $user = Auth::user();
         // 最近の29ログ一覧を取得
         $posts = $this->HomeService->getList4RecentilyList(self::POSTS_LIST_LIMIT);
         // 人気のお店を取得
         $shops = $this->HomeService->getList4PopularityList(self::SHOPS_LIST_LIMIT);
 
-        return view('Home.index', compact('user', 'posts', 'shops'));
+        return view('Home.index', compact('posts', 'shops'));
     }
 
     public function create()

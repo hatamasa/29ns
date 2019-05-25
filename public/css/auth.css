@@ -11,6 +11,10 @@
 .form-login a {
     margin-top: 15px;
 }
+.form-login a:nth-child(3) {
+    display: block;
+    margin-top: 20px;
+}
 
 
 /********************/

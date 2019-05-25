@@ -1,0 +1,95 @@
+.search form {
+    display: flex;
+}
+.search form button {
+    width: 70px;
+}
+
+.search-btn {
+    display: flex;
+    justify-content: space-between;
+}
+.search-btn a {
+    font-size: 12px;
+    width: 110px;
+    background-color: #fff;
+}
+
+
+.block-head {
+    display: flex;
+}
+.block-head p,
+.block-head a {
+    width: 50%;
+    text-align: right;
+}
+.block-head p {
+    border-bottom: solid 1px #000;
+}
+
+
+.card {
+    padding: 10px;
+}
+.card-title {
+    font-size: 16px;
+    font-weight: bold;
+}
+.card-body {
+    display: flex;
+    padding: 0;
+    font-size: 13px;
+}
+
+.post-img,
+.popularity-img {
+    width: 80px;
+    height: 80px;
+    text-align: center;
+}
+.post-img img,
+.popularity-img img {
+    width: auto;
+    height: auto;
+    max-width: 80px;
+    max-height: 80px;
+}
+.post-text ul,
+.popularity-text ul {
+    padding-left: 10px;
+    margin: 0;
+}
+.post-text ul li,
+.popularity-text ul li {
+    margin-bottom: 5px;
+}
+.post-text-top,
+.popularity-text-top {
+    display: flex;
+    justify-content: space-between;
+}
+.popularity-text-top {
+    display: block;
+}
+.post-text-top p img {
+    max-width: 30px;
+    max-height: 30px;
+    margin-right: 5px;
+    width: auto;
+    height: auto;
+}
+.post-text-top p:nth-child(1),
+.popularity-text-top p:nth-child(1) {
+    font-size: 16px;
+    font-weight: bold;
+}
+.post-text-center {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.rank {
+    font-size: 20px;
+    margin-right: 10px;
+}

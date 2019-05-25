@@ -2,7 +2,8 @@
 
 namespace App\Http\Middleware;
 
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\View;
 use Closure;
 
 class BeforeMiddleware
@@ -16,6 +17,8 @@ class BeforeMiddleware
      */
     public function handle($request, Closure $next)
     {
+        View::share('user', Auth::user());
+
         return $next($request);
     }
 }

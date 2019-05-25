@@ -19,6 +19,12 @@ class ShopsRepository implements ShopsRepositoryInterface
     public function getPopularityList(int $limit)
     {
         $query = DB::table('shops')
+            ->select(
+                'shop_cd',
+                'score',
+                'post_count',
+                'like_count'
+            )
             ->orderBy('score', 'desc')
             ->limit($limit)
             ;

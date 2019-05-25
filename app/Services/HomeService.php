@@ -3,7 +3,6 @@ namespace App\Services;
 
 use App\Repositories\PostsRepository;
 use App\Repositories\ShopsRepository;
-use Illuminate\Support\Facades\Log;
 
 class HomeService extends Service
 {
@@ -32,6 +31,7 @@ class HomeService extends Service
             foreach ($chunk as $post) {
                 $shop_ids[] = $post->shop_cd;
             }
+            $this->_log("shops: ".json_encode($shop_ids));
             // 投稿から店を10件毎に取得
             $tmp = (new ApiService())->callGnaviRestSearchApi(['id' => implode(',', $shop_ids)]);
             $result = array_merge($result, $tmp['rest']);
@@ -41,7 +41,7 @@ class HomeService extends Service
             foreach ($posts as &$post) {
                 if ($shop['id'] == $post->shop_cd) {
                     $post->shop_name     = $shop['name'];
-                    $post->shop_img_url  = $shop['image_url']['shop_image1'];
+                    $post->shop_img_url  = !empty($shop['image_url']['shop_image1']) ? $shop['image_url']['shop_image1'] : null;
                 }
             }
         }
@@ -63,6 +63,7 @@ class HomeService extends Service
             foreach ($chunk as $shop) {
                 $shop_ids[] = $shop->shop_cd;
             }
+            $this->_log("shops: ".json_encode($shop_ids));
             // 投稿から店を10件毎に取得
             $tmp = (new ApiService())->callGnaviRestSearchApi(['id' => implode(',', $shop_ids)]);
             $result = array_merge($result, $tmp['rest']);
@@ -72,7 +73,7 @@ class HomeService extends Service
             foreach ($shops as &$shop) {
                 if ($res_shop['id'] == $shop->shop_cd) {
                     $shop->shop_name     = $res_shop['name'];
-                    $shop->shop_img_url  = $res_shop['image_url']['shop_image1'];
+                    $shop->shop_img_url  = !empty($res_shop['image_url']['shop_image1']) ? $res_shop['image_url']['shop_image1'] : null;
                 }
             }
         }

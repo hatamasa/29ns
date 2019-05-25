@@ -1,3 +1,7 @@
+body {
+    background-color: #EFEFEF;
+}
+
 input[type=radio], input[type=checkbox] {
     display: none;
 }
@@ -5,9 +9,16 @@ input[type=radio], input[type=checkbox] {
 ul {
     list-style: none;
 }
+ul p {
+    margin-bottom: 0;
+}
 
 .display-none {
     display: none;
+}
+
+.btn {
+    border: 1px solid #ced4da;
 }
 
 .container {
@@ -16,7 +27,7 @@ ul {
     padding-top: 65px;
     padding-bottom: 30px;
     margin-bottom: -100px;
-    background-color:#ffffffdb;
+    background-color:#EFEFEF;
     position: relative;
 }
 @media screen and (max-width:480px){
@@ -57,8 +68,10 @@ ul {
     padding-top: 13px;
 }
 .nav-header img {
-    height: 40px;
-    width: 40px;
+    max-height: 30px;
+    max-width: 30px;
+    height: auto;
+    width: auto;
 }
 .nav-header .side-open {
     border: solid 1px #e1e2e1;
@@ -122,6 +135,9 @@ ul {
     margin: 0;
     padding: 0;
 }
+#nav-side li:nth-child(1) {
+    padding: 5px;
+}
 #nav-side li a {
     display: block;
     border: unset;
@@ -131,9 +147,6 @@ ul {
 
 /* フォーム */
 .form-group {
-    width: 100%;
-    padding: 0;
-    margin: 0;
     margin-bottom: 15px;
 }
 .form-group input::placeholder

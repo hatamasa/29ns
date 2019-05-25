@@ -25,11 +25,12 @@ class PostsRepository implements PostsRepositoryInterface
             ->select(
                 'p.shop_cd',
                 'p.title',
-                'p.contents',
                 'p.score',
                 'p.img_url_1',
                 'p.created_at as post_created_at',
-                'u.name as user_name'
+                'u.id as user_id',
+                'u.name as user_name',
+                'u.thumbnail_url as user_thumbnail_url'
             )
             ->join('users as u', 'p.user_id', '=', 'u.id')
             ->where('p.is_deleted', 0)
