@@ -8,8 +8,10 @@
         let tgt = evt.target;
         // チェックがつくときは10個を超えないようにチェックする
         let areaMInput = tgt.parentNode.nextElementSibling.getElementsByClassName("_areaMInput");
+        let areaMInputChecked = tgt.parentNode.nextElementSibling.querySelectorAll("._areaMInput:checked");
         if (tgt.checked) {
-            if ((areaMInput.length + document.querySelectorAll("._areaMInput:checked").length) > 10) {
+            if ((areaMInput.length - areaMInputChecked.length
+                + document.querySelectorAll("._areaMInput:checked").length) > 10) {
                 tgt.checked = false;
                 alert("エリアの選択は10個までです。");
                 return;
