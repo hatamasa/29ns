@@ -10,38 +10,11 @@
     justify-content: space-between;
 }
 .search-btn a {
-    font-size: 12px;
+    font-size: 10px;
     width: 110px;
     background-color: #fff;
 }
 
-
-.block-head {
-    display: flex;
-}
-.block-head p,
-.block-head a {
-    width: 50%;
-    text-align: right;
-}
-.block-head p {
-    border-bottom: solid 1px #000;
-}
-
-
-.card {
-    padding: 10px;
-}
-.card-title {
-    font-size: 16px;
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-.card-body {
-    display: flex;
-    padding: 0;
-    font-size: 13px;
-}
 .post-img,
 .popularity-img {
     width: 80px;
