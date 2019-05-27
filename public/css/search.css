@@ -1,4 +1,43 @@
 
+
+.line-wap {
+    padding-bottom: 15px;
+    background-color: #fff;
+}
+.line {
+    background-color: #950000;
+    color: #fff;
+    padding: 10px;
+}
+.station-l {
+    line-height: 1;
+    height: 35px;
+    padding-top: 14px;
+    border-bottom: solid 1px #000;
+    padding-bottom: 0px;
+}
+.station-wap {
+    padding-left: 15px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.station {
+    line-height: 1;
+    padding-top: 15px;
+    margin: 0 15px 0px 0px;
+}
+.station-search-submit-wap {
+    position: fixed;
+    bottom: 0;
+    z-index: 1;
+    display: block;
+    background-color: rgba(0,0,0,0.6);
+    width: 100%;
+    padding: 20px 15px 20px 15px;
+    left: 0;
+    display: none;
+}
+
 .area-wap {
     padding: 10px;
     background-color: #fff;

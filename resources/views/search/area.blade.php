@@ -20,7 +20,7 @@
     <div class="block-head">
         <p>エリアから探す</p>
     </div>
-    <form action="{{ url('/search/area') }}" name="areaSearchForm">
+    <form action="{{ url('/shops') }}">
     @foreach ($areas as $area_l_cd => $area)
         <div class="area-wap">
             <div class="area-l">
@@ -30,7 +30,7 @@
             <div class="area-m-wap">
             @foreach ($area as $val)
                 <p class="area-m">
-                    <input type="checkbox" name="area_m[]" id="area-m-{{ $val['area_cd'] }}" class="form-check-input _areaMInput" val="{{ $val['area_cd'] }}">
+                    <input type="checkbox" name="area_m_list[]" id="area-m-{{ $val['area_cd'] }}" class="form-check-input _areaMInput" val="{{ $val['area_cd'] }}">
                     <label for="area-m-{{ $val['area_cd'] }}" class="form-check-label">{{ $val['area_name'] }}</label>
                 </p>
             @endforeach

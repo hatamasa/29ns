@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Services\SearchService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Config;
 
 /**
  * 検索表示用コントローラ
@@ -19,7 +18,7 @@ class SearchController extends Controller
         parent::__construct();
         $this->SearchService = $search;
 
-        $this->middleware('auth')->except(['area']);
+        $this->middleware('auth')->except(['area', 'station']);
     }
 
     public function index(Request $request)
@@ -28,10 +27,16 @@ class SearchController extends Controller
         return view('Search.index');
     }
 
+    /**
+     * 駅から探す
+     * @param Request $request
+     * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory
+     */
     public function station(Request $request)
     {
+        $stations = $this->SearchService->getStationList();
 
-        return view('Search.station');
+        return view('Search.station', compact('stations'));
     }
 
     /**
@@ -41,7 +46,7 @@ class SearchController extends Controller
      */
     public function area(Request $request)
     {
-        $areas = $this->SearchService->getList();
+        $areas = $this->SearchService->getAreaList();
 
         return view('Search.area', compact('areas'));
     }

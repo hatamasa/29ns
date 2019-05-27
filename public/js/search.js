@@ -1,10 +1,38 @@
 (() => {
 
+    /****************************************************************/
+    /*********************  station.blade.php   *********************/
+    /****************************************************************/
+    // 駅がチェックされたら個数バリデーションを行う
+    [].forEach.call(document.getElementsByClassName("_stationInput"), elem => {
+        elem.addEventListener("click", evt => stationClicked(evt));
+    });
+    function stationClicked(evt) {
+        let tgt = evt.target;
+        // チェックがつくときは10個を超えないようにチェックする
+        if (tgt.checked) {
+            if (document.querySelectorAll("._stationInput:checked").length > 10) {
+                tgt.checked = false;
+                alert('駅の選択は10個までです。');
+                return;
+            }
+        }
+        // チェックされている駅が一つでもあればボタンを表示する
+        if (checkedInputM.length > 0) {
+            document.getElementById("_stationSearchSubmitWap").style.display = "block";
+        } else {
+            document.getElementById("_stationSearchSubmitWap").style.display = "none";
+        }
+    }
+
+    /****************************************************************/
+    /*********************  area.blade.php      *********************/
+    /****************************************************************/
     // エリアLがチェックされたら配下のエリアMを全てチェック、外れたら全て外す
     [].forEach.call(document.getElementsByClassName("_areaLInput"), elem => {
-        elem.addEventListener("click", evt => areaLChanged(evt));
+        elem.addEventListener("click", evt => areaLClicked(evt));
     });
-    function areaLChanged(evt) {
+    function areaLClicked(evt) {
         let tgt = evt.target;
         // チェックがつくときは10個を超えないようにチェックする
         let areaMInput = tgt.parentNode.nextElementSibling.getElementsByClassName("_areaMInput");
@@ -35,15 +63,15 @@
     }
 
     [].forEach.call(document.getElementsByClassName("_areaMInput"), elem => {
-        elem.addEventListener("click", evt => areaMChanged(evt));
+        elem.addEventListener("click", evt => areaMClicked(evt));
     });
-    function areaMChanged(evt) {
+    function areaMClicked(evt) {
         let tgt = evt.target;
         // チェックがつくときは10個を超えないようにチェックする
         if (tgt.checked) {
             if (document.querySelectorAll("._areaMInput:checked").length > 10) {
                 tgt.checked = false;
-                alert('エリアの選択は10までです。');
+                alert('エリアの選択は10個までです。');
                 return;
             }
         }
@@ -65,9 +93,6 @@
         } else {
             document.getElementById("_areaSearchSubmitWap").style.display = "none";
         }
-    }
-
-    function checkInput() {
     }
 
 })();
