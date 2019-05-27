@@ -23,15 +23,14 @@
     <form action="{{ url('/shops') }}">
     @foreach ($areas as $area_l_cd => $area)
         <div class="area-wap">
-            <div class="area-l">
-                <input type="checkbox" id="area-l-{{ $area_l_cd }}" class="form-check-input _areaLInput" val="{{ $area_l_cd }}">
-                <label for="area-l-{{ $area_l_cd }}" class="form-check-label">{{ Config::get('const.area_l')[$area_l_cd] }}</label>
-            </div>
+            <div class="area-l">{{ Config::get('const.area_l')[$area_l_cd] }}</div>
             <div class="area-m-wap">
+                <p class="area-m">
+                    <a href='{{ url("/shops?areacode_l=").$area_l_cd }}'>{{ Config::get('const.area_l')[$area_l_cd] }}(全て)</a>
+                </p>
             @foreach ($area as $val)
                 <p class="area-m">
-                    <input type="checkbox" name="area_m_list[]" id="area-m-{{ $val['area_cd'] }}" class="form-check-input _areaMInput" val="{{ $val['area_cd'] }}">
-                    <label for="area-m-{{ $val['area_cd'] }}" class="form-check-label">{{ $val['area_name'] }}</label>
+                    <a href='{{ url("/shops?areacode_m=").$val["area_cd"] }}'>{{ $val['area_name'] }}</a>
                 </p>
             @endforeach
             </div>
