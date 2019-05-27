@@ -12,7 +12,6 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call(AreasSeeder::class);
-        $this->call(StationLinesSeeder::class);
         $this->call(StationsSeeder::class);
 
         if (env('APP_ENV') != 'prod') {

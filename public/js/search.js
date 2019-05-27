@@ -18,7 +18,8 @@
             }
         }
         // チェックされている駅が一つでもあればボタンを表示する
-        if (checkedInputM.length > 0) {
+        let checkedInput = tgt.parentNode.parentNode.querySelectorAll("._stationInput:checked");
+        if (checkedInput.length > 0) {
             document.getElementById("_stationSearchSubmitWap").style.display = "block";
         } else {
             document.getElementById("_stationSearchSubmitWap").style.display = "none";
