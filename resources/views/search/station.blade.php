@@ -11,11 +11,7 @@
 
 @section('content')
 <div>
-    @guest
-    <div class="form-group">
-        <a class="btn btn-info btn-block" href="{{ route('register') }}">新規会員登録はこちら</a>
-    </div>
-    @endguest
+    @includ('common.landing_regist')
 
     <div class="block-head">
         <p>駅から探す</p>
