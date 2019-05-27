@@ -7,4 +7,12 @@
 //        }
 //    });
 
+    const FLASH = document.getElementsByClassName('flash');
+    if (FLASH) {
+        [].forEach.call(FLASH, elem => {
+            $(elem).fadeOut(3000);
+        });
+    }
+
+
 })();
