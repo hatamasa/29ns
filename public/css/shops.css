@@ -1,0 +1,19 @@
+.popularity-img {
+    width: 80px;
+    height: 80px;
+    text-align: center;
+}
+.popularity-img img {
+    width: auto;
+    height: auto;
+    max-width: 80px;
+    max-height: 80px;
+}
+.popularity-text ul {
+    padding-left: 10px;
+    margin: 0;
+}
+.popularity-text ul li {
+    font-size: 10px;
+    margin-bottom: 5px;
+}

@@ -24,5 +24,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/search/area', 'SearchController@area');
     Route::get('/search/station', 'SearchController@station');
 
+    Route::get('/shops', 'ShopsController@index');
+
     Route::resource('posts',  'PostsController');
 });

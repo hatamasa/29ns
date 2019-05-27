@@ -11,7 +11,7 @@
 
 @section('content')
 <div>
-    @includ('common.landing_regist')
+    @include('common.landing_regist')
 
     <div class="form-group search">
         <form method="GET" action="{{ url('/shops') }}">

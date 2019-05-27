@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Config;
 
 class ApiService extends Service
 {
+    const CATEGORY_YAKINIKU = 1;
 
     public function __construct()
     {
@@ -41,16 +42,35 @@ class ApiService extends Service
     /**
      * ぐるなび店舗検索APIをコールする
      * @param array $options
+     * @param $category
      * @throws \Exception
      * @return mixed
      */
-    public function callGnaviRestSearchApi(array $options)
+    public function callGnaviRestSearchApi(array $options, $category = null)
     {
         $base_url = Config::get('services.gnavi.base_url');
         $path     = Config::get('services.gnavi.api_path.restSearch');
+        $category_s = [];
+        if (!is_null($category)) {
+            if (is_array($category)) {
+
+            } else {
+                switch ($category) {
+                    case self::CATEGORY_YAKINIKU:
+                        $category_s = [
+                            Config::get("const.gnavi.category.yakiniku")[0]['category_s_code'],
+                            Config::get("const.gnavi.category.yakiniku")[1]['category_s_code'],
+                            Config::get("const.gnavi.category.yakiniku")[2]['category_s_code'],
+                            Config::get("const.gnavi.category.yakiniku")[3]['category_s_code'],
+                        ];
+                        break;
+                }
+            }
+        }
 
         $options = array_merge([
-            'keyid' => Config::get('services.gnavi.key')
+            'category_s' => implode(',', $category_s),
+            'keyid'      => Config::get('services.gnavi.key')
         ], $options);
 
         $query = [];

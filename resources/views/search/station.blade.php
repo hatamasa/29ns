@@ -11,19 +11,19 @@
 
 @section('content')
 <div>
-    @includ('common.landing_regist')
+    @include('common.landing_regist')
 
     <div class="block-head">
         <p>駅から探す</p>
     </div>
-    <form action="{{ url('/shops') }}">
+    <form action="{{ url('/shops') }}" method="get">
     @foreach ($stations as $line_cd => $station)
         <div class="line-wap">
             <div class="line">{{ Config::get('const.station_line')[$line_cd] }}</div>
             <div class="station-wap">
             @foreach ($station as $val)
                 <p class="station">
-                    <input type="checkbox" name="station_list[]" id="station-{{ $val['station_cd'] }}" class="form-check-input _stationInput" val="{{ $val['station_cd'] }}">
+                    <input type="checkbox" name="station_list[]" id="station-{{ $val['station_cd'] }}" class="form-check-input _stationInput" value="{{ $val['station_cd'] }}">
                     <label for="station-{{ $val['station_cd'] }}" class="form-check-label">{{ $val['station_name'] }}</label>
                 </p>
             @endforeach

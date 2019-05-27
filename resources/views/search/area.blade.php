@@ -11,12 +11,12 @@
 
 @section('content')
 <div>
-    @includ('common.landing_regist')
+    @include('common.landing_regist')
 
     <div class="block-head">
         <p>エリアから探す</p>
     </div>
-    <form action="{{ url('/shops') }}">
+    <form action="{{ url('/shops') }}" method="get">
     @foreach ($areas as $area_l_cd => $area)
         <div class="area-wap">
             <div class="area-l">{{ Config::get('const.area_l')[$area_l_cd] }}</div>
