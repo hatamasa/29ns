@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
+use App\Exceptions\NotFoundShopException;
 use App\Services\ShopsService;
 use App\Services\ApiService;
 
@@ -32,15 +33,20 @@ class ShopsController extends Controller
         // リクエストパラメータからオプションを生成
         $input = $request->input();
         $input['page'] = $input['page'] ?? 1;
-        list($options, $search_condition) = $this->ShopsService->makeOptions($input, self::SHOPS_LIST_LIMIT + 1);
-        if (!is_array($options)) {
-            session()->flash('error', $options);
+        try {
+            list($options, $search_condition) = $this->ShopsService->makeOptions($input, self::SHOPS_LIST_LIMIT + 1);
+        } catch (\Exception $e) {
+            session()->flash('error', $e->getMessage());
+            $this->_log($e->getMessage(), 'error');
             return redirect(url()->previous());
         }
 
         try {
             // 店舗を取得
             $shops = $this->ApiService->callGnaviRestSearchApi($options, ApiService::CATEGORY_YAKINIKU);
+        } catch (NotFoundShopException $e){
+            session()->flash('error', '検索結果がありません');
+            return redirect(url()->previous());
         } catch (\Exception $e) {
             session()->flash('error', '予期せぬエラーが発生しました。');
             $this->_log($e->getMessage(), 'error');

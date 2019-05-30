@@ -304,6 +304,16 @@ ul p {
     padding: 0 20px;
     margin: 0;
 }
+.post-detail-link {
+    margin: 0;
+    display: flex;
+    justify-content: start;
+    border-top: solid 0.5px #ced4da;
+    padding: 5px 0px 5px 20px;
+}
+.post-detail-link li {
+    margin-right: 20px;
+}
 
 /* ページャー */
 .paginator {

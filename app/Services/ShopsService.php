@@ -55,11 +55,17 @@ class ShopsService extends Service
         // フリーワード検索
         if (isset($params['keyword'])) {
             $keyword = str_replace([' ','　'], ',', trim(mb_convert_kana($params['keyword'], 'a', 'UTF-8')));
-            $keyword_list = explode(',', $keyword);
-            if ($keyword_list > 10) {
-                return '検索キーワードは10個までです。';
+            if (!$keyword) {
+                throw new \Exception('検索キーワードを入力してください');
             }
-            $options['freeword'] = $keyword;
+            $keyword_list = explode(',', $keyword);
+            $keyword_list = array_filter($keyword_list, function ($val) {
+                return !empty(trim($val));
+            });
+            if (count($keyword_list) > 10) {
+                throw new \Exception('検索キーワードは10個までです。');
+            }
+            $options['freeword'] = implode(',', $keyword_list);
             if (count($keyword_list) > 1) {
                 $search_condition[] = $keyword_list[0].' 他';
             } else {

@@ -26,5 +26,11 @@
             <li>{{ $post->like_count }}いいね</li>
             <li>コメント{{ $post->comment_count }}件</li>
         </ul>
+        @auth
+        <ul class="post-detail-link">
+            <li><a href='javascript:void(0)' class="like">いいね</a></li>
+            <li><a href='{{ url("/posts/{$post->id}") }}'>コメントする</a></li>
+        </ul>
+        @endauth
     </div>
 </div>

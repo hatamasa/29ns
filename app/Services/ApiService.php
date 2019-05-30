@@ -1,6 +1,7 @@
 <?php
 namespace App\Services;
 
+use App\Exceptions\NotFoundShopException;
 use Illuminate\Support\Facades\Config;
 
 class ApiService extends Service
@@ -28,12 +29,14 @@ class ApiService extends Service
         $url = $base_url.$path.'?'.http_build_query($options);
         $this->_log("request url: ".$url);
 
-        $response = file_get_contents($url);
-
+        $response = @file_get_contents($url);
         $result = json_decode($response, true);
 
-        if (isset($result['error'])) {
-            throw new \Exception('callGnaviAreaMApi error. '.json_encode($result['error']));
+        if(count($http_response_header) > 0){
+            $status_code = explode(' ', $http_response_header[0]);
+            if ($status_code[1] != '200') {
+                throw new \Exception('callGnaviAreaMApi error. '.json_encode($result['error']));
+            }
         }
 
         return $result;
@@ -69,6 +72,7 @@ class ApiService extends Service
         }
 
         $options = array_merge([
+            'pref'       => 'PREF13',
             'category_s' => implode(',', $category_s),
             'keyid'      => Config::get('services.gnavi.key')
         ], $options);
@@ -81,12 +85,24 @@ class ApiService extends Service
         $url = $base_url.$path.'?'.implode('&', $query);
         $this->_log("request url: ".$url);
 
-        $response = file_get_contents($url);
-
+        $response = @file_get_contents($url);
         $result = json_decode($response, true);
 
-        if (isset($result['error'])) {
-            throw new \Exception('callGnaviRestSearchApi error. '.json_encode($result['error']));
+        if(count($http_response_header) > 0){
+            $status_code = explode(' ', $http_response_header[0]);
+            switch($status_code[1]) {
+                case '400':
+                case '401':
+                case '405':
+                case '429':
+                case '500':
+                    throw new \Exception('callGnaviRestSearchApi error. '.json_encode($result['error']));
+                    break;
+                case '404':
+                    throw new NotFoundShopException();
+                    break;
+                default:
+            }
         }
 
         return $result;

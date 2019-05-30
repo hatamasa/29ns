@@ -14,8 +14,8 @@
     @include('common.landing_regist')
 
     <div class="form-group search">
-        <form method="GET" action="{{ url('/shops') }}">
-            <input type="text" id="_keyword" class="form-control" name="keyword" placeholder="店名、駅名、住所など入力...">
+        <form method="get" name="search_form" action="{{ url('/shops') }}">
+            <input type="text" id="_keyword" class="form-control" name="keyword" value="" placeholder="店名、駅名、住所など入力...">
             <button type="submit" class="btn btn-primary btn-sm">検索</button>
         </form>
     </div>
