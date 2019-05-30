@@ -239,6 +239,88 @@ ul p {
     font-size: 12px;
 }
 
+/* ログと店舗のカード表示 */
+.post-img,
+.shop-img {
+    width: 80px;
+    height: 80px;
+    text-align: center;
+}
+.post-img img,
+.shop-img img {
+    width: auto;
+    height: auto;
+    max-width: 80px;
+    max-height: 80px;
+}
+.post-text ul,
+.shop-text ul {
+    padding-left: 10px;
+    margin: 0;
+}
+.shop-text ul {
+    justify-content: space-between;
+    display: block;
+    font-size: 10px;
+    padding-left: 10px;
+}
+.post-text ul li:nth-child(1),
+.shop-text ul li:nth-child(1) {
+    margin-bottom: 5px;
+}
+.shop-text ul li:nth-child(1) {
+    font-size: 16px;
+    font-weight: bold;
+}
+.post-text-top {
+    display: flex;
+    justify-content: space-between;
+}
+.post-text-top p img {
+    max-width: 30px;
+    max-height: 30px;
+    margin-right: 5px;
+    width: auto;
+    height: auto;
+}
+.post-text-top p:nth-child(1) {
+    font-size: 16px;
+    font-weight: bold;
+}
+.post-text-center {
+    font-size: 12px;
+    font-weight: bold;
+}
+.post-text-center a {
+    font-weight: normal;
+}
+.post-text-center span{
+    color: black;
+    font-weight: bold;
+}
+.post-text-under {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    margin: 0;
+}
+
+/* ページャー */
+.paginator {
+    margin-bottom: 15px;
+    text-align: center;
+}
+.paginator span {
+    font-size: 20px;
+    margin: 0 20px;
+}
+.paginator button {
+    font-weight: bold;
+}
+.paginator button:disabled {
+    font-weight: unset;
+}
+
 /* フッター */
 .footer {
     height: 100px;

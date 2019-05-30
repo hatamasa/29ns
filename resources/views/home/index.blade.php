@@ -38,7 +38,7 @@
         </div>
     </div>
 
-    <div class="form-group popularity">
+    <div class="form-group">
         <div class="block-head">
             <p>人気のお店</p>
             <a href="{{ url('shops') }}">人気のお店をもっと見る→</a>
@@ -48,16 +48,18 @@
             <div class="card">
                 <div class="card-title"><span class="rank">No.{{ $loop->iteration }}</span>{{ $shop->shop_name }}</div>
                 <div class="card-body">
-                    <div class="popularity-img">
+                    <div class="shop-img">
                         <img alt="" src="{{ $shop->shop_img_url ?? asset('images/shop.png') }}">
                     </div>
-                    <div class="popularity-text">
+                    <div class="shop-text">
                         <ul>
-                            <li class="popularity-text-top">
-                                <p>{{ $shop->score }}点</p>
-                                <p>{{ $shop->post_count }}件の29ログ</p>
-                                <p>{{ $shop->like_count }}件のお気に入り</p>
-                            </li>
+                            <li>{{ $shop->score }}点</li>
+                            <li>{{ $shop->post_count }}件の29ログ / {{ $shop->like_count }}件のお気に入り</li>
+                            <li>{{ $shop->line }} {{ $shop->station }} 徒歩{{ $shop->walk }}分 {{ $shop->note }}</li>
+                            @empty ($shop->budget)
+                            @else
+                            <li>予算 ¥{{ $shop->budget }}</li>
+                            @endempty
                         </ul>
                     </div>
                 </div>

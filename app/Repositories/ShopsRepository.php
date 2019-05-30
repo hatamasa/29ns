@@ -33,12 +33,32 @@ class ShopsRepository implements ShopsRepositoryInterface
     }
 
     /**
+     * idのリストで店舗を取得する
+     * @param array $shop_ids
+     * @return array
+     */
+    public function getListByShopCds(array $shop_cds)
+    {
+        $query = DB::table('shops')
+            ->select(
+                'shop_cd',
+                'score',
+                'post_count',
+                'like_count'
+            )
+            ->whereIn('shop_cd', $shop_cds)
+            ;
+
+        return $query->get()->toArray();
+    }
+
+    /**
      * IDで一覧を取得する
      * @param int $id
      * @param int $offset
      * @return object
      */
-    public function getList(int $id, int $offset)
+    public function _getList(int $id, int $offset)
     {
         $sub_users = DB::table('users')->where('is_resigned', 0);
         $sub_groups = DB::table('groups')->where('is_deleted', 0);

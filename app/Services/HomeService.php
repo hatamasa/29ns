@@ -72,6 +72,11 @@ class HomeService extends Service
                 if ($res_shop['id'] == $shop->shop_cd) {
                     $shop->shop_name     = $res_shop['name'];
                     $shop->shop_img_url  = !empty($res_shop['image_url']['shop_image1']) ? $res_shop['image_url']['shop_image1'] : null;
+                    $shop->line    = $res_shop['access']['line'];
+                    $shop->station = $res_shop['access']['station'];
+                    $shop->walk    = $res_shop['access']['walk'];
+                    $shop->note    = $res_shop['access']['note'];
+                    $shop->budget  = $res_shop['budget'];
                 }
             }
         }
