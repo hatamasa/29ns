@@ -29,9 +29,10 @@
     <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
         <div class="nav-header">
             <a href="{{ url('/home') }}" class="col-4">東京29NS</a>
-            <a href="{{ url('/home') }}" class="col-2">ホーム</a>
-            <a href="{{ url('/search') }}" class="col-2">検索</a>
-            <a href="{{ url('/posts') }}" class="col-2">みんなの29ログ</a>
+            <a href="{{ url('/home') }}" class="col-3">ホーム</a>
+            {{--<a href="{{ url('/search') }}" class="col-2">検索</a>--}}
+            <a style="display: none"></a>
+            <a href="{{ url('/posts') }}" class="col-3">みんなの29ログ</a>
             @guest
                 <a href="{{ url('/login') }}" class="col-2">ログイン</a>
             @else
