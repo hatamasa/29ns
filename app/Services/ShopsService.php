@@ -77,10 +77,11 @@ class ShopsService extends Service
     /**
      * 人気のお店を取得する
      * @param int $limit
+     * @param int $page
      */
-    public function getList4PopularityList(int $limit)
+    public function getList4PopularityList(int $limit, int $page = 1)
     {
-        $shops = $this->Shops->getPopularityList($limit);
+        $shops = $this->Shops->getPopularityList($limit, $page);
 
         $result = [];
         foreach (array_chunk($shops, 10) as $chunk) {

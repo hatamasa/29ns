@@ -13,16 +13,15 @@
     @include('common.landing_regist')
 
     <div class="block-head">
-        <p>{{ implode(",", $search_condition) }}の店舗</p>
-        <p>{{ $total_hit_count }}件</p>
+        <p>人気店舗ランキング</p>
     </div>
 
     <div class="block-body">
     @foreach ($shops as $shop)
-        @include ('common.shop', ['shop' => $shop])
+        @include ('common.shop_ranking', ['shop' => $shop, 'offset' => $offset])
     @endforeach
     </div>
-    {{ $shops->appends($input)->links('common.pagination') }}
+    {{ $shops->links('common.pagination') }}
 </div>
 
 @endsection

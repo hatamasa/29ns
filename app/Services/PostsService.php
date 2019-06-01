@@ -13,7 +13,7 @@ class PostsService extends Service
     /**
      * 最近の29ログ一覧を取得する
      * @param int $id
-     * @param number $offset
+     * @param number $page
      * @return object
      */
     public function getList4RecentilyList(int $limit, int $page = 1)

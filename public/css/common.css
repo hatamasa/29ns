@@ -100,18 +100,19 @@ ul p {
     border-right: 4px solid transparent;
 }
 #nav-input:checked ~ #nav-close {
-  display: block;/*カバーを表示*/
-  opacity: .5;
+    display: block;/*カバーを表示*/
+    opacity: .5;
 }
 #nav-input:checked ~ #nav-side {
-  -webkit-transform: translateX(calc(100vw - 330px));
-  transform: translateX(calc(100vw - 330px));/*中身を表示（左へスライド）*/
-  box-shadow: 6px 0 25px rgba(0,0,0,.15);
+    transform: unset;
+    box-shadow: 6px 0 25px rgba(0,0,0,.15);
+    right: 5px;
+    top: 50px;
 }
 @media screen and (max-width:480px){
     #nav-input:checked ~ #nav-side {;
-        -webkit-transform: translateX(calc(100vw - 200px));
-        transform: translateX(calc(100vw - 200px));/*中身を表示（左へスライド）*/
+        -webkit-transform: translateX(calc(100vw - 175px));
+        transform: translateX(calc(100vw - 175px));/*中身を表示（左へスライド）*/
     }
 }
 #nav-close {
@@ -230,6 +231,10 @@ ul p {
     font-size: 15px;
     font-weight: bold;
     margin-bottom: 5px;
+}
+.rank {
+    font-size: 20px;
+    margin-right: 10px;
 }
 .card-body {
     display: flex;

@@ -16,7 +16,7 @@ class ShopsRepository implements ShopsRepositoryInterface
      * @param int $limit
      * @return \Illuminate\Support\Collection
      */
-    public function getPopularityList(int $limit)
+    public function getPopularityList(int $limit, int $page = 1)
     {
         $query = DB::table('shops')
             ->select(
@@ -26,6 +26,7 @@ class ShopsRepository implements ShopsRepositoryInterface
                 'like_count'
             )
             ->orderBy('score', 'desc')
+            ->offset(($page-1) * $limit)
             ->limit($limit)
             ;
 
