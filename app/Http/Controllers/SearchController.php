@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\SearchService;
+use App\Services\AreasService;
+use App\Services\StationsService;
 use Illuminate\Http\Request;
 
 /**
@@ -13,10 +14,11 @@ use Illuminate\Http\Request;
 class SearchController extends Controller
 {
 
-    public function __construct(SearchService $search)
+    public function __construct(StationsService $stations, AreasService $areas)
     {
         parent::__construct();
-        $this->SearchService = $search;
+        $this->StationsService = $stations;
+        $this->AreasService    = $areas;
 
         $this->middleware('auth')->except(['area', 'station']);
     }
@@ -34,7 +36,7 @@ class SearchController extends Controller
      */
     public function station(Request $request)
     {
-        $stations = $this->SearchService->getStationList();
+        $stations = $this->StationsService->getStationList();
 
         return view('Search.station', compact('stations'));
     }
@@ -46,7 +48,7 @@ class SearchController extends Controller
      */
     public function area(Request $request)
     {
-        $areas = $this->SearchService->getAreaList();
+        $areas = $this->AreasService->getAreaList();
 
         return view('Search.area', compact('areas'));
     }

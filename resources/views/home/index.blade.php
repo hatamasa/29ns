@@ -5,8 +5,7 @@
 @endsection
 
 @section('script')
-<script src="{{ asset('js/jquery.inview.min.js') }}"></script>
-<script src="{{ asset('js/home.js') }}"></script>
+{{--<script src="{{ asset('js/home.js') }}"></script>--}}
 @endsection
 
 @section('content')
@@ -41,7 +40,7 @@
     <div class="form-group">
         <div class="block-head">
             <p>人気のお店</p>
-            <a href="{{ url('shops') }}">人気のお店をもっと見る→</a>
+            <a href="{{ url('/shops').'?sort=popular' }}">人気のお店をもっと見る→</a>
         </div>
         <div class="block-body">
         @foreach ($shops as $shop)

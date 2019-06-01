@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Services\HomeService;
+use App\Services\PostsService;
+use App\Services\ShopsService;
 
 /**
  * ホーム表示用コントローラ
@@ -17,11 +18,12 @@ class HomeController extends Controller
     // 人気店表示件数
     const SHOPS_LIST_LIMIT = 5;
 
-    public function __construct(HomeService $HomeService)
+    public function __construct(PostsService $postsService, ShopsService $shopsService)
     {
         parent::__construct();
 
-        $this->HomeService = $HomeService;
+        $this->PostsService = $postsService;
+        $this->ShopsService = $shopsService;
 
         $this->middleware('auth')->except(['index']);
     }
@@ -29,9 +31,9 @@ class HomeController extends Controller
     public function index(Request $request)
     {
         // 最近の29ログ一覧を取得
-        $posts = $this->HomeService->getList4RecentilyList(self::POSTS_LIST_LIMIT);
+        $posts = $this->PostsService->getList4RecentilyList(self::POSTS_LIST_LIMIT);
         // 人気のお店を取得
-        $shops = $this->HomeService->getList4PopularityList(self::SHOPS_LIST_LIMIT);
+        $shops = $this->ShopsService->getList4PopularityList(self::SHOPS_LIST_LIMIT);
 
         return view('Home.index', compact('posts', 'shops'));
     }

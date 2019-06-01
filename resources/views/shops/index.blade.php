@@ -5,8 +5,7 @@
 @endsection
 
 @section('script')
-<script src="{{ asset('js/jquery.inview.min.js') }}"></script>
-<script src="{{ asset('js/shops.js') }}"></script>
+{{--<script src="{{ asset('js/shops.js') }}"></script>--}}
 @endsection
 
 @section('content')

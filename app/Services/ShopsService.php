@@ -1,16 +1,14 @@
 <?php
 namespace App\Services;
 
-use App\Repositories\PostsRepository;
 use App\Repositories\ShopsRepository;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 
 class ShopsService extends Service
 {
-    public function __construct(PostsRepository $posts, ShopsRepository $shops)
+    public function __construct(ShopsRepository $shops)
     {
-        $this->Posts = $posts;
         $this->Shops = $shops;
     }
 
@@ -74,6 +72,43 @@ class ShopsService extends Service
         }
 
         return [$options, $search_condition];
+    }
+
+    /**
+     * 人気のお店を取得する
+     * @param int $limit
+     */
+    public function getList4PopularityList(int $limit)
+    {
+        $shops = $this->Shops->getPopularityList($limit);
+
+        $result = [];
+        foreach (array_chunk($shops, 10) as $chunk) {
+            $shop_ids = [];
+            foreach ($chunk as $shop) {
+                $shop_ids[] = $shop->shop_cd;
+            }
+            $this->_log("shops: ".json_encode($shop_ids));
+            // 投稿から店を10件毎に取得
+            $tmp = (new ApiService())->callGnaviRestSearchApi(['id' => implode(',', $shop_ids)]);
+            $result = array_merge($result, $tmp['rest']);
+        }
+        // 店舗の取得結果から投稿に必要な情報を取得する
+        foreach ($result as $res_shop) {
+            foreach ($shops as &$shop) {
+                if ($res_shop['id'] == $shop->shop_cd) {
+                    $shop->shop_name     = $res_shop['name'];
+                    $shop->shop_img_url  = !empty($res_shop['image_url']['shop_image1']) ? $res_shop['image_url']['shop_image1'] : null;
+                    $shop->line    = $res_shop['access']['line'];
+                    $shop->station = $res_shop['access']['station'];
+                    $shop->walk    = $res_shop['access']['walk'];
+                    $shop->note    = $res_shop['access']['note'];
+                    $shop->budget  = $res_shop['budget'];
+                }
+            }
+        }
+
+        return $shops;
     }
 
     /**
