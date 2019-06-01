@@ -26,5 +26,5 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::get('/shops', 'ShopsController@index');
 
-    Route::resource('posts',  'PostsController');
+    Route::get('/posts', 'PostsController@index');
 });

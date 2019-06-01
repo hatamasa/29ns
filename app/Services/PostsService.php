@@ -16,10 +16,10 @@ class PostsService extends Service
      * @param number $offset
      * @return object
      */
-    public function getList4RecentilyList(int $limit)
+    public function getList4RecentilyList(int $limit, int $page = 1)
     {
         // 最近の投稿を取得
-        $posts = $this->Posts->getRecentlyList($limit);
+        $posts = $this->Posts->getRecentlyList($limit, $page);
 
         $result = [];
         foreach (array_chunk($posts, 10) as $chunk) {
