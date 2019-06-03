@@ -117,7 +117,7 @@ class ShopsService extends Service
      * @param array $shops
      * @return array
      */
-    public function margeScore($shops)
+    public function margeScore(array $shops)
     {
         $shop_cds = [];
         foreach ($shops as $shop) {

@@ -16,7 +16,7 @@
                     <p>@time_diff($post->post_created_at)</p>
                 </li>
                 <li class="post-text-center">
-                    <a href='{{ url("/posts/{$post->id}") }}'><span>{{ $post->title }}</span> ...詳細を見る</a>
+                    <a href='{{ url("/posts/{$post->id}") }}'><p>{{ $post->title }}</p><span>...詳細を見る</span></a>
                 </li>
             </ul>
         </div>

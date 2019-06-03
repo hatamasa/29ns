@@ -1,5 +1,7 @@
 <div class="card">
-    <div class="card-title">{{ $shop['name'] }}</div>
+    <div class="card-title">
+        <a href='{{ url("/shops/{$shop["id"]}") }}'>{{ $shop['name'] }}</a>
+        </div>
     <div class="card-body">
         <div class="shop-img">
             <img alt="" src="{{ $shop['image_url']['shop_image1'] ?? asset('images/shop.png') }}">

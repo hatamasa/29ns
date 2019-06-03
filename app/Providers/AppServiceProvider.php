@@ -3,9 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Blade;
-use Illuminate\Support\Facades\View;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -34,10 +32,10 @@ class AppServiceProvider extends ServiceProvider
 
         Blade::directive('time_diff', function ($expression) {
             return  <<<EOT
-            <?php echo floor((strtotime('now') - strtotime($expression)) / 86400)
-                    ? floor((strtotime('now') - strtotime($expression)) / 86400)."日前"
-                    : gmdate('G', (strtotime('now') - strtotime($expression)))."時間前"
-            ?>
+                <?php echo floor((strtotime('now') - strtotime($expression)) / 86400)
+                        ? floor((strtotime('now') - strtotime($expression)) / 86400)."日前"
+                        : gmdate('G', (strtotime('now') - strtotime($expression)))."時間前"
+                ?>
 EOT;
         });
 

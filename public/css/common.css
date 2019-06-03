@@ -299,10 +299,19 @@ ul p {
 }
 .post-text-center a {
     font-weight: normal;
+    position: relative;
 }
-.post-text-center span{
+.post-text-center p{
     color: black;
     font-weight: bold;
+}
+.post-text-center span {
+    position: absolute;
+    width: max-content;
+    left: 145px;
+    bottom: 0px;
+    padding-left: 10px;
+    background-color: #fff;
 }
 .post-text-under {
     display: flex;

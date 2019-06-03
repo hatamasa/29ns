@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\DB;
 use App\Exceptions\NotFoundShopException;
+use App\Repositories\PostsRepository;
 use App\Services\ShopsService;
 use App\Services\ApiService;
 
@@ -18,13 +19,17 @@ class ShopsController extends Controller
 {
     // 店舗表示件数
     const SHOPS_LIST_LIMIT = 30;
+    // 店舗詳細での投稿の表示数
+    const POSTS_LIST_LIMIT_4_SHOP_DETAIL = 10;
 
-    public function __construct(ShopsService $ShopsService, ApiService $apiService)
+    public function __construct(ShopsService $ShopsService, ApiService $apiService, PostsRepository $posts)
     {
         parent::__construct();
 
         $this->ShopsService = $ShopsService;
         $this->ApiService   = $apiService;
+
+        $this->Posts = $posts;
 
         $this->middleware('auth')->except(['index']);
     }
@@ -78,7 +83,7 @@ class ShopsController extends Controller
                 $shops,
                 $count > 100 ? 100 : $count,
                 self::SHOPS_LIST_LIMIT,
-                $request->page,
+                $page,
                 ['path' => $request->url()]
             );
 
@@ -87,8 +92,35 @@ class ShopsController extends Controller
         return view('Shops.ranking', compact('shops', 'offset'));
     }
 
-    public function show()
+    public function show(Request $request, $shop_cd)
     {
+        try {
+            // 店舗を取得
+            $shops = $this->ApiService->callGnaviRestSearchApi(['id' => $shop_cd]);
+        } catch (NotFoundShopException $e){
+            session()->flash('error', '検索結果がありません');
+            return redirect(url()->previous());
+        } catch (\Exception $e) {
+            session()->flash('error', '予期せぬエラーが発生しました。');
+            $this->_log($e->getMessage(), 'error');
+            return redirect(url()->previous());
+        }
+
+        $shop = $this->ShopsService->margeScore($shops['rest'])[0];
+
+        $page = $request->page ?? 1;
+        $count = DB::table('posts')->where('shop_cd', $shop_cd)->count();
+        $posts = $this->Posts->getListByShopCd($shop_cd, self::POSTS_LIST_LIMIT_4_SHOP_DETAIL, $page);
+
+        $posts = new LengthAwarePaginator(
+                $posts,
+                $count,
+                self::POSTS_LIST_LIMIT_4_SHOP_DETAIL,
+                $page,
+                ['path' => $request->url()]
+            );
+
+        return view('Shops.show', compact('shop', 'posts'));
     }
 
     public function like()

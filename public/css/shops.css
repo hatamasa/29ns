@@ -22,3 +22,53 @@
     margin-bottom: 15px;
 }
 
+.post-text-center span {
+    left: 231px;
+}
+
+
+/************************/
+/******** show  *********/
+/************************/
+.user-thumbnail {
+    width: 100%;
+    padding: 10px;
+}
+.user-thumbnail img {
+    height: 45px;
+    width: 45px;
+    border-radius: 100%;
+    border: solid 0.5px #dfdfdf;
+}
+.user-thumbnail a {
+    width: 100%;
+}
+.user-thumbnail a div {
+    display: block;
+    text-align: center;
+    background-color: #fff;
+    line-height: 1;
+    padding: 16px;
+    border: solid 0.5px #dfdfdf;
+    border-radius: 20px;
+    margin-left: 10px;
+    color: #97999b;
+}
+
+.shop-detail {
+    background-color: unset;
+    border: unset;
+}
+.shop-text ul li:nth-child(1) {
+    font-size: unset;
+    font-weight: unset;
+    margin: 0;
+}
+.shop-text ul li:nth-child(3),
+.shop-text ul li:nth-child(4) {
+    margin-bottom: 5px;
+}
+
+.gnavi-link {
+    font-size: 12px;
+}

@@ -1,5 +1,9 @@
 <div class="card">
-    <div class="card-title"><span class="rank">No.{{ ($offset ?? 0) + $loop->iteration }}</span>{{ $shop->shop_name }}</div>
+    <div class="card-title">
+        <a href='{{ url("/shops/{$shop->shop_cd}") }}'>
+            <span class="rank">No.{{ ($offset ?? 0) + $loop->iteration }}</span>{{ $shop->shop_name }}
+        </a>
+    </div>
     <div class="card-body">
         <div class="shop-img">
             <img alt="" src="{{ $shop->shop_img_url ?? asset('images/shop.png') }}">
