@@ -10,6 +10,7 @@
 
 @section('content')
 <div>
+    <p>お店を探して29ログ(レビュー)をしよう！</p>
     @include('common.landing_regist')
 
     <div class="form-group search">

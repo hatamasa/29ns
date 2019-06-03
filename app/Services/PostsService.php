@@ -2,6 +2,7 @@
 namespace App\Services;
 
 use App\Repositories\PostsRepository;
+use Illuminate\Support\Facades\DB;
 
 class PostsService extends Service
 {
@@ -43,6 +44,24 @@ class PostsService extends Service
         }
 
         return $posts;
+    }
+
+    /**
+     * DBとAPIから表示用の投稿を取得する
+     * @param int $id
+     * @return \Illuminate\Database\Eloquent\Model|object|\Illuminate\Database\Query\Builder|NULL
+     */
+    public function getSingle(int $id)
+    {
+        $post = $this->Posts->getById($id);
+
+        $result = (new ApiService())->callGnaviRestSearchApi(['id' => $post->shop_cd]);
+        $shop = $result['rest'][0];
+
+        $post->shop_name    = $shop['name'];
+        $post->shop_img_url = !empty($shop['image_url']['shop_image1']) ? $shop['image_url']['shop_image1'] : null;
+
+        return $post;
     }
 
 }

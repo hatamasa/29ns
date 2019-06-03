@@ -13,12 +13,6 @@ class RepositoryServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(
-            \App\Repositories\PostsRepositoryInterface::class,
-            \App\Repositories\PostsRepository::class,
-            \App\Repositories\ShopsRepositoryInterface::class,
-            \App\Repositories\ShopsRepository::class
-        );
     }
 
     /**

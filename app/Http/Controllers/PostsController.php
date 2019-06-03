@@ -6,16 +6,19 @@ use App\Services\PostsService;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\DB;
+use App\Repositories\PostCommentsRepository;
 
 class PostsController extends Controller
 {
     // 29ログ一覧表示件数
     const POSTS_LIST_LIMIT = 30;
 
-    public function __construct(PostsService $postsService)
+    public function __construct(PostsService $postsService, PostCommentsRepository $postComments)
     {
         parent::__construct();
         $this->PostsService = $postsService;
+
+        $this->PostComments = $postComments;
 
         $this->middleware('auth')->except(['index']);
     }
@@ -47,8 +50,19 @@ class PostsController extends Controller
     {
     }
 
-    public function show()
+    public function show(Request $request, $id)
     {
+        $post = $this->PostsService->getSingle($id);
+        $post_comments = $this->PostComments->getListByPostId($id);
+
+        return view('Posts.show', compact('post', 'post_comments'));
+    }
+
+    public function showLikeUsers(Request $request, $id)
+    {
+        $post_like_users = DB::table('post_like_users')->where('post_id', $id)->get();
+
+        return view('Posts.like_users', compact('post_like_users'));
     }
 
     public function edit()
