@@ -20,11 +20,11 @@
             <ul>
                 <li class="post-text-top">
                     <p>{{ $post->score }}点</p>
-                    <p>
-                        <a href='{{ url("/users/{$post->user_id}")}}'>
+                    <a href='{{ url("/users/{$post->user_id}")}}'>
+                        <p>
                             <img alt="" src="{{ $post->user_thumbnail_url }}">{{ $post->user_name }}
-                        </a>
-                    </p>
+                        </p>
+                    </a>
                     <p>@time_diff($post->post_created_at)</p>
                 </li>
                 <li class="post-text-center">
@@ -41,7 +41,7 @@
         </ul>
         @auth
         <ul class="post-detail-link">
-            <li><a href='javascript:void(0)' class="like">いいね</a></li>
+            <a href='javascript:void(0)' class="like"><li>いいね</li></a>
         </ul>
         @endauth
     </div>
@@ -49,31 +49,35 @@
 
 @foreach ($post_comments as $post_comment)
     <div class="comment">
-        @if ($post_comment->thumbnail_url)
-        <img alt="" src="{{ $post_comment->thumbnail_url }}">
-        @elseif ($post_comment->sex == 1)
-        <img alt="" src="{{ asset('/images/man.png') }}">
-        @elseif ($post_comment->sex == 2)
-        <img alt="" src="{{ asset('/images/woman.png') }}">
-        @endif
+        <a href="{{ url('/user/{$post_comment->user_id}') }}">
+            @if ($post_comment->thumbnail_url)
+            <img alt="" src="{{ $post_comment->thumbnail_url }}">
+            @elseif ($post_comment->sex == 1)
+            <img alt="" src="{{ asset('/images/man.png') }}">
+            @elseif ($post_comment->sex == 2)
+            <img alt="" src="{{ asset('/images/woman.png') }}">
+            @endif
+        </a>
         <div class="comment-text">
             <a href="{{ url('/user/{$post_comment->user_id}') }}"><span>{{ $post_comment->name }}</span></a><span>@time_diff($post_comment->created_at)</span><br>
             {{ $post_comment->contents }}
         </div>
     </div>
 @endforeach
-    <form action='{{ url("/postsComment/store") }}' method="POST">
-        <div class="comment">
-            @if ($user->thumbnail_url)
-            <img alt="" src="{{ $user->thumbnail_url }}">
-            @elseif ($user->sex == 1)
-            <img alt="" src="{{ asset('/images/man.png') }}">
-            @elseif ($user->sex == 2)
-            <img alt="" src="{{ asset('/images/woman.png') }}">
-            @endif
-            <textarea name="contents" class="comment-text comment-input" value="" placeholder="コメントする..."></textarea>
-            <button type="submit" class="btn btn-primary btn-sm">コメント</button>
-            <input type="hidden" name="post_id" value="{{ $post->id }}">
-        </div>
-    </form>
+
+<form action='{{ url("/postsComment/store") }}' method="POST">
+    <div class="comment">
+        @if ($user->thumbnail_url)
+        <img alt="" src="{{ $user->thumbnail_url }}">
+        @elseif ($user->sex == 1)
+        <img alt="" src="{{ asset('/images/man.png') }}">
+        @elseif ($user->sex == 2)
+        <img alt="" src="{{ asset('/images/woman.png') }}">
+        @endif
+        <textarea name="contents" class="comment-text comment-input" value="" placeholder="コメントする..."></textarea>
+        <button type="submit" class="btn btn-primary btn-sm">コメント</button>
+        <input type="hidden" name="post_id" value="{{ $post->id }}">
+    </div>
+</form>
+
 @endsection

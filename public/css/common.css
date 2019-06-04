@@ -14,6 +14,19 @@ ul p {
     margin-bottom: 0;
 }
 
+a:hover {
+    color: inherit;
+    text-decoration: unset;
+}
+a:active {
+    background-color: #d1d1d1 !important;
+}
+a:active > li,
+a:active > p,
+a:active > img {
+    background-color: #d1d1d1;
+}
+
 .display-none {
     display: none;
 }
@@ -223,9 +236,15 @@ ul p {
     font-size: 12px;
 }
 /* カード */
+.link {
+    color: unset;
+}
 .card {
     padding: 5px 10px 5px 10px;
     margin-bottom: 5px;
+}
+.link:active > div.card {
+    background-color: #d1d1d1;
 }
 .card-title {
     font-size: 15px;
@@ -304,14 +323,10 @@ ul p {
 .post-text-center p{
     color: black;
     font-weight: bold;
+    display: inline;
 }
 .post-text-center span {
-    position: absolute;
-    width: max-content;
-    left: 145px;
-    bottom: 0px;
     padding-left: 10px;
-    background-color: #fff;
 }
 .post-text-under {
     display: flex;
@@ -352,4 +367,9 @@ ul p {
     background-color: #950000;
     display: block;
     position: relative;
+}
+
+
+.register {
+    font-size: 14px;
 }

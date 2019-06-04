@@ -5,7 +5,6 @@
 @endsection
 
 @section('script')
-<script src="{{ asset('js/jquery.inview.min.js') }}"></script>
 <script src="{{ asset('js/search.js') }}"></script>
 @endsection
 
@@ -21,13 +20,13 @@
         <div class="area-wap">
             <div class="area-l">{{ Config::get('const.area_l')[$area_l_cd] }}</div>
             <div class="area-m-wap">
-                <p class="area-m">
-                    <a href='{{ url("/shops?areacode_l=").$area_l_cd }}'>{{ Config::get('const.area_l')[$area_l_cd] }}(全て)</a>
-                </p>
+                <a href='{{ url("/shops?areacode_l=").$area_l_cd }}'>
+                    <p class="area-m">{{ Config::get('const.area_l')[$area_l_cd] }}(全て)</p>
+                </a>
             @foreach ($area as $val)
-                <p class="area-m">
-                    <a href='{{ url("/shops?areacode_m=").$val["area_cd"] }}'>{{ $val['area_name'] }}</a>
-                </p>
+                <a href='{{ url("/shops?areacode_m=").$val["area_cd"] }}'>
+                    <p class="area-m">{{ $val['area_name'] }}</p>
+                </a>
             @endforeach
             </div>
         </div>
