@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('style')
-<link href="{{ asset('css/posts.css') }}" rel="stylesheet">
+<link href="{{ asset('css/posts/show.css') }}" rel="stylesheet">
 @endsection
 
 @section('script')
@@ -13,9 +13,6 @@
 <div class="card">
     <div class="card-title"><a href='{{ url("/shops/{$post->shop_cd}") }}'>{{ $post->shop_name }}</a></div>
     <div class="card-body">
-        <div class="post-img">
-            <img alt="" src="{{ $post->img_url_1 ?? $post->shop_img_url ?? asset('images/shop.png') }}">
-        </div>
         <div class="post-text">
             <ul>
                 <li class="post-text-top">
@@ -33,6 +30,17 @@
                 </li>
             </ul>
         </div>
+        <ul class="post-img">
+            @if (!empty($post->img_url_1))
+            <li><img alt="" src="{{ $post->img_url_1 }}"></li>
+            @endif
+            @if (!empty($post->img_url_2))
+            <li><img alt="" src="{{ $post->img_url_2 }}"></li>
+            @endif
+            @if (!empty($post->img_url_3))
+            <li><img alt="" src="{{ $post->img_url_3 }}"></li>
+            @endif
+        </ul>
     </div>
     <div class="card-body-footer">
         <ul class="post-text-under">

@@ -1,0 +1,61 @@
+.card-body {
+    display: block;
+}
+
+.post-img {
+    display: flex;
+    width: 100%;
+    height: auto;
+}
+.post-img li {
+    margin: 1px;
+    width: calc(100% / 3 - 2px)
+}
+.post-img img {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+}
+.post-text-center p:nth-child(1) {
+    margin-bottom: 10px;
+}
+.post-text-center p:nth-child(2) {
+    font-weight: normal;
+}
+
+.comment {
+    width: 100%;
+    padding: 10px;
+    display: flex;
+}
+.comment img {
+    height: 45px;
+    width: 45px;
+    border-radius: 100%;
+    border: solid 0.5px #dfdfdf;
+    margin-top: 2px;
+}
+.comment-text {
+    width: 100%;
+}
+.comment-text {
+    display: block;
+    background-color: #fff;
+    line-height: 1;
+    padding: 10px;
+    border: solid 0.5px #dfdfdf;
+    border-radius: 20px;
+    margin-left: 10px;
+    font-size: 12px;
+}
+.comment-text span:nth-child(1) {
+    margin-right: 10px;
+}
+
+.comment-input {
+    resize: none;
+}
+.comment-input::placeholder {
+    padding: 10px;
+}

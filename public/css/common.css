@@ -15,7 +15,7 @@ ul p {
 }
 
 a:hover {
-    color: inherit;
+    color: #007bff;
     text-decoration: unset;
 }
 a:active {
@@ -49,6 +49,8 @@ a:active > img {
     font-size: 14px;
     min-height: 100vh;
     padding-top: 65px;
+    padding-right: 5px;
+    padding-left: 5px;
     padding-bottom: 100px;
     margin-bottom: -100px;
     background-color:#EFEFEF;

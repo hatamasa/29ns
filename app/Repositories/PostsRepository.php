@@ -92,6 +92,8 @@ class PostsRepository
                 'p.contents',
                 'p.score',
                 'p.img_url_1',
+                'p.img_url_2',
+                'p.img_url_3',
                 'p.like_count',
                 'p.comment_count',
                 'p.created_at as post_created_at',
