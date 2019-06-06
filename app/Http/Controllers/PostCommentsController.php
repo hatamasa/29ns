@@ -18,14 +18,25 @@ class PostCommentsController extends Controller
     public function store(Request $request, $id)
     {
         $contents = $request->contents;
+        if (empty(trim($contents))) {
+            session()->flash('error', 'コメントを入力してください。');
+            return redirect(url()->previous());
+        }
 
+        $Posts = DB::table('posts');
+        $post = $Posts->where(['id' => $id])->first();
+
+        DB::beginTransaction();
         try {
             DB::table('post_comments')->insert([
                 'post_id'  => $id,
                 'user_id'  => Auth::id(),
                 'contents' => $contents,
             ]);
+            $Posts->where('id', $id)->update(['comment_count' => $post->comment_count+1]);
+            DB::commit();
         } catch (\Exception $e) {
+            DB::rollBack();
             $this->_log($e->getMessage(), 'error');
             session()->flash('error', '予期せぬエラーが発生しました。');
             return redirect(url()->previous());
@@ -49,9 +60,19 @@ class PostCommentsController extends Controller
 
     public function destroy(Request $request, $id)
     {
+        $PostComments = DB::table('post_comments');
+        $post_comment = $PostComments->where(['id' => $id])->first();
+
+        $Posts = DB::table('posts');
+        $post = $Posts->where(['id' => $post_comment->post_id])->first();
+
+        DB::beginTransaction();
         try {
-            DB::table('post_comments')->delete($id);
+            $PostComments->delete($id);
+            $Posts->where(['id' => $post->id])->update(['comment_count' => $post->comment_count-1]);
+            DB::commit();
         } catch (\Exception $e) {
+            DB::rollBack();
             $this->_log($e->getMessage(), 'error');
             session()->flash('error', '予期せぬエラーが発生しました。');
             return redirect(url()->previous());

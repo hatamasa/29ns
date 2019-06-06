@@ -91,7 +91,7 @@
         @elseif ($user->sex == 2)
         <img alt="" src="{{ asset('/images/woman.png') }}">
         @endif
-        <textarea name="contents" class="comment-text comment-input" value="" placeholder="コメントする..."></textarea>
+        <textarea name="contents" class="comment-text comment-input text-required" value="" data-name="コメント" placeholder="コメントする..."></textarea>
         <button type="submit" class="btn btn-primary btn-sm">コメント</button>
     </div>
 </form>
