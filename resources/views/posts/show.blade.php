@@ -67,13 +67,21 @@
             @endif
         </a>
         <div class="comment-text">
-            <a href="{{ url('/user/{$post_comment->user_id}') }}"><span>{{ $post_comment->name }}</span></a><span>@time_diff($post_comment->created_at)</span><br>
+            <a href="{{ url('/user/{$post_comment->user_id}') }}"><span>{{ $post_comment->name }}</span></a><span>@time_diff($post_comment->created_at)</span>
+            <br>
             {{ $post_comment->contents }}
         </div>
+        @if (Auth::id() == $post_comment->user_id)
+        <form action='{{ url("/post_comments/{$post_comment->id}") }}' method="POST" class="comment-del-form">
+            @method("DELETE")
+            @csrf
+            <button type="submit" class="btn btn-danger btn-sm">削除</button>
+        </form>
+        @endif
     </div>
 @endforeach
 
-<form action='{{ url("/post_comments/store") }}' method="POST">
+<form action='{{ url("/post_comments/{$post->id}") }}' method="POST">
     @csrf
     <div class="comment">
         @if ($user->thumbnail_url)
@@ -85,7 +93,6 @@
         @endif
         <textarea name="contents" class="comment-text comment-input" value="" placeholder="コメントする..."></textarea>
         <button type="submit" class="btn btn-primary btn-sm">コメント</button>
-        <input type="hidden" name="post_id" value="{{ $post->id }}">
     </div>
 </form>
 

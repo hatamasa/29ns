@@ -18,6 +18,7 @@ class PostCommentsRepository
     {
         $query = DB::table('post_comments as pc')
             ->select(
+                "pc.id",
                 "pc.contents",
                 "pc.user_id",
                 "pc.created_at",

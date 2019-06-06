@@ -15,14 +15,13 @@ class PostCommentsController extends Controller
         $this->middleware('auth');
     }
 
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
-        $post_id  = $request->post_id;
         $contents = $request->contents;
 
         try {
             DB::table('post_comments')->insert([
-                'post_id'  => $post_id,
+                'post_id'  => $id,
                 'user_id'  => Auth::id(),
                 'contents' => $contents,
             ]);
@@ -48,8 +47,18 @@ class PostCommentsController extends Controller
     {
     }
 
-    public function destroy()
+    public function destroy(Request $request, $id)
     {
+        try {
+            DB::table('post_comments')->delete($id);
+        } catch (\Exception $e) {
+            $this->_log($e->getMessage(), 'error');
+            session()->flash('error', '予期せぬエラーが発生しました。');
+            return redirect(url()->previous());
+        }
+
+        session()->flash('success', '削除しました');
+        return redirect(url()->previous());
     }
 
 }
