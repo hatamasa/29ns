@@ -15,25 +15,26 @@ class PostCommentsController extends Controller
         $this->middleware('auth');
     }
 
-    public function store(Request $request, $id)
+    public function store(Request $request)
     {
         $contents = $request->contents;
         if (empty(trim($contents))) {
             session()->flash('error', 'コメントを入力してください。');
             return redirect(url()->previous());
         }
+        $post_id = $request->post_id;
 
         $Posts = DB::table('posts');
-        $post = $Posts->where(['id' => $id])->first();
+        $post = $Posts->where(['id' => $post_id])->first();
 
         DB::beginTransaction();
         try {
             DB::table('post_comments')->insert([
-                'post_id'  => $id,
+                'post_id'  => $post_id,
                 'user_id'  => Auth::id(),
                 'contents' => $contents,
             ]);
-            $Posts->where('id', $id)->update(['comment_count' => $post->comment_count+1]);
+            $Posts->where('id', $post_id)->update(['comment_count' => $post->comment_count+1]);
             DB::commit();
         } catch (\Exception $e) {
             DB::rollBack();
@@ -44,18 +45,6 @@ class PostCommentsController extends Controller
 
         session()->flash('success', 'コメントしました');
         return redirect(url()->previous());
-    }
-
-    public function show(Request $request, $id)
-    {
-    }
-
-    public function edit()
-    {
-    }
-
-    public function update()
-    {
     }
 
     public function destroy(Request $request, $id)

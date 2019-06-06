@@ -18,7 +18,7 @@
         @elseif ($user->sex == 2)
         <img alt="" src="{{ asset('/images/woman.png') }}">
         @endif
-        <a href='{{ url("/post/{$shop["id"]}/create") }}'>
+        <a href='{{ url("/posts/create?shop_cd={$shop["id"]}") }}'>
             <div>このお店を29ログする</div>
         </a>
     </div>

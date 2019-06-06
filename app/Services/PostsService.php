@@ -2,7 +2,6 @@
 namespace App\Services;
 
 use App\Repositories\PostsRepository;
-use Illuminate\Support\Facades\DB;
 
 class PostsService extends Service
 {
@@ -47,11 +46,11 @@ class PostsService extends Service
     }
 
     /**
-     * DBとAPIから表示用の投稿を取得する
+     * idでDBとAPIから表示用の投稿を取得する
      * @param int $id
      * @return \Illuminate\Database\Eloquent\Model|object|\Illuminate\Database\Query\Builder|NULL
      */
-    public function getSingle(int $id)
+    public function getPostById(int $id)
     {
         $post = $this->Posts->getById($id);
 

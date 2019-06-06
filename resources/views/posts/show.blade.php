@@ -81,7 +81,7 @@
     </div>
 @endforeach
 
-<form action='{{ url("/post_comments/{$post->id}") }}' method="POST">
+<form action='{{ url("/post_comments") }}' method="POST">
     @csrf
     <div class="comment">
         @if ($user->thumbnail_url)
@@ -92,6 +92,7 @@
         <img alt="" src="{{ asset('/images/woman.png') }}">
         @endif
         <textarea name="contents" class="comment-text comment-input text-required" value="" data-name="コメント" placeholder="コメントする..."></textarea>
+        <input type="hidden" name="post_id" value="{{ $post->id }}">
         <button type="submit" class="btn btn-primary btn-sm">コメント</button>
     </div>
 </form>

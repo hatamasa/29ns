@@ -7,9 +7,11 @@ use Illuminate\Support\Facades\DB;
 
 class ShopsService extends Service
 {
-    public function __construct(ShopsRepository $shops)
+    public function __construct(ShopsRepository $shops, ApiService $apiService)
     {
         $this->Shops = $shops;
+        $this->ApiService = $apiService;
+
     }
 
     /**
@@ -110,6 +112,21 @@ class ShopsService extends Service
         }
 
         return $shops;
+    }
+
+    /**
+     * shop_cdでAPIとDBから店舗を取得する
+     * @param string $shop_cd
+     * @return array
+     */
+    public function getShopByCd(string $shop_cd)
+    {
+        // 店舗を取得
+        $shops = $this->ApiService->callGnaviRestSearchApi(['id' => $shop_cd]);
+
+        $shop = $this->margeScore($shops['rest'])[0];
+
+        return $shop;
     }
 
     /**

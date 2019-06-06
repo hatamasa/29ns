@@ -29,8 +29,9 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/shops/ranking', 'ShopsController@ranking');
 
     Route::get('/posts', 'PostsController@index');
+    Route::get('/posts/create', 'PostsController@create');
     Route::get('/posts/{id}', 'PostsController@show')->where(['id' => '[a-z0-9]+']);
 
-    Route::post('/post_comments/{id}', 'PostCommentsController@store');
+    Route::post('/post_comments', 'PostCommentsController@store');
     Route::delete('/post_comments/{id}', 'PostCommentsController@destroy');
 });

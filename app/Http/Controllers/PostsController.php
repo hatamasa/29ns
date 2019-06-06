@@ -6,17 +6,20 @@ use App\Services\PostsService;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\DB;
+use App\Exceptions\NotFoundShopException;
 use App\Repositories\PostCommentsRepository;
+use App\Services\ShopsService;
 
 class PostsController extends Controller
 {
     // 29ログ一覧表示件数
     const POSTS_LIST_LIMIT = 30;
 
-    public function __construct(PostsService $postsService, PostCommentsRepository $postComments)
+    public function __construct(PostsService $postsService, ShopsService $shopsService, PostCommentsRepository $postComments)
     {
         parent::__construct();
         $this->PostsService = $postsService;
+        $this->ShopsService= $shopsService;
 
         $this->PostComments = $postComments;
 
@@ -42,8 +45,23 @@ class PostsController extends Controller
         return view('Posts.index', compact("posts"));
     }
 
-    public function create()
+    public function create(Request $request)
     {
+        $shop_cd = $request->shop_cd;
+
+        try {
+            // 店舗を取得
+            $shop = $this->ShopsService->getShopByCd($shop_cd);
+        } catch (NotFoundShopException $e){
+            session()->flash('error', '検索結果がありません');
+            return redirect(url()->previous());
+        } catch (\Exception $e) {
+            session()->flash('error', '予期せぬエラーが発生しました。');
+            $this->_log($e->getMessage(), 'error');
+            return redirect(url()->previous());
+        }
+
+        return view('Posts.create', compact("shop"));
     }
 
     public function store()
@@ -52,7 +70,7 @@ class PostsController extends Controller
 
     public function show(Request $request, $id)
     {
-        $post = $this->PostsService->getSingle($id);
+        $post = $this->PostsService->getPostById($id);
         $post_comments = $this->PostComments->getListByPostId($id);
 
         return view('Posts.show', compact('post', 'post_comments'));

@@ -96,7 +96,7 @@ class ShopsController extends Controller
     {
         try {
             // 店舗を取得
-            $shops = $this->ApiService->callGnaviRestSearchApi(['id' => $shop_cd]);
+            $shop = $this->ShopsService->getShopByCd($shop_cd);
         } catch (NotFoundShopException $e){
             session()->flash('error', '検索結果がありません');
             return redirect(url()->previous());
@@ -105,8 +105,6 @@ class ShopsController extends Controller
             $this->_log($e->getMessage(), 'error');
             return redirect(url()->previous());
         }
-
-        $shop = $this->ShopsService->margeScore($shops['rest'])[0];
 
         $page = $request->page ?? 1;
         $count = DB::table('posts')->where('shop_cd', $shop_cd)->count();
