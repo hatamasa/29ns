@@ -42,6 +42,7 @@ a:active > img {
     width: 100vw;
     left: 0;
     opacity: 0.9;
+    z-index: 1000;
 }
 
 .container {

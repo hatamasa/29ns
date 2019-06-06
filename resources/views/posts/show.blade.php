@@ -73,7 +73,8 @@
     </div>
 @endforeach
 
-<form action='{{ url("/postsComment/store") }}' method="POST">
+<form action='{{ url("/post_comments/store") }}' method="POST">
+    @csrf
     <div class="comment">
         @if ($user->thumbnail_url)
         <img alt="" src="{{ $user->thumbnail_url }}">

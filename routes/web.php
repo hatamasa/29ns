@@ -30,4 +30,6 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::get('/posts', 'PostsController@index');
     Route::get('/posts/{id}', 'PostsController@show')->where(['id' => '[a-z0-9]+']);
+
+    Route::post('/post_comments/store', 'PostCommentsController@store');
 });

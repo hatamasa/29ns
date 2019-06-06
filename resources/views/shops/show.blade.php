@@ -40,8 +40,8 @@
                         @else
                         <li>予算 ¥{{ $shop['budget'] }}</li>
                         @endempty
-                        <li>{{ $shop['opentime'] }}</li>
-                        <li>{{ $shop['holiday'] }}</li>
+                        <li>営業日 {{ $shop['opentime'] }}</li>
+                        <li>定休日 {{ $shop['holiday'] }}</li>
                     </ul>
                 </div>
             </div>
@@ -59,7 +59,7 @@
     <div>お店を訪ずれたことあったら、上の「このお店を29ログする」からレビューを投稿しましょう！</div>
     @endif
     @foreach ($posts as $post)
-        <div class="card">
+        <div class="card post">
             <div class="card-body">
                 <div class="post-text">
                     <ul>
@@ -80,10 +80,22 @@
                             <p>@time_diff($post->post_created_at)</p>
                         </li>
                         <li class="post-text-center">
-                            <a href='{{ url("/posts/{$post->id}") }}'><p>{{ $post->title }}</p><span>...詳細を見る</span></a>
+                            <p>{{ $post->title }}</p>
+                            <p>{{ $post->contents }}</p>
                         </li>
                     </ul>
                 </div>
+                <ul class="post-img">
+                    @if (!empty($post->img_url_1))
+                    <li><img alt="" src="{{ $post->img_url_1 }}"></li>
+                    @endif
+                    @if (!empty($post->img_url_2))
+                    <li><img alt="" src="{{ $post->img_url_2 }}"></li>
+                    @endif
+                    @if (!empty($post->img_url_3))
+                    <li><img alt="" src="{{ $post->img_url_3 }}"></li>
+                    @endif
+                </ul>
             </div>
             <div class="card-body-footer">
                 <ul class="post-text-under">
@@ -92,8 +104,8 @@
                 </ul>
                 @auth
                 <ul class="post-detail-link">
-                    <li><a href='javascript:void(0)' class="like">いいね</a></li>
-                    <li><a href='{{ url("/posts/{$post->id}") }}'>コメントする</a></li>
+                    <a href='javascript:void(0)' class="like"><li>いいね</li></a>
+                    <a href='{{ url("/posts/{$post->id}") }}'><li>コメントする</li></a>
                 </ul>
                 @endauth
             </div>
