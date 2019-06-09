@@ -68,8 +68,7 @@
         </a>
         <div class="comment-text">
             <a href="{{ url('/user/{$post_comment->user_id}') }}"><span>{{ $post_comment->name }}</span></a><span>@time_diff($post_comment->created_at)</span>
-            <br>
-            {{ $post_comment->contents }}
+            <div>{{ $post_comment->contents }}</div>
         </div>
         @if (Auth::id() == $post_comment->user_id)
         <form action='{{ url("/post_comments/{$post_comment->id}") }}' method="POST" class="comment-del-form">

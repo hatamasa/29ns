@@ -53,6 +53,9 @@
     margin-right: 10px;
 }
 
+.comment-text div {
+    white-space: pre-line;
+}
 .comment-input {
     resize: none;
 }

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('style')
-<link href="{{ asset('css/posts.css') }}" rel="stylesheet">
+<link href="{{ asset('css/posts/create.css') }}" rel="stylesheet">
 @endsection
 
 @section('script')
@@ -36,6 +36,43 @@
                 </div>
             </div>
         </div>
+        <form action="{{ url('/posts') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <div class="post">
+                <div class="selective">
+                    <div>
+                        <span>点数</span>
+                        <labal class="select-parent">
+                            {{ Form::select('score', array_reverse(Config::get('const.post.score_list'))) }}
+                        </label>
+                        点
+                    </div>
+                    <div>
+                        <span>訪問回数</span>
+                        <labal class="select-parent">
+                            {{ Form::select('visit_count', Config::get('const.post.visit_count')) }}
+                        </label>
+                        回
+                    </div>
+                </div>
+                <div class="title">
+                    <input type="text" name="title" class="form-control" value="" placeholder="タイトルを入力...">
+                </div>
+                <div class="contents">
+                    <textarea name="contents" class="form-control" placeholder='{!! Config::get("const.post.example") !!}'></textarea>
+                </div>
+            </div>
+            <div class="file-list">
+                <div class="preview-area" id="preview-file1"><span></span>写真</div>
+                <div class="preview-area" id="preview-file2"><span></span>写真</div>
+                <div class="preview-area" id="preview-file3"><span></span>写真</div>
+                <input type="file" id="file1" name="file[]">
+                <input type="file" id="file2" name="file[]">
+                <input type="file" id="file3" name="file[]">
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">投稿する</button>
+            <a href="{{ url()->previous() }}" class="btn btn-default btn-block">キャンセル</a>
+        </form>
     </div>
 </div>
 @endsection

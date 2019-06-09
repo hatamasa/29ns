@@ -188,6 +188,72 @@ a:active > img {
     text-align: center;
 }
 
+
+/* セレクトボックス */
+.select-parent{
+  position: relative; }
+
+.select-parent:after{
+  content: '';
+  border-top: 4px solid #666766;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  position: absolute;
+  top: 5px;
+  right: 11px;
+  pointer-events: none; }
+
+select {
+  height: 27px;
+  border: 1px solid #BDBDBD;
+  border-radius: 5px;
+  padding: 0px 10px;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: #fff; }
+
+select.inactive {
+  background-color: #BDBDBD;
+  color: #313131 !important; }
+
+/* ラジオボタン */
+input[type="radio"]{
+  display: none; }
+
+.radioDefault{
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  margin-left: 8px;
+  padding: 5px 15px;
+  border-radius: 2px;
+  color: #212121;
+  font-size: 14px;
+  text-align: center;
+  line-height: 1; }
+
+.radioDefault:before{
+  position: absolute;
+  content: "";
+  top: 50%;
+  left: -8px;
+  width: 11px;
+  height: 11px;
+  margin-top: -7px;
+  border: 1px solid #9E9E9E;
+  border-radius: 50%; }
+
+input[type="radio"]:checked + .radioDefault:after {
+  position: absolute;
+  content: "";
+  top: 55%;
+  left: -6px;
+  width: 9px;
+  height: 9px;
+  margin-top: -6px;
+  border-radius: 50%;
+  background: #666766; }
+
 /* チェックボックス */
 .form-check {
     line-height: 1;

@@ -1,0 +1,75 @@
+.card {
+    background-color: unset;
+    border: unset;
+}
+
+.selective {
+    display: flex;
+    margin-bottom: 10px;
+}
+.selective div {
+    width: 50%;
+}
+
+select {
+    height: 40px;
+    border: 1px solid #BDBDBD;
+    border-radius: 5px;
+    padding: 0px 10px;
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: #fff;
+    font-size: 18px;
+    width: 90px;
+}
+.select-parent::after {
+    content: '';
+    border-top: 6px solid #666766;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    position: absolute;
+    top: 5px;
+    right: 30px;
+    pointer-events: none;
+}
+
+.title {
+    margin-bottom: 10px;
+}
+
+.contents textarea {
+    height: 200px;
+}
+
+.file-list {
+    display: flex;
+}
+.file-list .preview-area {
+    width: calc(100% / 3);
+    height: 80px;
+    display: block;
+    border: dotted 3px #ced4da;
+    border-radius: 10px;
+    margin: 20px 3px;
+    position: relative;
+    padding: 6px 10px;
+    color: #ced4da;
+}
+.file-list .preview-area span::before,
+.file-list .preview-area span::after {
+    display: block;
+    content: "";
+    position: absolute;
+    top: 60%;
+    left: 75%;
+    width: 35%;
+    height: 7%;
+    margin: -8% 0 0 -42%;
+    background: #ced4da;
+}
+.file-list .preview-area span::after {
+    transform: rotate(90deg);
+}
+.file-list input {
+    display: none;
+}
