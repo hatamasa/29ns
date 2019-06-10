@@ -34,11 +34,14 @@ select {
 }
 
 .title {
+    height: 40px !important;
     margin-bottom: 10px;
+    resize: none;
 }
 
-.contents textarea {
-    height: 200px;
+.contents {
+    height: 200px !important;
+    resize: none;
 }
 
 .file-list {
@@ -52,8 +55,13 @@ select {
     border-radius: 10px;
     margin: 20px 3px;
     position: relative;
-    padding: 6px 10px;
     color: #ced4da;
+}
+.file-list .preview-area:active {
+    background-color: #d1d1d1 !important;
+}
+.file-list .preview-area span {
+    margin-left: 10px;
 }
 .file-list .preview-area span::before,
 .file-list .preview-area span::after {
@@ -72,4 +80,14 @@ select {
 }
 .file-list input {
     display: none;
+}
+.uploaded {
+    border: unset !important;
+    text-align: center;
+}
+.preview {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
 }

@@ -5,7 +5,7 @@
 @endsection
 
 @section('script')
-{{--<script src="{{ asset('js/posts.js') }}"></script>--}}
+<script src="{{ asset('js/posts.js') }}"></script>
 @endsection
 
 @section('content')
@@ -36,39 +36,51 @@
                 </div>
             </div>
         </div>
-        <form action="{{ url('/posts') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ url('/posts') }}" id="post-from" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="post">
                 <div class="selective">
                     <div>
                         <span>点数</span>
                         <labal class="select-parent">
-                            {{ Form::select('score', array_reverse(Config::get('const.post.score_list'))) }}
+                            {{ Form::select(
+                                'score',
+                                array_reverse(Config::get('const.post.score_list')),
+                                null,
+                                ['id' => 'score', 'required'])
+                            }}
                         </label>
                         点
                     </div>
                     <div>
                         <span>訪問回数</span>
                         <labal class="select-parent">
-                            {{ Form::select('visit_count', Config::get('const.post.visit_count')) }}
+                            {{ Form::select(
+                                'visit_count',
+                                Config::get('const.post.visit_count'),
+                                null,
+                                ['id' => 'visit_count', 'required'])
+                            }}
                         </label>
                         回
                     </div>
                 </div>
-                <div class="title">
-                    <input type="text" name="title" class="form-control" value="" placeholder="タイトルを入力...">
-                </div>
-                <div class="contents">
-                    <textarea name="contents" class="form-control" placeholder='{!! Config::get("const.post.example") !!}'></textarea>
-                </div>
+                <input name="title" id="title" class="title form-control" value="" placeholder="タイトルを入力..." required>
+                <textarea name="contents" id="contents" class="contents form-control" placeholder='{!! Config::get("const.post.example") !!}' required></textarea>
             </div>
             <div class="file-list">
-                <div class="preview-area" id="preview-file1"><span></span>写真</div>
-                <div class="preview-area" id="preview-file2"><span></span>写真</div>
-                <div class="preview-area" id="preview-file3"><span></span>写真</div>
-                <input type="file" id="file1" name="file[]">
-                <input type="file" id="file2" name="file[]">
-                <input type="file" id="file3" name="file[]">
+                <label class="preview-area" id="preview-file1">
+                    <span>写真</span>
+                    <input type="file" id="file1" class="img" name="file[]" accept="image/png, image/jpg, image/jpeg">
+                </label>
+                <label class="preview-area" id="preview-file2">
+                    <span>写真</span>
+                    <input type="file" id="file2" class="img" name="file[]" accept="image/png, image/jpg, image/jpeg">
+                </label>
+                <label class="preview-area" id="preview-file3">
+                    <span>写真</span>
+                    <input type="file" id="file3" class="img" name="file[]" accept="image/png, image/jpg, image/jpeg">
+                </label>
             </div>
             <button type="submit" class="btn btn-primary btn-block">投稿する</button>
             <a href="{{ url()->previous() }}" class="btn btn-default btn-block">キャンセル</a>

@@ -5,7 +5,7 @@
 @endsection
 
 @section('script')
-{{--<script src="{{ asset('js/posts.js') }}"></script>--}}
+<script src="{{ asset('js/posts.js') }}"></script>
 @endsection
 
 @section('content')
@@ -80,7 +80,7 @@
     </div>
 @endforeach
 
-<form action='{{ url("/post_comments") }}' method="POST">
+<form action='{{ url("/post_comments") }}' id="post-comment-form" method="POST">
     @csrf
     <div class="comment">
         @if ($user->thumbnail_url)
@@ -90,7 +90,7 @@
         @elseif ($user->sex == 2)
         <img alt="" src="{{ asset('/images/woman.png') }}">
         @endif
-        <textarea name="contents" class="comment-text comment-input text-required" value="" data-name="コメント" placeholder="コメントする..."></textarea>
+        <textarea name="contents" id="comment-text" class="comment-text comment-input text-required" value="" data-name="コメント" placeholder="コメントする..."></textarea>
         <input type="hidden" name="post_id" value="{{ $post->id }}">
         <button type="submit" class="btn btn-primary btn-sm">コメント</button>
     </div>
