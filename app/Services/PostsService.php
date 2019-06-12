@@ -11,6 +11,27 @@ class PostsService extends Service
     }
 
     /**
+     * 投稿時のバリデーションを行う
+     * @param array $params
+     * @return boolean
+     */
+    public  function validateStore($params)
+    {
+        if (!isset($params['score']) || !isset($params['visit_count'])) {
+            $this->_log("score or visit_count not found.", "error");
+            return false;
+        }
+        if (!isset($params['title']) || strlen($params['title']) > 100) {
+            return false;
+        }
+        if (!isset($params['contents']) || strlen($params['contents'] > 1000)) {
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
      * 最近の29ログ一覧を取得する
      * @param int $id
      * @param number $page

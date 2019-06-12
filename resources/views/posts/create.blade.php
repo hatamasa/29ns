@@ -46,7 +46,7 @@
                             {{ Form::select(
                                 'score',
                                 array_reverse(Config::get('const.post.score_list')),
-                                null,
+                                session('score') ?? null,
                                 ['id' => 'score', 'required'])
                             }}
                         </label>
@@ -58,30 +58,31 @@
                             {{ Form::select(
                                 'visit_count',
                                 Config::get('const.post.visit_count'),
-                                null,
+                                session('visit_count') ?? null,
                                 ['id' => 'visit_count', 'required'])
                             }}
                         </label>
                         回
                     </div>
                 </div>
-                <input name="title" id="title" class="title form-control" value="" placeholder="タイトルを入力..." required>
-                <textarea name="contents" id="contents" class="contents form-control" placeholder='{!! Config::get("const.post.example") !!}' required></textarea>
+                <input name="title" id="title" class="title form-control" value="{{ session('title') ?? '' }}" placeholder="タイトルを入力..." required>
+                <textarea name="contents" id="contents" class="contents form-control" placeholder='{!! Config::get("const.post.example") !!}' required>{{ session('contents') ?? '' }}</textarea>
             </div>
             <div class="file-list">
                 <label class="preview-area" id="preview-file1">
                     <span>写真</span>
-                    <input type="file" id="file1" class="img" name="file[]" accept="image/png, image/jpg, image/jpeg">
+                    <input type="file" id="file1" class="img" name="files[]" src="{{ session('file')[0] ?? '' }}" accept="image/png, image/jpg, image/jpeg">
                 </label>
                 <label class="preview-area" id="preview-file2">
                     <span>写真</span>
-                    <input type="file" id="file2" class="img" name="file[]" accept="image/png, image/jpg, image/jpeg">
+                    <input type="file" id="file2" class="img" name="files[]" src="{{ session('file')[1] ?? '' }}" accept="image/png, image/jpg, image/jpeg">
                 </label>
                 <label class="preview-area" id="preview-file3">
                     <span>写真</span>
-                    <input type="file" id="file3" class="img" name="file[]" accept="image/png, image/jpg, image/jpeg">
+                    <input type="file" id="file3" class="img" name="files[]" src="{{ session('file')[2] ?? '' }}" accept="image/png, image/jpg, image/jpeg">
                 </label>
             </div>
+            <input type="hidden" name="shop_cd" value="{{ $shop['id'] ?? session('shop_cd') }}">
             <button type="submit" class="btn btn-primary btn-block">投稿する</button>
             <a href="{{ url()->previous() }}" class="btn btn-default btn-block">キャンセル</a>
         </form>

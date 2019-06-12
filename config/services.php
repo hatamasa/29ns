@@ -13,6 +13,14 @@ return [
     | to have a conventional place to find your various credentials.
     |
     */
+    'aws' => [
+        'access_key' => env('AWS_ACCESS_KEY_ID'),
+        'secret_key' => env('AWS_SECRET_ACCESS_KEY'),
+        'region' => 'ap-northeast-1',
+        'bucket' => [
+            'posts' => '29ns-bucket',
+        ]
+    ],
 
     'mailgun' => [
         'domain' => env('MAILGUN_DOMAIN'),

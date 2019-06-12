@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\ImgUploader;
 use App\Services\PostsService;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Exceptions\FileUploadException;
 use App\Exceptions\NotFoundShopException;
 use App\Repositories\PostCommentsRepository;
 use App\Services\ShopsService;
@@ -15,13 +18,18 @@ class PostsController extends Controller
     // 29ログ一覧表示件数
     const POSTS_LIST_LIMIT = 30;
 
-    public function __construct(PostsService $postsService, ShopsService $shopsService, PostCommentsRepository $postComments)
+    public function __construct(
+        PostsService $postsService,
+        ShopsService $shopsService,
+        PostCommentsRepository $postComments,
+        ImgUploader $imgUploader)
     {
         parent::__construct();
         $this->PostsService = $postsService;
-        $this->ShopsService= $shopsService;
+        $this->ShopsService = $shopsService;
 
         $this->PostComments = $postComments;
+        $this->ImgUploader  = $imgUploader;
 
         $this->middleware('auth')->except(['index']);
     }
@@ -64,8 +72,49 @@ class PostsController extends Controller
         return view('Posts.create', compact("shop"));
     }
 
-    public function store()
+    public function store(Request $request)
     {
+        $params = $request->all();
+        $result = $this->PostsService->validateStore($params);
+        if (! $result) {
+            session()->flash('error', "予期せぬエラーが発生しました");
+            $this->_log("invalid parameter. ".json_encode($params), "error");
+            return redirect(url()->previous());
+        }
+
+        DB::beginTransaction();
+        try {
+            // s3にアップロード
+            $img_paths = $this->ImgUploader->upload($request);
+
+            DB::table("posts")->insert([
+                "user_id"       => Auth::id(),
+                "shop_cd"       => $params["shop_cd"],
+                "score"         => $params["score"],
+                "visit_count"   => $params["visit_count"],
+                "title"         => $params["title"],
+                "contents"      => $params["contents"],
+                "img_url_1"     => $img_paths[0] ?? null,
+                "img_url_2"     => $img_paths[1] ?? null,
+                "img_url_3"     => $img_paths[2] ?? null,
+                'like_count'    => 0,
+                'comment_count' => 0,
+            ]);
+            DB::commit();
+        } catch (FileUploadException $e) {
+            DB::rollBack();
+            session()->flash('error', $e->getMessage());
+            $this->_log($e->getMessage(), 'error');
+            return redirect(url()->previous())->with($request->input());
+        } catch (\Exception $e) {
+            DB::rollBack();
+            session()->flash('error', '予期せぬエラーが発生しました。');
+            $this->_log($e->getMessage(), 'error');
+            return redirect(url()->previous())->with($request->input());
+        }
+
+        session()->flash('success', '投稿しました');
+        return redirect(url("/shops/{$params['shop_cd']}"));
     }
 
     public function show(Request $request, $id)

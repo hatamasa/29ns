@@ -1,8 +1,7 @@
 <?php
-
 namespace App\Exceptions;
 
 use Exception;
 
-class NotFoundShopException extends Exception
+class FileUploadException extends Exception
 {}
