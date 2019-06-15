@@ -48,3 +48,19 @@
 /********************/
 /***** register *****/
 /********************/
+.birth {
+    display: flex;
+    flex-wrap: wrap;
+}
+.birth span {
+    margin-top: 8px;
+    margin-right: 10px;
+}
+
+.year {
+    width: 30%;
+}
+
+.month {
+    width: 20%;
+}
