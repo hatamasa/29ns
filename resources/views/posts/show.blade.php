@@ -32,13 +32,13 @@
         </div>
         <ul class="post-img">
             @if (!empty($post->img_url_1))
-            <li><img alt="" src="{{ $post->img_url_1 }}"></li>
+            <li><img alt="" src="{{ env('IMG_URL_BASE').$post->img_url_1 }}"></li>
             @endif
             @if (!empty($post->img_url_2))
-            <li><img alt="" src="{{ $post->img_url_2 }}"></li>
+            <li><img alt="" src="{{ env('IMG_URL_BASE').$post->img_url_2 }}"></li>
             @endif
             @if (!empty($post->img_url_3))
-            <li><img alt="" src="{{ $post->img_url_3 }}"></li>
+            <li><img alt="" src="{{ env('IMG_URL_BASE').$post->img_url_3 }}"></li>
             @endif
         </ul>
     </div>

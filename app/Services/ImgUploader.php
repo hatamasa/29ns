@@ -10,7 +10,7 @@ use Intervention\Image\Facades\Image;
 class ImgUploader extends Service
 {
     // 画像保存一時ディレクトリ
-    private $tmp_img_dir = 'tmp/img';
+    private $tmp_img_dir = 'posts';
     // 生成するサムネイルのサイズ
     const THUMBNAIL_WIDTH = '150';
     // 生成する表示用画像のサイズ
@@ -58,12 +58,14 @@ class ImgUploader extends Service
                 })
                 ->save($tmp_path);
 
-            //画像のアップロード
-            $result[] = Storage::disk('s3')->putFileAs(Config::get('filesystems.disks.s3.dir.posts'), new File($tmp_path), basename($tmp_path), 'public');
-            Storage::disk('s3')->putFileAs(Config::get('filesystems.disks.s3.dir.posts'), new File($tmp_thumbnail_path), basename($tmp_thumbnail_path), 'public');
-            // 成功したらディレクトリ配下を削除
-            Storage::disk('local')->delete($this->tmp_img_dir.'/'.$to_file_name);
-            Storage::disk('local')->delete($this->tmp_img_dir.'/thumbnail_'.$to_file_name);
+            // ローカル以外はs3へ画像をアップロードする
+            if (env('APP_ENV') !== 'local') {
+                $result[] = Storage::disk('s3')->putFileAs(Config::get('filesystems.disks.s3.dir.posts'), new File($tmp_path), basename($tmp_path), 'public');
+                Storage::disk('s3')->putFileAs(Config::get('filesystems.disks.s3.dir.posts'), new File($tmp_thumbnail_path), basename($tmp_thumbnail_path), 'public');
+                // 成功したらディレクトリ配下を削除
+                Storage::disk('local')->delete($this->tmp_img_dir.'/'.$to_file_name);
+                Storage::disk('local')->delete($this->tmp_img_dir.'/thumbnail_'.$to_file_name);
+            }
         }
 
         return $result;
