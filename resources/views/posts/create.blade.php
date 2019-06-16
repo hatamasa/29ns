@@ -42,7 +42,7 @@
                 <div class="selective">
                     <div>
                         <span>点数</span>
-                        <labal class="select-parent">
+                        <label class="select-parent">
                             {{ Form::select(
                                 'score',
                                 array_reverse(Config::get('const.post.score_list')),
@@ -54,7 +54,7 @@
                     </div>
                     <div>
                         <span>訪問回数</span>
-                        <labal class="select-parent">
+                        <label class="select-parent">
                             {{ Form::select(
                                 'visit_count',
                                 Config::get('const.post.visit_count'),

@@ -195,21 +195,23 @@ a:active > img {
 
 .select-parent:after{
   content: '';
-  border-top: 4px solid #666766;
-  border-left: 4px solid transparent;
-  border-right: 4px solid transparent;
+  border-top: 6px solid #666766;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
   position: absolute;
-  top: 5px;
-  right: 11px;
+  top: 17px;
+  right: 10px;
   pointer-events: none; }
 
 select {
-  height: 27px;
+  height: 40px;
+  width: 90px;
   border: 1px solid #BDBDBD;
   border-radius: 5px;
   padding: 0px 10px;
   -webkit-appearance: none;
   appearance: none;
+  font-size: 18px;
   background-color: #fff; }
 
 select.inactive {

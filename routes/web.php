@@ -12,11 +12,14 @@
 */
 
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => 'web'], function () {
 
     Route::auth();
+
+    Auth::routes(['verify' => true]);
 
     Route::get('/', 'HomeController@index');
     Route::get('/home', 'HomeController@index');

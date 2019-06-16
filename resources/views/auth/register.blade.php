@@ -37,11 +37,17 @@
             </div>
 
             <div class="birth form-group">
-                <span>誕生年月</span>
-                <input id="birth_y" type="tel" class="year form-control{{ $errors->has('birth_y') ? ' is-invalid' : '' }}"
-                    name="birth_y" value="{{ old('birth_y') }}" required placeholder="年" maxlength="4"><span>年</span>
-                <input id="birth_m" type="tel" class="month form-control{{ $errors->has('birth_m') ? ' is-invalid' : '' }}"
-                    name="birth_m" value="{{ old('birth_m') }}" required placeholder="月" maxlength="2"><span>月</span>
+                <div>
+                    <span>誕生年月</span>
+                    <label class="select-parent year">
+                        {{ Form::selectRange('birth_y', 1920, 2019, old('birth_y')) }}
+                    </label>
+                    年
+                    <label class="select-parent month">
+                        {{ Form::selectRange('birth_m', 1, 12, old('birth_m')) }}
+                    </label>
+                    月
+                </div>
                 @if ($errors->has('birth_y'))
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $errors->first('birth_y') }}</strong>

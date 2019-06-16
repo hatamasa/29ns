@@ -20,7 +20,7 @@ class SearchController extends Controller
         $this->StationsService = $stations;
         $this->AreasService    = $areas;
 
-        $this->middleware('auth')->except(['area', 'station']);
+        $this->middleware('verified')->except(['area', 'station']);
     }
 
     public function index(Request $request)

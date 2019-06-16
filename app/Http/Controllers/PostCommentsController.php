@@ -12,7 +12,7 @@ class PostCommentsController extends Controller
     {
         parent::__construct();
 
-        $this->middleware('auth');
+        $this->middleware('verified');
     }
 
     public function store(Request $request)

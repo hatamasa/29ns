@@ -25,7 +25,7 @@ class HomeController extends Controller
         $this->PostsService = $postsService;
         $this->ShopsService = $shopsService;
 
-        $this->middleware('auth')->except(['index']);
+        $this->middleware('verified')->except(['index']);
     }
 
     public function index(Request $request)

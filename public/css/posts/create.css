@@ -11,28 +11,6 @@
     width: 50%;
 }
 
-select {
-    height: 40px;
-    border: 1px solid #BDBDBD;
-    border-radius: 5px;
-    padding: 0px 10px;
-    -webkit-appearance: none;
-    appearance: none;
-    background-color: #fff;
-    font-size: 18px;
-    width: 90px;
-}
-.select-parent::after {
-    content: '';
-    border-top: 6px solid #666766;
-    border-left: 6px solid transparent;
-    border-right: 6px solid transparent;
-    position: absolute;
-    top: 5px;
-    right: 30px;
-    pointer-events: none;
-}
-
 .title {
     height: 40px !important;
     margin-bottom: 10px;
