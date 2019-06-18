@@ -2,11 +2,12 @@
 
 namespace App\Notifications;
 
+use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Bus\Queueable;
-use Illuminate\Notifications\Notification;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Support\Facades\Config;
 
-class CustomResetPassword extends Notification
+class CustomResetPassword extends ResetPassword
 {
     use Queueable;
 
@@ -35,6 +36,7 @@ class CustomResetPassword extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
+                    ->from(Config::get('mail.from.address'), Config::get('mail.from.name'))
                     ->subject('【東京29NS】パスワードリセット')
                     ->greeting('東京29NSです！')
                     ->line('下のボタンをクリックしてパスワードを再設定してください。')

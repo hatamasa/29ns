@@ -56,8 +56,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'passwotd_remind@nrt.com'),
-        'name' => env('MAIL_FROM_NAME', 'Passwotd Remind'),
+        'address' => env('MAIL_FROM_ADDRESS', 'noreply@29-ns.com'),
+        'name' => env('MAIL_FROM_NAME', '東京29NS'),
     ],
 
     /*

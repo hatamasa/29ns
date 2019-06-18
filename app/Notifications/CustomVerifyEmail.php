@@ -2,12 +2,12 @@
 
 namespace App\Notifications;
 
+use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Bus\Queueable;
-use Illuminate\Notifications\Notification;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Support\Facades\Config;
 
-class CustomVerifyEmail extends Notification
+class CustomVerifyEmail extends VerifyEmail
 {
     use Queueable;
 
@@ -41,6 +41,7 @@ class CustomVerifyEmail extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
+                    ->from(Config::get('mail.from.address'), Config::get('mail.from.name'))
                     ->subject('【東京29NS】メールアドレスの確認')
                     ->greeting('東京29NSです！')
                     ->line('以下をクリックして、会員登録を完了してください。')
