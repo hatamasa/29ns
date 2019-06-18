@@ -8,7 +8,7 @@
     <div class="content-body">
         @if (session('status'))
             <div class="alert alert-success" role="alert">
-                {{ session('status') }}
+                パスワードをリセットするリンクを送信しました。メールから再度パスワード設定をお願いいたします。
             </div>
         @endif
         <form method="POST" action="{{ route('password.email') }}">
