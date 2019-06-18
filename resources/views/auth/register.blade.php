@@ -24,7 +24,7 @@
 
             <div class="form-group">
                 <input id="man" type="radio" class="form-control{{ $errors->has('sex') ? ' is-invalid' : '' }}"
-                    name="sex" value="1" required autofocus @if (old('sex') == 1) checked="checked" @endif>
+                    name="sex" value="1" required autofocus @if (old('sex') != 2) checked="checked" @endif>
                 <label for="man" class="radioDefault">男性</label>
                 <input id="woman" type="radio" class="form-control{{ $errors->has('sex') ? ' is-invalid' : '' }}"
                     name="sex" value="2" required autofocus @if (old('sex') == 2) checked="checked" @endif>
