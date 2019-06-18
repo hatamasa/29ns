@@ -15,9 +15,11 @@ class PostsRepository
     /**
      * 最近の投稿を取得する
      * @param int $limit
+     * @param int $page
+     * @param int $user_id
      * @return \Illuminate\Support\Collection
      */
-    public function getRecentlyList(int $limit, int $page = 1)
+    public function getRecentlyList(int $limit, int $page = 1, int $user_id = null)
     {
         $query = DB::table('posts as p')
             ->select(
@@ -39,6 +41,10 @@ class PostsRepository
             ->offset(($page-1) * $limit)
             ->limit($limit)
             ;
+
+        if (! is_null($user_id)) {
+            $query->where('u.id', $user_id);
+        }
 
         return $query->get()->toArray();
     }

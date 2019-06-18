@@ -125,6 +125,7 @@ class PostsController extends Controller
         return view('Posts.show', compact('post', 'post_comments'));
     }
 
+    // TODO: 表示する導線を作成
     public function showLikeUsers(Request $request, $id)
     {
         $post_like_users = DB::table('post_like_users')->where('post_id', $id)->get();
@@ -132,16 +133,9 @@ class PostsController extends Controller
         return view('Posts.like_users', compact('post_like_users'));
     }
 
-    public function edit()
-    {
-    }
-
-    public function update()
-    {
-    }
-
     public function destroy()
     {
+        // TODO: 実装
     }
 
 }

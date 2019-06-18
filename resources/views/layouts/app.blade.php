@@ -54,7 +54,7 @@
                             {{ $user->name }}さん
                         </li>
                         <li>
-                            <a href="{{ url('/myPage') }}">Myページ</a>
+                            <a href="{{ url('/users').'/'.Auth::id() }}">Myページ</a>
                         </li>
                         <li>
                             <div class="">

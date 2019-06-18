@@ -24,6 +24,10 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/', 'HomeController@index');
     Route::get('/home', 'HomeController@index');
 
+    Route::get('/users/{id}', 'UsersController@show')->where(['shop_cd' => '[a-z0-9]+']);
+    Route::get('/users/{id}/edit', 'UsersController@edit')->where(['shop_cd' => '[a-z0-9]+']);
+    Route::put('/users/update', 'UsersController@update');
+
     Route::get('/search/area', 'SearchController@area');
     Route::get('/search/station', 'SearchController@station');
 
@@ -35,6 +39,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/posts/create', 'PostsController@create');
     Route::post('/posts', 'PostsController@store');
     Route::get('/posts/{id}', 'PostsController@show')->where(['id' => '[a-z0-9]+']);
+    Route::delete('/posts/{id}', 'PostsController@destroy')->where(['id' => '[a-z0-9]+']);
 
     Route::post('/post_comments', 'PostCommentsController@store');
     Route::delete('/post_comments/{id}', 'PostCommentsController@destroy');

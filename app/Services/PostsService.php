@@ -34,13 +34,14 @@ class PostsService extends Service
     /**
      * 最近の29ログ一覧を取得する
      * @param int $id
-     * @param number $page
+     * @param int $page
+     * @param int $user_id
      * @return object
      */
-    public function getList4RecentilyList(int $limit, int $page = 1)
+    public function getList4RecentilyList(int $limit, int $page = 1, int $user_id = null)
     {
         // 最近の投稿を取得
-        $posts = $this->Posts->getRecentlyList($limit, $page);
+        $posts = $this->Posts->getRecentlyList($limit, $page, $user_id);
 
         $result = [];
         foreach (array_chunk($posts, 10) as $chunk) {

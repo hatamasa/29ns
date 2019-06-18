@@ -4,6 +4,7 @@ namespace App\Services;
 use App\Repositories\ShopsRepository;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Collection;
 
 class ShopsService extends Service
 {
@@ -80,11 +81,22 @@ class ShopsService extends Service
      * 人気のお店を取得する
      * @param int $limit
      * @param int $page
+     * @return Collection
      */
     public function getList4PopularityList(int $limit, int $page = 1)
     {
         $shops = $this->Shops->getPopularityList($limit, $page);
 
+        return $this->getAttrDataFromApi($shops);
+    }
+
+    /**
+     * Apiから表示に必要なデータを取得する
+     * @param Collection $shops
+     * @return Collection
+     */
+    private function getAttrDataFromApi($shops)
+    {
         $result = [];
         foreach (array_chunk($shops, 10) as $chunk) {
             $shop_ids = [];
