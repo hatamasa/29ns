@@ -48,7 +48,7 @@
         </div>
     </div>
 
-    <p class="gnavi-link"><a href="{{ $shop['url_mobile'] }}">ぐるなびのページはこちらから→</a></p>
+    <p class="gnavi-link"><a href="{{ $shop['url_mobile'] }}" target="_blank">ぐるなびのページはこちらから→</a></p>
 
     <div class="block-head">
         <p>この店舗への29ログ</p>
