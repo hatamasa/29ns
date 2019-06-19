@@ -344,24 +344,33 @@ input[type="radio"]:checked + .radioDefault:after {
 
 /* ログと店舗のカード表示 */
 .post-img,
-.shop-img {
+.shop-img,
+.user-img {
     width: 80px;
     height: 80px;
     text-align: center;
 }
 .post-img img,
-.shop-img img {
+.shop-img img,
+.user-img img {
     width: auto;
     height: auto;
     max-width: 80px;
     max-height: 80px;
 }
+.post-text,
+.shop-text,
+.user-text {
+    width: 100%;
+}
 .post-text ul,
-.shop-text ul {
+.shop-text ul,
+.user-text ul {
     padding-left: 10px;
     margin: 0;
 }
-.shop-text ul {
+.shop-text ul,
+.user-text ul {
     justify-content: space-between;
     display: block;
     font-size: 10px;
@@ -447,6 +456,9 @@ input[type="radio"]:checked + .radioDefault:after {
     position: relative;
 }
 
+.icon {
+    border-radius: 100%;
+}
 
 .register {
     font-size: 14px;

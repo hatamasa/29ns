@@ -19,7 +19,14 @@
                     <p>{{ $post->score }}点</p>
                     <a href='{{ url("/users/{$post->user_id}")}}'>
                         <p>
-                            <img alt="" src="{{ $post->user_thumbnail_url }}">{{ $post->user_name }}
+                            @if ($post->user_thumbnail_url)
+                            <img alt="" src="{{ $post->user_thumbnail_url }}" class="icon">
+                            @elseif ($post->user_sex == 1)
+                            <img alt="" src="{{ asset('/images/man.png') }}" class="icon">
+                            @elseif ($post->user_sex == 2)
+                            <img alt="" src="{{ asset('/images/woman.png') }}" class="icon">
+                            @endif
+                            {{ $post->user_name }}
                         </p>
                     </a>
                     <p>@time_diff($post->post_created_at)</p>
@@ -59,11 +66,11 @@
     <div class="comment">
         <a href="{{ url('/user/{$post_comment->user_id}') }}">
             @if ($post_comment->thumbnail_url)
-            <img alt="" src="{{ $post_comment->thumbnail_url }}">
+            <img alt="" src="{{ $post_comment->thumbnail_url }}" class="icon">
             @elseif ($post_comment->sex == 1)
-            <img alt="" src="{{ asset('/images/man.png') }}">
+            <img alt="" src="{{ asset('/images/man.png') }}" class="icon">
             @elseif ($post_comment->sex == 2)
-            <img alt="" src="{{ asset('/images/woman.png') }}">
+            <img alt="" src="{{ asset('/images/woman.png') }}" class="icon">
             @endif
         </a>
         <div class="comment-text">

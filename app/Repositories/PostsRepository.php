@@ -33,7 +33,8 @@ class PostsRepository
                 'p.created_at as post_created_at',
                 'u.id as user_id',
                 'u.name as user_name',
-                'u.thumbnail_url as user_thumbnail_url'
+                'u.thumbnail_url as user_thumbnail_url',
+                'u.sex as user_sex'
             )
             ->join('users as u', 'p.user_id', '=', 'u.id')
             ->where('p.is_deleted', 0)

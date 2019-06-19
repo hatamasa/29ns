@@ -38,13 +38,13 @@
             @else
                 <input id="nav-input" type="checkbox" class="display-none">
                 <label id="nav-open" class="side-open col-2" for="nav-input">
-                @if ($user->thumbnail_url)
-                    <img alt="" src="{{ $user->thumbnail_url }}">
-                @elseif ($user->sex == 1)
-                    <img alt="" src="{{ asset('/images/man.png') }}">
-                @elseif ($user->sex == 2)
-                    <img alt="" src="{{ asset('/images/woman.png') }}">
-                @endif
+                    @if ($user->thumbnail_url)
+                    <img alt="" src="{{ $user->thumbnail_url }}" class="icon">
+                    @elseif ($user->sex == 1)
+                    <img alt="" src="{{ asset('/images/man.png') }}" class="icon">
+                    @elseif ($user->sex == 2)
+                    <img alt="" src="{{ asset('/images/woman.png') }}" class="icon">
+                    @endif
                     <span></span>
                 </label>
                 <label id="nav-close" class="display-none" for="nav-input"></label>

@@ -37,8 +37,6 @@
 .user-thumbnail img {
     height: 45px;
     width: 45px;
-    border-radius: 100%;
-    border: solid 0.5px #dfdfdf;
 }
 .user-thumbnail a {
     width: 100%;
