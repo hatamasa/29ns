@@ -95,7 +95,7 @@ class ShopsService extends Service
      * @param Collection $shops
      * @return Collection
      */
-    private function getAttrDataFromApi($shops)
+    public function getAttrDataFromApi($shops)
     {
         $result = [];
         foreach (array_chunk($shops, 10) as $chunk) {

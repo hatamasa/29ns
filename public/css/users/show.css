@@ -1,0 +1,35 @@
+.user-card {
+    background-color: unset;
+    border: unset;
+}
+.user-text ul {
+    display: flex;
+    flex-wrap: wrap;
+}
+.user-text ul li {
+    width: 50%;
+    margin-bottom: 5px;
+}
+.user-text ul li.contents {
+    width: 100%;
+}
+
+.users-page-tab {
+    display: flex;
+    width: 100%;
+    height: 50px;
+    margin-bottom: 5px;
+}
+.users-page-tab a {
+    width: 25%;
+    color: #fff;
+    background-color: #950000;
+    line-height: 50px;
+    text-align: center;
+    border: solid 0.5px #efefef;
+}
+.users-page-tab a.current {
+    background-color: #ffffff;
+    color: #950000;
+    font-weight: bold;
+}

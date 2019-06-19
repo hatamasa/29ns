@@ -1,7 +1,7 @@
 <a href='{{ url("/shops/{$shop->shop_cd}") }}' class="link">
     <div class="card">
         <div class="card-title">
-            <span class="rank">No.{{ ($offset ?? 0) + $loop->iteration }}</span>{{ $shop->shop_name }}
+            {{ $shop->shop_name }}
         </div>
         <div class="card-body">
             <div class="shop-img">

@@ -18,7 +18,7 @@ class UserFollowsRepository
     {
         $query = DB::table('user_follows')
             ->where('user_id', $user_id)
-            ->orderBy('id', 'desc')
+            ->orderBy('follow_user_id', 'desc')
             ->offset(($page-1) * $limit)
             ->limit($limit)
         ;
@@ -35,7 +35,7 @@ class UserFollowsRepository
     {
         $query = DB::table('user_follows')
         ->where('follow_user_id', $user_id)
-        ->orderBy('id', 'desc')
+        ->orderBy('user_id', 'desc')
         ->offset(($page-1) * $limit)
         ->limit($limit)
         ;

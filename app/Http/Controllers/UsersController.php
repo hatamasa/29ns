@@ -18,6 +18,7 @@ class UsersController extends Controller
 
     public function show(Request $request, $id)
     {
+        $input = $request->input();
         $params = $request->all();
         $tab = $params['tab'] ?? 1;
 
@@ -31,7 +32,7 @@ class UsersController extends Controller
         // タブに表示するリストを取得する
         $list = $this->UsersService->getList4TabArea($request, $users->id, $tab);
 
-        return view('users.show', compact('users', 'list', 'tab'));
+        return view('users.show', compact('users', 'list', 'tab', 'input'));
     }
 
     public function edit(Request $request, $id)

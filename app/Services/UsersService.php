@@ -14,10 +14,11 @@ class UsersService extends Service
     // ユーザページ投稿表示件数
     const USER_PAGE_LIST_LIMIT = 30;
 
-    public function __construct(PostsService $postsService, UserFollowsRepository $userFollows, UserLikeShopsRepository $userLikeShops)
+    public function __construct(PostsService $postsService, ShopsService $shopsService, UserFollowsRepository $userFollows, UserLikeShopsRepository $userLikeShops)
     {
         parent::__construct();
         $this->PostsService = $postsService;
+        $this->ShopsService = $shopsService;
         $this->UserFollows = $userFollows;
         $this->UserLikeShops = $userLikeShops;
     }
@@ -88,12 +89,14 @@ class UsersService extends Service
     private function getLikeShops($page, $id)
     {
         $user_like_shops = $this->UserLikeShops->getListByUserId(self::USER_PAGE_LIST_LIMIT, $page, $id);
+        // APIから必要なデータを取得する
+        $shops = $this->ShopsService->getAttrDataFromApi($user_like_shops);
 
         $count = DB::table('user_like_shops')->where([
             'user_id' => $id
         ])->count();
 
-        return [$user_like_shops, $count];
+        return [$shops, $count];
     }
 
     /**

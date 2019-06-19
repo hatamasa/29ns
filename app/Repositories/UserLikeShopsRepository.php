@@ -18,7 +18,7 @@ class UserLikeShopsRepository
     {
         $query = DB::table('user_like_shops')
             ->where('user_id', $user_id)
-            ->orderBy('id', 'desc')
+            ->orderBy('created_at', 'desc')
             ->offset(($page-1) * $limit)
             ->limit($limit)
         ;
