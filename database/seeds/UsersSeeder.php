@@ -27,7 +27,7 @@ class UsersSeeder extends Seeder
                 'sex'               => $faker->numberBetween(1, 2),
                 'birth_ym'          => ($faker->dateTimeBetween('-100 years', 'now'))->format('Ym'),
                 'contents'          => $faker->realText(),
-                'thumbnail_url'     => $faker->imageUrl(),
+                'thumbnail_url'     => $faker->imageUrl(400, 400),
                 'password'          => Hash::make('test'.($i+1)),
                 'remember_token'    => null,
                 'is_resigned'       => (($i+1)%5 == 0) ? 1 : 0,

@@ -85,7 +85,7 @@ class PostsController extends Controller
         DB::beginTransaction();
         try {
             // s3にアップロード
-            $img_paths = $this->ImgUploader->upload($request);
+            $img_paths = $this->ImgUploader->uploadPostsImg($request);
 
             DB::table("posts")->insert([
                 "user_id"       => Auth::id(),
