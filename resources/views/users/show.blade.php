@@ -49,14 +49,75 @@
             <a href="{{ url()->current().'?tab=4' }}"><li>フォロワー</li></a>
         </ul>
         <div>
+        {{-- お気に入り --}}
         @if (strpos(url()->full(), 'tab=2'))
             @foreach ($list as $shop)
                 @include('common.shop_users_page', ['shop' => $shop])
             @endforeach
+
+        {{-- フォロー --}}
         @elseif (strpos(url()->full(), 'tab=3'))
+            @foreach ($list as $user)
+            <ul class="user-card">
+                <a href='{{ url("/users/{$user->id}") }}'>
+                    <li>
+                        @if ($user->thumbnail_url)
+                        <img alt="" src="{{ $user->thumbnail_url }}" class="icon">
+                        @elseif ($user->sex == 1)
+                        <img alt="" src="{{ asset('/images/man.png') }}" class="icon">
+                        @elseif ($user->sex == 2)
+                        <img alt="" src="{{ asset('/images/woman.png') }}" class="icon">
+                        @endif
+                        {{ $user->name }}さん
+                    </li>
+                </a>
+                <li class="user-icon followed-li">
+                    <form action='{{ url("/user_follows/{$user->follow_user_id}") }}' method="POST">
+                        @method("DELETE")
+                        @csrf
+                        <button type="submit">フォロー中<div><span class="followed"></span></div></button>
+                    </form>
+                </li>
+            </ul>
+            @endforeach
 
+        {{-- フォロワー --}}
         @elseif (strpos(url()->full(), 'tab=4'))
+            @foreach ($list as $user)
+            <ul class="user-card">
+                <a href='{{ url("/users/{$user->id}") }}'>
+                    <li>
+                        @if ($user->thumbnail_url)
+                        <img alt="" src="{{ $user->thumbnail_url }}" class="icon">
+                        @elseif ($user->sex == 1)
+                        <img alt="" src="{{ asset('/images/man.png') }}" class="icon">
+                        @elseif ($user->sex == 2)
+                        <img alt="" src="{{ asset('/images/woman.png') }}" class="icon">
+                        @endif
+                        {{ $user->name }}さん
+                    </li>
+                </a>
+                    @if ($user->is_follow_each)
+                    <li class="user-icon followed-li">
+                        <form action='{{ url("/user_follows/{$user->id}") }}' method="POST">
+                            @method("DELETE")
+                            @csrf
+                            <button type="submit">フォロー中<div><span class="followed"></span></div></button>
+                        </form>
+                    </li>
+                    @else
+                    <li class="user-icon follow-li">
+                        <form action='{{ url("/user_follows") }}' method="POST">
+                            @csrf
+                            <input type="hidden" name="follow_user_id" value="{{ $user->id }}">
+                            <button type="submit">フォロー<div><span class="follow"></span></div></button>
+                        </form>
+                    </li>
+                    @endif
+            </ul>
+            @endforeach
 
+        {{-- 29ログ --}}
         @else
             @foreach ($list as $post)
                 @include('common.post', ['post' => $post])

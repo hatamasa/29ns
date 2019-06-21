@@ -14,6 +14,8 @@ class UsersController extends Controller
 
         $this->Users = $users;
         $this->UsersService = $usersService;
+
+        $this->middleware('verified');
     }
 
     public function show(Request $request, $id)
