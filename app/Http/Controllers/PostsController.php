@@ -84,8 +84,10 @@ class PostsController extends Controller
 
         DB::beginTransaction();
         try {
-            // s3にアップロード
-            $img_paths = $this->ImgUploader->uploadPostsImg($request);
+            if (! empty($request->file('files'))) {
+                // s3にアップロード
+                $img_paths = $this->ImgUploader->uploadPostsImg($request);
+            }
 
             DB::table("posts")->insert([
                 "user_id"       => Auth::id(),
@@ -101,11 +103,6 @@ class PostsController extends Controller
                 'comment_count' => 0,
             ]);
             DB::commit();
-        } catch (FileUploadException $e) {
-            DB::rollBack();
-            session()->flash('error', $e->getMessage());
-            $this->_log($e->getMessage(), 'error');
-            return redirect(url()->previous())->with($request->input());
         } catch (\Exception $e) {
             DB::rollBack();
             session()->flash('error', '予期せぬエラーが発生しました。');

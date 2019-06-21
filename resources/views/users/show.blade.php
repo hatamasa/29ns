@@ -5,7 +5,27 @@
 @endsection
 
 @section('script')
-<script src="{{ asset('js/users.js') }}"></script>
+<script>
+    let arg = {};
+    let pair=location.search.substring(1).split('&');
+    for(let i=0;pair[i];i++) {
+        let kv = pair[i].split('=');
+        arg[kv[0]]=kv[1];
+    }
+
+    if (arg.tab == undefined || arg.tab == 1) {
+        document.getElementsByClassName("users-page-tab")[0].children[0].classList.add("current");
+    }
+    if (arg.tab != undefined && arg.tab == 2) {
+        document.getElementsByClassName("users-page-tab")[0].children[1].classList.add("current");
+    }
+    if (arg.tab != undefined && arg.tab == 3) {
+        document.getElementsByClassName("users-page-tab")[0].children[2].classList.add("current");
+    }
+    if (arg.tab != undefined && arg.tab == 4) {
+        document.getElementsByClassName("users-page-tab")[0].children[3].classList.add("current");
+    }
+</script>
 @endsection
 
 @section('content')
@@ -13,7 +33,7 @@
     <div class="block-head">
         <p>{{ $users->name }}さんのページ</p>
         @if (Auth::id() == $users->id)
-        <a href="{{ url('/user').'/'.$users->id.'/'.'edit' }}">編集→</a>
+        <a href='{{ url("/users/{$users->id}/edit") }}'>編集→</a>
         @endif
     </div>
     <div class="block-body">
@@ -60,7 +80,7 @@
         {{-- フォロー --}}
         @elseif (strpos(url()->full(), 'tab=3'))
             @foreach ($list as $user)
-            <ul class="user-card">
+            <ul class="follow-card">
                 <a href='{{ url("/users/{$user->id}") }}'>
                     <li>
                         @if ($user->thumbnail_url)
@@ -88,7 +108,7 @@
         {{-- フォロワー --}}
         @elseif (strpos(url()->full(), 'tab=4'))
             @foreach ($list as $user)
-            <ul class="user-card">
+            <ul class="follow-card">
                 <a href='{{ url("/users/{$user->id}") }}'>
                     <li>
                         @if ($user->thumbnail_url)

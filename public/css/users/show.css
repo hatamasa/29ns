@@ -1,7 +1,3 @@
-.user-card {
-    background-color: unset;
-    border: unset;
-}
 .user-text ul {
     display: flex;
     flex-wrap: wrap;
@@ -38,24 +34,35 @@
     display: flex;
     justify-content: space-between;
     padding: 10px;
-    background-color: #fff;
     margin-bottom: 3px;
 }
 .user-card img {
     height: 50px;
     margin-right: 10px;
 }
-.user-card a:nth-child(2) {
+
+.follow-card {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #fff;
+    margin-bottom: 3px;
+}
+.follow-card img {
+    height: 50px;
+    margin-right: 10px;
+}
+.follow-card a:nth-child(2) {
     margin: 14px;
 }
-.user-card .follow-icon {
+.follow-card .follow-icon {
     float: right;
     margin: 12px 0;
 }
-.user-card. followed-li {
+.follow-card. followed-li {
     margin: 12px 0;
 }
-.user-card .follow-li {
+.follow-card .follow-li {
     margin: 10px 0;
 }
 .follow-icon span.followed:after{

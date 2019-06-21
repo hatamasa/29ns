@@ -11,8 +11,6 @@ class ImgUploader extends Service
 {
     // 画像保存一時ディレクトリ
     private $tmp_img_dir = 'posts';
-    // 生成するサムネイルのサイズ
-    const THUMBNAIL_WIDTH = '150';
     // 生成する表示用画像のサイズ
     const DISP_IMG_WIDTH = '400';
 
@@ -46,19 +44,15 @@ class ImgUploader extends Service
             $path = $file->storeAs($this->tmp_img_dir, $to_file_name);
             // 生成する画像のパスを生成
             $tmp_path = storage_path('app/'.$path);
-            $tmp_thumbnail_path = dirname($tmp_path).'/thumbnail_'.basename($tmp_path);
 
-            // サムネイルと表示用画像を作成する
-            $this->resizeImgSquere($file, $tmp_thumbnail_path, self::THUMBNAIL_WIDTH);
+            // 画像を作成する
             $this->resizeImgSquere($file, $tmp_path, self::DISP_IMG_WIDTH);
 
             // ローカル以外はs3へ画像をアップロードする
             if (env('APP_ENV') !== 'local') {
                 $result[] = Storage::disk('s3')->putFileAs(Config::get('filesystems.disks.s3.dir.posts'), new File($tmp_path), basename($tmp_path), 'public');
-                Storage::disk('s3')->putFileAs(Config::get('filesystems.disks.s3.dir.posts'), new File($tmp_thumbnail_path), basename($tmp_thumbnail_path), 'public');
                 // 成功したらディレクトリ配下を削除
                 Storage::disk('local')->delete($this->tmp_img_dir.'/'.$to_file_name);
-                Storage::disk('local')->delete($this->tmp_img_dir.'/thumbnail_'.$to_file_name);
             }
         }
 
@@ -75,10 +69,10 @@ class ImgUploader extends Service
     {
         $image = Image::make($file);
         $image
-        ->resize($size, null, function ($constraint) {
-            $constraint->aspectRatio();
-        })
-        ->save($path);
+            ->resize($size, null, function ($constraint) {
+                $constraint->aspectRatio();
+            })
+            ->save($path);
     }
 
     /**
@@ -92,30 +86,29 @@ class ImgUploader extends Service
             'files.*' => 'required|file|image|mimes:jpeg,png',
         ]);
 
-        $result = [];
-        foreach ($request->file('files') as $file) {
-            // アップロード完了の確認
-            if (! $file->isValid()) {
-                throw new RuntimeException('upload error.');
-            }
-            // ファイル拡張子を取得
-            $ext = $file->getClientOriginalExtension();
-            // ファイル名を組み立て
-            $to_file_name = uniqid().'.'.$ext;
-            // ファイルを保存
-            $path = $file->storeAs($this->tmp_img_dir, $to_file_name);
-            // 生成する画像のパスを生成
-            $tmp_path = storage_path('app/'.$path);
+        $result = null;
+        $file = $request->file('file');
+        // アップロード完了の確認
+        if (! $file->isValid()) {
+            throw new RuntimeException('upload error.');
+        }
+        // ファイル拡張子を取得
+        $ext = $file->getClientOriginalExtension();
+        // ファイル名を組み立て
+        $to_file_name = uniqid().'.'.$ext;
+        // ファイルを保存
+        $path = $file->storeAs($this->tmp_img_dir, $to_file_name);
+        // 生成する画像のパスを生成
+        $tmp_path = storage_path('app/'.$path);
 
-            // サムネイルと表示用画像を作成する
-            $this->resizeImgSquere($file, $tmp_path, self::DISP_IMG_WIDTH);
+        // 画像を作成する
+        $this->resizeImgSquere($file, $tmp_path, self::DISP_IMG_WIDTH);
 
-            // ローカル以外はs3へ画像をアップロードする
-            if (env('APP_ENV') !== 'local') {
-                $result[] = Storage::disk('s3')->putFileAs(Config::get('filesystems.disks.s3.dir.users'), new File($tmp_path), basename($tmp_path), 'public');
-                // 成功したらディレクトリ配下を削除
-                Storage::disk('local')->delete($this->tmp_img_dir.'/'.$to_file_name);
-            }
+        // ローカル以外はs3へ画像をアップロードする
+        if (env('APP_ENV') !== 'local') {
+            $result = Storage::disk('s3')->putFileAs(Config::get('filesystems.disks.s3.dir.users'), new File($tmp_path), basename($tmp_path), 'public');
+            // 成功したらディレクトリ配下を削除
+            Storage::disk('local')->delete($this->tmp_img_dir.'/'.$to_file_name);
         }
 
         return $result;

@@ -24,8 +24,8 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/', 'HomeController@index');
     Route::get('/home', 'HomeController@index');
 
-    Route::get('/users/{id}', 'UsersController@show')->where(['id' => '[a-z0-9]+']);
-    Route::get('/users/{id}/edit', 'UsersController@edit')->where(['id' => '[a-z0-9]+']);
+    Route::get('/users/{id}', 'UsersController@show')->where(['id' => '[0-9]+']);
+    Route::get('/users/{id}/edit', 'UsersController@edit')->where(['id' => '[0-9]+']);
     Route::put('/users/update', 'UsersController@update');
 
     Route::post('/user_follows', 'UserFollowsController@store');
