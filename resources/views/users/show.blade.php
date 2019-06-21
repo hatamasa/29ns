@@ -12,7 +12,9 @@
 <div>
     <div class="block-head">
         <p>{{ $users->name }}さんのページ</p>
+        @if (Auth::id() == $users->id)
         <a href="{{ url('/user').'/'.$users->id.'/'.'edit' }}">編集→</a>
+        @endif
     </div>
     <div class="block-body">
         <div class="user-card">
@@ -71,13 +73,15 @@
                         {{ $user->name }}さん
                     </li>
                 </a>
-                <li class="user-icon followed-li">
+                @if (Auth::id() == $users->id)
+                <li class="follow-icon followed-li">
                     <form action='{{ url("/user_follows/{$user->follow_user_id}") }}' method="POST">
                         @method("DELETE")
                         @csrf
                         <button type="submit">フォロー中<div><span class="followed"></span></div></button>
                     </form>
                 </li>
+                @endif
             </ul>
             @endforeach
 
@@ -97,8 +101,9 @@
                         {{ $user->name }}さん
                     </li>
                 </a>
+                @if (Auth::id() == $users->id)
                     @if ($user->is_follow_each)
-                    <li class="user-icon followed-li">
+                    <li class="follow-icon followed-li">
                         <form action='{{ url("/user_follows/{$user->id}") }}' method="POST">
                             @method("DELETE")
                             @csrf
@@ -106,7 +111,7 @@
                         </form>
                     </li>
                     @else
-                    <li class="user-icon follow-li">
+                    <li class="follow-icon follow-li">
                         <form action='{{ url("/user_follows") }}' method="POST">
                             @csrf
                             <input type="hidden" name="follow_user_id" value="{{ $user->id }}">
@@ -114,6 +119,7 @@
                         </form>
                     </li>
                     @endif
+                @endif
             </ul>
             @endforeach
 

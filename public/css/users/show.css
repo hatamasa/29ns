@@ -48,7 +48,7 @@
 .user-card a:nth-child(2) {
     margin: 14px;
 }
-.user-card .user-icon {
+.user-card .follow-icon {
     float: right;
     margin: 12px 0;
 }
@@ -58,12 +58,12 @@
 .user-card .follow-li {
     margin: 10px 0;
 }
-.user-icon span.followed:after{
+.follow-icon span.followed:after{
     content:"";
     display:block;
     position:absolute;
 }
-.user-icon span.followed:after{
+.follow-icon span.followed:after{
     border-left:2px solid #fff;
     border-left: 3px solid #fff;
     border-bottom: 3px solid #fff;
@@ -75,7 +75,7 @@
     top: 3px;
 }
 
-.user-icon div {
+.follow-icon div {
   display: inline-block;
   width: 20px;
   height: 20px;
@@ -85,14 +85,14 @@
   border: solid 0.5px #950000;
   top: 5px;
 }
-.user-icon.followed-li div {
+.follow-icon.followed-li div {
   background-color: #950000;
 }
-user-icon div span.follow {
+.follow-icon div span.follow {
     position: unset;
 }
-.user-icon div span.follow::before,
-.user-icon div span.follow::after {
+.follow-icon div span.follow::before,
+.follow-icon div span.follow::after {
   display: block;
   content: "";
   position: absolute;
@@ -102,6 +102,6 @@ user-icon div span.follow {
   height: 12%;
   background: #950000;
 }
-.user-icon div span.follow::after {
+.follow-icon div span.follow::after {
   transform: rotate(90deg);
 }
