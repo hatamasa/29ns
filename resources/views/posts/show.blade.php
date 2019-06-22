@@ -5,7 +5,27 @@
 @endsection
 
 @section('script')
-<script src="{{ asset('js/posts.js') }}"></script>
+<script>
+    // コメント投稿サブミット
+    $("#post-comment-form").submit(evt => {
+        let comment_text = document.getElementById("comment-text");
+        if(comment_text.value.trim() === "") {
+            comment_text.classList.add("error");
+            comment_text.placeholder = "コメントを入力してください";
+            alert("コメントを入力してください");
+            return false;
+        }
+
+        $(evt.target).find("[type='submit']").prop("disabled", true);
+    });
+
+    // 登録削除サブミット
+    $('#delete-post-form').submit(evt => {
+        if (! confirm("投稿を削除しますか？")) return false;
+        $(evt.target).prop("disabled", true);
+    });
+
+</script>
 @endsection
 
 @section('content')
@@ -102,5 +122,13 @@
         <button type="submit" class="btn btn-primary btn-sm">コメント</button>
     </div>
 </form>
-
+@if ($post->user_id == Auth::id())
+<div>
+    <form action='{{ url("/posts/{$post->id}") }}' method="POST" id="delete-post-form">
+    @method("DELETE")
+    @csrf
+        <button type="submit" class="btn btn-danger btn-block">削除</button>
+    </form>
+</div>
+@endif
 @endsection

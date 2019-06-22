@@ -1,22 +1,6 @@
 (() => {
 
     /**
-     * 投稿詳細
-     */
-    // コメント
-    $("#post-comment-form").submit(evt => {
-        let comment_text = document.getElementById("comment-text");
-        if(comment_text.value.trim() === "") {
-            comment_text.classList.add("error");
-            comment_text.placeholder = "コメントを入力してください";
-            alert("コメントを入力してください");
-            return false;
-        }
-
-        $(evt.target).find("[type='submit']").prop("disabled", true);
-    });
-
-    /**
      * 投稿作成
      */
     [].forEach.call(document.getElementsByClassName("img"), elem => {

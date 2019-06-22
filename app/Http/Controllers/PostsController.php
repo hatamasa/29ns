@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use App\Exceptions\FileUploadException;
 use App\Exceptions\NotFoundShopException;
 use App\Repositories\PostCommentsRepository;
 use App\Services\ShopsService;
@@ -130,9 +129,31 @@ class PostsController extends Controller
         return view('Posts.like_users', compact('post_like_users'));
     }
 
-    public function destroy()
+    public function destroy(Request $request, $id)
     {
-        // TODO: 実装
+        $count = DB::table('posts')->where([
+                'id'      => $id,
+                'user_id' => Auth::id()
+            ])->count();
+        if (! $count) {
+            $this->_log('posts not found. id='.$id, 'error');
+            session()->flash('error', '予期せぬエラーが発生しました。');
+            return redirect(url()->previous());
+        }
+
+        DB::beginTransaction();
+        try {
+            DB::table('posts')->delete($id);
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            $this->_log($e->getMessage(), 'error');
+            session()->flash('error', '予期せぬエラーが発生しました。');
+            return redirect(url()->previous());
+        }
+
+        session()->flash('success', '削除しました');
+        return redirect(url()->previous());
     }
 
 }

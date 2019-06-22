@@ -27,13 +27,13 @@ class UsersController extends Controller
         $params = $request->all();
         $tab = $params['tab'] ?? 1;
 
-        $users = $this->Users->getUserDetail($id);
-
-        if (! $users) {
+        $count = DB::table('users')->where(['id' => $id, 'is_resigned' => 0])->count();
+        if (! $count) {
             $this->_log('invalid user_id. user_id='.$id);
-            session()->flash('error', '存在しないユーザです。');
+            session()->flash('error', '退会済みのユーザです。');
             return redirect(url()->previous());
         }
+        $users = $this->Users->getUserDetail($id);
         // タブに表示するリストを取得する
         $list = $this->UsersService->getList4TabArea($request, $users->id, $tab);
 
