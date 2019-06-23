@@ -5,7 +5,24 @@
 @endsection
 
 @section('script')
-{{--<script src="{{ asset('js/shops.js') }}"></script>--}}
+<script>
+
+    let clickFlg = false;
+    [].forEach.call(document.getElementsByClassName("star-wrap"), elem => {
+        elem.addEventListener('click', evt => {
+            evt.preventDefault();
+            if (clickFlg) {
+                alert("ただいま処理中です。");
+                return false;
+            }
+            clickFlg = true;
+            evt.target.style.color = '#d1d1d1';
+            $(evt.target).parents('a').addClass('no-active');
+            $(evt.target).parents('form').submit();
+        });
+    });
+
+</script>
 @endsection
 
 @section('content')
@@ -24,9 +41,25 @@
     </div>
     <div class="block-body">
         <div class="card shop-detail">
-            <div class="card-title">
-                <div>{{ $shop['name'] }}</div>
-                <div>{{ $shop['score'] ?? 5 }}点</div>
+            <div class="card-head">
+                <div class="card-title">
+                    <div>{{ $shop['name'] }}</div>
+                    <div>{{ $shop['score'] ?? 5 }}点</div>
+                </div>
+                @if ($shop['is_liked'] ?? false)
+                <form action='{{ url("/user_like_shops/{$shop["id"]}") }}' method="POST">
+                    @method('DELETE')
+                    @csrf
+                    <buttom type="submit" class="star-wrap"><i class="fas fa-star fa-lg"></i></buttom>
+                </form>
+                @else
+                <form action='{{ url("/user_like_shops") }}' method="POST">
+                    @csrf
+                    <input type="hidden" name="shop_cd" value='{{ $shop["id"] }}'>
+                    <buttom type="submit" class="star-wrap"><i class="far fa-star fa-lg"></i></buttom>
+                </form>
+                @endif
+            </form>
             </div>
             <div class="card-body">
                 <div class="shop-img">

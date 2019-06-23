@@ -157,7 +157,6 @@ class ShopsService extends Service
         foreach ($shops as &$shop) {
             foreach ($db_shops as $key => $db_shop) {
                 if ($shop['id'] == $db_shop->shop_cd) {
-                    $this->_log("marge");
                     $shop['score']      = $db_shop->score ?? null;
                     $shop['post_count'] = $db_shop->post_count ?? 0;
                     $shop['like_count'] = $db_shop->like_count ?? 0;

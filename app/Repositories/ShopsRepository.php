@@ -49,30 +49,23 @@ class ShopsRepository
     public function getListByShopCds(array $shop_cds)
     {
         $sub = DB::table('user_like_shops')
-            ->where(['user_id' => Auth::id()]);
-
-        $first = DB::table('shops')
-            ->select(
-                'shop_cd as shop_cd',
-                'score as score',
-                'post_count as post_count',
-                'like_count as like_count',
-                DB::raw('NULL as is_liked')
-            )
+            ->select('shop_cd')
+            ->where(['user_id' => Auth::id()])
             ->whereIn('shop_cd', $shop_cds);
 
-        $shops = DB::table('user_like_shops')
+        $query = DB::table('shops as s')
+            ->leftJoinSub($sub, 'uls', function($joins) {
+                $joins->on('s.shop_cd', '=', 'uls.shop_cd');
+            })
             ->select(
-                'shop_cd',
-                DB::raw('NULL'),
-                DB::raw('NULL'),
-                DB::raw('NULL'),
-                DB::raw('CASE WHEN shop_cd IS NOT NULL THEN 1 ELSE 0 END as is_liked')
-                )
-            ->whereIn('shop_cd', $shop_cds)
-            ->unionAll($first);
+                's.shop_cd',
+                's.score',
+                's.post_count',
+                's.like_count',
+                DB::raw('CASE WHEN uls.shop_cd IS NOT NULL THEN 1 ELSE 0 END as is_liked')
+            )->whereIn('s.shop_cd', $shop_cds);
 
-        return $shops->get()->toArray();
+        return $query->get()->toArray();
     }
 
 }

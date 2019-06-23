@@ -22,14 +22,8 @@ class PostsSeeder extends Seeder
         $category = [
             Config::get("const.gnavi.category.yakiniku")[0]['category_s_code'],
             Config::get("const.gnavi.category.yakiniku")[1]['category_s_code'],
-            Config::get("const.gnavi.category.yakitori")[0]['category_s_code'],
-            Config::get("const.gnavi.category.yakitori")[1]['category_s_code'],
-            Config::get("const.gnavi.category.steak")[0]['category_s_code'],
-            Config::get("const.gnavi.category.hamburg")[0]['category_s_code'],
-            Config::get("const.gnavi.category.hamburger")[0]['category_s_code'],
-            Config::get("const.gnavi.category.other")[0]['category_s_code'],
-            Config::get("const.gnavi.category.other")[1]['category_s_code'],
-            Config::get("const.gnavi.category.other")[2]['category_s_code'],
+            Config::get("const.gnavi.category.yakiniku")[2]['category_s_code'],
+            Config::get("const.gnavi.category.yakiniku")[3]['category_s_code'],
         ];
 
         $options = [
