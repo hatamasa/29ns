@@ -21,6 +21,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
     <link href="{{ asset('css/common.css') }}" rel="stylesheet">
     @yield('style')
 </head>

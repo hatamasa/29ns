@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -37,13 +38,14 @@ class LoginController extends Controller
         $this->middleware('verified')->except(['showLoginForm', 'login','logout']);
     }
 
+
     /**
      * ログイン直後の処理
      * @param \Illuminate\Http\Request $request
      * @param unknown $user
      * @return \Illuminate\Http\RedirectResponse
      */
-    protected function authenticated(\Illuminate\Http\Request $request, $user)
+    protected function authenticated(Request $request, $user)
     {
 //         $expired_at = DB::table('user_access_token')->where('user_id', $user->id)->pluck('expired_at');
 //         if ($expired_at && strtotime($expired_at) > strtotime(date('Y-m-d H:i:s'))) {
@@ -88,8 +90,14 @@ class LoginController extends Controller
 //             Log::error("token get error. statusCode=".$statusCode);
 //         }
 
+        session()->flash('success', 'ログインしました。');
         // ログイン後のリダイレクト
         return redirect()->intended($this->redirectPath());
+    }
+
+    protected function loggedOut(Request $request)
+    {
+        session()->flash('info', 'ログアウトしました。');
     }
 
 }

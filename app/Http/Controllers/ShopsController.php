@@ -60,7 +60,7 @@ class ShopsController extends Controller
         }
         $total_hit_count = $shops['total_hit_count'];
 
-        $shops = $this->ShopsService->margeScore($shops['rest']);
+        $shops = $this->ShopsService->margeAttr($shops['rest']);
 
         $shops = new LengthAwarePaginator(
                 $shops,

@@ -136,31 +136,33 @@ class ShopsService extends Service
         // 店舗を取得
         $shops = $this->ApiService->callGnaviRestSearchApi(['id' => $shop_cd]);
 
-        $shop = $this->margeScore($shops['rest'])[0];
+        $shop = $this->margeAttr($shops['rest'])[0];
 
         return $shop;
     }
 
     /**
-     * 店舗データにDBからスコアをマージする
+     * 店舗データにDBから情報をマージする
      * @param array $shops
      * @return array
      */
-    public function margeScore(array $shops)
+    public function margeAttr(array $shops)
     {
         $shop_cds = [];
         foreach ($shops as $shop) {
             $shop_cds[] = $shop['id'];
         }
-        $shop_scores = $this->Shops->getListByShopCds($shop_cds);
+        $db_shops = $this->Shops->getListByShopCds($shop_cds);
 
         foreach ($shops as &$shop) {
-            foreach ($shop_scores as $key => $shop_score) {
-                if ($shop['id'] == $shop_score->shop_cd) {
-                    $shop['score']      = $shop_score->score;
-                    $shop['post_count'] = $shop_score->post_count;
-                    $shop['like_count'] = $shop_score->like_count;
-                    unset($shop_scores[$key]);
+            foreach ($db_shops as $key => $db_shop) {
+                if ($shop['id'] == $db_shop->shop_cd) {
+                    $this->_log("marge");
+                    $shop['score']      = $db_shop->score ?? null;
+                    $shop['post_count'] = $db_shop->post_count ?? 0;
+                    $shop['like_count'] = $db_shop->like_count ?? 0;
+                    $shop['is_liked']   = $db_shop->is_liked;
+                    unset($db_shops[$key]);
                     break;
                 }
             }

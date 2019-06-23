@@ -68,7 +68,7 @@ class UserFollowsController extends Controller
             return redirect(url()->previous());
         }
 
-        session()->flash('success', $name.'さんをフォロー解除しました。');
+        session()->flash('info', $name.'さんをフォロー解除しました。');
         return redirect(url()->previous());
     }
 

@@ -1,7 +1,12 @@
 <a href='{{ url("/shops/{$shop->shop_cd}") }}' class="link">
     <div class="card">
-        <div class="card-title">
-            {{ $shop->shop_name }}
+        <div class="card-head">
+            <div class="card-title">{{ $shop->shop_name }}</div>
+            <form action='{{ url("/user_like_shops/{$shop->shop_cd}") }}' method="POST">
+                @method('DELETE')
+                @csrf
+                <buttom type="submit" class="star-wrap"><i class="fas fa-star fa-lg"></i></buttom>
+            </form>
         </div>
         <div class="card-body">
             <div class="shop-img">
@@ -11,7 +16,7 @@
                 <ul>
                     <li>{{ $shop->score ?? 5 }}点</li>
                     <li>{{ $shop->post_count ?? 0 }}件の29ログ / {{ $shop->like_count ?? 0 }}件のお気に入り</li>
-                    <li>{{ $shop->line }} {{ $shop->station }} 徒歩{{ $shop->walk }}分 {{ $shop->note }}</li>
+                    <li>{{ $shop->line }} {{ $shop->station }} {{ $shop->walk }}分 {{ $shop->note }}</li>
                     @empty ($shop->budget)
                     @else
                     <li>予算 ¥{{ $shop->budget }}</li>

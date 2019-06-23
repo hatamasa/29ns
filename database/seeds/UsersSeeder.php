@@ -23,7 +23,7 @@ class UsersSeeder extends Seeder
             $data[] = [
                 'name'              => 'test'.($i+1),
                 'email'             => 'test'.($i+1).'@29ns.com',
-                'email_verified_at' => $faker->dateTime,
+                'email_verified_at' => (($i+1)%9 == 0) ? null : $faker->dateTime,
                 'sex'               => $faker->numberBetween(1, 2),
                 'birth_ym'          => ($faker->dateTimeBetween('-100 years', 'now'))->format('Ym'),
                 'contents'          => $faker->realText(),
