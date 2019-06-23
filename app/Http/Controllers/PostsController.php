@@ -101,6 +101,12 @@ class PostsController extends Controller
                 'like_count'    => 0,
                 'comment_count' => 0,
             ]);
+            $shop = DB::table('shops')->where(['shop_cd' => $params["shop_cd"]])->first();
+            $score = DB::table('posts')->where(['shop_cd' => $params['shop_cd']])->avg('score');
+            DB::table('shops')->where(['shop_cd' => $params["shop_cd"]])->update([
+                'like_count' => $shop->like_count+1,
+                'score'      => $score
+            ]);
             DB::commit();
         } catch (\Exception $e) {
             DB::rollBack();
@@ -131,11 +137,11 @@ class PostsController extends Controller
 
     public function destroy(Request $request, $id)
     {
-        $count = DB::table('posts')->where([
+        $post = DB::table('posts')->where([
                 'id'      => $id,
                 'user_id' => Auth::id()
-            ])->count();
-        if (! $count) {
+        ])->first();
+        if (! $post) {
             $this->_log('posts not found. id='.$id, 'error');
             session()->flash('error', '予期せぬエラーが発生しました。');
             return redirect(url()->previous());
@@ -144,6 +150,12 @@ class PostsController extends Controller
         DB::beginTransaction();
         try {
             DB::table('posts')->delete($id);
+            $shop = DB::table('shops')->where(['shop_cd' => $post['shop_cd']])->first();
+            $score = DB::table('posts')->where(['shop_cd' => $post['shop_cd']])->avg('score');
+            DB::table('shops')->where(['shop_cd' => $post["shop_cd"]])->update([
+                'like_count' => $shop->like_count-1,
+                'score'      => $score
+            ]);
             DB::commit();
         } catch (\Exception $e) {
             DB::rollBack();
