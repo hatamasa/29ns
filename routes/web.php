@@ -38,8 +38,8 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/search/station', 'SearchController@station');
 
     Route::get('/shops', 'ShopsController@index');
-    Route::get('/shops/{shop_cd}', 'ShopsController@show')->where(['shop_cd' => '[a-z0-9]+']);
     Route::get('/shops/ranking', 'ShopsController@ranking');
+    Route::get('/shops/{shop_cd}', 'ShopsController@show')->where(['shop_cd' => '[a-z0-9]+']);
 
     Route::get('/posts', 'PostsController@index');
     Route::get('/posts/create', 'PostsController@create');
