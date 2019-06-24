@@ -1,6 +1,7 @@
 <?php
 namespace App\Repositories;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class PostsRepository
@@ -21,7 +22,15 @@ class PostsRepository
      */
     public function getRecentlyList(int $limit, int $page = 1, int $user_id = null)
     {
+        $sub = DB::table('post_like_users')
+            ->select('post_id')
+            ->where(['user_id' => Auth::id()]);
+
         $query = DB::table('posts as p')
+            ->join('users as u', 'p.user_id', '=', 'u.id')
+            ->leftJoinSub($sub, 'plu', function ($join){
+                $join->on('p.id', '=', 'plu.post_id');
+            })
             ->select(
                 'p.id',
                 'p.shop_cd',
@@ -34,9 +43,9 @@ class PostsRepository
                 'u.id as user_id',
                 'u.name as user_name',
                 'u.thumbnail_url as user_thumbnail_url',
-                'u.sex as user_sex'
+                'u.sex as user_sex',
+                DB::raw('CASE WHEN plu.post_id IS NOT NULL THEN 1 ELSE 0 END is_liked')
             )
-            ->join('users as u', 'p.user_id', '=', 'u.id')
             ->where('p.is_deleted', 0)
             ->orderBy('p.id', 'desc')
             ->offset(($page-1) * $limit)
@@ -94,7 +103,15 @@ class PostsRepository
      */
     public function getById(int $id)
     {
+        $sub = DB::table('post_like_users')
+            ->select('post_id')
+            ->where(['user_id' => Auth::id()]);
+
         $query = DB::table('Posts as p')
+            ->join('users as u', 'p.user_id', '=', 'u.id')
+            ->leftJoinSub($sub, 'plu', function ($join){
+                $join->on('p.id', '=', 'plu.post_id');
+            })
             ->select(
                 'p.id',
                 'p.shop_cd',
@@ -110,9 +127,9 @@ class PostsRepository
                 'u.id as user_id',
                 'u.name as user_name',
                 'u.thumbnail_url as user_thumbnail_url',
-                'u.sex as user_sex'
+                'u.sex as user_sex',
+                DB::raw('CASE WHEN plu.post_id IS NOT NULL THEN 1 ELSE 0 END is_liked')
             )
-            ->join('users as u', 'p.user_id', '=', 'u.id')
             ->where('p.id', $id)
             ;
 

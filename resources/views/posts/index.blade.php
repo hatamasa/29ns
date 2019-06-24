@@ -5,7 +5,8 @@
 @endsection
 
 @section('script')
-{{--<script src="{{ asset('js/posts.js') }}"></script>--}}
+<script>
+</script>
 @endsection
 
 @section('content')

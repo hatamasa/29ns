@@ -6,22 +6,6 @@
 
 @section('script')
 <script>
-
-    let clickFlg = false;
-    [].forEach.call(document.getElementsByClassName("star-wrap"), elem => {
-        elem.addEventListener('click', evt => {
-            evt.preventDefault();
-            if (clickFlg) {
-                alert("ただいま処理中です。");
-                return false;
-            }
-            clickFlg = true;
-            evt.target.style.color = '#d1d1d1';
-            $(evt.target).parents('a').addClass('no-active');
-            $(evt.target).parents('form').submit();
-        });
-    });
-
 </script>
 @endsection
 
