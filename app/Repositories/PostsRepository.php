@@ -68,7 +68,15 @@ class PostsRepository
      */
     public function getListByShopCd(string $shop_cd, int $limit, int $page = 1)
     {
+        $sub = DB::table('post_like_users')
+            ->select('post_id')
+            ->where(['user_id' => Auth::id()]);
+
         $query = DB::table('Posts as p')
+            ->leftJoinSub($sub, 'plu', function ($join){
+                $join->on('p.id', '=', 'plu.post_id');
+            })
+            ->join('users as u', 'p.user_id', '=', 'u.id')
             ->select(
                 'p.id',
                 'p.shop_cd',
@@ -84,9 +92,9 @@ class PostsRepository
                 'u.id as user_id',
                 'u.name as user_name',
                 'u.thumbnail_url as user_thumbnail_url',
-                'u.sex as user_sex'
+                'u.sex as user_sex',
+                DB::raw('CASE WHEN plu.post_id IS NOT NULL THEN 1 ELSE 0 END is_liked')
             )
-            ->join('users as u', 'p.user_id', '=', 'u.id')
             ->where('p.shop_cd', $shop_cd)
             ->orderBy('p.id', 'desc')
             ->offset(($page-1) * $limit)

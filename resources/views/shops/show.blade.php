@@ -116,12 +116,18 @@
             </div>
             <div class="card-body-footer">
                 <ul class="post-text-under">
-                    <li>{{ $post->like_count }}いいね</li>
+                    <li class="like-disp">{{ $post->like_count }}いいね</li>
                     <li>コメント{{ $post->comment_count }}件</li>
                 </ul>
                 @auth
                 <ul class="post-detail-link">
-                    <a href='javascript:void(0)' class="like"><li>いいね</li></a>
+                    <li>
+                    @if ($post->is_liked)
+                    <a href='javascript:void(0)' class="like liked" data-post_id="{{ $post->id }}">いいね済</a>
+                    @else
+                    <a href='javascript:void(0)' class="like" data-post_id="{{ $post->id }}">いいね</a>
+                    @endif
+                    </li>
                     <a href='{{ url("/posts/{$post->id}") }}'><li>コメントする</li></a>
                 </ul>
                 @endauth
