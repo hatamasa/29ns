@@ -44,7 +44,7 @@ class UserFollowsController extends Controller
         return redirect(url()->previous());
     }
 
-    public function destory(Request $request, $id)
+    public function destroy(Request $request, $id)
     {
         $users = DB::table('users')->where(['id' => $id])->first();
         if (!$users) {

@@ -49,7 +49,7 @@ class UserLikeShopsController extends Controller
         return redirect(url()->previous());
     }
 
-    public function destory(Request $request, $shop_cd)
+    public function destroy(Request $request, $shop_cd)
     {
         // Apiで店舗を取得
         $shop = $this->ShopsService->getShopByCd($shop_cd);

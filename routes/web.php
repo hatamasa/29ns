@@ -29,10 +29,10 @@ Route::group(['middleware' => 'web'], function () {
     Route::put('/users/update', 'UsersController@update');
 
     Route::post('/user_follows', 'UserFollowsController@store');
-    Route::delete('/user_follows/{id}', 'UserFollowsController@destory')->where(['id' => '[0-9]+']);
+    Route::delete('/user_follows/{id}', 'UserFollowsController@destroy')->where(['id' => '[0-9]+']);
 
     Route::post('/user_like_shops', 'UserLikeShopsController@store');
-    Route::delete('/user_like_shops/{shop_cd}', 'UserLikeShopsController@destory')->where(['shop_cd' => '[a-z0-9]+']);
+    Route::delete('/user_like_shops/{shop_cd}', 'UserLikeShopsController@destroy')->where(['shop_cd' => '[a-z0-9]+']);
 
     Route::get('/search/area', 'SearchController@area');
     Route::get('/search/station', 'SearchController@station');
@@ -49,4 +49,7 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::post('/post_comments', 'PostCommentsController@store');
     Route::delete('/post_comments/{id}', 'PostCommentsController@destroy')->where(['id' => '[0-9]+']);
+
+    Route::post('/post_like_users', 'PostLikeUsersController@store');
+    Route::delete('/post_like_users/{id}', 'PostLikeUsersController@destroy')->where(['id' => '[0-9]+']);
 });
