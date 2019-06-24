@@ -24,7 +24,7 @@
             </div>
             <div class="shop-text">
                 <ul>
-                    <li>{{ $shop->score ?? 5 }}点</li>
+                    <li class="shop-score">{{ $shop->score ?? 5 }}点</li>
                     <li>{{ $shop->post_count ?? 0 }}件の29ログ / {{ $shop->like_count ?? 0 }}件のお気に入り</li>
                     <li>{{ $shop->line }} {{ $shop->station }} 徒歩{{ $shop->walk }}分 {{ $shop->note }}</li>
                     @empty ($shop->budget)
