@@ -14,6 +14,7 @@
     }
 
     // 店舗お気に入りイベント
+    // TODO: ajaxにしたい
     let clickFlg = false;
     [].forEach.call(document.getElementsByClassName("star-wrap"), elem => {
         elem.addEventListener('click', evt => {
@@ -42,6 +43,7 @@
     });
 
     // like除外処理
+    // TODO: 連打防止にしたい
     function removeLike(evt) {
         $.ajax({
             url: '/post_like_users/'+evt.target.dataset.post_id,

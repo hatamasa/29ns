@@ -35,6 +35,10 @@
         <p>{{ $users->name }}さんのページ</p>
         @if (Auth::id() == $users->id)
         <a href='{{ url("/users/{$users->id}/edit") }}'>編集→</a>
+        @else
+        <ul class="user-follow">
+            @include ('common.follow', ['user' => $users])
+        </ul>
         @endif
     </div>
     <div class="block-body">
@@ -94,15 +98,7 @@
                         {{ $user->name }}さん
                     </li>
                 </a>
-                @if (Auth::id() == $users->id)
-                <li class="follow-icon followed-li">
-                    <form action='{{ url("/user_follows/{$user->follow_user_id}") }}' method="POST">
-                        @method("DELETE")
-                        @csrf
-                        <button type="submit">フォロー中<div><span class="followed"></span></div></button>
-                    </form>
-                </li>
-                @endif
+                @include ('common.follow', ['user' => $user])
             </ul>
             @endforeach
 
@@ -122,25 +118,7 @@
                         {{ $user->name }}さん
                     </li>
                 </a>
-                @if (Auth::id() == $users->id)
-                    @if ($user->is_follow_each)
-                    <li class="follow-icon followed-li">
-                        <form action='{{ url("/user_follows/{$user->id}") }}' method="POST">
-                            @method("DELETE")
-                            @csrf
-                            <button type="submit">フォロー中<div><span class="followed"></span></div></button>
-                        </form>
-                    </li>
-                    @else
-                    <li class="follow-icon follow-li">
-                        <form action='{{ url("/user_follows") }}' method="POST">
-                            @csrf
-                            <input type="hidden" name="follow_user_id" value="{{ $user->id }}">
-                            <button type="submit">フォロー<div><span class="follow"></span></div></button>
-                        </form>
-                    </li>
-                    @endif
-                @endif
+                @include ('common.follow', ['user' => $user])
             </ul>
             @endforeach
 

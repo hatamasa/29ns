@@ -109,9 +109,13 @@ class UsersService extends Service
     {
         $user_follows = $this->UserFollows->getListByUserId(self::USER_PAGE_LIST_LIMIT, $page, $id);
 
-        $count = DB::table('user_follows')->where([
-            'user_id' => $id
-        ])->count();
+        $count = DB::table('user_follows as uf')
+            ->join('users as u', 'uf.user_id', '=', 'u.id')
+            ->where([
+                'uf.user_id' => $id,
+                'u.is_resigned' => 0
+            ])
+            ->count();
 
         return [$user_follows, $count];
     }
@@ -126,9 +130,13 @@ class UsersService extends Service
     {
         $user_follows = $this->UserFollows->getListByFollowUserId(self::USER_PAGE_LIST_LIMIT, $page, $id);
 
-        $count = DB::table('user_follows')->where([
-            'follow_user_id' => $id
-        ])->count();
+        $count = DB::table('user_follows as uf')
+            ->join('users as u', 'uf.follow_user_id', '=', 'u.id')
+            ->where([
+                'uf.follow_user_id' => $id,
+                'u.is_resigned' => 0
+            ])
+            ->count();
 
         return [$user_follows, $count];
     }

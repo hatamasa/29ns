@@ -28,7 +28,7 @@
             <div class="card-head">
                 <div class="card-title">
                     <div>{{ $shop['name'] }}</div>
-                    <div>{{ $shop['score'] ?? 5 }}点</div>
+                    <div>{{ (isset($shop['score']) && !empty($shop['score'])) ? $shop['score'] : 5 }}点</div>
                 </div>
                 @if ($shop['is_liked'] ?? false)
                 <form action='{{ url("/user_like_shops/{$shop["id"]}") }}' method="POST">

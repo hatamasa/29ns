@@ -19,7 +19,11 @@ class UserFollowsController extends Controller
     public function store(Request $request)
     {
         $follow_user_id = $request->input('follow_user_id');
-        $users = DB::table('users')->where(['id' => $follow_user_id])->first();
+        $users = DB::table('users')->where([
+            'id' => $follow_user_id,
+            'is_resigned' => 0
+        ])->first();
+
         if (!$users) {
             $this->_log('users not found. user_id='.$follow_user_id);
             session()->flash('error', '存在しないユーザです。');
@@ -46,7 +50,10 @@ class UserFollowsController extends Controller
 
     public function destroy(Request $request, $id)
     {
-        $users = DB::table('users')->where(['id' => $id])->first();
+        $users = DB::table('users')->where([
+            'id' => $id,
+            'is_resigned' => 0
+        ])->first();
         if (!$users) {
             $this->_log('users not found. user_id='.$id);
             session()->flash('error', '存在しないユーザです。');

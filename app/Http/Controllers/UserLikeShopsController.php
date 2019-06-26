@@ -36,7 +36,7 @@ class UserLikeShopsController extends Controller
                 'user_id' => Auth::id(),
                 'shop_cd' => $shop_cd
             ]);
-            DB::table('shops')->where(['shop_cd' => $shop_cd])->update(['like_count' => $shop['like_count']+1]);
+            DB::table('shops')->where(['shop_cd' => $shop_cd])->update(['like_count' => ($shop['like_count'] ?? 0)+1]);
             DB::commit();
         } catch (\Exception $e) {
             DB::rollBack();

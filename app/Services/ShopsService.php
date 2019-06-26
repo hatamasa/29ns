@@ -105,7 +105,7 @@ class ShopsService extends Service
             }
             $this->_log("shops: ".json_encode($shop_ids));
             // 投稿から店を10件毎に取得
-            $tmp = (new ApiService())->callGnaviRestSearchApi(['id' => implode(',', $shop_ids)]);
+            $tmp = $this->ApiService->callGnaviRestSearchApi(['id' => implode(',', $shop_ids)]);
             $result = array_merge($result, $tmp['rest']);
         }
         // 店舗の取得結果から投稿に必要な情報を取得する
@@ -135,10 +135,35 @@ class ShopsService extends Service
     {
         // 店舗を取得
         $shops = $this->ApiService->callGnaviRestSearchApi(['id' => $shop_cd]);
+        if (count($shops) == 0) {
+            return [];
+        }
+        $this->checkShopsRegist($shops['rest']);
 
         $shop = $this->margeAttr($shops['rest'])[0];
 
         return $shop;
+    }
+
+    /**
+     * 店舗がDBにない場合は登録する
+     * @param array $shops
+     */
+    private function checkShopsRegist(array $shops)
+    {
+        $data = [];
+        foreach ($shops as $shop) {
+            $count = DB::table('shops')->where('shop_cd', $shop['id'])->count();
+            if (! $count) {
+                $data[] = [
+                    'shop_cd' => $shop['id'],
+                    'score' => 0,
+                    'post_count' => 0,
+                    'like_count' => 0
+                ];
+            }
+        }
+        DB::table('shops')->insert($data);
     }
 
     /**
