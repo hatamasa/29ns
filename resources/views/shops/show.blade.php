@@ -30,19 +30,13 @@
                     <div>{{ $shop['name'] }}</div>
                     <div>{{ (isset($shop['score']) && !empty($shop['score'])) ? $shop['score'] : 5 }}点</div>
                 </div>
+                <div class="star-wrap" data-shop_cd="{{ $shop['id'] }}">
                 @if ($shop['is_liked'] ?? false)
-                <form action='{{ url("/user_like_shops/{$shop["id"]}") }}' method="POST">
-                    @method('DELETE')
-                    @csrf
-                    <buttom type="submit" class="star-wrap"><i class="fas fa-star fa-lg"></i></buttom>
-                </form>
+                <i class="fas fa-star fa-lg"></i>
                 @else
-                <form action='{{ url("/user_like_shops") }}' method="POST">
-                    @csrf
-                    <input type="hidden" name="shop_cd" value='{{ $shop["id"] }}'>
-                    <buttom type="submit" class="star-wrap"><i class="far fa-star fa-lg"></i></buttom>
-                </form>
+                <i class="far fa-star fa-lg"></i>
                 @endif
+            </div>
             </form>
             </div>
             <div class="card-body">

@@ -14,21 +14,47 @@
     }
 
     // 店舗お気に入りイベント
-    // TODO: ajaxにしたい
-    let clickFlg = false;
     [].forEach.call(document.getElementsByClassName("star-wrap"), elem => {
         elem.addEventListener('click', evt => {
             evt.preventDefault();
-            if (clickFlg) {
-                alert("ただいま処理中です。");
-                return false;
-            }
-            clickFlg = true;
-            evt.target.style.color = '#d1d1d1';
             $(evt.target).parents('a').addClass('no-active');
-            $(evt.target).parents('form').submit();
+            if (evt.target.classList.contains("fas")) {
+                evt.target.classList.remove('fas');
+                evt.target.classList.add('far');
+                unLikeShop(evt);
+            } else {
+                evt.target.classList.remove('far');
+                evt.target.classList.add('fas');
+                likeShop(evt);
+            }
         });
     });
+    function unLikeShop(evt) {
+        $.ajax({
+            url: '/user_like_shops/'+evt.target.parentNode.dataset.shop_cd,
+            type: 'POST',
+            data: {
+                '_method': 'DELETE'
+            }
+        })
+        .done(result => {})
+        .fail(error => {
+            alert("予期せぬエラーが発生しました。");
+        });
+    }
+    function likeShop(evt) {
+        $.ajax({
+            url: '/user_like_shops',
+            type: 'POST',
+            data: {
+                'shop_cd': evt.target.parentNode.dataset.shop_cd,
+            }
+        })
+        .done(result => {})
+        .fail(error => {
+            alert("予期せぬエラーが発生しました。");
+        });
+    }
 
     // 投稿いいねイベント
     document.addEventListener('click', evt => {

@@ -4,19 +4,13 @@
             <div class="card-title">
                 <span class="rank">No.{{ ($offset ?? 0) + $loop->iteration }}</span>{{ $shop->shop_name }}
             </div>
-            @if ($shop->is_liked)
-            <form action='{{ url("/user_like_shops/{$shop->shop_cd}") }}' method="POST">
-                @method('DELETE')
-                @csrf
-                <buttom type="submit" class="star-wrap"><i class="fas fa-star fa-lg"></i></buttom>
-            </form>
-            @else
-            <form action='{{ url("/user_like_shops") }}' method="POST">
-                @csrf
-                <input type="hidden" name="shop_cd" value="{{ $shop->shop_cd }}">
-                <buttom type="submit" class="star-wrap"><i class="far fa-star fa-lg"></i></buttom>
-            </form>
-            @endif
+            <div class="star-wrap" data-shop_cd="{{ $shop->shop_cd }}">
+                @if ($shop->is_liked)
+                <i class="fas fa-star fa-lg"></i>
+                @else
+                <i class="far fa-star fa-lg"></i>
+                @endif
+            </div>
         </div>
         <div class="card-body">
             <div class="shop-img">

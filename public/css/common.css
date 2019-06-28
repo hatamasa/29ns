@@ -345,6 +345,7 @@ input[type="radio"]:checked + .radioDefault:after {
     text-align: center;
     height: 40px;
     padding: 10px;
+    right: 5px;
 }
 .star-wrap:active {
     background-color: #d1d1d1 !important;

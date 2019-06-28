@@ -2,19 +2,13 @@
     <div class="card">
         <div class="card-head">
             <div class="card-title">{{ $shop['name'] }}</div>
-            @if ($shop['is_liked'] ?? false)
-            <form action='{{ url("/user_like_shops/{$shop["id"]}") }}' method="POST">
-                @method('DELETE')
-                @csrf
-                <buttom type="submit" class="star-wrap"><i class="fas fa-star fa-lg"></i></buttom>
-            </form>
-            @else
-            <form action='{{ url("/user_like_shops") }}' method="POST">
-                @csrf
-                <input type="hidden" name="shop_cd" value='{{ $shop["id"] }}'>
-                <buttom type="submit" class="star-wrap"><i class="far fa-star fa-lg"></i></buttom>
-            </form>
-            @endif
+            <div class="star-wrap" data-shop_cd="{{ $shop['id'] }}">
+                @if ($shop['is_liked'] ?? false)
+                <i class="fas fa-star fa-lg"></i>
+                @else
+                <i class="far fa-star fa-lg"></i>
+                @endif
+            </div>
         </div>
         <div class="card-body">
             <div class="shop-img">

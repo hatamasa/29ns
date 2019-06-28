@@ -2,11 +2,9 @@
     <div class="card">
         <div class="card-head">
             <div class="card-title">{{ $shop->shop_name }}</div>
-            <form action='{{ url("/user_like_shops/{$shop->shop_cd}") }}' method="POST">
-                @method('DELETE')
-                @csrf
-                <buttom type="submit" class="star-wrap"><i class="fas fa-star fa-lg"></i></buttom>
-            </form>
+            <div class="star-wrap" data-shop_cd="{{ $shop->shop_cd }}">
+                <i class="fas fa-star fa-lg"></i>
+            </div>
         </div>
         <div class="card-body">
             <div class="shop-img">
