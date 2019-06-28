@@ -87,7 +87,7 @@
     top: 3px;
 }
 
-.follow-icon div {
+.follow-link div {
   display: inline-block;
   width: 20px;
   height: 20px;
@@ -97,14 +97,14 @@
   border: solid 0.5px #950000;
   top: 5px;
 }
-.follow-icon.followed-li div {
+.follow-icon.followed-li .follow-link div {
   background-color: #950000;
 }
-.follow-icon div span.follow {
+.follow-icon .follow-link div span.follow {
     position: unset;
 }
-.follow-icon div span.follow::before,
-.follow-icon div span.follow::after {
+.follow-icon .follow-link  div span.follow::before,
+.follow-icon .follow-link div span.follow::after {
   display: block;
   content: "";
   position: absolute;
@@ -114,6 +114,6 @@
   height: 12%;
   background: #950000;
 }
-.follow-icon div span.follow::after {
+.follow-icon .follow-link div span.follow::after {
   transform: rotate(90deg);
 }

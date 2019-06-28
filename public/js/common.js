@@ -19,17 +19,15 @@
             evt.preventDefault();
             $(evt.target).parents('a').addClass('no-active');
             if (evt.target.classList.contains("fas")) {
-                evt.target.classList.remove('fas');
-                evt.target.classList.add('far');
                 unLikeShop(evt);
             } else {
-                evt.target.classList.remove('far');
-                evt.target.classList.add('fas');
                 likeShop(evt);
             }
         });
     });
     function unLikeShop(evt) {
+        evt.target.classList.remove('fas');
+        evt.target.classList.add('far');
         $.ajax({
             url: '/user_like_shops/'+evt.target.parentNode.dataset.shop_cd,
             type: 'POST',
@@ -48,6 +46,8 @@
         });
     }
     function likeShop(evt) {
+        evt.target.classList.remove('far');
+        evt.target.classList.add('fas');
         $.ajax({
             url: '/user_like_shops',
             type: 'POST',
@@ -77,8 +77,6 @@
                 break;
         }
     });
-
-    // like除外処理
     function removeLike(evt) {
         $.ajax({
             url: '/post_like_users/'+evt.target.dataset.post_id,
@@ -101,7 +99,6 @@
             alert("予期せぬエラーが発生しました。");
         });
     }
-    // like付与処理
     function addLike(evt) {
         $.ajax({
             url: "/post_like_users",
@@ -121,4 +118,62 @@
             alert("予期せぬエラーが発生しました。");
         });
     }
+
+    // ユーザフォローイベント
+    [].forEach.call(document.getElementsByClassName('follow-link'), elem => {
+        elem.addEventListener('click', evt => {
+            let span = $(evt.target).parents('.follow-icon').find('span').get(0);
+            if (span.classList.contains('followed')) {
+                unfollow(evt);
+            } else {
+                follow(evt);
+            }
+        });
+    });
+    function unfollow(evt) {
+        let followLink = $(evt.target).parents('.follow-icon').find('.follow-link');
+        followLink.parent().removeClass('followed-li');
+        followLink.parent().addClass('follow-li');
+        followLink.html('フォロー<div><span class="follow"></span></div>');
+        $.ajax({
+            url: '/user_follows/'+followLink.data('user_id'),
+            type: 'POST',
+            data: {
+                '_method': 'DELETE'
+            }
+        })
+        .done(result => {
+            if (! result.return_code) {
+                alert(result.message);
+                return;
+            }
+        })
+        .fail(error => {
+            alert('予期せぬエラーが発生しました。');
+        });
+    }
+    function follow(evt) {
+        let followLink = $(evt.target).parents('.follow-icon').find('.follow-link');
+        followLink.parent().removeClass('follow-li');
+        followLink.parent().addClass('followed-li');
+        followLink.html('フォロー中<div><span class="followed"></span></div>');
+        $.ajax({
+            url: '/user_follows',
+            type: 'POST',
+            data: {
+                'follow_user_id': +followLink.data('user_id'),
+            }
+        })
+        .done(result => {
+            if (! result.return_code) {
+                alert(result.message);
+                return;
+            }
+        })
+        .fail(error => {
+            alert('予期せぬエラーが発生しました。');
+        });
+    }
+
+
 })();

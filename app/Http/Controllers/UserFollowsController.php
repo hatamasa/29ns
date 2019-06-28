@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -18,16 +19,24 @@ class UserFollowsController extends Controller
 
     public function store(Request $request)
     {
+        $result = [];
+        if (! $request->ajax()) {
+            $this->_log('method not ajax.');
+            $result['return_code'] = 0;
+            $result['message'] = '不正なアクセスです。';
+            return response()->json($result, Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
         $follow_user_id = $request->input('follow_user_id');
         $users = DB::table('users')->where([
-            'id' => $follow_user_id,
-            'is_resigned' => 0
-        ])->first();
+                'id' => $follow_user_id,
+                'is_resigned' => 0
+            ])->first();
 
         if (!$users) {
             $this->_log('users not found. user_id='.$follow_user_id);
-            session()->flash('error', '存在しないユーザです。');
-            return redirect(url()->previous());
+            $result['return_code'] = 0;
+            $result['message'] = '存在しないユーザです。';
+            return response()->json($result, Response::HTTP_INTERNAL_SERVER_ERROR);
         }
 
         DB::beginTransaction();
@@ -40,26 +49,36 @@ class UserFollowsController extends Controller
         } catch (\Exception $e) {
             DB::rollBack();
             $this->_log($e->getMessage(), 'error');
-            session()->flash('error', '予期せぬエラーが発生しました。');
-            return redirect(url()->previous());
+            $result['return_code'] = 0;
+            $result['message'] = '予期せぬエラーが発生しました。';
+            return response()->json($result, Response::HTTP_INTERNAL_SERVER_ERROR);
         }
 
-        session()->flash('success', $users->name.'さんをフォローしました。');
-        return redirect(url()->previous());
+        $result['return_code'] = 1;
+        return response()->json($result, Response::HTTP_OK);
     }
 
     public function destroy(Request $request, $id)
     {
+        $result = [];
+        if (! $request->ajax()) {
+            $this->_log('method not ajax.');
+            $result['return_code'] = 0;
+            $result['message'] = '不正なアクセスです。';
+            return response()->json($result, Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+
         $users = DB::table('users')->where([
-            'id' => $id,
-            'is_resigned' => 0
-        ])->first();
+                'id' => $id,
+                'is_resigned' => 0
+            ])->first();
+
         if (!$users) {
             $this->_log('users not found. user_id='.$id);
-            session()->flash('error', '存在しないユーザです。');
-            return redirect(url()->previous());
+            $result['return_code'] = 0;
+            $result['message'] = '存在しないユーザです。';
+            return response()->json($result, Response::HTTP_INTERNAL_SERVER_ERROR);
         }
-        $name = $users->name;
 
         DB::beginTransaction();
         try {
@@ -71,12 +90,13 @@ class UserFollowsController extends Controller
         } catch (\Exception $e) {
             DB::rollBack();
             $this->_log($e->getMessage(), 'error');
-            session()->flash('error', '予期せぬエラーが発生しました。');
-            return redirect(url()->previous());
+            $result['return_code'] = 0;
+            $result['message'] = '予期せぬエラーが発生しました。';
+            return response()->json($result, Response::HTTP_INTERNAL_SERVER_ERROR);
         }
 
-        session()->flash('info', $name.'さんをフォロー解除しました。');
-        return redirect(url()->previous());
+        $result['return_code'] = 1;
+        return response()->json($result, Response::HTTP_OK);
     }
 
 
