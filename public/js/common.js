@@ -37,7 +37,12 @@
                 '_method': 'DELETE'
             }
         })
-        .done(result => {})
+        .done(result => {
+            if (! result.return_code) {
+                alert(result.message);
+                return;
+            }
+        })
         .fail(error => {
             alert("予期せぬエラーが発生しました。");
         });
@@ -50,7 +55,12 @@
                 'shop_cd': evt.target.parentNode.dataset.shop_cd,
             }
         })
-        .done(result => {})
+        .done(result => {
+            if (! result.return_code) {
+                alert(result.message);
+                return;
+            }
+        })
         .fail(error => {
             alert("予期せぬエラーが発生しました。");
         });
@@ -69,7 +79,6 @@
     });
 
     // like除外処理
-    // TODO: 連打防止にしたい
     function removeLike(evt) {
         $.ajax({
             url: '/post_like_users/'+evt.target.dataset.post_id,
@@ -79,7 +88,11 @@
                 '_method': 'DELETE'
             }
         })
-        .done(data => {
+        .done(result => {
+            if (! result.return_code) {
+                alert(result.message);
+                return;
+            }
             $(evt.target).parents('.card-body-footer').find('.like-disp').text(data.like_count+'いいね');
             evt.target.classList.remove('liked');
             evt.target.innerText = 'いいね';
@@ -95,7 +108,11 @@
             type: 'POST',
             data: {'post_id': evt.target.dataset.post_id}
         })
-        .done(data => {
+        .done(result => {
+            if (! result.return_code) {
+                alert(result.message);
+                return;
+            }
             $(evt.target).parents('.card-body-footer').find('.like-disp').text(data.like_count+'いいね');
             evt.target.classList.add('liked');
             evt.target.innerText = 'いいね済';

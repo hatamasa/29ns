@@ -18,12 +18,18 @@ class PostLikeUsersController extends Controller
 
     public function store(Request $request)
     {
+        $result = [];
+        if (! $request->ajax()) {
+            $this->_log('method not ajax.');
+            $result['return_code'] = 0;
+            $result['message'] = '不正なアクセスです。';
+            return response()->json($result, Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
         $request->validate([
             'post_id' => 'required|integer'
         ]);
 
         $input = $request->input();
-        $result = [];
 
         DB::beginTransaction();
         try {
@@ -39,6 +45,7 @@ class PostLikeUsersController extends Controller
             DB::rollBack();
             $this->_log($e->getMessage());
             $result['return_code'] = 0;
+            $result['message'] = '予期せぬエラーが発生しました。';
             return response()->json($result, Response::HTTP_INTERNAL_SERVER_ERROR);
         }
 
@@ -50,7 +57,12 @@ class PostLikeUsersController extends Controller
     public function destroy(Request $request, $id)
     {
         $result = [];
-
+        if (! $request->ajax()) {
+            $this->_log('method not ajax.');
+            $result['return_code'] = 0;
+            $result['message'] = '不正なアクセスです。';
+            return response()->json($result, Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
         DB::beginTransaction();
         try {
             DB::table('post_like_users')->where([
@@ -65,6 +77,7 @@ class PostLikeUsersController extends Controller
             DB::rollBack();
             $this->_log($e->getMessage());
             $result['return_code'] = 0;
+            $result['message'] = '予期せぬエラーが発生しました。';
             return response()->json($result, Response::HTTP_INTERNAL_SERVER_ERROR);
         }
 

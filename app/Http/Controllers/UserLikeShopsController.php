@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Services\ShopsService;
@@ -21,13 +22,22 @@ class UserLikeShopsController extends Controller
 
     public function store(Request $request)
     {
+        $result = [];
+        if (! $request->ajax()) {
+            $this->_log('method not ajax.');
+            $result['return_code'] = 0;
+            $result['message'] = '不正なアクセスです。';
+            return response()->json($result, Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+
         $shop_cd = $request->input('shop_cd');
         // Apiで店舗を取得
         $shop = $this->ShopsService->getShopByCd($shop_cd);
         if (! count($shop)) {
             $this->_log('users not found. shop_cd='.$shop_cd);
-            session()->flash('error', '存在しない店舗です。');
-            return redirect(url()->previous());
+            $result['return_code'] = 1;
+            $result['message'] = '存在しない店舗です。';
+            return response()->json($result, Response::HTTP_INTERNAL_SERVER_ERROR);
         }
 
         DB::beginTransaction();
@@ -41,22 +51,31 @@ class UserLikeShopsController extends Controller
         } catch (\Exception $e) {
             DB::rollBack();
             $this->_log($e->getMessage(), 'error');
-            session()->flash('error', '予期せぬエラーが発生しました。');
-            return redirect(url()->previous());
+            $result['return_code'] = 0;
+            $result['message'] = '予期せぬエラーが発生しました。';
+            return response()->json($result, Response::HTTP_INTERNAL_SERVER_ERROR);
         }
 
-        session()->flash('success', $shop['name'].'をお気に入りしました。');
-        return redirect(url()->previous());
+        $result['return_code'] = 1;
+        return response()->json($result, Response::HTTP_OK);
     }
 
     public function destroy(Request $request, $shop_cd)
     {
+        $result = [];
+        if (! $request->ajax()) {
+            $this->_log('method not ajax.');
+            $result['return_code'] = 0;
+            $result['message'] = '不正なアクセスです。';
+            return response()->json($result, Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
         // Apiで店舗を取得
         $shop = $this->ShopsService->getShopByCd($shop_cd);
         if (! count($shop)) {
             $this->_log('users not found. shop_cd='.$shop_cd);
-            session()->flash('error', '存在しない店舗です。');
-            return redirect(url()->previous());
+            $result['return_code'] = 1;
+            $result['message'] = '存在しない店舗です。';
+            return response()->json($result, Response::HTTP_INTERNAL_SERVER_ERROR);
         }
 
         DB::beginTransaction();
@@ -70,13 +89,13 @@ class UserLikeShopsController extends Controller
         } catch (\Exception $e) {
             DB::rollBack();
             $this->_log($e->getMessage(), 'error');
-            session()->flash('error', '予期せぬエラーが発生しました。');
-            return redirect(url()->previous());
+            $result['return_code'] = 0;
+            $result['message'] = '予期せぬエラーが発生しました。';
+            return response()->json($result, Response::HTTP_INTERNAL_SERVER_ERROR);
         }
 
-        session()->flash('info', $shop['name'].'をお気に入り解除しました。');
-        return redirect(url()->previous());
+        $result['return_code'] = 1;
+        return response()->json($result, Response::HTTP_OK);
     }
-
 
 }
