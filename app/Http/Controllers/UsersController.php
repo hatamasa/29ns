@@ -52,7 +52,7 @@ class UsersController extends Controller
         return view('users.edit', compact('users'));
     }
 
-    public function store(Request $request)
+    public function update(Request $request)
     {
         $request->validate([
             'contents' => 'required|string|max:200',
@@ -66,22 +66,24 @@ class UsersController extends Controller
                 // s3にアップロード
                 $img_path = $this->ImgUploader->uploadUserImg($request);
             }
+            $update = [];
+            $update['contents'] = $input['contents'];
+            if (isset($img_path)) {
+                $update['thumbnail_url'] = $img_path;
+            }
             DB::table('users')
                 ->where(['id' => $input['user_id']])
-                ->update([
-                    'thumbnail_url' => $img_path,
-                    'contents'      => $input['contents']
-                ]);
+                ->update($update);
             DB::commit();
         } catch (\Exception $e) {
             DB::rollBack();
             session()->flash('error', '予期せぬエラーが発生しました。');
             $this->_log($e->getMessage(), 'error');
-            return redirect(url()->previous())->with($request->input());
+            return redirect(url("/users/{$input['user_id']}"));
         }
 
         session()->flash('success', '保存しました。');
-        return redirect(url()->previous())->with($request->input());
+        return redirect(url("/users/{$input['user_id']}"));
     }
 
 }

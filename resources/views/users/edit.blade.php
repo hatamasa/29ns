@@ -27,7 +27,8 @@
     <div class="block-head">
         <p>{{ $users->name }}さんのページ</p>
     </div>
-    <form action="{{ url('/users') }}" id="user-from" method="POST" enctype="multipart/form-data">
+    <form action="{{ url('/users/update') }}" id="user-from" method="POST" enctype="multipart/form-data">
+        @method('PUT')
         @csrf
         <div class="block-body">
             <div class="user-card">
@@ -61,6 +62,7 @@
             <textarea name="contents" maxlength="200">{{ $users->contents }}</textarea>
         </div>
         <div>
+            <input type="hidden" name="user_id" value="{{ $users->id }}">
             <button type="submit" class="btn btn-primary btn-block">保存</button>
             <a href='{{ url("/users/{$users->id}") }}' class="btn btn-default btn-block">キャンセル</a>
         </div>

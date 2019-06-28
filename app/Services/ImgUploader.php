@@ -10,7 +10,8 @@ use Intervention\Image\Facades\Image;
 class ImgUploader extends Service
 {
     // 画像保存一時ディレクトリ
-    private $tmp_img_dir = 'posts';
+    private $img_posts_dir = 'posts';
+    private $img_users_dir = 'users';
     // 生成する表示用画像のサイズ
     const DISP_IMG_WIDTH = '400';
 
@@ -41,19 +42,22 @@ class ImgUploader extends Service
             // ファイル名を組み立て
             $to_file_name = uniqid().'.'.$ext;
             // ファイルを保存
-            $path = $file->storeAs($this->tmp_img_dir, $to_file_name);
+            $path = $file->storeAs($this->img_posts_dir, $to_file_name);
             // 生成する画像のパスを生成
             $tmp_path = storage_path('app/'.$path);
 
             // 画像を作成する
-            $this->resizeImgSquere($file, $tmp_path, self::DISP_IMG_WIDTH);
+            $this->resizeImg($file, $tmp_path, self::DISP_IMG_WIDTH);
 
             // ローカル以外はs3へ画像をアップロードする
-            if (env('APP_ENV') !== 'local') {
+            if (env('APP_ENV') === 'local') {
+                copy(storage_path('app/'.$this->img_posts_dir.'/'.$to_file_name), public_path('images/'.$this->img_posts_dir.'/'.$to_file_name));
+                $result[] = asset('images/'.$this->img_posts_dir.'/'.$to_file_name);;
+            } else {
                 $result[] = Storage::disk('s3')->putFileAs(Config::get('filesystems.disks.s3.dir.posts'), new File($tmp_path), basename($tmp_path), 'public');
-                // 成功したらディレクトリ配下を削除
-                Storage::disk('local')->delete($this->tmp_img_dir.'/'.$to_file_name);
             }
+            // 成功したらディレクトリ配下を削除
+            Storage::disk('local')->delete($this->img_posts_dir.'/'.$to_file_name);
         }
 
         return $result;
@@ -97,7 +101,7 @@ class ImgUploader extends Service
         // ファイル名を組み立て
         $to_file_name = uniqid().'.'.$ext;
         // ファイルを保存
-        $path = $file->storeAs($this->tmp_img_dir, $to_file_name);
+        $path = $file->storeAs($this->img_users_dir, $to_file_name);
         // 生成する画像のパスを生成
         $tmp_path = storage_path('app/'.$path);
 
@@ -105,11 +109,14 @@ class ImgUploader extends Service
         $this->resizeImgSquere($file, $tmp_path, self::DISP_IMG_WIDTH);
 
         // ローカル以外はs3へ画像をアップロードする
-        if (env('APP_ENV') !== 'local') {
+        if (env('APP_ENV') === 'local') {
+            copy(storage_path('app/'.$this->img_users_dir.'/'.$to_file_name), public_path('images/'.$this->img_users_dir.'/'.$to_file_name));
+            $result = asset('images/'.$this->img_users_dir.'/'.$to_file_name);
+        } else {
             $result = Storage::disk('s3')->putFileAs(Config::get('filesystems.disks.s3.dir.users'), new File($tmp_path), basename($tmp_path), 'public');
-            // 成功したらディレクトリ配下を削除
-            Storage::disk('local')->delete($this->tmp_img_dir.'/'.$to_file_name);
         }
+        // 成功したらディレクトリ配下を削除
+        Storage::disk('local')->delete($this->img_users_dir.'/'.$to_file_name);
 
         return $result;
     }

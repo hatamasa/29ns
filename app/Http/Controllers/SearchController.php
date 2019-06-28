@@ -53,9 +53,4 @@ class SearchController extends Controller
         return view('Search.area', compact('areas'));
     }
 
-    public function near(Request $request)
-    {
-
-        return view('Search.near');
-    }
 }
