@@ -26,7 +26,7 @@ class SearchController extends Controller
     public function index(Request $request)
     {
 
-        return view('Search.index');
+        return view('search.index');
     }
 
     /**
@@ -38,7 +38,7 @@ class SearchController extends Controller
     {
         $stations = $this->StationsService->getStationList();
 
-        return view('Search.station', compact('stations'));
+        return view('search.station', compact('stations'));
     }
 
     /**
@@ -50,7 +50,7 @@ class SearchController extends Controller
     {
         $areas = $this->AreasService->getAreaList();
 
-        return view('Search.area', compact('areas'));
+        return view('search.area', compact('areas'));
     }
 
 }

@@ -35,7 +35,7 @@ class HomeController extends Controller
         // 人気のお店を取得
         $shops = $this->ShopsService->getList4PopularityList(self::SHOPS_LIST_LIMIT);
 
-        return view('Home.index', compact('posts', 'shops'));
+        return view('home.index', compact('posts', 'shops'));
     }
 
 }

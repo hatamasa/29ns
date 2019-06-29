@@ -14,7 +14,7 @@ class UsersSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('Users')->truncate();
+        DB::table('users')->truncate();
 
         $faker = Faker::create('ja_JP');
 
@@ -35,6 +35,6 @@ class UsersSeeder extends Seeder
             ];
         }
 
-        DB::table('Users')->insert($data);
+        DB::table('users')->insert($data);
     }
 }

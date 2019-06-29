@@ -17,7 +17,7 @@ class PostCommentsSeeder extends Seeder
 
         $faker = Faker::create('ja_JP');
 
-        $post_ids = DB::table('Posts')->pluck('id');
+        $post_ids = DB::table('posts')->pluck('id');
         $user_ids  = DB::table('Users')->pluck('id');
 
         for($i = 0; $i < 300; $i++){

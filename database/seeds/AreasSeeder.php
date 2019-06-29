@@ -14,7 +14,7 @@ class AreasSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('Areas')->truncate();
+        DB::table('areas')->truncate();
         // エリアMAPI呼び出し
         $result = (new ApiService())->callGnaviAreaMApi();
 
@@ -30,6 +30,6 @@ class AreasSeeder extends Seeder
             }
         }
 
-        DB::table('Areas')->insert($data);
+        DB::table('areas')->insert($data);
     }
 }

@@ -70,7 +70,7 @@ class ShopsController extends Controller
                 ['path' => $request->url()]
             );
 
-        return view('Shops.index', compact("input", "total_hit_count", "shops", "search_condition"));
+        return view('shops.index', compact("input", "total_hit_count", "shops", "search_condition"));
     }
 
     public function ranking(Request $request)
@@ -89,7 +89,7 @@ class ShopsController extends Controller
 
         $offset = ($page - 1) * self::SHOPS_LIST_LIMIT;
 
-        return view('Shops.ranking', compact('shops', 'offset'));
+        return view('shops.ranking', compact('shops', 'offset'));
     }
 
     public function show(Request $request, $shop_cd)
@@ -118,7 +118,7 @@ class ShopsController extends Controller
                 ['path' => $request->url()]
             );
 
-        return view('Shops.show', compact('shop', 'posts'));
+        return view('shops.show', compact('shop', 'posts'));
     }
 
     public function like()

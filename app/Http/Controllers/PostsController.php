@@ -49,7 +49,7 @@ class PostsController extends Controller
             ['path' => $request->url()]
             );
 
-        return view('Posts.index', compact("posts"));
+        return view('posts.index', compact("posts"));
     }
 
     public function create(Request $request)
@@ -68,7 +68,7 @@ class PostsController extends Controller
             return redirect(url()->previous());
         }
 
-        return view('Posts.create', compact("shop"));
+        return view('posts.create', compact("shop"));
     }
 
     public function store(Request $request)
@@ -124,7 +124,7 @@ class PostsController extends Controller
         $post = $this->PostsService->getPostById($id);
         $post_comments = $this->PostComments->getListByPostId($id);
 
-        return view('Posts.show', compact('post', 'post_comments'));
+        return view('posts.show', compact('post', 'post_comments'));
     }
 
     // TODO: 表示する導線を作成

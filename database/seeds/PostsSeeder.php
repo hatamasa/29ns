@@ -54,6 +54,6 @@ class PostsSeeder extends Seeder
             ];
         }
 
-        DB::table('Posts')->insert($data);
+        DB::table('posts')->insert($data);
     }
 }
