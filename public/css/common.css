@@ -484,6 +484,13 @@ input[type="radio"]:checked + .radioDefault:after {
     display: block;
     position: relative;
 }
+.share-area {
+    padding: 10px;
+}
+.sponsored {
+    float: right;
+    margin-right: 20px;
+}
 
 .icon {
     border-radius: 100%;

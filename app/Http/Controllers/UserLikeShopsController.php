@@ -17,7 +17,7 @@ class UserLikeShopsController extends Controller
 
         $this->ShopsService = $shopsService;
 
-        $this->middleware('verified');
+//         $this->middleware('verified');
     }
 
     public function store(Request $request)
@@ -25,8 +25,13 @@ class UserLikeShopsController extends Controller
         $result = [];
         if (! $request->ajax()) {
             $this->_log('method not ajax.');
-            $result['return_code'] = 0;
             $result['message'] = '不正なアクセスです。';
+            return response()->json($result, Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+        $user = Auth::user();
+        if (is_null($user->email_verified_at)) {
+            $this->_log('not email verified. user_id='.$user->id);
+            $result['verified'] = 1;
             return response()->json($result, Response::HTTP_INTERNAL_SERVER_ERROR);
         }
 
@@ -35,7 +40,6 @@ class UserLikeShopsController extends Controller
         $shop = $this->ShopsService->getShopByCd($shop_cd);
         if (! count($shop)) {
             $this->_log('users not found. shop_cd='.$shop_cd);
-            $result['return_code'] = 1;
             $result['message'] = '存在しない店舗です。';
             return response()->json($result, Response::HTTP_INTERNAL_SERVER_ERROR);
         }
@@ -51,12 +55,10 @@ class UserLikeShopsController extends Controller
         } catch (\Exception $e) {
             DB::rollBack();
             $this->_log($e->getMessage(), 'error');
-            $result['return_code'] = 0;
             $result['message'] = '予期せぬエラーが発生しました。';
             return response()->json($result, Response::HTTP_INTERNAL_SERVER_ERROR);
         }
 
-        $result['return_code'] = 1;
         return response()->json($result, Response::HTTP_OK);
     }
 
@@ -69,11 +71,16 @@ class UserLikeShopsController extends Controller
             $result['message'] = '不正なアクセスです。';
             return response()->json($result, Response::HTTP_INTERNAL_SERVER_ERROR);
         }
+        $user = Auth::user();
+        if (is_null($user->email_verified_at)) {
+            $this->_log('not email verified. user_id='.$user->id);
+            $result['verified'] = 1;
+            return response()->json($result, Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
         // Apiで店舗を取得
         $shop = $this->ShopsService->getShopByCd($shop_cd);
         if (! count($shop)) {
             $this->_log('users not found. shop_cd='.$shop_cd);
-            $result['return_code'] = 1;
             $result['message'] = '存在しない店舗です。';
             return response()->json($result, Response::HTTP_INTERNAL_SERVER_ERROR);
         }
@@ -89,12 +96,10 @@ class UserLikeShopsController extends Controller
         } catch (\Exception $e) {
             DB::rollBack();
             $this->_log($e->getMessage(), 'error');
-            $result['return_code'] = 0;
             $result['message'] = '予期せぬエラーが発生しました。';
             return response()->json($result, Response::HTTP_INTERNAL_SERVER_ERROR);
         }
 
-        $result['return_code'] = 1;
         return response()->json($result, Response::HTTP_OK);
     }
 

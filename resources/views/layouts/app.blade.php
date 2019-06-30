@@ -106,7 +106,7 @@
         </main>
     </div>
     <div class="footer">
-        <div>
+        <div class="share-area">
             <!-- facebook -->
             <div class="fb-share-button"
                 data-href="https://developers.facebook.com/docs/plugins/"
@@ -119,7 +119,7 @@
             <div class="line-it-button" data-lang="ja" data-type="share-a" data-ver="3" data-url="https://social-plugins.line.me/ja/how_to_install#lineitbutton" data-color="default" data-size="small" data-count="true" style="display: none;"></div>
             <script src="https://d.line-scdn.net/r/web/social-plugin/js/thirdparty/loader.min.js" async="async" defer="defer"></script>
         </div>
-        <div>
+        <div class="sponsored">
             <a href="https://api.gnavi.co.jp/api/scope/" target="_blank">
                 <img src="https://api.gnavi.co.jp/api/img/credit/api_90_35.gif" width="90" height="35" border="0" alt="グルメ情報検索サイト　ぐるなび">
             </a>

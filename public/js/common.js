@@ -37,12 +37,14 @@
             }
         })
         .done(result => {
-            if (! result.return_code) {
-                alert(result.message);
-                return;
-            }
         })
         .fail(error => {
+            cardHead.find('i').removeClass('far');
+            cardHead.find('i').addClass('fas');
+            if (error.responseJSON.verified) {
+                location.href = '/email/verify';
+                return;
+            }
             alert("予期せぬエラーが発生しました。");
         });
     }
@@ -57,12 +59,14 @@
             }
         })
         .done(result => {
-            if (! result.return_code) {
-                alert(result.message);
-                return;
-            }
         })
         .fail(error => {
+            cardHead.find('i').removeClass('fas');
+            cardHead.find('i').addClass('far');
+            if (error.responseJSON.verified) {
+                location.href = '/email/verify';
+                return;
+            }
             alert("予期せぬエラーが発生しました。");
         });
     }
