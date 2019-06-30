@@ -72,7 +72,7 @@ class PostsRepository
             ->select('post_id')
             ->where(['user_id' => Auth::id()]);
 
-        $query = DB::table('Posts as p')
+        $query = DB::table('posts as p')
             ->leftJoinSub($sub, 'plu', function ($join){
                 $join->on('p.id', '=', 'plu.post_id');
             })
@@ -115,7 +115,7 @@ class PostsRepository
             ->select('post_id')
             ->where(['user_id' => Auth::id()]);
 
-        $query = DB::table('Posts as p')
+        $query = DB::table('posts as p')
             ->join('users as u', 'p.user_id', '=', 'u.id')
             ->leftJoinSub($sub, 'plu', function ($join){
                 $join->on('p.id', '=', 'plu.post_id');

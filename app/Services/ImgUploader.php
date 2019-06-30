@@ -54,7 +54,7 @@ class ImgUploader extends Service
                 copy(storage_path('app/'.$this->img_posts_dir.'/'.$to_file_name), public_path('images/'.$this->img_posts_dir.'/'.$to_file_name));
                 $result[] = asset('images/'.$this->img_posts_dir.'/'.$to_file_name);;
             } else {
-                $result[] = Storage::disk('s3')->putFileAs(Config::get('filesystems.disks.s3.dir.posts'), new File($tmp_path), basename($tmp_path), 'public');
+                $result[] = Config::get('service.aws.url.img') . Storage::disk('s3')->putFileAs(Config::get('filesystems.disks.s3.dir.posts'), new File($tmp_path), basename($tmp_path), 'public');
             }
             // 成功したらディレクトリ配下を削除
             Storage::disk('local')->delete($this->img_posts_dir.'/'.$to_file_name);
@@ -113,7 +113,7 @@ class ImgUploader extends Service
             copy(storage_path('app/'.$this->img_users_dir.'/'.$to_file_name), public_path('images/'.$this->img_users_dir.'/'.$to_file_name));
             $result = asset('images/'.$this->img_users_dir.'/'.$to_file_name);
         } else {
-            $result = Storage::disk('s3')->putFileAs(Config::get('filesystems.disks.s3.dir.users'), new File($tmp_path), basename($tmp_path), 'public');
+            $result = Config::get('service.aws.url.img') . Storage::disk('s3')->putFileAs(Config::get('filesystems.disks.s3.dir.users'), new File($tmp_path), basename($tmp_path), 'public');
         }
         // 成功したらディレクトリ配下を削除
         Storage::disk('local')->delete($this->img_users_dir.'/'.$to_file_name);

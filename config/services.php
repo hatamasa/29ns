@@ -19,7 +19,10 @@ return [
         'region' => 'ap-northeast-1',
         'bucket' => [
             'posts' => '29ns-bucket',
-        ]
+        ],
+        'url' => [
+            'img' => 'https://img.29-ns.com/',
+        ],
     ],
 
     'mailgun' => [
