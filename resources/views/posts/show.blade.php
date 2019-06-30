@@ -19,6 +19,11 @@
         $(evt.target).find("[type='submit']").prop("disabled", true);
     });
 
+    // コメント削除サブミット
+    $(".comment-del-form").submit(evt => {
+        $(evt.target).find("[type='submit']").prop("disabled", true);
+    });
+
     // 登録削除サブミット
     $('#delete-post-form').submit(evt => {
         if (! confirm("投稿を削除しますか？")) return false;

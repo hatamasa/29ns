@@ -19,6 +19,11 @@
             alert('プレビューできません。不正な画像ファイルがアップロードされました。');
         }
     }
+
+    // ユーザ編集サブミット
+    $("#user-form").submit(evt => {
+        $(evt.target).find("[type='submit']").prop("disabled", true);
+    );
 </script>
 @endsection
 
