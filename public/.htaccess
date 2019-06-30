@@ -14,8 +14,19 @@
     RewriteCond %{REQUEST_URI} (.+)/$
     RewriteRule ^ %1 [L,R=301]
 
+    # RewriteBase /
+
     # Handle Front Controller...
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
 </IfModule>
+
+<Files ~ "^\.(htaccess|htpasswd)$">
+Deny from all
+</Files>
+AuthType Basic
+# AuthUserFile /home/siennasnake2/www/29ns/.htpasswd
+AuthUserFile /Users/hatamasa/29ns/public/.htpasswd
+AuthName "Please enter your ID and password"
+Require valid-user
