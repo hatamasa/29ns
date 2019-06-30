@@ -41,6 +41,14 @@
     <meta property="og:title"         content="東京29NS" />
     <meta property="og:description"   content="肉好きの肉好きによる肉好きのサイト" />
     <meta property="og:image"         content="" />
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-4702990894338882",
+        enable_page_level_ads: true
+      });
+    </script>
 </head>
 <body>
     <!-- facebook -->

@@ -11,8 +11,15 @@
 
 @section('content')
 <div>
-    <p>お店を探して29ログ(レビュー)をしよう！</p>
+    <p class="catch">お店を探して29ログ(レビュー)をしよう！</p>
     @include('common.landing_regist')
+    @auth
+    @if (is_null($user->email_verified_at))
+    <div class="btn btn-default verify-notice">登録いただいたメールアドレスにメールをお送りしました。<br>メール内のリンクをクリックして本登録をしてください。<br>
+        <a href="{{ url('/email/verify') }}">メールが届いていない方はこちら</a>
+    </div>
+    @endif
+    @endauth
 
     <div class="form-group search">
         <form method="get" name="search_form" action="{{ url('/shops') }}">

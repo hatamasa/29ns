@@ -42,6 +42,11 @@ a:active > img {
     border: 1px solid #ced4da;
 }
 
+.catch {
+    font-style: italic;
+    color: red;
+    font-weight: bold;
+}
 .flash {
     position: fixed;
     color: #fff;
@@ -50,6 +55,12 @@ a:active > img {
     left: 0;
     opacity: 0.9;
     z-index: 1000;
+}
+
+.verify-notice {
+    margin-bottom: 10px;
+    font-size: 10px;
+    background-color: aqua;
 }
 
 .container {
