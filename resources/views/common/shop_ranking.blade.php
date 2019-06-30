@@ -4,7 +4,11 @@
             <div class="card-title">
                 <span class="rank">No.{{ ($offset ?? 0) + $loop->iteration }}</span>{{ $shop->shop_name }}
             </div>
+            @auth
+            <div class="star-wrap shop-like" data-shop_cd="{{ $shop->shop_cd }}">
+            @else
             <div class="star-wrap" data-shop_cd="{{ $shop->shop_cd }}">
+            @endauth
                 @if ($shop->is_liked)
                 <i class="fas fa-star fa-lg"></i>
                 @else

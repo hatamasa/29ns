@@ -2,7 +2,11 @@
     <div class="card">
         <div class="card-head">
             <div class="card-title">{{ $shop['name'] }}</div>
+            @auth
+            <div class="star-wrap shop-like" data-shop_cd="{{ $shop['id'] }}">
+            @else
             <div class="star-wrap" data-shop_cd="{{ $shop['id'] }}">
+            @endauth
                 @if ($shop['is_liked'] ?? false)
                 <i class="fas fa-star fa-lg"></i>
                 @else

@@ -14,22 +14,23 @@
     }
 
     // 店舗お気に入りイベント
-    [].forEach.call(document.getElementsByClassName("star-wrap"), elem => {
+    [].forEach.call(document.getElementsByClassName("shop-like"), elem => {
         elem.addEventListener('click', evt => {
             evt.preventDefault();
             $(evt.target).parents('a').addClass('no-active');
-            if (evt.target.classList.contains("fas")) {
-                unLikeShop(evt);
+            let cardHead = $(evt.target).parents('.card-head');
+            if (cardHead.find('i').hasClass("fas")) {
+                unLikeShop(cardHead);
             } else {
-                likeShop(evt);
+                likeShop(cardHead);
             }
         });
     });
-    function unLikeShop(evt) {
-        evt.target.classList.remove('fas');
-        evt.target.classList.add('far');
+    function unLikeShop(cardHead) {
+        cardHead.find('i').removeClass('fas');
+        cardHead.find('i').addClass('far');
         $.ajax({
-            url: '/user_like_shops/'+evt.target.parentNode.dataset.shop_cd,
+            url: '/user_like_shops/'+cardHead.find('.shop-like').data('shop_cd'),
             type: 'POST',
             data: {
                 '_method': 'DELETE'
@@ -45,14 +46,14 @@
             alert("予期せぬエラーが発生しました。");
         });
     }
-    function likeShop(evt) {
-        evt.target.classList.remove('far');
-        evt.target.classList.add('fas');
+    function likeShop(cardHead) {
+        cardHead.find('i').removeClass('far');
+        cardHead.find('i').addClass('fas');
         $.ajax({
             url: '/user_like_shops',
             type: 'POST',
             data: {
-                'shop_cd': evt.target.parentNode.dataset.shop_cd,
+                'shop_cd': cardHead.find('.shop-like').data('shop_cd'),
             }
         })
         .done(result => {
