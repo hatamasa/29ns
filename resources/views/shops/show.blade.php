@@ -30,7 +30,7 @@
                     <div>{{ $shop['name'] }}</div>
                     <div>{{ (isset($shop['score']) && !empty($shop['score'])) ? $shop['score'] : 5 }}点</div>
                 </div>
-                <div class="star-wrap" data-shop_cd="{{ $shop['id'] }}">
+                <div class="star-wrap shop-like" data-shop_cd="{{ $shop['id'] }}">
                 @if ($shop['is_liked'] ?? false)
                 <i class="fas fa-star fa-lg"></i>
                 @else

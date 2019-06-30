@@ -2,6 +2,7 @@
 
 @section('style')
 <link href="{{ asset('css/posts/create.css') }}" rel="stylesheet">
+<link href='{{ "@addtimestamp(css/posts/create.css)" }}' rel="stylesheet">
 @endsection
 
 @section('script')

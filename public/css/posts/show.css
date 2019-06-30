@@ -19,6 +19,7 @@
 }
 .post-text-center p:nth-child(1) {
     margin-bottom: 10px;
+    display: block;
 }
 .post-text-center p:nth-child(2) {
     font-weight: normal;

@@ -1,11 +1,10 @@
 @extends('layouts.app')
 
 @section('style')
-<link href="{{ asset('css/shops/ranking.css') }}" rel="stylesheet">
+<link href='{{ "@addtimestamp(css/shops/ranking.css)" }}' rel="stylesheet">
 @endsection
 
 @section('script')
-{{--<script src="{{ asset('js/shops.js') }}"></script>--}}
 @endsection
 
 @section('content')

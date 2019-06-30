@@ -32,7 +32,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
-    <link href="{{ asset('css/common.css') }}" rel="stylesheet">
+    <link href='{{ "@addtimestamp(css/common.css)" }}' rel="stylesheet">
     @yield('style')
 
     <!-- facebook -->
@@ -128,7 +128,7 @@
             </a>
         </div>
     </div>
-    <script src="{{ asset('js/common.js') }}"></script>
+    <script src='{{ "@addtimestamp(js/common.js)" }}'></script>
     @yield('script')
 </body>
 </html>

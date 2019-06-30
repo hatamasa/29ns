@@ -2,6 +2,7 @@
     <div class="card">
         <div class="card-head">
             <div class="card-title">{{ $shop->shop_name }}</div>
+            @if (Auth::id() == $users->id)
             @auth
             <div class="star-wrap shop-like" data-shop_cd="{{ $shop->shop_cd }}">
             @else
@@ -9,6 +10,7 @@
             @endauth
                 <i class="fas fa-star fa-lg"></i>
             </div>
+            @endif
         </div>
         <div class="card-body">
             <div class="shop-img">

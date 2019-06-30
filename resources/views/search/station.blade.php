@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
 @section('style')
-<link href="{{ asset('css/search.css') }}" rel="stylesheet">
+<link href='{{ "@addtimestamp(css/searh.css)" }}' rel="stylesheet">
 @endsection
 
 @section('script')
-<script src="{{ asset('js/search.js') }}"></script>
+<link href='{{ "@addtimestamp(js/search.js)" }}' rel="stylesheet">
 @endsection
 
 @section('content')

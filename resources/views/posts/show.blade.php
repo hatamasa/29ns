@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('style')
-<link href="{{ asset('css/posts/show.css') }}" rel="stylesheet">
+<link href='{{ "@addtimestamp(css/posts.show.css)" }}' rel="stylesheet">
 @endsection
 
 @section('script')
@@ -90,7 +90,7 @@
 
 @foreach ($post_comments as $post_comment)
     <div class="comment">
-        <a href="{{ url('/user/{$post_comment->user_id}') }}">
+        <a href='{{ url("/users/{$post_comment->user_id}") }}'>
             @if ($post_comment->thumbnail_url)
             <img alt="" src="{{ $post_comment->thumbnail_url }}" class="icon">
             @elseif ($post_comment->sex == 1)
@@ -100,7 +100,7 @@
             @endif
         </a>
         <div class="comment-text">
-            <a href="{{ url('/user/{$post_comment->user_id}') }}"><span>{{ $post_comment->name }}</span></a><span>@time_diff($post_comment->created_at)</span>
+            <a href='{{ url("/users/{$post_comment->user_id}") }}'><span>{{ $post_comment->name }}</span></a><span>@time_diff($post_comment->created_at)</span>
             <div>{{ $post_comment->contents }}</div>
         </div>
         @if (Auth::id() == $post_comment->user_id)

@@ -96,7 +96,7 @@
                 alert(result.message);
                 return;
             }
-            $(evt.target).parents('.card-body-footer').find('.like-disp').text(data.like_count+'いいね');
+            $(evt.target).parents('.card-body-footer').find('.like-disp').text(result.like_count+'いいね');
             evt.target.classList.remove('liked');
             evt.target.innerText = 'いいね';
         })
@@ -115,7 +115,7 @@
                 alert(result.message);
                 return;
             }
-            $(evt.target).parents('.card-body-footer').find('.like-disp').text(data.like_count+'いいね');
+            $(evt.target).parents('.card-body-footer').find('.like-disp').text(result.like_count+'いいね');
             evt.target.classList.add('liked');
             evt.target.innerText = 'いいね済';
         })

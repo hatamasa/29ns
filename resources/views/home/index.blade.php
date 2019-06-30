@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('style')
-<link href="{{ asset('css/home.css') }}" rel="stylesheet">
+<link href='{{ "@addtimestamp(css/home.css)" }}' rel="stylesheet">
 @endsection
 
 @section('script')

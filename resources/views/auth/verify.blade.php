@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('style')
-<link href="{{ asset('css/auth.css') }}" rel="stylesheet">
+<link href='{{ "@addtimestamp(css/auth.css)" }}' rel="stylesheet">
 @endsection
 
 @section('content')

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('style')
-<link href="{{ asset('css/users/show.css') }}" rel="stylesheet">
+<link href='{{ "@addtimestamp(css/users/show.css)" }}' rel="stylesheet">
 @endsection
 
 @section('script')

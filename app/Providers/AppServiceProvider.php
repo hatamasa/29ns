@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use Carbon\Carbon;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\File;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -34,6 +36,19 @@ class AppServiceProvider extends ServiceProvider
                         : gmdate('G', (strtotime('now') - strtotime($expression)))."時間前"
                 ?>
 EOT;
+        });
+
+        Blade::directive('addtimestamp', function ($expression) {
+            $path = public_path($expression);
+
+            try {
+                $timestamp = File::lastModified($path);
+            } catch (\Exception $e) {
+                $timestamp = Carbon::now()->timestamp;
+                report($e);
+            }
+
+            return asset($expression) . '?v=' . $timestamp;
         });
 
     }
