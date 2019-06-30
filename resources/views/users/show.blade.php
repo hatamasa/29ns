@@ -78,12 +78,17 @@
         <div>
         {{-- お気に入り --}}
         @if (strpos(url()->full(), 'tab=2'))
+            @if (count($list) != 0)
             @foreach ($list as $shop)
                 @include('common.shop_users_page', ['shop' => $shop])
             @endforeach
+            @else
+            <span class="empty-comment">まだお気に入りをしていません。<br>気に入った店舗や行きたい店舗の星マークをタップしてお気に入りしましょう！</span>
+            @endif
 
         {{-- フォロー --}}
         @elseif (strpos(url()->full(), 'tab=3'))
+            @if (count($list) != 0)
             @foreach ($list as $user)
             <ul class="follow-card">
                 <a href='{{ url("/users/{$user->id}") }}'>
@@ -101,9 +106,13 @@
                 @include ('common.follow', ['user' => $user])
             </ul>
             @endforeach
+            @else
+            <span class="empty-comment">まだフォローしていません。<br>気に入る投稿やいいね、コメントをしてくれたユーザをフォローしましょう！</span>
+            @endif
 
         {{-- フォロワー --}}
         @elseif (strpos(url()->full(), 'tab=4'))
+            @if (count($list) != 0)
             @foreach ($list as $user)
             <ul class="follow-card">
                 <a href='{{ url("/users/{$user->id}") }}'>
@@ -121,12 +130,19 @@
                 @include ('common.follow', ['user' => $user])
             </ul>
             @endforeach
+            @else
+            <span class="empty-comment">まだフォロワーがいません。<br>いいねやコメントを積極的にしてフォローしてもらいましょう！</span>
+            @endif
 
         {{-- 29ログ --}}
         @else
+            @if (count($list) != 0)
             @foreach ($list as $post)
                 @include('common.post', ['post' => $post])
             @endforeach
+            @else
+            <span class="empty-comment">まだレビューがありません。<br>店舗にレビューを投稿しましょう！</span>
+            @endif
         @endif
         </div>
 

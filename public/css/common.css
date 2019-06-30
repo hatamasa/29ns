@@ -487,6 +487,11 @@ input[type="radio"]:checked + .radioDefault:after {
 .share-area {
     padding: 10px;
 }
+.ask {
+    margin-left: 10px;
+    color: #fff;
+    font-size: 14px;
+}
 .sponsored {
     float: right;
     margin-right: 20px;

@@ -59,7 +59,7 @@
                     <strong>{{ $errors->first('contents') }}</strong>
                 </span>
             @endif
-            <textarea name="contents" maxlength="200">{{ $users->contents }}</textarea>
+            <textarea name="contents" maxlength="200" placeholder="{!! Config::get('const.user.example') !!}">{{ $users->contents }}</textarea>
         </div>
         <div>
             <input type="hidden" name="user_id" value="{{ $users->id }}">

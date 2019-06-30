@@ -117,3 +117,8 @@
 .follow-icon .follow-link div span.follow::after {
   transform: rotate(90deg);
 }
+
+.empty-comment {
+    display: block;
+    margin: 20px;
+}
