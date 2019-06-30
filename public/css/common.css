@@ -432,18 +432,27 @@ input[type="radio"]:checked + .radioDefault:after {
     font-size: 16px;
     font-weight: bold;
 }
+.post-text-top p:nth-child(1).name {
+    font-size: 14px;
+    width: calc(100vw - 125px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-bottom: 5px;
+}
 .post-text-center {
     font-size: 12px;
-    font-weight: bold;
+    margin-bottom: 10px;
 }
 .post-text-center a {
     font-weight: normal;
     position: relative;
 }
-.post-text-center p{
+.post-text-center p:nth-child(1){
     color: black;
     font-weight: bold;
     display: inline;
+    font-size: 12px;
 }
 .post-text-center span {
     padding-left: 10px;

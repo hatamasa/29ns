@@ -8,8 +8,11 @@
             <ul>
                 <li class="post-text-top">
                     <p>{{ $post->score }}点</p>
+                    <p>@time_diff($post->post_created_at)</p>
+                </li>
+                <li class="post-text-top">
                     <a href='{{ url("/users/{$post->user_id}")}}'>
-                        <p>
+                        <p class="name">
                             @if ($post->user_thumbnail_url)
                             <img alt="" src="{{ $post->user_thumbnail_url }}" class="icon">
                             @elseif ($post->user_sex == 1)
@@ -20,7 +23,6 @@
                             {{ $post->user_name }}
                         </p>
                     </a>
-                    <p>@time_diff($post->post_created_at)</p>
                 </li>
                 <a href='{{ url("/posts/{$post->id}") }}'>
                     <li class="post-text-center">

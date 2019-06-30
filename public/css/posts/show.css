@@ -17,6 +17,9 @@
     max-width: 100%;
     max-height: 100%;
 }
+.post-text-top p:nth-child(1).name {
+    width: calc(100vw - 45px);
+}
 .post-text-center p:nth-child(1) {
     margin-bottom: 10px;
     display: block;

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('style')
-<link href='{{ "@addtimestamp(css/posts.show.css)" }}' rel="stylesheet">
+<link href='{{ "@addtimestamp(css/posts/show.css)" }}' rel="stylesheet">
 @endsection
 
 @section('script')
@@ -37,8 +37,11 @@
             <ul>
                 <li class="post-text-top">
                     <p>{{ $post->score }}点</p>
+                    <p>@time_diff($post->post_created_at)</p>
+                </li>
+                <li class="post-text-top">
                     <a href='{{ url("/users/{$post->user_id}")}}'>
-                        <p>
+                        <p class="name">
                             @if ($post->user_thumbnail_url)
                             <img alt="" src="{{ $post->user_thumbnail_url }}" class="icon">
                             @elseif ($post->user_sex == 1)
@@ -49,7 +52,6 @@
                             {{ $post->user_name }}
                         </p>
                     </a>
-                    <p>@time_diff($post->post_created_at)</p>
                 </li>
                 <li class="post-text-center">
                     <p>{{ $post->title }}</p>
@@ -59,13 +61,13 @@
         </div>
         <ul class="post-img">
             @if (!empty($post->img_url_1))
-            <li><img alt="" src="{{ env('IMG_URL_BASE').$post->img_url_1 }}"></li>
+            <li><img alt="" src="{{ $post->img_url_1 }}"></li>
             @endif
             @if (!empty($post->img_url_2))
-            <li><img alt="" src="{{ env('IMG_URL_BASE').$post->img_url_2 }}"></li>
+            <li><img alt="" src="{{ $post->img_url_2 }}"></li>
             @endif
             @if (!empty($post->img_url_3))
-            <li><img alt="" src="{{ env('IMG_URL_BASE').$post->img_url_3 }}"></li>
+            <li><img alt="" src="{{ $post->img_url_3 }}"></li>
             @endif
         </ul>
     </div>
