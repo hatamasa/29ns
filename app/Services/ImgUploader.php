@@ -13,7 +13,8 @@ class ImgUploader extends Service
     private $img_posts_dir = 'posts';
     private $img_users_dir = 'users';
     // 生成する表示用画像のサイズ
-    const DISP_IMG_WIDTH = '400';
+    const DISP_USER_IMG_WIDTH = '100';
+    const DISP_POST_IMG_WIDTH = '200';
 
     public function __construct()
     {
@@ -47,14 +48,14 @@ class ImgUploader extends Service
             $tmp_path = storage_path('app/'.$path);
 
             // 画像を作成する
-            $this->resizeImg($file, $tmp_path, self::DISP_IMG_WIDTH);
+            $this->resizeImg($file, $tmp_path, self::DISP_POST_IMG_WIDTH);
 
             // ローカル以外はs3へ画像をアップロードする
             if (env('APP_ENV') === 'local') {
                 copy(storage_path('app/'.$this->img_posts_dir.'/'.$to_file_name), public_path('images/'.$this->img_posts_dir.'/'.$to_file_name));
                 $result[] = asset('images/'.$this->img_posts_dir.'/'.$to_file_name);;
             } else {
-                $result[] = Config::get('service.aws.url.img') . Storage::disk('s3')->putFileAs(Config::get('filesystems.disks.s3.dir.posts'), new File($tmp_path), basename($tmp_path), 'public');
+                $result[] = Config::get('services.aws.url.img') . Storage::disk('s3')->putFileAs(Config::get('filesystems.disks.s3.dir.posts'), new File($tmp_path), basename($tmp_path), 'public');
             }
             // 成功したらディレクトリ配下を削除
             Storage::disk('local')->delete($this->img_posts_dir.'/'.$to_file_name);
@@ -106,14 +107,14 @@ class ImgUploader extends Service
         $tmp_path = storage_path('app/'.$path);
 
         // 画像を作成する
-        $this->resizeImgSquere($file, $tmp_path, self::DISP_IMG_WIDTH);
+        $this->resizeImgSquere($file, $tmp_path, self::DISP_USER_IMG_WIDTH);
 
         // ローカル以外はs3へ画像をアップロードする
         if (env('APP_ENV') === 'local') {
             copy(storage_path('app/'.$this->img_users_dir.'/'.$to_file_name), public_path('images/'.$this->img_users_dir.'/'.$to_file_name));
             $result = asset('images/'.$this->img_users_dir.'/'.$to_file_name);
         } else {
-            $result = Config::get('service.aws.url.img') . Storage::disk('s3')->putFileAs(Config::get('filesystems.disks.s3.dir.users'), new File($tmp_path), basename($tmp_path), 'public');
+            $result = Config::get('services.aws.url.img') . Storage::disk('s3')->putFileAs(Config::get('filesystems.disks.s3.dir.users'), new File($tmp_path), basename($tmp_path), 'public');
         }
         // 成功したらディレクトリ配下を削除
         Storage::disk('local')->delete($this->img_users_dir.'/'.$to_file_name);

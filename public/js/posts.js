@@ -1,5 +1,6 @@
 (() => {
 
+    const THUMB_SIZE = 200;
     /**
      * 投稿作成
      */
@@ -13,17 +14,39 @@
         let previewArea = evt.target.parentNode;
 
         if(strFileInfo && strFileInfo.type.match('image.*')){
-            let preview = document.createElement("img");
-            preview.classList.add("preview");
-
+            let image = new Image();
             fileReader = new FileReader();
-            fileReader.onload = event => {
+            image.onload = function() {
+                let cnv = document.createElement('canvas');
+                let ratio = image.naturalWidth / image.naturalHeight;
+                if (ratio == 1) {
+                    cnv.width = THUMB_SIZE;
+                    cnv.height = THUMB_SIZE;
+                } else if (ratio > 1) {
+                    cnv.width = THUMB_SIZE * ratio;
+                    cnv.height = THUMB_SIZE;
+                } else if (ratio < 1) {
+                    cnv.width = THUMB_SIZE;
+                    cnv.height = THUMB_SIZE / ratio;
+                }
+                let ctx = cnv.getContext('2d');
+                ctx.drawImage(image, 0, 0, cnv.width, cnv.height);
+                if(cnv.msToBlob) {
+                    preview.src = URL.createObjectURL(cnv.msToBlob());
+                    fileReader.readAsDataURL(cnv.msToBlob());
+                } else {
+                    cnv.toBlob(blob => {
+                        preview.src = URL.createObjectURL(blob);
+                        fileReader.readAsDataURL(blob);
+                    }, 'image/png'); // msToBlobと合わせるためpngに設定
+                }
                 imgArea.remove();
                 previewArea.classList.add("uploaded");
-                preview.src = event.target.result;
+                let preview = document.createElement("img");
+                preview.classList.add("preview");
                 previewArea.insertBefore(preview, file);
             }
-            fileReader.readAsDataURL(strFileInfo);
+            image.src = URL.createObjectURL(strFileInfo);
         } else if (strFileInfo) {
             alert("不正な画像ファイルがアップロードされました");
         }

@@ -6,15 +6,41 @@
 
 @section('script')
 <script>
+    const THUMB_SIZE = 100;
+
     document.getElementById('user-img').onchange = function(evt) {
         let strFileInfo = evt.target.files[0];
 
         if(strFileInfo && strFileInfo.type.match('image.*')){
+            let image = new Image();
             fileReader = new FileReader();
-            fileReader.onload = event => {
-                evt.target.previousElementSibling.src = event.target.result;
+            image.onload = function() {
+                let cnv = document.createElement('canvas');
+                let ratio = image.naturalWidth / image.naturalHeight;
+                if (ratio == 1) {
+                    cnv.width = THUMB_SIZE;
+                    cnv.height = THUMB_SIZE;
+                } else if (ratio > 1) {
+                    cnv.width = THUMB_SIZE * ratio;
+                    cnv.height = THUMB_SIZE;
+                } else if (ratio < 1) {
+                    cnv.width = THUMB_SIZE;
+                    cnv.height = THUMB_SIZE / ratio;
+                }
+                let ctx = cnv.getContext('2d');
+                ctx.drawImage(image, 0, 0, cnv.width, cnv.height);
+                if(cnv.msToBlob) {
+                    evt.target.previousElementSibling.src = URL.createObjectURL(cnv.msToBlob());
+                    fileReader.readAsDataURL(cnv.msToBlob());
+                } else {
+                    cnv.toBlob(blob => {
+                        evt.target.previousElementSibling.src = URL.createObjectURL(blob);
+                        fileReader.readAsDataURL(blob);
+                    }, 'image/png'); // msToBlobと合わせるためpngに設定
+                }
             }
-            fileReader.readAsDataURL(strFileInfo);
+            image.src = URL.createObjectURL(strFileInfo);
+
         } else {
             alert('プレビューできません。不正な画像ファイルがアップロードされました。');
         }
@@ -23,7 +49,7 @@
     // ユーザ編集サブミット
     $("#user-form").submit(evt => {
         $(evt.target).find("[type='submit']").prop("disabled", true);
-    );
+    });
 </script>
 @endsection
 
@@ -39,6 +65,7 @@
             <div class="user-card">
                 <div class="card-body">
                     <div class="user-img">
+                        <canvas id="canvas" width="0" height="0"></canvas>
                         @if ($users->thumbnail_url)
                         <img alt="" src="{{ $users->thumbnail_url }}" class="icon">
                         @elseif ($users->sex == 1)
