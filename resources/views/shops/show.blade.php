@@ -6,6 +6,12 @@
 
 @section('script')
 <script>
+    $('.delete-post-form').submit(evt => {
+        if (! confirm("投稿を削除しますか？")) return false;
+        $(evt.target).prop("disabled", true);
+    });
+
+
 </script>
 @endsection
 
@@ -111,7 +117,7 @@
             <div class="card-body-footer">
                 <ul class="post-text-under">
                     <li class="like-disp">{{ $post->like_count }}いいね</li>
-                    <li>コメント{{ $post->comment_count }}件</li>
+                    <a href='{{ url("/posts/{$post->id}") }}'><li>コメント{{ $post->comment_count }}件</li></a>
                 </ul>
                 @auth
                 <ul class="post-detail-link">
@@ -123,6 +129,15 @@
                     @endif
                     </li>
                     <a href='{{ url("/posts/{$post->id}") }}'><li>コメントする</li></a>
+                    @if (Auth::id() == $post->user_id)
+                    <li>
+                        <form action='{{ url("/posts/{$post->id}") }}' method="POST" class="delete-post-form">
+                        @method("DELETE")
+                        @csrf
+                            <button type="submit" class="btn-link delete-link">削除する</button>
+                        </form>
+                    </li>
+                    @endif
                 </ul>
                 @endauth
             </div>

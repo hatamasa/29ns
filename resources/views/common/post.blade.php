@@ -35,7 +35,7 @@
     <div class="card-body-footer">
         <ul class="post-text-under">
             <li class="like-disp">{{ $post->like_count }}いいね</li>
-            <li>コメント{{ $post->comment_count }}件</li>
+            <li><a href='{{ url("/posts/{$post->id}") }}'>コメント{{ $post->comment_count }}件</a></li>
         </ul>
         @auth
         <ul class="post-detail-link">
