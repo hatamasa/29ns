@@ -150,9 +150,9 @@ class PostsController extends Controller
         DB::beginTransaction();
         try {
             DB::table('posts')->delete($id);
-            $shop = DB::table('shops')->where(['shop_cd' => $post['shop_cd']])->first();
-            $score = DB::table('posts')->where(['shop_cd' => $post['shop_cd']])->avg('score');
-            DB::table('shops')->where(['shop_cd' => $post["shop_cd"]])->update([
+            $shop = DB::table('shops')->where(['shop_cd' => $post->shop_cd])->first();
+            $score = DB::table('posts')->where(['shop_cd' => $post->shop_cd])->avg('score');
+            DB::table('shops')->where(['shop_cd' => $post->shop_cd])->update([
                 'like_count' => $shop->like_count-1,
                 'score'      => $score
             ]);
@@ -165,7 +165,7 @@ class PostsController extends Controller
         }
 
         session()->flash('success', '削除しました');
-        return redirect(url()->previous());
+        return redirect(url("/shops/{$post->shop_cd}"));
     }
 
 }
