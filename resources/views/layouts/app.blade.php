@@ -8,7 +8,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
-    <meta name=”description” content="肉好きの肉好きによる肉好きのためのサイト！お肉が食べれる東京の店を検索、お気に入り、レビュー。他のユーザのお気に入り店やレビューもチェックできる！">
+    <meta name=”description” content="お肉が食べれる東京の店を検索、お気に入り、レビュー。他のユーザのお気に入り店やレビューもチェックできる！肉好きの肉好きによる肉好きのためのサイト！">
+    @yield('canonical')
 
     <!-- Scripts -->
     <script src="{{ asset('js/jquery-3.4.0.min.js') }}"></script>
@@ -37,7 +38,7 @@
     @yield('style')
 
     <!-- facebook -->
-    <meta property="og:url"         content="https://29ns-com/" />
+    <meta property="og:url"         content="https://www.29ns-com/" />
     <meta property="og:type"        content="website" />
     <meta property="og:title"       content="東京肉NS" />
     <meta property="og:description" content="肉は確かに旨いが、東京の肉はもっと旨い！肉好きの肉好きによる肉好きのためのサイト！" />
@@ -45,7 +46,7 @@
 
     <!-- Twitter -->
     <meta name="twitter:card"       content="summary_large_image" />
-    <meta property="og:url"         content="https://29ns-com/" />
+    <meta property="og:url"         content="https://www.29ns-com/" />
     <meta property="og:title"       content="東京肉NS" />
     <meta property="og:description" content="肉は確かに旨いが、東京の肉はもっと旨い！肉好きの肉好きによる肉好きのためのサイト！" />
     <meta property="og:image"       content="https://img.29-ns.com/29ns_ogp.jpg" />

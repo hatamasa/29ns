@@ -9,6 +9,14 @@
     RewriteCond %{HTTP:Authorization} .
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 
+    # httpsのリダイレクト
+    RewriteCond %{HTTPS} off
+    RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R,L]
+
+    # wwwのリダイレクト
+    RewriteCond %{HTTP_HOST} ^29-ns\.com [NC]
+    RewriteRule ^(.*)$ https://www.29-ns.com/$1 [R=301,L]
+
     # Redirect Trailing Slashes If Not A Folder...
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_URI} (.+)/$
@@ -22,11 +30,11 @@
     RewriteRule ^ index.php [L]
 </IfModule>
 
-<Files ~ "^\.(htaccess|htpasswd)$">
-Deny from all
-</Files>
-AuthType Basic
+# <Files ~ "^\.(htaccess|htpasswd)$">
+# Deny from all
+# </Files>
+# AuthType Basic
 # AuthUserFile /home/siennasnake2/www/29ns/.htpasswd
-AuthUserFile /Users/hatamasa/29ns/public/.htpasswd
-AuthName "Please enter your ID and password"
-Require valid-user
+# AuthUserFile /Users/hatamasa/29ns/public/.htpasswd
+# AuthName "Please enter your ID and password"
+# Require valid-user

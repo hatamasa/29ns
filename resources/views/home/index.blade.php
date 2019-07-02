@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('canonical')
+<link rel="canonical" href='{{ url("/")}}'>
+@endsection
+
 @section('style')
 <link href='{{ "@addtimestamp(css/home.css)" }}' rel="stylesheet">
 @endsection
