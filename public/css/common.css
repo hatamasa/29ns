@@ -1,5 +1,6 @@
 body {
     background-color: #EFEFEF;
+    font-family: monospace;
 }
 
 input[type=radio], input[type=checkbox] {
@@ -40,12 +41,20 @@ a:active > img {
 
 .btn {
     border: 1px solid #ced4da;
+    box-shadow: 2px 2px #dcdcdc;
 }
 
 .catch {
-    font-style: italic;
-    color: red;
+    color: #6b757d;
     font-weight: bold;
+    font-size: 10px;
+}
+.catch span {
+    display: block;
+    font-size: 10px;
+}
+.catch span:nth-child(1) {
+    font-size: 14px;
 }
 .flash {
     position: fixed;
@@ -89,10 +98,11 @@ a:active > img {
     z-index: 1;
 }
 .nav-header {
+    font-family: Wawati SC;
     display: flex;
     width: 100%;
     height: 55px;
-    background-color: #950000;
+    background: linear-gradient(#800000,#d00000,#d00000,#800000);
     color: #fff;
 }
 .nav-header a {
@@ -106,10 +116,16 @@ a:active > img {
 .nav-header>a:nth-child(1) {
     font-weight: bold;
     font-size: 20px;
+    line-height: 1;
+    padding-top: 8px;
 }
 .nav-header>a:nth-child(4) {
-    /* line-height: unset;
-    padding-top: 13px; */
+    line-height: initial;
+    padding-top: 12px;
+}
+.nav-header>a h1 {
+    font-size: 10px;
+    margin: 0;
 }
 .nav-header img {
     max-height: 30px;
@@ -167,7 +183,7 @@ a:active > img {
     z-index: 9999;
     width: 50%;
     height: auto;
-    background: #950000;
+    background: linear-gradient(#800000,#d00000,#d00000,#800000);
     -webkit-transform: translateX(100vw);
     transform: translateX(100vw);
 }
@@ -331,6 +347,7 @@ input[type="radio"]:checked + .radioDefault:after {
 .card {
     padding: 5px 10px 5px 10px;
     margin-bottom: 5px;
+    box-shadow: 2px 2px #dcdcdc;
 }
 .link:active > div.card {
     background-color: #d1d1d1;
@@ -500,11 +517,12 @@ input[type="radio"]:checked + .radioDefault:after {
 /* フッター */
 .footer {
     height: 100px;
-    background-color: #950000;
+    background: linear-gradient(#800000,#d00000,#d00000,#800000);
     display: block;
     position: relative;
 }
 .share-area {
+    line-height: 0;
     padding: 10px;
 }
 .ask {

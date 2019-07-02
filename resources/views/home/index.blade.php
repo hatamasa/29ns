@@ -11,7 +11,11 @@
 
 @section('content')
 <div>
-    <p class="catch">お店を探して29ログ(レビュー)をしよう！</p>
+    <p class="catch">
+        <span>使い方は簡単 2STEP</span>
+        <span>1. お店を調べる!!そして行ったお店は感謝の気持ちを込めて肉ログ(レビュー)しよう!!</span>
+        <span>2. 気になるお店は星マークからお気に入りしよう!!次回行ってレビューをしよう!!</span>
+    </p>
     @include('common.landing_regist')
     @auth
     @if (is_null($user->email_verified_at))

@@ -83,7 +83,7 @@
                 @include('common.shop_users_page', ['shop' => $shop])
             @endforeach
             @else
-            <span class="empty-comment">まだお気に入りをしていません。<br>気に入った店舗や行きたい店舗の星マークをタップしてお気に入りしましょう！</span>
+            <span class="empty-comment">まだお気に入りをしていません。@if ($user->is_followed)<br>気に入った店舗や行きたい店舗の星マークをタップしてお気に入りしましょう！</span>@endif
             @endif
 
         {{-- フォロー --}}
@@ -107,7 +107,7 @@
             </ul>
             @endforeach
             @else
-            <span class="empty-comment">まだフォローしていません。<br>気に入る投稿やいいね、コメントをしてくれたユーザをフォローしましょう！</span>
+            <span class="empty-comment">まだフォローしていません。@if ($user->is_followed)<br>気に入る投稿やいいね、コメントをしてくれたユーザをフォローしましょう！</span>@endif
             @endif
 
         {{-- フォロワー --}}
@@ -131,7 +131,7 @@
             </ul>
             @endforeach
             @else
-            <span class="empty-comment">まだフォロワーがいません。<br>いいねやコメントを積極的にしてフォローしてもらいましょう！</span>
+            <span class="empty-comment">まだフォロワーがいません。@if ($user->is_followed)<br>いいねやコメントを積極的にしてフォローしてもらいましょう！</span>@endif
             @endif
 
         {{-- 29ログ --}}
@@ -141,7 +141,7 @@
                 @include('common.post', ['post' => $post])
             @endforeach
             @else
-            <span class="empty-comment">まだレビューがありません。<br>店舗にレビューを投稿しましょう！</span>
+            <span class="empty-comment">まだレビューがありません。@if ($user->is_followed)<br>店舗にレビューを投稿しましょう！</span>@endif
             @endif
         @endif
         </div>

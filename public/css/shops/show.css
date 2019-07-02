@@ -24,6 +24,7 @@
 .shop-detail {
     background-color: unset;
     border: unset;
+    box-shadow: unset;
 }
 .shop-text ul li:nth-child(1) {
     font-size: unset;

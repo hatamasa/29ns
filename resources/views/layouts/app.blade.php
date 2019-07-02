@@ -12,7 +12,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/jquery-3.4.0.min.js') }}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<!--     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script> -->
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 <!--     <script src="{{ asset('js/app.js') }}" defer></script> -->
 
@@ -37,11 +37,18 @@
     @yield('style')
 
     <!-- facebook -->
-    <meta property="og:url"           content="https://29ns-com/" />
-    <meta property="og:type"          content="website" />
-    <meta property="og:title"         content="東京29NS" />
-    <meta property="og:description"   content="肉は確かに旨いが、東京の肉はもっと旨い！肉好きの肉好きによる肉好きのためのサイト！" />
-    <meta property="og:image"         content="https://img.29-ns.com/29ns_ogp.jpg" />
+    <meta property="og:url"         content="https://29ns-com/" />
+    <meta property="og:type"        content="website" />
+    <meta property="og:title"       content="東京肉NS" />
+    <meta property="og:description" content="肉は確かに旨いが、東京の肉はもっと旨い！肉好きの肉好きによる肉好きのためのサイト！" />
+    <meta property="og:image"       content="https://img.29-ns.com/29ns_ogp.jpg" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card"       content="summary_large_image" />
+    <meta property="og:url"         content="https://29ns-com/" />
+    <meta property="og:title"       content="東京肉NS" />
+    <meta property="og:description" content="肉は確かに旨いが、東京の肉はもっと旨い！肉好きの肉好きによる肉好きのためのサイト！" />
+    <meta property="og:image"       content="https://img.29-ns.com/29ns_ogp.jpg" />
 
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <script>
@@ -54,22 +61,19 @@
 <body>
     <!-- facebook -->
     <div id="fb-root"></div>
-    <script>(function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
-      js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));</script>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v3.3"></script>
 
     <input type="hidden" id="token" value="{{ $access_token ?? '' }}">
     <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
         <div class="nav-header">
-            <a href="{{ url('/home') }}" class="col-4">東京29NS</a>
-            <a href="{{ url('/home') }}" class="col-3">ホーム</a>
+            <a href="{{ url('/home') }}" class="col-6">
+                <h1>東京の肉好きのためのSNS</h1>
+                <span>東京肉NS</span>
+            </a>
+            <a href="{{ url('/home') }}" class="col-2">ホーム</a>
             {{--<a href="{{ url('/search') }}" class="col-2">検索</a>--}}
             <a style="display: none"></a>
-            <a href="{{ url('/posts') }}" class="col-3">みんなの29ログ</a>
+            <a href="{{ url('/posts') }}" class="col-2">みんなの<br>肉ログ</a>
             @guest
                 <a href="{{ url('/login') }}" class="col-2">ログイン</a>
             @else
@@ -117,11 +121,10 @@
     <div class="footer">
         <div class="share-area">
             <!-- facebook -->
-            <div class="fb-share-button"
-                data-href="https://developers.facebook.com/docs/plugins/"
-                data-layout="button" data-size="large">
-                <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">シェア</a>
-            </div>
+           <div class="fb-share-button"
+               data-href="https://29-ns.com"
+               data-layout="button_count"
+               data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2F29-ns.com%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">シェア</a></div>
             <!-- twitter -->
             <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
             <!-- LINE -->

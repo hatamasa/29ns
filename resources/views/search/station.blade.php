@@ -1,11 +1,36 @@
 @extends('layouts.app')
 
 @section('style')
-<link href='{{ "@addtimestamp(css/searh.css)" }}' rel="stylesheet">
+<link href='{{ "@addtimestamp(css/search.css)" }}' rel="stylesheet">
 @endsection
 
 @section('script')
-<link href='{{ "@addtimestamp(js/search.js)" }}' rel="stylesheet">
+<script>
+
+    // 駅がチェックされたら個数バリデーションを行う
+    [].forEach.call(document.getElementsByClassName("_stationInput"), elem => {
+        elem.addEventListener("click", evt => stationClicked(evt));
+    });
+    function stationClicked(evt) {
+        let tgt = evt.target;
+        // チェックがつくときは10個を超えないようにチェックする
+        if (tgt.checked) {
+            if (document.querySelectorAll("._stationInput:checked").length > 10) {
+                tgt.checked = false;
+                alert('駅の選択は10個までです。');
+                return;
+            }
+        }
+        // チェックされている駅が一つでもあればボタンを表示する
+        let checkedInput = tgt.parentNode.parentNode.querySelectorAll("._stationInput:checked");
+        if (checkedInput.length > 0) {
+            document.getElementById("_stationSearchSubmitWap").style.display = "block";
+        } else {
+            document.getElementById("_stationSearchSubmitWap").style.display = "none";
+        }
+    }
+
+</script>
 @endsection
 
 @section('content')
