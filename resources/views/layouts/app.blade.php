@@ -26,6 +26,7 @@
 
       gtag('config', 'UA-139979567-2');
     </script>
+    <link rel="icon" href="/favicon.ico">
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
