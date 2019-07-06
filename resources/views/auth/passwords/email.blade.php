@@ -3,7 +3,7 @@
 @section('content')
 <div>
     <div class="content-head">
-        <div class="page-title">パスワードリセット</div>
+        <h1 class="page-title">パスワードリセット</h1>
     </div>
     <div class="content-body">
         @if (session('status'))

@@ -14,7 +14,7 @@
     @include('common.landing_regist')
 
     <div class="block-head">
-        <p>みんなの肉ログ</p>
+        <h1>みんなの肉ログ</h1>
     </div>
 
     <div class="block-body">

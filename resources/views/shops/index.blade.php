@@ -14,7 +14,7 @@
     @include('common.landing_regist')
 
     <div class="block-head">
-        <p>{{ implode(",", $search_condition) }}の店舗</p>
+        <h1>{{ implode(",", $search_condition) }}の店舗</h1>
         <p>{{ $total_hit_count }}件</p>
     </div>
 

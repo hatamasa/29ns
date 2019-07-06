@@ -38,7 +38,7 @@
     @include('common.landing_regist')
 
     <div class="block-head">
-        <p>駅から探す</p>
+        <h1>駅から探す</h1>
     </div>
     <form action="{{ url('/shops') }}" method="get">
     @foreach ($stations as $line_cd => $station)

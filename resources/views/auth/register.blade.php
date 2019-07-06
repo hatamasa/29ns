@@ -7,7 +7,7 @@
 @section('content')
 <div>
     <div class="content-head">
-        <div class="page-title">新規ユーザ登録</div>
+        <h1 class="page-title">新規ユーザ登録</h1>
     </div>
     <div class="content-body">
         <form method="POST" action="{{ route('register') }}">

@@ -68,7 +68,11 @@
     <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
         <div class="nav-header">
             <a href="{{ url('/home') }}" class="col-6">
+                @if (url()->current() == url('/') || url()->current() == url('/home'))
                 <h1>東京の肉好きのためのSNS</h1>
+                @else
+                <span>東京の肉好きのためのSNS</span>
+                @endif
                 <span>東京肉NS</span>
             </a>
             <a href="{{ url('/home') }}" class="col-2">ホーム</a>

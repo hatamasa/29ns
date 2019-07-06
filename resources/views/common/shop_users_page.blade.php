@@ -1,7 +1,7 @@
 <a href='{{ url("/shops/{$shop->shop_cd}") }}' class="link">
     <div class="card">
         <div class="card-head">
-            <div class="card-title">{{ $shop->shop_name }}</div>
+            <h2 class="card-title">{{ $shop->shop_name }}</h2>
             @if (Auth::id() == $users->id)
             @auth
             <div class="star-wrap shop-like" data-shop_cd="{{ $shop->shop_cd }}">

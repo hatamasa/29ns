@@ -7,7 +7,7 @@
 @section('content')
 <div>
     <div class="content-head">
-        <div class="page-head">アカウントが仮登録のままです</div>
+        <h1 class="page-head">アカウントが仮登録のままです</h1>
     </div>
     <div class="content-body">
         @if (session('resent'))

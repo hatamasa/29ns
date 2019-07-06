@@ -3,6 +3,10 @@ body {
     font-family: monospace;
 }
 
+h1 {
+    font-size: inherit;
+}
+
 input[type=radio], input[type=checkbox] {
     display: none;
 }
@@ -70,6 +74,7 @@ a:active > img {
     margin-bottom: 10px;
     font-size: 10px;
     background-color: aqua;
+    width: 100%;
 }
 
 .container {
@@ -123,9 +128,12 @@ a:active > img {
     line-height: initial;
     padding-top: 12px;
 }
-.nav-header>a h1 {
+.nav-header>a h1,
+.nav-header>a span:nth-child(1) {
     font-size: 10px;
     margin: 0;
+    display: block;
+    line-height: 1;
 }
 .nav-header img {
     max-height: 30px;
@@ -330,11 +338,17 @@ input[type="radio"]:checked + .radioDefault:after {
     display: flex;
 }
 .block-head p,
-.block-head a {
+.block-head a,
+.block-head h1,
+.block-head h2 {
     width: 50%;
     text-align: right;
+    font-size: 14px;
 }
-.block-head p {
+.block-head p,
+.block-head h1,
+.block-head h2 {
+    margin-bottom: 1rem;
     border-bottom: solid 1px #000;
 }
 .block-head a {

@@ -82,7 +82,7 @@
     @include('common.landing_regist')
 
     <div class="block-head">
-        <p>エリアから探す</p>
+        <h1>エリアから探す</h1>
     </div>
     <form action="{{ url('/shops') }}" method="get">
     @foreach ($areas as $area_l_cd => $area)

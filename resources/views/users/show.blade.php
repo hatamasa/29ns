@@ -32,7 +32,7 @@
 @section('content')
 <div>
     <div class="block-head">
-        <p>{{ $users->name }}さんのページ</p>
+        <h1>{{ $users->name }}さんのページ</h1>
         @if (Auth::id() == $users->id)
         <a href='{{ url("/users/{$users->id}/edit") }}'>編集→</a>
         @else

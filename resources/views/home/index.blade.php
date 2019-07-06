@@ -44,7 +44,7 @@
 
     <div class="form-group recently-post">
         <div class="block-head">
-            <p>最新の29ログ</p>
+            <h2>最新の29ログ</h2>
             <a href="{{ url('/posts') }}">29ログをもっと見る→</a>
         </div>
         <div class="block-body">
@@ -56,7 +56,7 @@
 
     <div class="form-group">
         <div class="block-head">
-            <p>人気のお店</p>
+            <h2>人気のお店</h2>
             <a href="{{ url('/shops/ranking') }}">人気のお店をもっと見る→</a>
         </div>
         <div class="block-body">

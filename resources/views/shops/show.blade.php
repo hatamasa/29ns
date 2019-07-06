@@ -26,14 +26,14 @@
         <img alt="" src="{{ asset('/images/woman.png') }}" class="icon">
         @endif
         <a href='{{ url("/posts/create?shop_cd={$shop["id"]}") }}' class="icon">
-            <div>このお店を29ログする</div>
+            <div>このお店を肉ログする</div>
         </a>
     </div>
     <div class="block-body">
         <div class="card shop-detail">
             <div class="card-head">
                 <div class="card-title">
-                    <div>{{ $shop['name'] }}</div>
+                    <h1>{{ $shop['name'] }}</h1>
                     <div>{{ (isset($shop['score']) && !empty($shop['score'])) ? $shop['score'] : 5 }}点</div>
                 </div>
                 <div class="star-wrap shop-like" data-shop_cd="{{ $shop['id'] }}">
@@ -68,12 +68,12 @@
     <p class="gnavi-link"><a href="{{ $shop['url_mobile'] }}" target="_blank">ぐるなびのページはこちらから→</a></p>
 
     <div class="block-head">
-        <p>この店舗への29ログ</p>
+        <h2>この店舗への肉ログ</h2>
     </div>
     <div class="block-body">
     @if (count($posts) == 0)
-    <div>このお店への29ログはまだありません。</div>
-    <div>お店を訪ずれたことあったら、上の「このお店を29ログする」からレビューを投稿しましょう！</div>
+    <div>このお店への肉ログはまだありません。</div>
+    <div>お店を訪ずれたことあったら、上の「このお店を肉ログする」からレビューを投稿しましょう！</div>
     @endif
     @foreach ($posts as $post)
         <div class="card post">

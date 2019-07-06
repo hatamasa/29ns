@@ -42,12 +42,12 @@ class CustomVerifyEmail extends VerifyEmail
     {
         return (new MailMessage)
                     ->from(Config::get('mail.from.address'), Config::get('mail.from.name'))
-                    ->subject('【東京29NS】メールアドレスの確認')
-                    ->greeting('東京29NSです！')
+                    ->subject('【東京肉NS】メールアドレスの確認')
+                    ->greeting('東京肉NSです！')
                     ->line('以下をクリックして、会員登録を完了してください。')
                     ->action('メールアドレスの確認', $this->verificationUrl($notifiable))
                     ->line('このメールの内容に身に覚えがない場合は、このまま破棄してください。')
-                    ->salutation('Enjoy 29 life!');
+                    ->salutation('Enjoy 肉 life!');
     }
 
     /**

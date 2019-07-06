@@ -12,7 +12,7 @@
     @include('common.landing_regist')
 
     <div class="block-head">
-        <p>人気店舗ランキング</p>
+        <h1>人気店舗ランキング</h1>
     </div>
 
     <div class="block-body">

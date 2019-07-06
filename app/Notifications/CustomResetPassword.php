@@ -37,12 +37,12 @@ class CustomResetPassword extends ResetPassword
     {
         return (new MailMessage)
                     ->from(Config::get('mail.from.address'), Config::get('mail.from.name'))
-                    ->subject('【東京29NS】パスワードリセット')
-                    ->greeting('東京29NSです！')
+                    ->subject('【東京肉NS】パスワードリセット')
+                    ->greeting('東京肉NSです！')
                     ->line('下のボタンをクリックしてパスワードを再設定してください。')
                     ->action('パスワードリセット', url(route('password.reset', $this->token, false)))
                     ->line('このメールの内容に身に覚えがない場合は、このまま破棄してください。')
-                    ->salutation('Enjoy 29 life!');
+                    ->salutation('Enjoy 肉 life!');
     }
 
     /**

@@ -7,7 +7,7 @@
 @section('content')
 <div>
     <div class="content-head">
-        <div class="page-title">ログイン</div>
+        <h1 class="page-title">ログイン</h1>
     </div>
     <div class="content-body">
         <form method="POST" action="{{ route('login') }}">

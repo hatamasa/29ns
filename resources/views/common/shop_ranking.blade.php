@@ -1,9 +1,9 @@
 <a href='{{ url("/shops/{$shop->shop_cd}") }}' class="link">
     <div class="card">
         <div class="card-head">
-            <div class="card-title">
+            <h2 class="card-title">
                 <span class="rank">No.{{ ($offset ?? 0) + $loop->iteration }}</span>{{ $shop->shop_name }}
-            </div>
+            </h2>
             @auth
             <div class="star-wrap shop-like" data-shop_cd="{{ $shop->shop_cd }}">
             @else
