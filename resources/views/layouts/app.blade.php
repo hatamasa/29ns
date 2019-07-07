@@ -68,18 +68,20 @@
     <input type="hidden" id="token" value="{{ $access_token ?? '' }}">
     <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
         <div class="nav-header">
+            @if (url()->current() == url('/') || url()->current() == url('/home'))
             <a href="{{ url('/home') }}" class="col-6">
-                @if (url()->current() == url('/') || url()->current() == url('/home'))
                 <h1>東京の肉好きのためのSNS</h1>
-                @else
-                <span>東京の肉好きのためのSNS</span>
-                @endif
                 <span>東京肉NS</span>
             </a>
             <a href="{{ url('/home') }}" class="col-2">ホーム</a>
             {{--<a href="{{ url('/search') }}" class="col-2">検索</a>--}}
             <a style="display: none"></a>
             <a href="{{ url('/posts') }}" class="col-2">みんなの<br>肉ログ</a>
+            @else
+            <a href="{{ !empty(session('referrers')) ? session('referrers')[count(session('referrers'))-1] : url()->previous() }}" class="previous col-2">←</a>
+            <h1 class="page-title col-8">@yield('title')</h1>
+            @endif
+
             @guest
                 <a href="{{ url('/login') }}" class="col-2">ログイン</a>
             @else

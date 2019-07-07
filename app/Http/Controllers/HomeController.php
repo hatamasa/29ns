@@ -30,7 +30,9 @@ class HomeController extends Controller
 
     public function index(Request $request)
     {
-        // 最近の29ログ一覧を取得
+        // リファラーに空をセット
+        session(['referrers' => []]);
+        // 最近の肉ログ一覧を取得
         $posts = $this->PostsService->getList4RecentilyList(self::POSTS_LIST_LIMIT);
         // 人気のお店を取得
         $shops = $this->ShopsService->getList4PopularityList(self::SHOPS_LIST_LIMIT);
