@@ -53,11 +53,10 @@
 </script>
 @endsection
 
+@section('title', $users->name."さんのページ")
+
 @section('content')
 <div>
-    <div class="block-head">
-        <p>{{ $users->name }}さんのページ</p>
-    </div>
     <form action="{{ url('/users/update') }}" id="user-from" method="POST" enctype="multipart/form-data">
         @method('PUT')
         @csrf

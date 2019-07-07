@@ -77,13 +77,12 @@
 </script>
 @endsection
 
+@section('title', 'エリアから探す')
+
 @section('content')
 <div>
     @include('common.landing_regist')
 
-    <div class="block-head">
-        <h1>エリアから探す</h1>
-    </div>
     <form action="{{ url('/shops') }}" method="get">
     @foreach ($areas as $area_l_cd => $area)
         <div class="area-wap">

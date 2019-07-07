@@ -23,7 +23,7 @@
             <div class="shop-text">
                 <ul>
                     <li class="shop-score">{{ (isset($shop->score) && !empty($shop->score)) ? $shop->score : 5 }}点</li>
-                    <li>{{ $shop->post_count ?? 0 }}件の29ログ / {{ $shop->like_count ?? 0 }}件のお気に入り</li>
+                    <li>{{ $shop->post_count ?? 0 }}件の肉ログ / {{ $shop->like_count ?? 0 }}件のお気に入り</li>
                     <li>{{ $shop->line }} {{ $shop->station }} 徒歩{{ $shop->walk }}分 {{ $shop->note }}</li>
                     @empty ($shop->budget)
                     @else

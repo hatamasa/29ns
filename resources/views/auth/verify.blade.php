@@ -4,10 +4,12 @@
 <link href='{{ "@addtimestamp(css/auth.css)" }}' rel="stylesheet">
 @endsection
 
+@section('title', '新規ユーザ登録')
+
 @section('content')
 <div>
     <div class="content-head">
-        <h1 class="page-head">アカウントが仮登録のままです</h1>
+        <p class="page-head">アカウントが仮登録のままです</p>
     </div>
     <div class="content-body">
         @if (session('resent'))

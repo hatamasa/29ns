@@ -135,6 +135,17 @@ a:active > img {
     display: block;
     line-height: 1;
 }
+.nav-header a.previous {
+    line-height: 2.5;
+    padding: 0;
+}
+.nav-header .page-title {
+    font-size: 14px;
+    line-height: 3.5;
+    text-align: center;
+    margin: 0;
+    border: solid 1px #e1e2e1;
+}
 .nav-header img {
     max-height: 30px;
     max-width: 30px;

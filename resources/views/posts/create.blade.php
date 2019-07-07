@@ -9,12 +9,10 @@
 <script src="{{ asset('js/posts.js') }}"></script>
 @endsection
 
+@section('title', '肉ログを投稿')
+
 @section('content')
 <div>
-    <div class="block-head">
-        <h1>肉ログを投稿</h1>
-    </div>
-
     <div class="block-body">
         <div class="card">
             <h2 class="card-title">

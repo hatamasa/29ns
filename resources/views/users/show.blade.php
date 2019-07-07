@@ -29,10 +29,11 @@
 </script>
 @endsection
 
+@section('title', $users->name."さんのページ")
+
 @section('content')
 <div>
     <div class="block-head">
-        <h1>{{ $users->name }}さんのページ</h1>
         @if (Auth::id() == $users->id)
         <a href='{{ url("/users/{$users->id}/edit") }}'>編集→</a>
         @else
@@ -56,7 +57,7 @@
                 <div class="user-text">
                     <ul>
                         <li>{{ floor((date('Ym') - $user->birth_ym) / 1000) * 10 }}代</li>
-                        <li>{{ $users->posts_count }}件の29ログ</li>
+                        <li>{{ $users->posts_count }}件の肉ログ</li>
                         <li>
                             フォロー{{ $users->follow_count }}件
                         </li>
@@ -70,7 +71,7 @@
         </div>
 
         <ul class="users-page-tab">
-            <a href="{{ url()->current().'?tab=1' }}"><li>29ログ</li></a>
+            <a href="{{ url()->current().'?tab=1' }}"><li>肉ログ</li></a>
             <a href="{{ url()->current().'?tab=2' }}"><li>お気に入り</li></a>
             <a href="{{ url()->current().'?tab=3' }}"><li>フォロー</li></a>
             <a href="{{ url()->current().'?tab=4' }}"><li>フォロワー</li></a>
@@ -134,7 +135,7 @@
             <span class="empty-comment">まだフォロワーがいません。@if ($user->is_followed)<br>いいねやコメントを積極的にしてフォローしてもらいましょう！</span>@endif
             @endif
 
-        {{-- 29ログ --}}
+        {{-- 肉ログ --}}
         @else
             @if (count($list) != 0)
             @foreach ($list as $post)

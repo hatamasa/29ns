@@ -44,8 +44,8 @@
 
     <div class="form-group recently-post">
         <div class="block-head">
-            <h2>最新の29ログ</h2>
-            <a href="{{ url('/posts') }}">29ログをもっと見る→</a>
+            <h2>最新の肉ログ</h2>
+            <a href="{{ url('/posts') }}">肉ログをもっと見る→</a>
         </div>
         <div class="block-body">
         @foreach ($posts as $post)

@@ -9,13 +9,11 @@
 </script>
 @endsection
 
+@section('title', 'みんなの肉ログ')
+
 @section('content')
 <div>
     @include('common.landing_regist')
-
-    <div class="block-head">
-        <h1>みんなの肉ログ</h1>
-    </div>
 
     <div class="block-body">
     @foreach ($posts as $post)

@@ -4,11 +4,10 @@
 <link href='{{ "@addtimestamp(css/auth.css)" }}' rel="stylesheet">
 @endsection
 
+@section('title', '新規ユーザ登録')
+
 @section('content')
 <div>
-    <div class="content-head">
-        <h1 class="page-title">新規ユーザ登録</h1>
-    </div>
     <div class="content-body">
         <form method="POST" action="{{ route('register') }}">
             @csrf

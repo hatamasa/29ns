@@ -33,10 +33,12 @@
 </script>
 @endsection
 
+@section('title', '肉ログ詳細')
+
 @section('content')
 
 <div class="card">
-    <h1 class="card-title"><a href='{{ url("/shops/{$post->shop_cd}") }}'>{{ $post->shop_name }}</a></h1>
+    <h2 class="card-title"><a href='{{ url("/shops/{$post->shop_cd}") }}'>{{ $post->shop_name }}</a></h2>
     <div class="card-body">
         <div class="post-text">
             <ul>

@@ -33,13 +33,12 @@
 </script>
 @endsection
 
+@section('title', '駅から探す')
+
 @section('content')
 <div>
     @include('common.landing_regist')
 
-    <div class="block-head">
-        <h1>駅から探す</h1>
-    </div>
     <form action="{{ url('/shops') }}" method="get">
     @foreach ($stations as $line_cd => $station)
         <div class="line-wap">

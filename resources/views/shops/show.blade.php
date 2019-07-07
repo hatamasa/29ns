@@ -15,6 +15,8 @@
 </script>
 @endsection
 
+@section('title', '店舗詳細')
+
 @section('content')
 <div>
     <div class="block-head user-thumbnail">
@@ -33,7 +35,7 @@
         <div class="card shop-detail">
             <div class="card-head">
                 <div class="card-title">
-                    <h1>{{ $shop['name'] }}</h1>
+                    <h2>{{ $shop['name'] }}</h2>
                     <div>{{ (isset($shop['score']) && !empty($shop['score'])) ? $shop['score'] : 5 }}点</div>
                 </div>
                 <div class="star-wrap shop-like" data-shop_cd="{{ $shop['id'] }}">
@@ -51,7 +53,7 @@
                 </div>
                 <div class="shop-text">
                     <ul>
-                        <li>{{ $shop['post_count'] ?? 0 }}件の29ログ / {{ $shop['like_count'] ?? 0 }}件のお気に入り</li>
+                        <li>{{ $shop['post_count'] ?? 0 }}件の肉ログ / {{ $shop['like_count'] ?? 0 }}件のお気に入り</li>
                         <li>{{ $shop['access']['line'] }} {{ $shop['access']['station'] }} 徒歩{{ $shop['access']['walk'] }}分 {{ $shop['access']['note'] }}</li>
                         @empty ($shop['budget'])
                         @else

@@ -1,10 +1,9 @@
 @extends('layouts.app')
 
+@section('title', 'パスワードリセット')
+
 @section('content')
 <div>
-    <div class="content-head">
-        <h1 class="page-title">パスワードリセット</h1>
-    </div>
     <div class="content-body">
         <form method="POST" action="{{ route('password.update') }}">
             @csrf

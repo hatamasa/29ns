@@ -1,3 +1,10 @@
+.block-head a {
+    width: 100%;
+}
+.block-body {
+    margin-top: 25px;
+}
+
 .user-follow {
     position: absolute;
     right: 20px;
