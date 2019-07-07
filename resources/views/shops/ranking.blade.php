@@ -7,13 +7,11 @@
 @section('script')
 @endsection
 
+@section('title', '人気店舗ランキング')
+
 @section('content')
 <div>
     @include('common.landing_regist')
-
-    <div class="block-head">
-        <h1>人気店舗ランキング</h1>
-    </div>
 
     <div class="block-body">
     @foreach ($shops as $shop)
