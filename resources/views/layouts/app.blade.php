@@ -8,7 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
-    <meta name=”description” content="お肉が食べれる東京の店を検索、お気に入り、レビュー。他のユーザのお気に入り店やレビューもチェックできる！肉好きの肉好きによる肉好きのためのサイト！">
+    <meta name="description" content="お肉が食べれる東京の店を検索、お気に入り、レビュー。気になるお店は星マークからお気に入りしてマイページでチェック！他のユーザのお気に入り店やレビューもチェックできる！肉好きの肉好きによる肉好きのためのSNS。東京の肉好きのユーザたちと交流しよう！">
     @yield('canonical')
 
     <!-- Scripts -->
