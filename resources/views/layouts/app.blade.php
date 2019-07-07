@@ -8,7 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
-    <meta name="description" content="お肉が食べれる東京の店を検索、お気に入り、レビュー。気になるお店は星マークからお気に入りしてマイページでチェック！他のユーザのお気に入り店やレビューもチェックできる！肉好きの肉好きによる肉好きのためのSNS。東京の肉好きのユーザたちと交流しよう！">
+    <meta name="description" content="東京の焼肉店やお肉が食べれる店を検索、お気に入り、レビュー。気になるお店は星マークからお気に入りしてマイページでチェック！他のユーザのお気に入り店やレビューもチェックできる！肉好きの肉好きによる肉好きのためのSNS。東京の肉好きのユーザたちと交流しよう！">
     @yield('canonical')
 
     <!-- Scripts -->
@@ -78,7 +78,7 @@
             <a style="display: none"></a>
             <a href="{{ url('/posts') }}" class="col-2">みんなの<br>肉ログ</a>
             @else
-            <a href="{{ !empty(session('referrers')) ? session('referrers')[count(session('referrers'))-1] : url()->previous() }}" class="previous col-2">←</a>
+            <a href="{{ !empty(session('referrers')) ? session('referrers')[count(session('referrers'))-1] : url('/') }}" class="previous col-2">←</a>
             <h1 class="page-title col-8">@yield('title')</h1>
             @endif
 

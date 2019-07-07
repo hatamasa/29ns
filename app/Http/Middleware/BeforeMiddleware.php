@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\View;
 use Closure;
 
@@ -22,7 +23,8 @@ class BeforeMiddleware
         $current = url()->current();
         $previous = explode("?", url()->previous())[0];
         // 別の画面に遷移した場合リファラーの処理
-        if ($request->isMethod('GET') && ($current != $previous)) {
+        if ($request->isMethod('GET') && $current != $previous
+            && parse_url($current, PHP_URL_HOST) === parse_url($previous, PHP_URL_HOST)) {
             $referrers = session('referrers') ?? [];
             $length = count($referrers);
             $end = explode('?', end($referrers))[0];
