@@ -14,7 +14,7 @@ use App\Services\ShopsService;
 
 class PostsController extends Controller
 {
-    // 29ログ一覧表示件数
+    // 肉ログ一覧表示件数
     const POSTS_LIST_LIMIT = 30;
 
     public function __construct(

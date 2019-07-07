@@ -13,7 +13,7 @@ use App\Services\ShopsService;
  */
 class HomeController extends Controller
 {
-    // 29ログ表示件数
+    // 肉ログ表示件数
     const POSTS_LIST_LIMIT = 5;
     // 人気店表示件数
     const SHOPS_LIST_LIMIT = 5;

@@ -32,7 +32,7 @@ class PostsService extends Service
     }
 
     /**
-     * 最近の29ログ一覧を取得する
+     * 最近の肉ログ一覧を取得する
      * @param int $id
      * @param int $page
      * @param int $user_id
