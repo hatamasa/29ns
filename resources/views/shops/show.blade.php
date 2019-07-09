@@ -69,6 +69,13 @@
 
     <p class="gnavi-link"><a href="{{ $shop['url_mobile'] }}" target="_blank">ぐるなびのページはこちらから→</a></p>
 
+    <div class="ad">
+        <script type="text/javascript">
+        var nend_params = {"media":61795,"site":324943,"spot":963964,"type":1,"oriented":1};
+        </script>
+        <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
+    </div>
+
     <div class="block-head">
         <h2>この店舗への肉ログ</h2>
     </div>
@@ -144,9 +151,33 @@
                 @endauth
             </div>
         </div>
+
+        @if ($loop->iteration % 5 == 0)
+        <div class="ad">
+            @if ($loop->iteration == 5)
+            <script type="text/javascript">
+            var nend_params = {"media":61795,"site":324943,"spot":963965,"type":1,"oriented":1};
+            </script>
+            <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
+            @elseif ($loop->iteration == 10)
+            <script type="text/javascript">
+            var nend_params = {"media":61795,"site":324943,"spot":963966,"type":1,"oriented":1};
+            </script>
+            <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
+            @endif
+        </div>
+        @endif
+
     @endforeach
     </div>
     {{ $posts->links('common.pagination') }}
+
+    <div class="ad">
+        <script type="text/javascript">
+        var nend_params = {"media":61795,"site":324943,"spot":963967,"type":1,"oriented":1};
+        </script>
+        <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
+    </div>
 </div>
 
 @endsection

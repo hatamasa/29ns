@@ -92,6 +92,14 @@
             @endif
             <textarea name="contents" maxlength="200" placeholder="{!! Config::get('const.user.example') !!}">{{ $users->contents }}</textarea>
         </div>
+
+        <div class="ad">
+            <script type="text/javascript">
+            var nend_params = {"media":61795,"site":324943,"spot":963984,"type":1,"oriented":1};
+            </script>
+            <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
+        </div>
+
         <div>
             <input type="hidden" name="user_id" value="{{ $users->id }}">
             <button type="submit" class="btn btn-primary btn-block">保存</button>

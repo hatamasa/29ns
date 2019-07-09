@@ -100,7 +100,7 @@ a:active > img {
     position: fixed;
     width: 100vw;
     padding: 0;
-    z-index: 1;
+    z-index: 10000;
 }
 .nav-header {
     font-family: Wawati SC;
@@ -566,4 +566,9 @@ input[type="radio"]:checked + .radioDefault:after {
 
 .register {
     font-size: 14px;
+}
+
+.ad {
+    margin-top: 15px;
+    margin-bottom: 15px;
 }

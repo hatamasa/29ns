@@ -70,18 +70,49 @@
             </div>
         </div>
 
+
         <ul class="users-page-tab">
             <a href="{{ url()->current().'?tab=1' }}"><li>肉ログ</li></a>
             <a href="{{ url()->current().'?tab=2' }}"><li>お気に入り</li></a>
             <a href="{{ url()->current().'?tab=3' }}"><li>フォロー</li></a>
             <a href="{{ url()->current().'?tab=4' }}"><li>フォロワー</li></a>
         </ul>
+
+        <div class="ad">
+            <script type="text/javascript">
+            var nend_params = {"media":61795,"site":324943,"spot":963978,"type":1,"oriented":1};
+            </script>
+            <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
+        </div>
+
         <div>
         {{-- お気に入り --}}
         @if (strpos(url()->full(), 'tab=2'))
             @if (count($list) != 0)
             @foreach ($list as $shop)
                 @include('common.shop_users_page', ['shop' => $shop])
+
+                @if ($loop->iteration % 8 == 0)
+                <div class="ad">
+                    @if ($loop->iteration == 8)
+                    <script type="text/javascript">
+                    var nend_params = {"media":61795,"site":324943,"spot":963980,"type":1,"oriented":1};
+                    </script>
+                    <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
+                    @elseif ($loop->iteration == 16)
+                    <script type="text/javascript">
+                    var nend_params = {"media":61795,"site":324943,"spot":963981,"type":1,"oriented":1};
+                    </script>
+                    <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
+                    @elseif ($loop->iteration == 24)
+                    <script type="text/javascript">
+                    var nend_params = {"media":61795,"site":324943,"spot":963982,"type":1,"oriented":1};
+                    </script>
+                    <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
+                    @endif
+                </div>
+                @endif
+
             @endforeach
             @else
             <span class="empty-comment">まだお気に入りをしていません。@if ($user->is_followed)<br>気に入った店舗や行きたい店舗の星マークをタップしてお気に入りしましょう！</span>@endif
@@ -91,21 +122,42 @@
         @elseif (strpos(url()->full(), 'tab=3'))
             @if (count($list) != 0)
             @foreach ($list as $user)
-            <ul class="follow-card">
-                <a href='{{ url("/users/{$user->id}") }}'>
-                    <li>
-                        @if ($user->thumbnail_url)
-                        <img alt="" src="{{ $user->thumbnail_url }}" class="icon">
-                        @elseif ($user->sex == 1)
-                        <img alt="" src="{{ asset('/images/man.png') }}" class="icon">
-                        @elseif ($user->sex == 2)
-                        <img alt="" src="{{ asset('/images/woman.png') }}" class="icon">
-                        @endif
-                        {{ $user->name }}さん
-                    </li>
-                </a>
-                @include ('common.follow', ['user' => $user])
-            </ul>
+                <ul class="follow-card">
+                    <a href='{{ url("/users/{$user->id}") }}'>
+                        <li>
+                            @if ($user->thumbnail_url)
+                            <img alt="" src="{{ $user->thumbnail_url }}" class="icon">
+                            @elseif ($user->sex == 1)
+                            <img alt="" src="{{ asset('/images/man.png') }}" class="icon">
+                            @elseif ($user->sex == 2)
+                            <img alt="" src="{{ asset('/images/woman.png') }}" class="icon">
+                            @endif
+                            {{ $user->name }}さん
+                        </li>
+                    </a>
+                    @include ('common.follow', ['user' => $user])
+                </ul>
+
+                @if ($loop->iteration % 8 == 0)
+                <div class="ad">
+                    @if ($loop->iteration == 8)
+                    <script type="text/javascript">
+                    var nend_params = {"media":61795,"site":324943,"spot":963980,"type":1,"oriented":1};
+                    </script>
+                    <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
+                    @elseif ($loop->iteration == 16)
+                    <script type="text/javascript">
+                    var nend_params = {"media":61795,"site":324943,"spot":963981,"type":1,"oriented":1};
+                    </script>
+                    <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
+                    @elseif ($loop->iteration == 24)
+                    <script type="text/javascript">
+                    var nend_params = {"media":61795,"site":324943,"spot":963982,"type":1,"oriented":1};
+                    </script>
+                    <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
+                    @endif
+                </div>
+                @endif
             @endforeach
             @else
             <span class="empty-comment">まだフォローしていません。@if ($user->is_followed)<br>気に入る投稿やいいね、コメントをしてくれたユーザをフォローしましょう！</span>@endif
@@ -115,21 +167,42 @@
         @elseif (strpos(url()->full(), 'tab=4'))
             @if (count($list) != 0)
             @foreach ($list as $user)
-            <ul class="follow-card">
-                <a href='{{ url("/users/{$user->id}") }}'>
-                    <li>
-                        @if ($user->thumbnail_url)
-                        <img alt="" src="{{ $user->thumbnail_url }}" class="icon">
-                        @elseif ($user->sex == 1)
-                        <img alt="" src="{{ asset('/images/man.png') }}" class="icon">
-                        @elseif ($user->sex == 2)
-                        <img alt="" src="{{ asset('/images/woman.png') }}" class="icon">
-                        @endif
-                        {{ $user->name }}さん
-                    </li>
-                </a>
-                @include ('common.follow', ['user' => $user])
-            </ul>
+                <ul class="follow-card">
+                    <a href='{{ url("/users/{$user->id}") }}'>
+                        <li>
+                            @if ($user->thumbnail_url)
+                            <img alt="" src="{{ $user->thumbnail_url }}" class="icon">
+                            @elseif ($user->sex == 1)
+                            <img alt="" src="{{ asset('/images/man.png') }}" class="icon">
+                            @elseif ($user->sex == 2)
+                            <img alt="" src="{{ asset('/images/woman.png') }}" class="icon">
+                            @endif
+                            {{ $user->name }}さん
+                        </li>
+                    </a>
+                    @include ('common.follow', ['user' => $user])
+                </ul>
+
+                @if ($loop->iteration % 8 == 0)
+                <div class="ad">
+                    @if ($loop->iteration == 8)
+                    <script type="text/javascript">
+                    var nend_params = {"media":61795,"site":324943,"spot":963980,"type":1,"oriented":1};
+                    </script>
+                    <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
+                    @elseif ($loop->iteration == 16)
+                    <script type="text/javascript">
+                    var nend_params = {"media":61795,"site":324943,"spot":963981,"type":1,"oriented":1};
+                    </script>
+                    <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
+                    @elseif ($loop->iteration == 24)
+                    <script type="text/javascript">
+                    var nend_params = {"media":61795,"site":324943,"spot":963982,"type":1,"oriented":1};
+                    </script>
+                    <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
+                    @endif
+                </div>
+                @endif
             @endforeach
             @else
             <span class="empty-comment">まだフォロワーがいません。@if ($user->is_followed)<br>いいねやコメントを積極的にしてフォローしてもらいましょう！</span>@endif
@@ -140,6 +213,27 @@
             @if (count($list) != 0)
             @foreach ($list as $post)
                 @include('common.post', ['post' => $post])
+
+                @if ($loop->iteration % 8 == 0)
+                <div class="ad">
+                    @if ($loop->iteration == 8)
+                    <script type="text/javascript">
+                    var nend_params = {"media":61795,"site":324943,"spot":963980,"type":1,"oriented":1};
+                    </script>
+                    <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
+                    @elseif ($loop->iteration == 16)
+                    <script type="text/javascript">
+                    var nend_params = {"media":61795,"site":324943,"spot":963981,"type":1,"oriented":1};
+                    </script>
+                    <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
+                    @elseif ($loop->iteration == 24)
+                    <script type="text/javascript">
+                    var nend_params = {"media":61795,"site":324943,"spot":963982,"type":1,"oriented":1};
+                    </script>
+                    <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
+                    @endif
+                </div>
+                @endif
             @endforeach
             @else
             <span class="empty-comment">まだレビューがありません。@if ($user->is_followed)<br>店舗にレビューを投稿しましょう！</span>@endif
@@ -151,5 +245,11 @@
     {{ $list->appends($input)->links('common.pagination') }}
 </div>
 
+<div class="ad">
+    <script type="text/javascript">
+    var nend_params = {"media":61795,"site":324943,"spot":963979,"type":1,"oriented":1};
+    </script>
+    <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
+</div>
 
 @endsection

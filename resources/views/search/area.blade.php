@@ -80,6 +80,14 @@
 @section('title', 'エリアから探す')
 
 @section('content')
+
+<div class="ad">
+    <script type="text/javascript">
+    var nend_params = {"media":61795,"site":324943,"spot":963944,"type":1,"oriented":1};
+    </script>
+    <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
+</div>
+
 <div>
     @include('common.landing_regist')
 
@@ -98,11 +106,61 @@
             @endforeach
             </div>
         </div>
+        <div class="ad">
+            @if ($loop->iteration == 3)
+            <script type="text/javascript">
+            var nend_params = {"media":61795,"site":324943,"spot":963940,"type":1,"oriented":1};
+            </script>
+            <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
+            @elseif ($loop->iteration == 6)
+            <script type="text/javascript">
+            var nend_params = {"media":61795,"site":324943,"spot":963945,"type":1,"oriented":1};
+            </script>
+            <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
+            @elseif ($loop->iteration == 9)
+            <script type="text/javascript">
+            var nend_params = {"media":61795,"site":324943,"spot":963946,"type":1,"oriented":1};
+            </script>
+            <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
+            @elseif ($loop->iteration == 12)
+            <script type="text/javascript">
+            var nend_params = {"media":61795,"site":324943,"spot":963947,"type":1,"oriented":1};
+            </script>
+            <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
+            @elseif ($loop->iteration == 15)
+            <script type="text/javascript">
+            var nend_params = {"media":61795,"site":324943,"spot":963949,"type":1,"oriented":1};
+            </script>
+            <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
+            @elseif ($loop->iteration == 18)
+            <script type="text/javascript">
+            var nend_params = {"media":61795,"site":324943,"spot":963950,"type":1,"oriented":1};
+            </script>
+            <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
+            @elseif ($loop->iteration == 21)
+            <script type="text/javascript">
+            var nend_params = {"media":61795,"site":324943,"spot":963951,"type":1,"oriented":1};
+            </script>
+            <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
+            @elseif ($loop->iteration == 24)
+            <script type="text/javascript">
+            var nend_params = {"media":61795,"site":324943,"spot":963953,"type":1,"oriented":1};
+            </script>
+            <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
+            @endif
+        </div>
     @endforeach
         <div id="_areaSearchSubmitWap" class="area-search-submit-wap">
             <button type="submit" class="btn btn-primary btn-block">検索</button>
         </div>
     </form>
 
+</div>
+
+<div class="ad">
+    <script type="text/javascript">
+    var nend_params = {"media":61795,"site":324943,"spot":963954,"type":1,"oriented":1};
+    </script>
+    <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
 </div>
 @endsection

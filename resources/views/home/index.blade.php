@@ -42,6 +42,13 @@
         {{--<a href="{{ url('/shops/near') }}" class="btn btn-default btn-lg">近くのお店を<br>探す</a>--}}
     </div>
 
+    <div class="ad">
+        <script type="text/javascript">
+        var nend_params = {"media":61795,"site":324943,"spot":963941,"type":1,"oriented":1};
+        </script>
+        <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
+    </div>
+
     <div class="form-group recently-post">
         <div class="block-head">
             <h2>最新の肉ログ</h2>
@@ -52,6 +59,13 @@
             @include('common.post', ['post' => $post])
         @endforeach
         </div>
+    </div>
+
+    <div class="ad">
+        <script type="text/javascript">
+        var nend_params = {"media":61795,"site":324943,"spot":963942,"type":1,"oriented":1};
+        </script>
+        <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
     </div>
 
     <div class="form-group">
@@ -66,5 +80,12 @@
         </div>
     </div>
 
+</div>
+
+<div class="ad">
+    <script type="text/javascript">
+    var nend_params = {"media":61795,"site":324943,"spot":963975,"type":1,"oriented":1};
+    </script>
+    <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
 </div>
 @endsection
