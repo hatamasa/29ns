@@ -96,7 +96,7 @@ class ApiService extends Service
                 case '405':
                 case '429':
                 case '500':
-                    throw new \Exception('callGnaviRestSearchApi error. '.json_encode($result['error']));
+                    throw new \Exception('callGnaviRestSearchApi error. '.json_encode(["code" => $status_code[1], "error" => $result['error']]));
                     break;
                 case '404':
                     throw new NotFoundShopException();
