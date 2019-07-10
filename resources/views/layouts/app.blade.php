@@ -38,20 +38,20 @@
     <link href='{{ "@addtimestamp(css/common.css)" }}' rel="stylesheet">
     @yield('style')
 
-    <!-- facebook -->
-    <meta property="og:url"         content="https://www.29ns-com/" />
+    <!-- ogp -->
+    <meta property="og:url"         content="" />
     <meta property="og:type"        content="website" />
-    <meta property="og:title"       content="東京肉NS" />
+    <meta property="og:site_name"   content="東京肉ns">
+    <meta property="og:title"       content="" />
     <meta property="og:description" content="肉は確かに旨いが、東京の肉はもっと旨い！肉好きの肉好きによる肉好きのためのサイト！" />
     <meta property="og:image"       content="https://img.29-ns.com/29ns_ogp.jpg" />
-
-    <!-- Twitter -->
-    <meta name="twitter:card"       content="summary_large_image" />
-    <meta property="og:url"         content="https://www.29ns-com/" />
-    <meta property="og:title"       content="東京肉NS" />
-    <meta property="og:description" content="肉は確かに旨いが、東京の肉はもっと旨い！肉好きの肉好きによる肉好きのためのサイト！" />
-    <meta property="og:image"       content="https://img.29-ns.com/29ns_ogp.jpg" />
-
+    <!-- twitter -->
+    <meta name="twitter:card"        content="summary_large_image" />
+    <meta name="twitter:url"         content="" />
+    <meta name="twitter:title"       content="東京肉ns" />
+    <meta name="twitter:description" content="肉は確かに旨いが、東京の肉はもっと旨い！肉好きの肉好きによる肉好きのためのサイト！" />
+    <meta name="twitter:image"       content="https://img.29-ns.com/29ns_ogp.jpg" />
+    <!-- ga -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <script>
       (adsbygoogle = window.adsbygoogle || []).push({
@@ -130,13 +130,13 @@
         <div class="share-area">
             <!-- facebook -->
            <div class="fb-share-button"
-               data-href="https://29-ns.com"
+               data-href="https://www.29-ns.com/"
                data-layout="button_count"
-               data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2F29-ns.com%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">シェア</a></div>
+               data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.29-ns.com%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">シェア</a></div>
             <!-- twitter -->
             <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
             <!-- LINE -->
-            <div class="line-it-button" data-lang="ja" data-type="share-a" data-ver="3" data-url="https://social-plugins.line.me/ja/how_to_install#lineitbutton" data-color="default" data-size="small" data-count="true" style="display: none;"></div>
+            <div class="line-it-button" data-lang="ja" data-type="share-a" data-ver="3" data-url="https://www.29-ns.com" data-color="default" data-size="small" data-count="true" style="display: none;"></div>
             <script src="https://d.line-scdn.net/r/web/social-plugin/js/thirdparty/loader.min.js" async="async" defer="defer"></script>
         </div>
         <span class="ask">
