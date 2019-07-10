@@ -87,4 +87,11 @@
         </form>
     </div>
 </div>
+
+<div class="ad">
+    <script type="text/javascript">
+    var nend_params = {"media":61795,"site":324943,"spot":964162,"type":1,"oriented":1};
+    </script>
+    <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
+</div>
 @endsection

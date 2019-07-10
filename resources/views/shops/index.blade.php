@@ -12,6 +12,13 @@
 @section('title', '店舗一覧')
 
 @section('content')
+<div class="ad">
+    <script type="text/javascript">
+    var nend_params = {"media":61795,"site":324943,"spot":964161,"type":1,"oriented":1};
+    </script>
+    <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
+</div>
+
 <div>
     @include('common.landing_regist')
 
@@ -28,24 +35,24 @@
         <div class="ad">
             @if ($loop->iteration == 6)
             <script type="text/javascript">
-            var nend_params = {"media":61795,"site":324943,"spot":963964,"type":1,"oriented":1};
-            </script>
-            <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
+var nend_params = {"media":61795,"site":324943,"spot":964166,"type":1,"oriented":1};
+</script>
+<script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
             @elseif ($loop->iteration == 12)
             <script type="text/javascript">
-            var nend_params = {"media":61795,"site":324943,"spot":963956,"type":1,"oriented":1};
-            </script>
-            <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
+var nend_params = {"media":61795,"site":324943,"spot":964167,"type":1,"oriented":1};
+</script>
+<script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
             @elseif ($loop->iteration == 18)
             <script type="text/javascript">
-            var nend_params = {"media":61795,"site":324943,"spot":963958,"type":1,"oriented":1};
-            </script>
-            <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
+var nend_params = {"media":61795,"site":324943,"spot":964174,"type":1,"oriented":1};
+</script>
+<script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
             @elseif ($loop->iteration == 24)
             <script type="text/javascript">
-            var nend_params = {"media":61795,"site":324943,"spot":963962,"type":1,"oriented":1};
-            </script>
-            <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
+var nend_params = {"media":61795,"site":324943,"spot":964169,"type":1,"oriented":1};
+</script>
+<script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
             @endif
         </div>
         @endif
@@ -57,8 +64,8 @@
 
  <div class="ad">
      <script type="text/javascript">
-     var nend_params = {"media":61795,"site":324943,"spot":963963,"type":1,"oriented":1};
-     </script>
-     <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
+    var nend_params = {"media":61795,"site":324943,"spot":964170,"type":1,"oriented":1};
+    </script>
+    <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
  </div>
 @endsection

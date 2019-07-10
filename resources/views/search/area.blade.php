@@ -109,42 +109,42 @@
         <div class="ad">
             @if ($loop->iteration == 3)
             <script type="text/javascript">
-            var nend_params = {"media":61795,"site":324943,"spot":963940,"type":1,"oriented":1};
+            var nend_params = {"media":61795,"site":324943,"spot":964172,"type":1,"oriented":1};
             </script>
             <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
             @elseif ($loop->iteration == 6)
             <script type="text/javascript">
-            var nend_params = {"media":61795,"site":324943,"spot":963945,"type":1,"oriented":1};
+            var nend_params = {"media":61795,"site":324943,"spot":964173,"type":1,"oriented":1};
             </script>
             <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
             @elseif ($loop->iteration == 9)
             <script type="text/javascript">
-            var nend_params = {"media":61795,"site":324943,"spot":963946,"type":1,"oriented":1};
+            var nend_params = {"media":61795,"site":324943,"spot":964174,"type":1,"oriented":1};
             </script>
             <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
             @elseif ($loop->iteration == 12)
             <script type="text/javascript">
-            var nend_params = {"media":61795,"site":324943,"spot":963947,"type":1,"oriented":1};
+            var nend_params = {"media":61795,"site":324943,"spot":964175,"type":1,"oriented":1};
             </script>
             <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
             @elseif ($loop->iteration == 15)
             <script type="text/javascript">
-            var nend_params = {"media":61795,"site":324943,"spot":963949,"type":1,"oriented":1};
+            var nend_params = {"media":61795,"site":324943,"spot":964175,"type":1,"oriented":1};
             </script>
             <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
             @elseif ($loop->iteration == 18)
             <script type="text/javascript">
-            var nend_params = {"media":61795,"site":324943,"spot":963950,"type":1,"oriented":1};
+            var nend_params = {"media":61795,"site":324943,"spot":964176,"type":1,"oriented":1};
             </script>
             <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
             @elseif ($loop->iteration == 21)
             <script type="text/javascript">
-            var nend_params = {"media":61795,"site":324943,"spot":963951,"type":1,"oriented":1};
+            var nend_params = {"media":61795,"site":324943,"spot":964178,"type":1,"oriented":1};
             </script>
             <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
             @elseif ($loop->iteration == 24)
             <script type="text/javascript">
-            var nend_params = {"media":61795,"site":324943,"spot":963953,"type":1,"oriented":1};
+            var nend_params = {"media":61795,"site":324943,"spot":964179,"type":1,"oriented":1};
             </script>
             <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
             @endif
@@ -159,7 +159,7 @@
 
 <div class="ad">
     <script type="text/javascript">
-    var nend_params = {"media":61795,"site":324943,"spot":963954,"type":1,"oriented":1};
+    var nend_params = {"media":61795,"site":324943,"spot":964180,"type":1,"oriented":1};
     </script>
     <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
 </div>

@@ -42,7 +42,7 @@
 
             <div class="form-group form-login">
                 <button type="submit" class="btn btn-primary btn-block">ログイン</button>
-                <a class="btn btn-info btn-block" href="{{ route('register') }}">新規会員登録はこちら</a>
+                <a class="btn btn-info btn-block" href="{{ route('register') }}">無料会員登録はこちら</a>
                 <a href="{{ route('password.request') }}">パスワードを忘れた方はこちら</a>
             </div>
         </form>

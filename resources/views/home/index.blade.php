@@ -15,11 +15,19 @@
 
 @section('content')
 <div>
+    <div class="ad">
+        <script type="text/javascript">
+        var nend_params = {"media":61795,"site":324943,"spot":963974,"type":1,"oriented":1};
+        </script>
+        <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
+    </div>
+
     <p class="catch">
         <span>使い方は簡単 2STEP</span>
         <span>1. お店を調べる!!そして行ったお店は感謝の気持ちを込めて肉ログ(レビュー)しよう!!</span>
         <span>2. 気になるお店は星マークからお気に入りしよう!!次回行ってレビューをしよう!!</span>
     </p>
+
     @include('common.landing_regist')
     @auth
     @if (is_null($user->email_verified_at))
@@ -42,12 +50,6 @@
         {{--<a href="{{ url('/shops/near') }}" class="btn btn-default btn-lg">近くのお店を<br>探す</a>--}}
     </div>
 
-    <div class="ad">
-        <script type="text/javascript">
-        var nend_params = {"media":61795,"site":324943,"spot":963941,"type":1,"oriented":1};
-        </script>
-        <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
-    </div>
 
     <div class="form-group recently-post">
         <div class="block-head">
@@ -63,7 +65,7 @@
 
     <div class="ad">
         <script type="text/javascript">
-        var nend_params = {"media":61795,"site":324943,"spot":963942,"type":1,"oriented":1};
+        var nend_params = {"media":61795,"site":324943,"spot":963941,"type":1,"oriented":1};
         </script>
         <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
     </div>
@@ -80,12 +82,12 @@
         </div>
     </div>
 
+    <div class="ad">
+        <script type="text/javascript">
+        var nend_params = {"media":61795,"site":324943,"spot":964372,"type":1,"oriented":1};
+        </script>
+        <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
+    </div>
 </div>
 
-<div class="ad">
-    <script type="text/javascript">
-    var nend_params = {"media":61795,"site":324943,"spot":963975,"type":1,"oriented":1};
-    </script>
-    <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
-</div>
 @endsection
