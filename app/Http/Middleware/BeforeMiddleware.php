@@ -3,7 +3,6 @@
 namespace App\Http\Middleware;
 
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\View;
 use Closure;
 
@@ -19,6 +18,8 @@ class BeforeMiddleware
     public function handle($request, Closure $next)
     {
         View::share('user', Auth::user());
+
+        View::share('url', url()->full());
 
         $current = url()->current();
         $previous = explode("?", url()->previous())[0];

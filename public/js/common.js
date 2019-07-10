@@ -6,11 +6,6 @@
         }
     });
 
-    // ogp関連の設定
-    document.querySelector('meta[property="og:url"]').content = location.href;
-    document.querySelector('meta[name="twitter:url"]').content = location.href;
-    document.querySelector('meta[property="og:title"]').content = document.getElementsByTagName("h1")[0].innerText;
-
     const FLASH = document.getElementsByClassName('flash');
     if (FLASH) {
         [].forEach.call(FLASH, elem => {

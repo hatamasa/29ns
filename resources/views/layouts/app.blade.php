@@ -39,15 +39,15 @@
     @yield('style')
 
     <!-- ogp -->
-    <meta property="og:url"         content="" />
+    <meta property="og:url"         content="{{ $url }}" />
     <meta property="og:type"        content="website" />
     <meta property="og:site_name"   content="東京肉ns">
-    <meta property="og:title"       content="" />
+    <meta property="og:title"       content="東京肉ns" />
     <meta property="og:description" content="肉は確かに旨いが、東京の肉はもっと旨い！肉好きの肉好きによる肉好きのためのサイト！" />
     <meta property="og:image"       content="https://img.29-ns.com/29ns_ogp.jpg" />
     <!-- twitter -->
     <meta name="twitter:card"        content="summary_large_image" />
-    <meta name="twitter:url"         content="" />
+    <meta name="twitter:url"         content="{{ $url }}" />
     <meta name="twitter:title"       content="東京肉ns" />
     <meta name="twitter:description" content="肉は確かに旨いが、東京の肉はもっと旨い！肉好きの肉好きによる肉好きのためのサイト！" />
     <meta name="twitter:image"       content="https://img.29-ns.com/29ns_ogp.jpg" />
