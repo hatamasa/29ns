@@ -1,5 +1,6 @@
 @if ($loop->iteration % 8 == 0)
 <div class="ad">
+    <center>スポンサーリンク(広告)</center>
     @if ($loop->iteration == 8)
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
         <!-- ユーザ詳細コンテンツ間１ -->

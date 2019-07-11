@@ -89,6 +89,7 @@
 </div>
 
 <div class="ad">
+    <center>スポンサーリンク(広告)</center>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <!-- 投稿登録フッター -->
     <ins class="adsbygoogle"

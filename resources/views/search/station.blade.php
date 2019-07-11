@@ -61,7 +61,9 @@
             </div>
         </div>
 
+        @if ($loop->iteration % 6 == 0)
         <div class="ad">
+            <center>スポンサーリンク(広告)</center>
             @if ($loop->iteration == 6)
                 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                 <!-- 検索画面コンテンツ間１ -->
@@ -208,6 +210,8 @@
                 </script>
             @endif
         </div>
+        @endif
+
     @endforeach
         <div id="_stationSearchSubmitWap" class="station-search-submit-wap">
             <button type="submit" class="btn btn-primary btn-block">検索</button>

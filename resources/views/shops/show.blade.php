@@ -154,6 +154,7 @@
 
         @if ($loop->iteration % 5 == 0)
         <div class="ad">
+            <center>スポンサーリンク(広告)</center>
             @if ($loop->iteration == 5)
                 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                 <!-- 店舗詳細コンテンツ間１ -->
@@ -187,6 +188,7 @@
     {{ $posts->links('common.pagination') }}
 
     <div class="ad">
+        <center>スポンサーリンク(広告)</center>
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
         <!-- 店舗詳細フッター -->
         <ins class="adsbygoogle"
