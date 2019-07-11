@@ -64,10 +64,17 @@
     </div>
 
     <div class="ad">
-        <script type="text/javascript">
-        var nend_params = {"media":61795,"site":324943,"spot":963941,"type":1,"oriented":1};
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- ホームコンテンツ間１ -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-4702990894338882"
+             data-ad-slot="3135562593"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
         </script>
-        <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
     </div>
 
     <div class="form-group">
@@ -83,10 +90,17 @@
     </div>
 
     <div class="ad">
-        <script type="text/javascript">
-        var nend_params = {"media":61795,"site":324943,"spot":964372,"type":1,"oriented":1};
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- ホームフッター -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-4702990894338882"
+             data-ad-slot="2943990908"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
         </script>
-        <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
     </div>
 </div>
 

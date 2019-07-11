@@ -155,15 +155,29 @@
         @if ($loop->iteration % 5 == 0)
         <div class="ad">
             @if ($loop->iteration == 5)
-            <script type="text/javascript">
-            var nend_params = {"media":61795,"site":324943,"spot":963965,"type":1,"oriented":1};
-            </script>
-            <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- 店舗詳細コンテンツ間１ -->
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-4702990894338882"
+                     data-ad-slot="6716904327"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
             @elseif ($loop->iteration == 10)
-            <script type="text/javascript">
-            var nend_params = {"media":61795,"site":324943,"spot":963966,"type":1,"oriented":1};
-            </script>
-            <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- 店舗詳細コンテンツ間２ -->
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-4702990894338882"
+                     data-ad-slot="2777659316"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
             @endif
         </div>
         @endif
@@ -173,10 +187,17 @@
     {{ $posts->links('common.pagination') }}
 
     <div class="ad">
-        <script type="text/javascript">
-        var nend_params = {"media":61795,"site":324943,"spot":963967,"type":1,"oriented":1};
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- 店舗詳細フッター -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-4702990894338882"
+             data-ad-slot="9151495970"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
         </script>
-        <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
     </div>
 </div>
 

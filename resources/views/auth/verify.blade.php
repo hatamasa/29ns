@@ -21,4 +21,19 @@
         <a href="{{ route('verification.resend') }}" class="btn btn-primary btn-block">メールを再送信する</a>.
     </div>
 </div>
+
+<div class="ad">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- メール認証確認フッター -->
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-4702990894338882"
+         data-ad-slot="1979582964"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+
 @endsection

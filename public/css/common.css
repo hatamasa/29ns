@@ -354,7 +354,7 @@ input[type="radio"]:checked + .radioDefault:after {
 .block-head h2 {
     width: 50%;
     text-align: right;
-    font-size: 14px;
+    font-size: 20px;
 }
 .block-head p,
 .block-head h1,

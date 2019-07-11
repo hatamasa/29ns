@@ -34,25 +34,53 @@
         @if ($loop->iteration % 6 == 0)
         <div class="ad">
             @if ($loop->iteration == 6)
-            <script type="text/javascript">
-var nend_params = {"media":61795,"site":324943,"spot":964166,"type":1,"oriented":1};
-</script>
-<script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- 店舗一覧コンテンツ間１ -->
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-4702990894338882"
+                     data-ad-slot="2665144529"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
             @elseif ($loop->iteration == 12)
-            <script type="text/javascript">
-var nend_params = {"media":61795,"site":324943,"spot":964167,"type":1,"oriented":1};
-</script>
-<script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- 店舗一覧コンテンツ間２ -->
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-4702990894338882"
+                     data-ad-slot="6201064853"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
             @elseif ($loop->iteration == 18)
-            <script type="text/javascript">
-var nend_params = {"media":61795,"site":324943,"spot":964174,"type":1,"oriented":1};
-</script>
-<script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- 店舗一覧コンテンツ間３ -->
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-4702990894338882"
+                     data-ad-slot="5268091282"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
             @elseif ($loop->iteration == 24)
-            <script type="text/javascript">
-var nend_params = {"media":61795,"site":324943,"spot":964169,"type":1,"oriented":1};
-</script>
-<script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- 店舗一覧コンテンツ間４ -->
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-4702990894338882"
+                     data-ad-slot="9015764607"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
             @endif
         </div>
         @endif
@@ -63,9 +91,16 @@ var nend_params = {"media":61795,"site":324943,"spot":964169,"type":1,"oriented"
 </div>
 
  <div class="ad">
-     <script type="text/javascript">
-    var nend_params = {"media":61795,"site":324943,"spot":964170,"type":1,"oriented":1};
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- 店舗一覧フッター -->
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-4702990894338882"
+         data-ad-slot="6389601263"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
     </script>
-    <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
  </div>
 @endsection

@@ -50,9 +50,18 @@
     </div>
 </div>
 
-<script type="text/javascript">
-var nend_params = {"media":61795,"site":324943,"spot":963988,"type":1,"oriented":1};
-</script>
-<script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
+<div class="ad">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- ログインフッター -->
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-4702990894338882"
+         data-ad-slot="1513104134"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
 
 @endsection

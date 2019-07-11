@@ -91,28 +91,7 @@
             @if (count($list) != 0)
             @foreach ($list as $shop)
                 @include('common.shop_users_page', ['shop' => $shop])
-
-                @if ($loop->iteration % 8 == 0)
-                <div class="ad">
-                    @if ($loop->iteration == 8)
-                    <script type="text/javascript">
-                    var nend_params = {"media":61795,"site":324943,"spot":963980,"type":1,"oriented":1};
-                    </script>
-                    <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
-                    @elseif ($loop->iteration == 16)
-                    <script type="text/javascript">
-                    var nend_params = {"media":61795,"site":324943,"spot":963981,"type":1,"oriented":1};
-                    </script>
-                    <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
-                    @elseif ($loop->iteration == 24)
-                    <script type="text/javascript">
-                    var nend_params = {"media":61795,"site":324943,"spot":963982,"type":1,"oriented":1};
-                    </script>
-                    <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
-                    @endif
-                </div>
-                @endif
-
+                @include('users.show_ad', ['loop' => $loop])
             @endforeach
             @else
             <span class="empty-comment">まだお気に入りをしていません。@if ($user->is_followed)<br>気に入った店舗や行きたい店舗の星マークをタップしてお気に入りしましょう！</span>@endif
@@ -137,27 +116,7 @@
                     </a>
                     @include ('common.follow', ['user' => $user])
                 </ul>
-
-                @if ($loop->iteration % 8 == 0)
-                <div class="ad">
-                    @if ($loop->iteration == 8)
-                    <script type="text/javascript">
-                    var nend_params = {"media":61795,"site":324943,"spot":963980,"type":1,"oriented":1};
-                    </script>
-                    <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
-                    @elseif ($loop->iteration == 16)
-                    <script type="text/javascript">
-                    var nend_params = {"media":61795,"site":324943,"spot":963981,"type":1,"oriented":1};
-                    </script>
-                    <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
-                    @elseif ($loop->iteration == 24)
-                    <script type="text/javascript">
-                    var nend_params = {"media":61795,"site":324943,"spot":963982,"type":1,"oriented":1};
-                    </script>
-                    <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
-                    @endif
-                </div>
-                @endif
+                @include('users.show_ad', ['loop' => $loop])
             @endforeach
             @else
             <span class="empty-comment">まだフォローしていません。@if ($user->is_followed)<br>気に入る投稿やいいね、コメントをしてくれたユーザをフォローしましょう！</span>@endif
@@ -182,27 +141,7 @@
                     </a>
                     @include ('common.follow', ['user' => $user])
                 </ul>
-
-                @if ($loop->iteration % 8 == 0)
-                <div class="ad">
-                    @if ($loop->iteration == 8)
-                    <script type="text/javascript">
-                    var nend_params = {"media":61795,"site":324943,"spot":963980,"type":1,"oriented":1};
-                    </script>
-                    <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
-                    @elseif ($loop->iteration == 16)
-                    <script type="text/javascript">
-                    var nend_params = {"media":61795,"site":324943,"spot":963981,"type":1,"oriented":1};
-                    </script>
-                    <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
-                    @elseif ($loop->iteration == 24)
-                    <script type="text/javascript">
-                    var nend_params = {"media":61795,"site":324943,"spot":963982,"type":1,"oriented":1};
-                    </script>
-                    <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
-                    @endif
-                </div>
-                @endif
+                @include('users.show_ad', ['loop' => $loop])
             @endforeach
             @else
             <span class="empty-comment">まだフォロワーがいません。@if ($user->is_followed)<br>いいねやコメントを積極的にしてフォローしてもらいましょう！</span>@endif
@@ -213,27 +152,7 @@
             @if (count($list) != 0)
             @foreach ($list as $post)
                 @include('common.post', ['post' => $post])
-
-                @if ($loop->iteration % 8 == 0)
-                <div class="ad">
-                    @if ($loop->iteration == 8)
-                    <script type="text/javascript">
-                    var nend_params = {"media":61795,"site":324943,"spot":963980,"type":1,"oriented":1};
-                    </script>
-                    <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
-                    @elseif ($loop->iteration == 16)
-                    <script type="text/javascript">
-                    var nend_params = {"media":61795,"site":324943,"spot":963981,"type":1,"oriented":1};
-                    </script>
-                    <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
-                    @elseif ($loop->iteration == 24)
-                    <script type="text/javascript">
-                    var nend_params = {"media":61795,"site":324943,"spot":963982,"type":1,"oriented":1};
-                    </script>
-                    <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
-                    @endif
-                </div>
-                @endif
+                @include('users.show_ad', ['loop' => $loop])
             @endforeach
             @else
             <span class="empty-comment">まだレビューがありません。@if ($user->is_followed)<br>店舗にレビューを投稿しましょう！</span>@endif
@@ -246,10 +165,17 @@
 </div>
 
 <div class="ad">
-    <script type="text/javascript">
-    var nend_params = {"media":61795,"site":324943,"spot":963979,"type":1,"oriented":1};
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- ユーザ詳細フッター -->
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-4702990894338882"
+         data-ad-slot="6984922665"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
     </script>
-    <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
 </div>
 
 @endsection

@@ -63,65 +63,149 @@
 
         <div class="ad">
             @if ($loop->iteration == 6)
-            <script type="text/javascript">
-            var nend_params = {"media":61795,"site":324943,"spot":964182,"type":1,"oriented":1};
-            </script>
-            <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- 検索画面コンテンツ間１ -->
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-4702990894338882"
+                     data-ad-slot="8105173466"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
             @elseif ($loop->iteration == 12)
-            <script type="text/javascript">
-            var nend_params = {"media":61795,"site":324943,"spot":964183,"type":1,"oriented":1};
-            </script>
-            <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- 検索画面コンテンツ間２ -->
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-4702990894338882"
+                     data-ad-slot="4980316670"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
             @elseif ($loop->iteration == 18)
-            <script type="text/javascript">
-            var nend_params = {"media":61795,"site":324943,"spot":964184,"type":1,"oriented":1};
-            </script>
-            <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- 検索画面コンテンツ間３ -->
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-4702990894338882"
+                     data-ad-slot="1041071665"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
             @elseif ($loop->iteration == 24)
-            <script type="text/javascript">
-            var nend_params = {"media":61795,"site":324943,"spot":964185,"type":1,"oriented":1};
-            </script>
-            <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- 検索画面コンテンツ間４ -->
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-4702990894338882"
+                     data-ad-slot="5330836314"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
             @elseif ($loop->iteration == 30)
-            <script type="text/javascript">
-            var nend_params = {"media":61795,"site":324943,"spot":964186,"type":1,"oriented":1};
-            </script>
-            <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- 検索画面コンテンツ間５ -->
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-4702990894338882"
+                     data-ad-slot="7454081557"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
             @elseif ($loop->iteration == 36)
-            <script type="text/javascript">
-            var nend_params = {"media":61795,"site":324943,"spot":964187,"type":1,"oriented":1};
-            </script>
-            <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- 検索画面コンテンツ間６ -->
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-4702990894338882"
+                     data-ad-slot="6140999889"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
             @elseif ($loop->iteration == 42)
-            <script type="text/javascript">
-            var nend_params = {"media":61795,"site":324943,"spot":964172,"type":1,"oriented":1};
-            </script>
-            <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- 検索画面コンテンツ間７ -->
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-4702990894338882"
+                     data-ad-slot="3514836547"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
             @elseif ($loop->iteration == 48)
-            <script type="text/javascript">
-            var nend_params = {"media":61795,"site":324943,"spot":964173,"type":1,"oriented":1};
-            </script>
-            <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- 検索画面コンテンツ間８ -->
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-4702990894338882"
+                     data-ad-slot="8536418300"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
             @elseif ($loop->iteration == 54)
-             <script type="text/javascript">
-            var nend_params = {"media":61795,"site":324943,"spot":964174,"type":1,"oriented":1};
-            </script>
-            <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- 検索画面コンテンツ間９ -->
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-4702990894338882"
+                     data-ad-slot="2229675033"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
             @elseif ($loop->iteration == 60)
-            <script type="text/javascript">
-            var nend_params = {"media":61795,"site":324943,"spot":964175,"type":1,"oriented":1};
-            </script>
-            <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- 検索画面コンテンツ間１０ -->
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-4702990894338882"
+                     data-ad-slot="8603511699"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
             @elseif ($loop->iteration == 66)
-            <script type="text/javascript">
-            var nend_params = {"media":61795,"site":324943,"spot":964175,"type":1,"oriented":1};
-            </script>
-            <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- 検索画面コンテンツ間１１ -->
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-4702990894338882"
+                     data-ad-slot="5977348358"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
             @elseif ($loop->iteration == 72)
-            <script type="text/javascript">
-            var nend_params = {"media":61795,"site":324943,"spot":964176,"type":1,"oriented":1};
-            </script>
-            <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- 検索画面コンテンツ間１２ -->
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-4702990894338882"
+                     data-ad-slot="4597173293"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
             @endif
         </div>
     @endforeach
@@ -133,9 +217,16 @@
 </div>
 
 <div class="ad">
-    <script type="text/javascript">
-    var nend_params = {"media":61795,"site":324943,"spot":964181,"type":1,"oriented":1};
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- 検索画面フッター -->
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-4702990894338882"
+         data-ad-slot="3351185013"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
     </script>
-    <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
 </div>
 @endsection
