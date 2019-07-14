@@ -51,14 +51,6 @@
     <meta name="twitter:title"       content="東京肉ns" />
     <meta name="twitter:description" content="肉は確かに旨いが、東京の肉はもっと旨い！肉好きの肉好きによる肉好きのためのサイト！" />
     <meta name="twitter:image"       content="https://img.29-ns.com/29ns_ogp.jpg" />
-    <!-- ga -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-    <script>
-      (adsbygoogle = window.adsbygoogle || []).push({
-        google_ad_client: "ca-pub-4702990894338882",
-        enable_page_level_ads: true
-      });
-    </script>
 </head>
 <body>
     <!-- facebook -->
