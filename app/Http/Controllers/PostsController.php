@@ -124,9 +124,14 @@ class PostsController extends Controller
     public function show(Request $request, $id)
     {
         $post = $this->PostsService->getPostById($id);
+        if (!$post) {
+            session()->flash('error', '存在しない肉ログです。');
+            return redirect(url('/'));
+        }
         $post_comments = $this->PostComments->getListByPostId($id);
+        $redirect_url = url()->previous();
 
-        return view('posts.show', compact('post', 'post_comments'));
+        return view('posts.show', compact('post', 'post_comments', 'redirect_url'));
     }
 
     // TODO: 表示する導線を作成
@@ -175,7 +180,7 @@ class PostsController extends Controller
         }
 
         session()->flash('success', '削除しました');
-        return redirect(url("/shops/{$post->shop_cd}"));
+        return redirect($request->redirect_url);
     }
 
 }

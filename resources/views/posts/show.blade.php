@@ -149,6 +149,7 @@
     <form action='{{ url("/posts/{$post->id}") }}' method="POST" id="delete-post-form">
     @method("DELETE")
     @csrf
+        <input type="hidden" name="redirect_url" value="{{ $redirect_url }}">
         <button type="submit" class="btn btn-danger btn-block">削除</button>
     </form>
 </div>
