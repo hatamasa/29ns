@@ -107,6 +107,8 @@ class PostsController extends Controller
                 'post_count' => $shop->post_count+1,
                 'score'      => $score
             ]);
+            $user = Auth::user();
+            DB::table('users')->where(['id' => $user->id])->update(['post_count' => $user->post_count+1]);
             DB::commit();
         } catch (\Exception $e) {
             DB::rollBack();
@@ -137,6 +139,12 @@ class PostsController extends Controller
 
     public function destroy(Request $request, $id)
     {
+        if (! $request->redirect_url) {
+            $this->_log('parameter not found. redirect_url', 'error');
+            session()->flash('error', '予期せぬエラーが発生しました。');
+            return redirect(url()->previous());
+        }
+
         $post = DB::table('posts')->where([
                 'id'      => $id,
                 'user_id' => Auth::id()
@@ -156,6 +164,8 @@ class PostsController extends Controller
                 'post_count' => $shop->post_count-1,
                 'score'      => $score
             ]);
+            $user = Auth::user();
+            DB::table('users')->where(['id' => $user->id])->update(['post_count' => $user->post_count-1]);
             DB::commit();
         } catch (\Exception $e) {
             DB::rollBack();

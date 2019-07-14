@@ -75,6 +75,9 @@ class PostsService extends Service
     public function getPostById(int $id)
     {
         $post = $this->Posts->getById($id);
+        if (!$post) {
+            return false;
+        }
 
         $result = (new ApiService())->callGnaviRestSearchApi(['id' => $post->shop_cd]);
         $shop = $result['rest'][0];

@@ -225,6 +225,29 @@ a:active > img {
     padding-left: 10px;
 }
 
+.landing-post {
+    background: linear-gradient(#800000,#d00000,#d00000,#800000);
+    padding: 10px;
+    color: #fff;
+    text-align: center;
+}
+.search form {
+    display: flex;
+}
+.search form button {
+    width: 70px;
+}
+
+.search-btn {
+    display: flex;
+    justify-content: space-between;
+}
+.search-btn a {
+    font-size: 10px;
+    width: calc(100% / 2 - 2px);
+    background-color: #fff;
+}
+
 /* フォーム */
 .form-group {
     margin-bottom: 15px;

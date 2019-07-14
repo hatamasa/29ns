@@ -32,7 +32,7 @@ class UsersRepository
                 "u.birth_ym",
                 "u.contents",
                 "u.thumbnail_url",
-                DB::raw("count(p.id) as posts_count"),
+                "u.post_count",
                 DB::raw("count(distinct uf1.follow_user_id) as follow_count"),
                 DB::raw("count(distinct uf2.user_id) as follower_count"),
                 DB::raw("CASE WHEN uf3.user_id IS NOT NULL THEN 1 ELSE 0 END as is_followed")

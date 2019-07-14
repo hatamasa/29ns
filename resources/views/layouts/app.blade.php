@@ -41,14 +41,14 @@
     <!-- ogp -->
     <meta property="og:url"         content="{{ $url }}" />
     <meta property="og:type"        content="website" />
-    <meta property="og:site_name"   content="東京肉ns">
-    <meta property="og:title"       content="東京肉ns" />
+    <meta property="og:site_name"   content="東京肉NS">
+    <meta property="og:title"       content="東京肉NS" />
     <meta property="og:description" content="肉は確かに旨いが、東京の肉はもっと旨い！肉好きの肉好きによる肉好きのためのサイト！" />
     <meta property="og:image"       content="https://img.29-ns.com/29ns_ogp.jpg" />
     <!-- twitter -->
     <meta name="twitter:card"        content="summary_large_image" />
     <meta name="twitter:url"         content="{{ $url }}" />
-    <meta name="twitter:title"       content="東京肉ns" />
+    <meta name="twitter:title"       content="東京肉NS" />
     <meta name="twitter:description" content="肉は確かに旨いが、東京の肉はもっと旨い！肉好きの肉好きによる肉好きのためのサイト！" />
     <meta name="twitter:image"       content="https://img.29-ns.com/29ns_ogp.jpg" />
 </head>
@@ -61,13 +61,12 @@
     <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
         <div class="nav-header">
             @if (url()->current() == url('/') || url()->current() == url('/home'))
-            <a href="{{ url('/home') }}" class="col-6">
+            <a href="{{ url('/home') }}" class="col-4">
                 <h1>東京の肉好きのためのSNS</h1>
                 <span>東京肉NS</span>
             </a>
             <a href="{{ url('/home') }}" class="col-2">ホーム</a>
-            {{--<a href="{{ url('/search') }}" class="col-2">検索</a>--}}
-            <a style="display: none"></a>
+            <a href="{{ url('/shops/ranking') }}" class="col-2">ランキング</a>
             <a href="{{ url('/posts') }}" class="col-2">みんなの<br>肉ログ</a>
             @else
             <a href="{{ !empty(session('referrers')) ? session('referrers')[count(session('referrers'))-1] : url('/') }}" class="previous col-2">←</a>

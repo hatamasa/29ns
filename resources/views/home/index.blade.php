@@ -39,7 +39,7 @@
 
     <div class="form-group search">
         <form method="get" name="search_form" action="{{ url('/shops') }}">
-            <input type="text" id="_keyword" class="form-control" name="keyword" value="" placeholder="店名、駅名、住所など入力...">
+            <input type="text" class="form-control" name="keyword" value="" placeholder="店名、駅名、住所など入力...">
             <button type="submit" class="btn btn-primary btn-sm">検索</button>
         </form>
     </div>
@@ -63,6 +63,7 @@
         </div>
     </div>
 
+    @auth
     <div class="ad">
         <center>スポンサーリンク(広告)</center>
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -80,15 +81,22 @@
 
     <div class="form-group">
         <div class="block-head">
-            <h2>人気のお店</h2>
-            <a href="{{ url('/shops/ranking') }}">人気のお店をもっと見る→</a>
+            <h2>ランキング</h2>
+                @if ($user->post_count > 0)
+                <a href="{{ url('/shops/ranking') }}">ランキングをもっと見る→</a>
+                @endif
         </div>
         <div class="block-body">
-        @foreach ($shops as $shop)
-            @include ('common.shop_ranking', ['shop' => $shop])
-        @endforeach
+        @if ($user->post_count > 0)
+            @foreach ($shops as $shop)
+                @include ('common.shop_ranking', ['shop' => $shop])
+            @endforeach
+        @else
+            @include('common.landing_post')
+        @endif
         </div>
     </div>
+    @endauth
 
     <div class="ad">
         <center>スポンサーリンク(広告)</center>
