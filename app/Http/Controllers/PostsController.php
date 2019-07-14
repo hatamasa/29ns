@@ -104,7 +104,7 @@ class PostsController extends Controller
             $shop = DB::table('shops')->where(['shop_cd' => $params["shop_cd"]])->first();
             $score = DB::table('posts')->where(['shop_cd' => $params['shop_cd']])->avg('score');
             DB::table('shops')->where(['shop_cd' => $params["shop_cd"]])->update([
-                'like_count' => $shop->like_count+1,
+                'post_count' => $shop->post_count+1,
                 'score'      => $score
             ]);
             DB::commit();
@@ -153,7 +153,7 @@ class PostsController extends Controller
             $shop = DB::table('shops')->where(['shop_cd' => $post->shop_cd])->first();
             $score = DB::table('posts')->where(['shop_cd' => $post->shop_cd])->avg('score');
             DB::table('shops')->where(['shop_cd' => $post->shop_cd])->update([
-                'like_count' => $shop->like_count-1,
+                'post_count' => $shop->post_count-1,
                 'score'      => $score
             ]);
             DB::commit();
