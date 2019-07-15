@@ -11,6 +11,18 @@
     <meta name="description" content="東京の焼肉店やお肉が食べれる店を検索、お気に入り、レビュー。気になるお店は星マークからお気に入りしてマイページでチェック！他のユーザのお気に入り店やレビューもチェックできる！肉好きの肉好きによる肉好きのためのSNS。東京の肉好きのユーザたちと交流しよう！">
     @yield('canonical')
 
+    <link rel="icon" href="/favicon.ico">
+
+    <!-- Fonts -->
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
+
+    <!-- Styles -->
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+    <link href='{{ "@addtimestamp(css/common.css)" }}' rel="stylesheet">
+    @yield('style')
+
     <!-- Scripts -->
     <script src="{{ asset('js/jquery-3.4.0.min.js') }}"></script>
 <!--     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script> -->
@@ -26,17 +38,6 @@
 
       gtag('config', 'UA-139979567-2');
     </script>
-    <link rel="icon" href="/favicon.ico">
-
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
-
-    <!-- Styles -->
-    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
-    <link href='{{ "@addtimestamp(css/common.css)" }}' rel="stylesheet">
-    @yield('style')
 
     <!-- ogp -->
     <meta property="og:url"         content="{{ $url }}" />
