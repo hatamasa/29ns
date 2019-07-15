@@ -5,9 +5,10 @@ use App\Repositories\PostsRepository;
 
 class PostsService extends Service
 {
-    public function __construct(PostsRepository $posts)
+    public function __construct(PostsRepository $posts, ApiService $apiService)
     {
         $this->Posts = $posts;
+        $this->ApiService = $apiService;
     }
 
     /**
@@ -51,7 +52,7 @@ class PostsService extends Service
             }
             $this->_log("shops: ".json_encode($shop_ids));
             // 投稿から店を10件毎に取得
-            $tmp = (new ApiService())->callGnaviRestSearchApi(['id' => implode(',', $shop_ids)]);
+            $tmp = $this->ApiService->callGnaviRestSearchApi(['id' => implode(',', $shop_ids)]);
             $result = array_merge($result, $tmp['rest']);
         }
         // 店舗の取得結果から投稿に必要な情報を取得する
@@ -79,7 +80,7 @@ class PostsService extends Service
             return false;
         }
 
-        $result = (new ApiService())->callGnaviRestSearchApi(['id' => $post->shop_cd]);
+        $result = $this->ApiService->callGnaviRestSearchApi(['id' => $post->shop_cd]);
         $shop = $result['rest'][0];
 
         $post->shop_name    = $shop['name'];
