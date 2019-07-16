@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Services\UsersService;
 use App\Repositories\UsersRepository;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use App\Services\ImgUploader;
 
@@ -56,15 +57,15 @@ class UsersController extends Controller
     {
         $request->validate([
             'contents' => 'required|string|max:200',
-            'file' => 'nullable|file|image|mimes:jpeg,png',
+            'tmp-path' => 'required|string'
         ]);
 
         $input = $request->input();
         DB::beginTransaction();
         try {
-            if (! empty($request->file('file'))) {
+            if (! empty($input['tmp-path'])) {
                 // s3にアップロード
-                $img_path = $this->ImgUploader->uploadUserImg($request);
+                $img_path = $this->ImgUploader->uploadUserImg($input['tmp-path']);
             }
             $update = [];
             $update['contents'] = $input['contents'];
@@ -84,6 +85,33 @@ class UsersController extends Controller
 
         session()->flash('success', '保存しました。');
         return redirect(url("/users/{$input['user_id']}"));
+    }
+
+    public function imageUpdate(Request $request)
+    {
+        $result = [];
+        if (! $request->ajax()) {
+            $this->_log('method not ajax.');
+            $result['message'] = '不正なアクセスです。';
+            return response()->json($result, Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+        // アップロードしたファイルのバリデーション設定
+        $request->validate([
+            'file' => 'required',
+            'filename' => 'required|string'
+        ]);
+
+        $input = $request->input();
+        try {
+            // プロジェクト配下に配置
+            $result['path'] = $this->ImgUploader->tmpUploadUserImg($input);
+        } catch (\Exception $e) {
+            $this->_log($e->getMessage(), 'error');
+            $result['message'] = 'アップロードエラーが発生しました。';
+            return response()->json($result, Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+
+        return response()->json($result, Response::HTTP_OK);
     }
 
 }

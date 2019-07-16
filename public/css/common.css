@@ -595,3 +595,24 @@ input[type="radio"]:checked + .radioDefault:after {
     margin-top: 15px;
     margin-bottom: 15px;
 }
+
+#loading {
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 10001;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+#loading img {
+    width: 100px;
+    height: 100px;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10000000000;
+}

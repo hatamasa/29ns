@@ -10,10 +10,11 @@
 
     document.getElementById('user-img').onchange = function(evt) {
         let strFileInfo = evt.target.files[0];
-
-        if(strFileInfo && strFileInfo.type.match('image.*')){
+        if(!strFileInfo) return;
+        if(strFileInfo.type.match('image.*')){
+            showLoading();
+            let filename = evt.target.files[0].name;
             let image = new Image();
-            fileReader = new FileReader();
             image.onload = function() {
                 let cnv = document.createElement('canvas');
                 let ratio = image.naturalWidth / image.naturalHeight;
@@ -31,19 +32,52 @@
                 ctx.drawImage(image, 0, 0, cnv.width, cnv.height);
                 if(cnv.msToBlob) {
                     evt.target.previousElementSibling.src = URL.createObjectURL(cnv.msToBlob());
-                    fileReader.readAsDataURL(cnv.msToBlob());
                 } else {
                     cnv.toBlob(blob => {
                         evt.target.previousElementSibling.src = URL.createObjectURL(blob);
-                        fileReader.readAsDataURL(blob);
                     }, 'image/png'); // msToBlobと合わせるためpngに設定
                 }
+                let base64 = cnv.toDataURL('image/png');
+
+                sendTmpImg(filename, base64);
             }
             image.src = URL.createObjectURL(strFileInfo);
 
         } else {
-            alert('プレビューできません。不正な画像ファイルがアップロードされました。');
+            alert('不正な画像ファイルがアップロードされました。');
         }
+    }
+
+    function sendTmpImg(filename, base64) {
+
+        $.ajax({
+            type: 'POST',
+            url: "/users/image_update",
+            data: { file: base64, filename: filename },
+        })
+        .done(result => {
+            document.getElementById('tmp-path').value = result.path;
+        })
+        .fail(error => {
+            alert(error.responseJSON.message);
+        })
+        .always(() => {
+            hiddenLoading();
+        });
+    }
+
+    function showLoading() {
+        let loading = document.createElement('div');
+        loading.id = 'loading';
+        let img = document.createElement('img');
+        img.src = '/images/loading.gif';
+        loading.appendChild(img);
+        document.getElementsByTagName('body')[0].appendChild(loading);
+        document.getElementsByTagName('body')[0].style.overflowY = 'hidden';
+    }
+    function hiddenLoading() {
+        document.getElementById('loading').remove();
+        document.getElementsByTagName('body')[0].style.overflowY = 'scroll';
     }
 
     // ユーザ編集サブミット
@@ -74,6 +108,7 @@
                         @endif
                         <input type="file" name="file" id="user-img" accept="image/png, image/jpeg">
                         <label for="user-img">写真を変更する</label>
+                        <input type="hidden" id="tmp-path" name="tmp-path" value="">
                     </div>
                     <div class="user-text">
                         <ul>

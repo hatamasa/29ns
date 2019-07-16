@@ -27,6 +27,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/users/{id}', 'UsersController@show')->where(['id' => '[0-9]+']);
     Route::get('/users/{id}/edit', 'UsersController@edit')->where(['id' => '[0-9]+']);
     Route::put('/users/update', 'UsersController@update');
+    Route::post('/users/image_update', 'UsersController@imageUpdate');
 
     Route::post('/user_follows', 'UserFollowsController@store');
     Route::delete('/user_follows/{id}', 'UserFollowsController@destroy')->where(['id' => '[0-9]+']);

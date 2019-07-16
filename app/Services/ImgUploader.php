@@ -81,43 +81,50 @@ class ImgUploader extends Service
     }
 
     /**
+     *
+     * @param Illuminate\Http\ $request
+     * @throws RuntimeException
+     * @return string|\Illuminate\Http\false
+     */
+    public function tmpUploadUserImg($input)
+    {
+        // base64をデコード
+        $pos = strpos($input['file'], 'base64,');
+        $file_data = str_replace(' ', '+', substr($input['file'], $pos + 7));
+        $file = base64_decode($file_data);
+
+        // ファイル拡張子を取得
+        $ext = substr($input['filename'], strrpos($input['filename'], '.')+1);
+        $tmp_path = $this->img_users_dir.'/'.uniqid().'.'.$ext;
+        $target_path = storage_path('app/'.$tmp_path);
+
+        // ファイルを保存
+        file_put_contents($target_path, $file);
+
+        return $tmp_path;
+    }
+
+    /**
      * ユーザの画像をS3へアップロードする
      */
-    public function uploadUserImg($request)
+    public function uploadUserImg($tmp_path)
     {
-        // アップロードしたファイルのバリデーション設定
-        $request->validate([
-            'files'   => 'nullable|array',
-            'files.*' => 'required|file|image|mimes:jpeg,png',
-        ]);
-
         $result = null;
-        $file = $request->file('file');
-        // アップロード完了の確認
-        if (! $file->isValid()) {
-            throw new RuntimeException('upload error.');
-        }
-        // ファイル拡張子を取得
-        $ext = $file->getClientOriginalExtension();
-        // ファイル名を組み立て
-        $to_file_name = uniqid().'.'.$ext;
-        // ファイルを保存
-        $path = $file->storeAs($this->img_users_dir, $to_file_name);
         // 生成する画像のパスを生成
-        $tmp_path = storage_path('app/'.$path);
+        $tmp_full_path = storage_path('app/'.$tmp_path);
 
         // 画像を作成する
-        $this->resizeImgSquere($file, $tmp_path, self::DISP_USER_IMG_WIDTH);
+        $this->resizeImgSquere($tmp_full_path, self::DISP_USER_IMG_WIDTH);
 
         // ローカル以外はs3へ画像をアップロードする
         if (env('APP_ENV') === 'local') {
-            copy(storage_path('app/'.$this->img_users_dir.'/'.$to_file_name), public_path('images/'.$this->img_users_dir.'/'.$to_file_name));
-            $result = asset('images/'.$this->img_users_dir.'/'.$to_file_name);
+            copy(storage_path('app/'.$tmp_path), public_path('images/'.$tmp_path));
+            $result = asset('images/'.$tmp_path);
         } else {
-            $result = Config::get('services.aws.url.img') . Storage::disk('s3')->putFileAs(Config::get('filesystems.disks.s3.dir.users'), new File($tmp_path), basename($tmp_path), 'public');
+            $result = Config::get('services.aws.url.img') . Storage::disk('s3')->putFileAs(Config::get('filesystems.disks.s3.dir.users'), new File($tmp_full_path), basename($tmp_full_path), 'public');
         }
         // 成功したらディレクトリ配下を削除
-        Storage::disk('local')->delete($this->img_users_dir.'/'.$to_file_name);
+        Storage::disk('local')->delete($tmp_path);
 
         return $result;
     }
@@ -128,9 +135,9 @@ class ImgUploader extends Service
      * @param string $path
      * @param int $size
      */
-    private function resizeImgSquere($file, $path, $size)
+    private function resizeImgSquere($tmp_path, $size)
     {
-        $image = Image::make($file);
+        $image = Image::make($tmp_path);
 
         $height = $image->height();
         $width = $image->width();
@@ -150,7 +157,7 @@ class ImgUploader extends Service
                 $constraint->aspectRatio();
             })
             ->crop($size, $size)
-            ->save($path);
+            ->save($tmp_path);
     }
 
 }
