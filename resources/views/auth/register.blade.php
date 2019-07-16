@@ -39,7 +39,7 @@
                 <div>
                     <span>誕生年月</span>
                     <label class="select-parent year">
-                        {{ Form::selectRange('birth_y', 1920, 2019, old('birth_y')) }}
+                        {{ Form::selectRange('birth_y', 1920, 2019, old('birth_y') ?? 1990) }}
                     </label>
                     年
                     <label class="select-parent month">

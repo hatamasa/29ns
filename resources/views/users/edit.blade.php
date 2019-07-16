@@ -53,7 +53,7 @@
 </script>
 @endsection
 
-@section('title', $users->name."さんのページ")
+@section('title', "Myページ")
 
 @section('content')
 <div>

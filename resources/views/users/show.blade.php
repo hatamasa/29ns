@@ -29,7 +29,11 @@
 </script>
 @endsection
 
-@section('title', $users->name."さんのページ")
+@if (Auth::id() == $users->id)
+    @section('title', "Myページ")
+@else
+    @section('title', $user->name."さんのページ")
+@endif
 
 @section('content')
 <div>
