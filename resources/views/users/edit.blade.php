@@ -57,7 +57,7 @@
 
 @section('content')
 <div>
-    <form action="{{ url('/users/update') }}" id="user-from" method="POST" enctype="multipart/form-data">
+    <form action="{{ url('/users/update') }}" id="user-form" method="POST" enctype="multipart/form-data">
         @method('PUT')
         @csrf
         <div class="block-body">
