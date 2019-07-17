@@ -28,6 +28,9 @@ class PostsService extends Service
         if (!isset($params['contents']) || strlen($params['contents'] > 1000)) {
             return false;
         }
+        if (!isset($params['files'])) {
+            return false;
+        }
 
         return true;
     }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Services\ImgUploader;
 use App\Services\PostsService;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -71,6 +72,33 @@ class PostsController extends Controller
         return view('posts.create', compact("shop"));
     }
 
+    public function imageUpdate(Request $request)
+    {
+        $result = [];
+        if (! $request->ajax()) {
+            $this->_log('method not ajax.');
+            $result['message'] = '不正なアクセスです。';
+            return response()->json($result, Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+        // アップロードしたファイルのバリデーション設定
+        $request->validate([
+            'file' => 'required',
+            'filename' => 'required|string'
+        ]);
+
+        $input = $request->input();
+        try {
+            // プロジェクト配下に配置
+            $result['path'] = $this->ImgUploader->tmpUploadPostImg($input);
+        } catch (\Exception $e) {
+            $this->_log($e->getMessage(), 'error');
+            $result['message'] = 'アップロードエラーが発生しました。';
+            return response()->json($result, Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+
+        return response()->json($result, Response::HTTP_OK);
+    }
+
     public function store(Request $request)
     {
         $params = $request->all();
@@ -83,9 +111,9 @@ class PostsController extends Controller
 
         DB::beginTransaction();
         try {
-            if (! empty($request->file('files'))) {
+            if (! empty($params['files'])) {
                 // s3にアップロード
-                $img_paths = $this->ImgUploader->uploadPostsImg($request);
+                $img_paths = $this->ImgUploader->uploadPostsImg($params['files']);
             }
 
             DB::table("posts")->insert([

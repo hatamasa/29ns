@@ -16,6 +16,7 @@
             let filename = evt.target.files[0].name;
             let image = new Image();
             image.onload = function() {
+                // canvasに描画してサイズを下げる
                 let cnv = document.createElement('canvas');
                 let ratio = image.naturalWidth / image.naturalHeight;
                 if (ratio == 1) {
@@ -37,8 +38,8 @@
                         evt.target.previousElementSibling.src = URL.createObjectURL(blob);
                     }, 'image/png'); // msToBlobと合わせるためpngに設定
                 }
+                // ファイルを送信
                 let base64 = cnv.toDataURL('image/png');
-
                 sendTmpImg(filename, base64);
             }
             image.src = URL.createObjectURL(strFileInfo);
@@ -49,7 +50,6 @@
     }
 
     function sendTmpImg(filename, base64) {
-
         $.ajax({
             type: 'POST',
             url: "/users/image_update",

@@ -26,8 +26,8 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::get('/users/{id}', 'UsersController@show')->where(['id' => '[0-9]+']);
     Route::get('/users/{id}/edit', 'UsersController@edit')->where(['id' => '[0-9]+']);
-    Route::put('/users/update', 'UsersController@update');
     Route::post('/users/image_update', 'UsersController@imageUpdate');
+    Route::put('/users/update', 'UsersController@update');
 
     Route::post('/user_follows', 'UserFollowsController@store');
     Route::delete('/user_follows/{id}', 'UserFollowsController@destroy')->where(['id' => '[0-9]+']);
@@ -44,6 +44,7 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::get('/posts', 'PostsController@index');
     Route::get('/posts/create', 'PostsController@create');
+    Route::post('/posts/image_update', 'PostsController@imageUpdate');
     Route::post('/posts', 'PostsController@store');
     Route::get('/posts/{id}', 'PostsController@show')->where(['id' => '[0-9]+']);
     Route::delete('/posts/{id}', 'PostsController@destroy')->where(['id' => '[0-9]+']);

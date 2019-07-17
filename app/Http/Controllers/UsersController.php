@@ -53,40 +53,6 @@ class UsersController extends Controller
         return view('users.edit', compact('users'));
     }
 
-    public function update(Request $request)
-    {
-        $request->validate([
-            'contents' => 'required|string|max:200',
-            'tmp-path' => 'required|string'
-        ]);
-
-        $input = $request->input();
-        DB::beginTransaction();
-        try {
-            if (! empty($input['tmp-path'])) {
-                // s3にアップロード
-                $img_path = $this->ImgUploader->uploadUserImg($input['tmp-path']);
-            }
-            $update = [];
-            $update['contents'] = $input['contents'];
-            if (isset($img_path)) {
-                $update['thumbnail_url'] = $img_path;
-            }
-            DB::table('users')
-                ->where(['id' => $input['user_id']])
-                ->update($update);
-            DB::commit();
-        } catch (\Exception $e) {
-            DB::rollBack();
-            session()->flash('error', '予期せぬエラーが発生しました。');
-            $this->_log($e->getMessage(), 'error');
-            return redirect(url("/users/{$input['user_id']}"));
-        }
-
-        session()->flash('success', '保存しました。');
-        return redirect(url("/users/{$input['user_id']}"));
-    }
-
     public function imageUpdate(Request $request)
     {
         $result = [];
@@ -112,6 +78,41 @@ class UsersController extends Controller
         }
 
         return response()->json($result, Response::HTTP_OK);
+    }
+
+    public function update(Request $request)
+    {
+        $request->validate([
+            'contents' => 'present|string|max:200',
+            'tmp-path' => 'present|string'
+        ]);
+
+        $input = $request->input();
+        $this->_log("tmp-path: ".$input['tmp-path']);
+        DB::beginTransaction();
+        try {
+            if (isset($input['tmp-path']) && !empty($input['tmp-path'])) {
+                // s3にアップロード
+                $img_path = $this->ImgUploader->uploadUserImg($input['tmp-path']);
+            }
+            $update = [];
+            $update['contents'] = $input['contents'];
+            if (isset($img_path)) {
+                $update['thumbnail_url'] = $img_path;
+            }
+            DB::table('users')
+                ->where(['id' => $input['user_id']])
+                ->update($update);
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            session()->flash('error', '予期せぬエラーが発生しました。');
+            $this->_log($e->getMessage(), 'error');
+            return redirect(url("/users/{$input['user_id']}"));
+        }
+
+        session()->flash('success', '保存しました。');
+        return redirect(url("/users/{$input['user_id']}"));
     }
 
 }

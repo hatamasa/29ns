@@ -17,13 +17,17 @@
     function preview(evt) {
         let file = evt.target;
         let strFileInfo = evt.target.files[0];
+        if(!strFileInfo) return;
+
         let imgArea = evt.target.previousElementSibling;
         let previewArea = evt.target.parentNode;
 
         if(strFileInfo && strFileInfo.type.match('image.*')){
+            showLoading();
+            let filename = evt.target.files[0].name;
             let image = new Image();
-            fileReader = new FileReader();
             image.onload = function() {
+                // canvasに描画してサイズを下げる
                 let cnv = document.createElement('canvas');
                 let ratio = image.naturalWidth / image.naturalHeight;
                 if (ratio == 1) {
@@ -40,13 +44,15 @@
                 ctx.drawImage(image, 0, 0, cnv.width, cnv.height);
                 if(cnv.msToBlob) {
                     preview.src = URL.createObjectURL(cnv.msToBlob());
-                    fileReader.readAsDataURL(cnv.msToBlob());
                 } else {
                     cnv.toBlob(blob => {
                         preview.src = URL.createObjectURL(blob);
-                        fileReader.readAsDataURL(blob);
                     }, 'image/png'); // msToBlobと合わせるためpngに設定
                 }
+                // ファイルを送信
+                let base64 = cnv.toDataURL('image/png');
+                sendTmpImg(evt.target.id, filename, base64);
+                // プレビューを設定
                 imgArea.remove();
                 previewArea.classList.add("uploaded");
                 let preview = document.createElement("img");
@@ -58,6 +64,37 @@
             alert("不正な画像ファイルがアップロードされました");
         }
     };
+
+    function sendTmpImg(id, filename, base64) {
+        $.ajax({
+            type: 'POST',
+            url: "/posts/image_update",
+            data: { file: base64, filename: filename },
+        })
+        .done(result => {
+            document.getElementById('tmp-'+id).value = result.path;
+        })
+        .fail(error => {
+            alert(error.responseJSON.message);
+        })
+        .always(() => {
+            hiddenLoading();
+        });
+    }
+
+    function showLoading() {
+        let loading = document.createElement('div');
+        loading.id = 'loading';
+        let img = document.createElement('img');
+        img.src = '/images/loading.gif';
+        loading.appendChild(img);
+        document.getElementsByTagName('body')[0].appendChild(loading);
+        document.getElementsByTagName('body')[0].style.overflowY = 'hidden';
+    }
+    function hiddenLoading() {
+        document.getElementById('loading').remove();
+        document.getElementsByTagName('body')[0].style.overflowY = 'scroll';
+    }
 
     $("#post-from").submit(evt => {
         let score = document.getElementById("score");
@@ -157,15 +194,18 @@
             <div class="file-list">
                 <label class="preview-area" id="preview-file1">
                     <span>写真</span>
-                    <input type="file" id="file1" class="img" name="files[]" src="{{ session('file')[0] ?? '' }}" accept="image/png, image/jpg, image/jpeg">
+                    <input type="file" id="file1" class="img" accept="image/png, image/jpg, image/jpeg">
+                    <input type="hidden" id="tmp-file1" name="files[]" value="">
                 </label>
                 <label class="preview-area" id="preview-file2">
                     <span>写真</span>
-                    <input type="file" id="file2" class="img" name="files[]" src="{{ session('file')[1] ?? '' }}" accept="image/png, image/jpg, image/jpeg">
+                    <input type="file" id="file2" class="img" accept="image/png, image/jpg, image/jpeg">
+                    <input type="hidden" id="tmp-file2" name="files[]" value="">
                 </label>
                 <label class="preview-area" id="preview-file3">
                     <span>写真</span>
-                    <input type="file" id="file3" class="img" name="files[]" src="{{ session('file')[2] ?? '' }}" accept="image/png, image/jpg, image/jpeg">
+                    <input type="file" id="file3" class="img" accept="image/png, image/jpg, image/jpeg">
+                    <input type="hidden" id="tmp-file3" name="files[]" value="">
                 </label>
             </div>
             <input type="hidden" name="shop_cd" value="{{ $shop['id'] ?? session('shop_cd') }}">
