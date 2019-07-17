@@ -47,6 +47,16 @@
             @endif
             </li>
             <li><a href='{{ url("/posts/{$post->id}") }}'>コメントする</a></li>
+            @if (Auth::id() == $post->user_id)
+            <li>
+                <form action='{{ url("/posts/{$post->id}") }}' method="POST" class="delete-post-form">
+                @method("DELETE")
+                @csrf
+                    <input type="hidden" name="redirect_url" value="{{ url()->full() }}">
+                    <button type="submit" class="btn-link delete-link">削除する</button>
+                </form>
+            </li>
+            @endif
         </ul>
         @endauth
     </div>

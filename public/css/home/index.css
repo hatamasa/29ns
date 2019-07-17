@@ -1,0 +1,7 @@
+.delete-link {
+    position: absolute;
+    right: 30px;
+    padding: 0;
+    background-color: unset;
+    border: unset;
+}

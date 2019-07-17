@@ -143,6 +143,7 @@
                         <form action='{{ url("/posts/{$post->id}") }}' method="POST" class="delete-post-form">
                         @method("DELETE")
                         @csrf
+                            <input type="hidden" name="redirect_url" value="{{ url()->full() }}">
                             <button type="submit" class="btn-link delete-link">削除する</button>
                         </form>
                     </li>

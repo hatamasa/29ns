@@ -117,8 +117,9 @@ class ShopsController extends Controller
                 $page,
                 ['path' => $request->url()]
             );
+        $redirect_url = url()->previous();
 
-        return view('shops.show', compact('shop', 'posts'));
+        return view('shops.show', compact('shop', 'posts', 'redirect_url'));
     }
 
     public function like()

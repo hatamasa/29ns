@@ -5,7 +5,7 @@
 @endsection
 
 @section('style')
-<link href='{{ "@addtimestamp(css/home.css)" }}' rel="stylesheet">
+<link href='{{ "@addtimestamp(css/home/index.css)" }}' rel="stylesheet">
 @endsection
 
 @section('script')
