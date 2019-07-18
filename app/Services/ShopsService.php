@@ -109,9 +109,10 @@ class ShopsService extends Service
             $result = array_merge($result, $tmp['rest']);
         }
         // 店舗の取得結果から投稿に必要な情報を取得する
-        foreach ($result as $res_shop) {
-            foreach ($shops as &$shop) {
-                if ($res_shop['id'] == $shop->shop_cd) {
+        foreach ($shops as $key => &$shop) {
+            $shop_exists = false;
+            foreach ($result as $res_shop) {
+                if ($shop->shop_cd == $res_shop['id']) {
                     $shop->shop_name     = $res_shop['name'];
                     $shop->shop_img_url  = !empty($res_shop['image_url']['shop_image1']) ? $res_shop['image_url']['shop_image1'] : null;
                     $shop->line    = $res_shop['access']['line'];
@@ -119,7 +120,13 @@ class ShopsService extends Service
                     $shop->walk    = $res_shop['access']['walk'];
                     $shop->note    = $res_shop['access']['note'];
                     $shop->budget  = $res_shop['budget'];
+                    $shop_exists = true;
+                    break;
                 }
+            }
+            // 店舗がAPIから取得出来なかった場合
+            if (! $shop_exists) {
+                unset($shops[$key]);
             }
         }
 

@@ -59,12 +59,19 @@ class PostsService extends Service
             $result = array_merge($result, $tmp['rest']);
         }
         // 店舗の取得結果から投稿に必要な情報を取得する
-        foreach ($result as $shop) {
-            foreach ($posts as &$post) {
-                if ($shop['id'] == $post->shop_cd) {
+        foreach ($posts as $key => &$post) {
+            $post_exists = false;
+            foreach ($result as $shop) {
+                if ($post->shop_cd == $shop['id']) {
                     $post->shop_name     = $shop['name'];
                     $post->shop_img_url  = !empty($shop['image_url']['shop_image1']) ? $shop['image_url']['shop_image1'] : null;
+                    $post_exists = true;
+                    break;
                 }
+            }
+            // 投稿に対する店舗が取得出来なかった場合
+            if (! $post_exists) {
+                unset($posts[$key]);
             }
         }
 
