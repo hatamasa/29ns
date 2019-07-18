@@ -145,6 +145,9 @@ a:active > img {
     width: 23px;
     margin-bottom: -3px;
 }
+.nav-header>a:nth-child(5) {
+    line-height: 55px;
+}
 .nav-header>a h1,
 .nav-header>a span:nth-child(1) {
     font-size: 10px;
