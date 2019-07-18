@@ -6,6 +6,10 @@
 
 @section('script')
 <script>
+    $('.delete-post-form').submit(evt => {
+        if (! confirm("投稿を削除しますか？")) return false;
+        $(evt.target).prop("disabled", true);
+    });
 </script>
 @endsection
 

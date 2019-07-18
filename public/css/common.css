@@ -116,7 +116,10 @@ a:active > img {
     font-size: 10px;
     text-align: center;
     padding: 0px;
-    line-height: 55px;
+    line-height: 0;
+}
+.nav-header a span {
+    display: block;
 }
 .nav-header>a:nth-child(1) {
     font-weight: bold;
@@ -124,9 +127,23 @@ a:active > img {
     line-height: 1;
     padding-top: 8px;
 }
+.nav-header>a:nth-child(2),
+.nav-header>a:nth-child(3) {
+    padding-top: 10px;
+}
+.nav-header>a:nth-child(3) img {
+    height: 23px;
+    width: 23px;
+    margin-bottom: 7px;
+}
 .nav-header>a:nth-child(4) {
-    line-height: initial;
-    padding-top: 12px;
+    padding-top: 6px;
+    line-height: 1;
+}
+.nav-header>a:nth-child(4) img {
+    height: 23px;
+    width: 23px;
+    margin-bottom: -3px;
 }
 .nav-header>a h1,
 .nav-header>a span:nth-child(1) {
@@ -223,6 +240,7 @@ a:active > img {
     border: unset;
     text-align: left;
     padding-left: 10px;
+    line-height: 55px;
 }
 
 .landing-post {
@@ -539,12 +557,23 @@ input[type="radio"]:checked + .radioDefault:after {
     margin-right: 20px;
 }
 .like {
+    display: inline-block;
+    width: 50px;
     color: #007bff !important;
 }
 .liked {
+    display: inline-block;
+    width: 50px;
     font-weight: bold;
 }
-
+.like-icon {
+    padding: 0px 3px 3px 0px;
+    height: 20px;
+    width: 18px;
+}
+.comment-icon {
+    padding: 0px 3px 0px 0px;
+}
 
 /* ページャー */
 .paginator {

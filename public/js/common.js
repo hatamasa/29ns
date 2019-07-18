@@ -83,8 +83,9 @@
         }
     });
     function removeLike(evt) {
+        let like = $(evt.target).parents(".post-detail-link").find("a").get(0);
         $.ajax({
-            url: '/post_like_users/'+evt.target.dataset.post_id,
+            url: '/post_like_users/'+like.dataset.post_id,
             type: 'POST',
             data: {
                 'post_id': evt.target.dataset.post_id,
@@ -96,28 +97,31 @@
                 alert(result.message);
                 return;
             }
-            $(evt.target).parents('.card-body-footer').find('.like-disp').text(result.like_count+'いいね');
-            evt.target.classList.remove('liked');
-            evt.target.innerText = 'いいね';
+            let url_base = location.protocol+"//"+location.host;
+            $(evt.target).parents('.card-body-footer').find('.like-disp').html('<img class="like-icon" src="'+url_base+'/images/like_black.png">'+result.like_count);
+            like.classList.remove('liked');
+            like.innerHTML = '<img class="like-icon like" src="'+url_base+'/images/like.png">';
         })
         .fail(data => {
             alert("予期せぬエラーが発生しました。");
         });
     }
     function addLike(evt) {
+        let like = $(evt.target).parents(".post-detail-link").find("a").get(0);
         $.ajax({
             url: "/post_like_users",
             type: 'POST',
-            data: {'post_id': evt.target.dataset.post_id}
+            data: {'post_id': like.dataset.post_id}
         })
         .done(result => {
             if (! result.return_code) {
                 alert(result.message);
                 return;
             }
-            $(evt.target).parents('.card-body-footer').find('.like-disp').text(result.like_count+'いいね');
-            evt.target.classList.add('liked');
-            evt.target.innerText = 'いいね済';
+            let url_base = location.protocol+"//"+location.host;
+            $(evt.target).parents('.card-body-footer').find('.like-disp').html('<img class="like-icon" src="'+url_base+'/images/like_black.png">'+result.like_count);
+            like.classList.add('liked');
+            like.innerHTML = '<img class="like-icon liked" src="'+url_base+'/images/like.png">済';
         })
         .fail(data => {
             alert("予期せぬエラーが発生しました。");

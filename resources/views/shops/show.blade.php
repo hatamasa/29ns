@@ -10,8 +10,6 @@
         if (! confirm("投稿を削除しますか？")) return false;
         $(evt.target).prop("disabled", true);
     });
-
-
 </script>
 @endsection
 
@@ -125,26 +123,26 @@
             </div>
             <div class="card-body-footer">
                 <ul class="post-text-under">
-                    <li class="like-disp">{{ $post->like_count }}いいね</li>
-                    <a href='{{ url("/posts/{$post->id}") }}'><li>コメント{{ $post->comment_count }}件</li></a>
+                    <li class="like-disp"><img class="like-icon" src="{{ asset('images/like_black.png') }}">{{ $post->like_count }}</li>
+                    <li><a href='{{ url("/posts/{$post->id}") }}'><img class="comment-icon" src="{{ asset('images/comment.png') }}">{{ $post->comment_count }}</a></li>
                 </ul>
                 @auth
                 <ul class="post-detail-link">
                     <li>
                     @if ($post->is_liked)
-                    <a href='javascript:void(0)' class="like liked" data-post_id="{{ $post->id }}">いいね済</a>
+                    <a href='javascript:void(0)' class="like liked" data-post_id="{{ $post->id }}"><img class="like-icon liked" src="{{ asset('images/like.png') }}">済</a>
                     @else
-                    <a href='javascript:void(0)' class="like" data-post_id="{{ $post->id }}">いいね</a>
+                    <a href='javascript:void(0)' class="like" data-post_id="{{ $post->id }}"><img class="like-icon like" src="{{ asset('images/like.png') }}"></a>
                     @endif
                     </li>
-                    <a href='{{ url("/posts/{$post->id}") }}'><li>コメントする</li></a>
+                    <li><a href='{{ url("/posts/{$post->id}") }}'><img class="comment-icon" src="{{ asset('images/comment.png') }}"></a></li>
                     @if (Auth::id() == $post->user_id)
                     <li>
                         <form action='{{ url("/posts/{$post->id}") }}' method="POST" class="delete-post-form">
                         @method("DELETE")
                         @csrf
                             <input type="hidden" name="redirect_url" value="{{ url()->full() }}">
-                            <button type="submit" class="btn-link delete-link">削除する</button>
+                            <button type="submit" class="btn-link delete-link"><img src="{{ asset('images/delete.png') }}"></button>
                         </form>
                     </li>
                     @endif

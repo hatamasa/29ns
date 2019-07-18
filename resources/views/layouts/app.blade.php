@@ -66,9 +66,9 @@
                 <h1>東京の肉好きのためのSNS</h1>
                 <span>東京肉NS</span>
             </a>
-            <a href="{{ url('/home') }}" class="col-2">ホーム</a>
-            <a href="{{ url('/shops/ranking') }}" class="col-2">ランキング</a>
-            <a href="{{ url('/posts') }}" class="col-2">みんなの<br>肉ログ</a>
+            <a href="{{ url('/home') }}" class="col-2"><img src="{{ asset('images/home.png') }}"><span>ホーム</span></a>
+            <a href="{{ url('/shops/ranking') }}" class="col-2"><img src="{{ asset('images/ranking.png') }}"><span>ランキング</span></a>
+            <a href="{{ url('/posts') }}" class="col-2"><img src="{{ asset('images/29log.png') }}"><span>みんなの<br>肉ログ</span></a>
             @else
             <a href="{{ !empty(session('referrers')) ? session('referrers')[count(session('referrers'))-1] : url('/') }}" class="previous col-2">←</a>
             <h1 class="page-title col-8">@yield('title')</h1>

@@ -130,3 +130,9 @@
     display: block;
     margin: 20px;
 }
+
+.delete-link {
+    position: absolute;
+    right: 20px;
+    bottom: 10px;
+}
