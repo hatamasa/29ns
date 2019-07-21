@@ -148,6 +148,10 @@ a:active > img {
 .nav-header>a:nth-child(5) {
     line-height: 55px;
 }
+.nav-header>a.login {
+    line-height: 55px;
+    padding: 0;
+}
 .nav-header>a h1,
 .nav-header>a span:nth-child(1) {
     font-size: 10px;

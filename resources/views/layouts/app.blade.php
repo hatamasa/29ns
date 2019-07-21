@@ -75,7 +75,7 @@
             @endif
 
             @guest
-                <a href="{{ url('/login') }}" class="col-2">ログイン</a>
+                <a href="{{ url('/login') }}" class="login col-2">ログイン</a>
             @else
                 <input id="nav-input" type="checkbox" class="display-none">
                 <label id="nav-open" class="side-open col-2" for="nav-input">

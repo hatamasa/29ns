@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('style')
+<link href='{{ "@addtimestamp(css/auth.css)" }}' rel="stylesheet">
+@endsection
+
 @section('title', 'パスワードリセット')
 
 @section('content')
