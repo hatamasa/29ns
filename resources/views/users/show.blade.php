@@ -26,6 +26,10 @@
         document.getElementsByClassName("users-page-tab")[0].children[3].classList.add("current");
     }
 
+    $('.delete-post-form').submit(evt => {
+        if (! confirm("投稿を削除しますか？")) return false;
+        $(evt.target).prop("disabled", true);
+    });
 </script>
 @endsection
 
