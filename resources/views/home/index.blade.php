@@ -19,13 +19,6 @@
 
 @section('content')
 <div>
-    <div class="ad">
-        <script type="text/javascript">
-        var nend_params = {"media":61795,"site":324943,"spot":963974,"type":1,"oriented":1};
-        </script>
-        <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
-    </div>
-
     <p class="catch">
         <span>使い方は簡単 2STEP</span>
         <span>1. お店を調べる!!そして行ったお店は感謝の気持ちを込めて肉ログ(レビュー)しよう!!</span>
@@ -54,6 +47,18 @@
         {{--<a href="{{ url('/shops/near') }}" class="btn btn-default btn-lg">近くのお店を<br>探す</a>--}}
     </div>
 
+    <div class="ad">
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-format="fluid"
+             data-ad-layout-key="-fb+5w+4e-db+86"
+             data-ad-client="ca-pub-4702990894338882"
+             data-ad-slot="2301018729"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
 
     <div class="form-group recently-post">
         <div class="block-head">

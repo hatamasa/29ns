@@ -86,12 +86,16 @@
             <a href="{{ url()->current().'?tab=4' }}"><li>フォロワー</li></a>
         </ul>
 
-        <div class="ad">
-            <script type="text/javascript">
-            var nend_params = {"media":61795,"site":324943,"spot":963978,"type":1,"oriented":1};
-            </script>
-            <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
-        </div>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-format="fluid"
+             data-ad-layout-key="-fb+5w+4e-db+86"
+             data-ad-client="ca-pub-4702990894338882"
+             data-ad-slot="8743192041"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
 
         <div>
         {{-- お気に入り --}}

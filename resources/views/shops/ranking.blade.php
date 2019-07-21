@@ -10,12 +10,6 @@
 @section('title', '人気店舗ランキング')
 
 @section('content')
-<div class="ad">
-    <script type="text/javascript">
-    var nend_params = {"media":61795,"site":324943,"spot":964161,"type":1,"oriented":1};
-    </script>
-    <script type="text/javascript" src="https://js1.nend.net/js/nendAdLoader.js"></script>
-</div>
 
 <div>
     @include('common.landing_regist')
