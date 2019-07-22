@@ -15,6 +15,7 @@
 
     # wwwのリダイレクト
     RewriteCond %{HTTP_HOST} ^29-ns\.com [NC]
+    RewriteCond %{REQUEST_FILENAME} !ads\.txt
     RewriteRule ^(.*)$ https://www.29-ns.com/$1 [R=301,L]
 
     # Redirect Trailing Slashes If Not A Folder...
