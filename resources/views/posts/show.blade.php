@@ -37,7 +37,6 @@
 
 @section('content')
 
-<div class="ad">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <ins class="adsbygoogle"
          style="display:block"
@@ -48,7 +47,6 @@
     <script>
          (adsbygoogle = window.adsbygoogle || []).push({});
     </script>
-</div>
 
 <div class="card">
     <h2 class="card-title"><a href='{{ url("/shops/{$post->shop_cd}") }}'>{{ $post->shop_name }}</a></h2>
