@@ -36,14 +36,13 @@
             $(evt.target).parents('a').addClass('no-active');
             let cardHead = $(evt.target).parents('.card-head');
             if (cardHead.find('i.fa-star').hasClass("fas")) {
-                unLikeShop(cardHead);
+                unLikeShop(evt, cardHead);
             } else {
-                likeShop(cardHead);
+                likeShop(evt, cardHead);
             }
-            $(evt.target).parents('a').removeClass('no-active');
         });
     });
-    function unLikeShop(cardHead) {
+    function unLikeShop(evt, cardHead) {
         cardHead.find('i.fa-star').removeClass('fas');
         cardHead.find('i.fa-star').addClass('far');
         $.ajax({
@@ -63,9 +62,12 @@
                 return;
             }
             alert("予期せぬエラーが発生しました。");
+        })
+        .always(() => {
+            $(evt.target).parents('a').removeClass('no-active');
         });
     }
-    function likeShop(cardHead) {
+    function likeShop(evt, cardHead) {
         cardHead.find('i.fa-star').removeClass('far');
         cardHead.find('i.fa-star').addClass('fas');
         $.ajax({
@@ -85,6 +87,9 @@
                 return;
             }
             alert("予期せぬエラーが発生しました。");
+        })
+        .always(() => {
+            $(evt.target).parents('a').removeClass('no-active');
         });
     }
 
