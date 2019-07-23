@@ -1,15 +1,20 @@
 <a href='{{ url("/shops/{$shop->shop_cd}") }}' class="link">
-    <div class="card">
+    <div class="card shop-card">
         <div class="card-head">
             <h2 class="card-title">{{ $shop->shop_name }}</h2>
             @if (Auth::id() == $users->id)
-            @auth
-            <div class="star-wrap shop-like" data-shop_cd="{{ $shop->shop_cd }}">
-            @else
-            <div class="star-wrap" data-shop_cd="{{ $shop->shop_cd }}">
-            @endauth
-                <i class="fas fa-star fa-lg"></i>
-            </div>
+                @if ($shop->is_posted)
+                <div class="posted-wrap posted">
+                    <i class="fas fa-check-square fa-lg"></i>
+                </div>
+                @else
+                <div class="posted-wrap" data-link='{{ url("/posts/create?shop_cd={$shop->shop_cd}") }}'>
+                    <i class="far fa-check-square fa-lg"></i>
+                </div>
+                @endif
+                <div class="star-wrap shop-like" data-shop_cd="{{ $shop->shop_cd }}">
+                    <i class="fas fa-star fa-lg"></i>
+                </div>
             @endif
         </div>
         <div class="card-body">

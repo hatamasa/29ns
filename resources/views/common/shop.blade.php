@@ -1,7 +1,16 @@
 <a href='{{ url("/shops/{$shop["id"]}") }}' class="link">
-    <div class="card">
+    <div class="card shop-card">
         <div class="card-head">
             <h2 class="card-title">{{ $shop['name'] }}</h2>
+            @if ($shop['is_posted'] ?? false)
+            <div class="posted-wrap posted" >
+                <i class="fas fa-check-square fa-lg"></i>
+            </div>
+            @else
+            <div class="posted-wrap" data-link='{{ url("/posts/create?shop_cd={$shop["id"]}") }}'>
+                <i class="far fa-check-square fa-lg"></i>
+            </div>
+            @endif
             @auth
             <div class="star-wrap shop-like" data-shop_cd="{{ $shop['id'] }}">
             @else

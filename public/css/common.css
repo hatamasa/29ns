@@ -31,6 +31,9 @@ a:active > p,
 a:active > img {
     background-color: #d1d1d1;
 }
+a.check-clicked:active {
+    background-color: unset !important;
+}
 
 .error {
     border-color: red !important;
@@ -416,6 +419,7 @@ input[type="radio"]:checked + .radioDefault:after {
 /* カード */
 .link {
     color: unset;
+    width: 100%;
 }
 .card {
     padding: 5px 10px 5px 10px;
@@ -432,20 +436,42 @@ input[type="radio"]:checked + .radioDefault:after {
     display: flex;
 }
 .card-title {
-    width: calc(100% - 35px);
+    width: 100%;
     font-size: 15px;
     font-weight: bold;
     margin-bottom: 5px;
 }
+.shop-card .card-title {
+    width: calc(100% - 65px);
+}
+.posted-wrap {
+    position: absolute;
+    width: 35px;
+    text-align: center;
+    height: 35px;
+    padding: 5px;
+    padding-top: 6px;
+    right: 40px;
+    color: #c5c5c5;
+}
+.posted-wrap:active {
+    background-color: #d1d1d1 !important;
+}
+.posted {
+    color: #ff8100;
+}
 .fa-star {
     color: #ff8100;
 }
+.fa-star.far {
+    color: #c5c5c5;
+}
 .star-wrap {
     position: absolute;
-    width: 40px;
+    width: 35px;
     text-align: center;
-    height: 40px;
-    padding: 10px;
+    height: 35px;
+    padding: 5px;
     right: 5px;
 }
 .star-wrap:active {

@@ -13,22 +13,39 @@
         });
     }
 
+    // 投稿イベント
+    [].forEach.call(document.getElementsByClassName("posted-wrap"), elem => {
+        if (elem.classList.contains("posted")) {
+            elem.addEventListener("click", evt => {
+                evt.preventDefault();
+                alert("すでに投稿しています。");
+            })
+        } else {
+            elem.addEventListener("click", evt => {
+                evt.preventDefault();
+                $(evt.target).parents('a').addClass('no-active');
+                location.href = $(evt.target).parents('.card-head').find('.posted-wrap').data('link');
+            });
+        }
+    });
+
     // 店舗お気に入りイベント
     [].forEach.call(document.getElementsByClassName("shop-like"), elem => {
         elem.addEventListener('click', evt => {
             evt.preventDefault();
             $(evt.target).parents('a').addClass('no-active');
             let cardHead = $(evt.target).parents('.card-head');
-            if (cardHead.find('i').hasClass("fas")) {
+            if (cardHead.find('i.fa-star').hasClass("fas")) {
                 unLikeShop(cardHead);
             } else {
                 likeShop(cardHead);
             }
+            $(evt.target).parents('a').removeClass('no-active');
         });
     });
     function unLikeShop(cardHead) {
-        cardHead.find('i').removeClass('fas');
-        cardHead.find('i').addClass('far');
+        cardHead.find('i.fa-star').removeClass('fas');
+        cardHead.find('i.fa-star').addClass('far');
         $.ajax({
             url: '/user_like_shops/'+cardHead.find('.shop-like').data('shop_cd'),
             type: 'POST',
@@ -39,8 +56,8 @@
         .done(result => {
         })
         .fail(error => {
-            cardHead.find('i').removeClass('far');
-            cardHead.find('i').addClass('fas');
+            cardHead.find('i.fa-star').removeClass('far');
+            cardHead.find('i.fa-star').addClass('fas');
             if (error.responseJSON.verified) {
                 location.href = '/email/verify';
                 return;
@@ -49,8 +66,8 @@
         });
     }
     function likeShop(cardHead) {
-        cardHead.find('i').removeClass('far');
-        cardHead.find('i').addClass('fas');
+        cardHead.find('i.fa-star').removeClass('far');
+        cardHead.find('i.fa-star').addClass('fas');
         $.ajax({
             url: '/user_like_shops',
             type: 'POST',
@@ -61,8 +78,8 @@
         .done(result => {
         })
         .fail(error => {
-            cardHead.find('i').removeClass('fas');
-            cardHead.find('i').addClass('far');
+            cardHead.find('i.fa-star').removeClass('fas');
+            cardHead.find('i.fa-star').addClass('far');
             if (error.responseJSON.verified) {
                 location.href = '/email/verify';
                 return;

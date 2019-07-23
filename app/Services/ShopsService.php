@@ -192,6 +192,7 @@ class ShopsService extends Service
                     $shop['score']      = $db_shop->score ?? null;
                     $shop['post_count'] = $db_shop->post_count ?? 0;
                     $shop['like_count'] = $db_shop->like_count ?? 0;
+                    $shop['is_posted']  = $db_shop->is_posted;
                     $shop['is_liked']   = $db_shop->is_liked;
                     unset($db_shops[$key]);
                     break;
