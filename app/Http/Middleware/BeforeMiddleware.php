@@ -36,6 +36,9 @@ class BeforeMiddleware
             else if ($end == $previous) {
                 // リファラー履歴の最後とリファラが一致した場合は何もしない
             }
+            else if (strpos($previous, 'create')) {
+                // リファラーが作成画面の場合は何もしない
+            }
             else if ($length < 2
                 || ($length >= 2 && explode('?', $referrers[$length-2])[0] != $current)) {
                 // 2つ前と違う画面の場合はリファラを追加する
