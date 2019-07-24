@@ -44,9 +44,6 @@
          data-ad-layout-key="-fb+5w+4e-db+86"
          data-ad-client="ca-pub-4702990894338882"
          data-ad-slot="2361616529"></ins>
-    <script>
-         (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
 
 <div class="card">
     <h2 class="card-title"><a href='{{ url("/shops/{$post->shop_cd}") }}'>{{ $post->shop_name }}</a></h2>
@@ -161,7 +158,6 @@
 
 <div class="ad">
     <center>スポンサーリンク(広告)</center>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <!-- 投稿詳細フッター -->
     <ins class="adsbygoogle"
          style="display:block"
@@ -169,8 +165,5 @@
          data-ad-slot="8489576026"
          data-ad-format="auto"
          data-full-width-responsive="true"></ins>
-    <script>
-         (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
 </div>
 @endsection

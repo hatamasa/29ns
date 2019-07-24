@@ -20,9 +20,6 @@
      data-ad-layout-key="-fb+5w+4e-db+86"
      data-ad-client="ca-pub-4702990894338882"
      data-ad-slot="2337565791"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
 
 <div>
     @include('common.landing_regist')
@@ -40,7 +37,6 @@
         <div class="ad">
             <center>スポンサーリンク(広告)</center>
             @if ($loop->iteration == 6)
-                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                 <!-- 店舗一覧コンテンツ間１ -->
                 <ins class="adsbygoogle"
                      style="display:block"
@@ -48,11 +44,7 @@
                      data-ad-slot="2665144529"
                      data-ad-format="auto"
                      data-full-width-responsive="true"></ins>
-                <script>
-                     (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
             @elseif ($loop->iteration == 12)
-                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                 <!-- 店舗一覧コンテンツ間２ -->
                 <ins class="adsbygoogle"
                      style="display:block"
@@ -60,11 +52,7 @@
                      data-ad-slot="6201064853"
                      data-ad-format="auto"
                      data-full-width-responsive="true"></ins>
-                <script>
-                     (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
             @elseif ($loop->iteration == 18)
-                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                 <!-- 店舗一覧コンテンツ間３ -->
                 <ins class="adsbygoogle"
                      style="display:block"
@@ -72,11 +60,7 @@
                      data-ad-slot="5268091282"
                      data-ad-format="auto"
                      data-full-width-responsive="true"></ins>
-                <script>
-                     (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
             @elseif ($loop->iteration == 24)
-                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                 <!-- 店舗一覧コンテンツ間４ -->
                 <ins class="adsbygoogle"
                      style="display:block"
@@ -84,9 +68,6 @@
                      data-ad-slot="9015764607"
                      data-ad-format="auto"
                      data-full-width-responsive="true"></ins>
-                <script>
-                     (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
             @endif
         </div>
         @endif
@@ -98,7 +79,6 @@
 
  <div class="ad">
     <center>スポンサーリンク(広告)</center>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <!-- 店舗一覧フッター -->
     <ins class="adsbygoogle"
          style="display:block"
@@ -106,8 +86,5 @@
          data-ad-slot="6389601263"
          data-ad-format="auto"
          data-full-width-responsive="true"></ins>
-    <script>
-         (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
  </div>
 @endsection

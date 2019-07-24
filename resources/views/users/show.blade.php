@@ -93,9 +93,6 @@
              data-ad-layout-key="-fb+5w+4e-db+86"
              data-ad-client="ca-pub-4702990894338882"
              data-ad-slot="8743192041"></ins>
-        <script>
-             (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
 
         <div>
         {{-- お気に入り --}}
@@ -178,7 +175,6 @@
 
 <div class="ad">
     <center>スポンサーリンク(広告)</center>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <!-- ユーザ詳細フッター -->
     <ins class="adsbygoogle"
          style="display:block"
@@ -186,9 +182,6 @@
          data-ad-slot="6984922665"
          data-ad-format="auto"
          data-full-width-responsive="true"></ins>
-    <script>
-         (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
 </div>
 
 @endsection

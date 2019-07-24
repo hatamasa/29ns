@@ -26,9 +26,6 @@
          data-ad-layout-key="-fb+5w+4e-db+86"
          data-ad-client="ca-pub-4702990894338882"
          data-ad-slot="9413221989"></ins>
-    <script>
-         (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
 
     <div class="block-body">
     @foreach ($posts as $post)
@@ -38,7 +35,6 @@
         <div class="ad">
             <center>スポンサーリンク(広告)</center>
             @if ($loop->iteration == 8)
-                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                 <!-- 投稿一覧コンテンツ間１ -->
                 <ins class="adsbygoogle"
                      style="display:block"
@@ -46,11 +42,7 @@
                      data-ad-slot="6361681108"
                      data-ad-format="auto"
                      data-full-width-responsive="true"></ins>
-                <script>
-                     (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
             @elseif ($loop->iteration == 16)
-                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                 <!-- 投稿一覧コンテンツ間２ -->
                 <ins class="adsbygoogle"
                      style="display:block"
@@ -58,11 +50,7 @@
                      data-ad-slot="3735517765"
                      data-ad-format="auto"
                      data-full-width-responsive="true"></ins>
-                <script>
-                     (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
             @elseif ($loop->iteration == 24)
-                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                 <!-- 投稿一覧コンテンツ間３ -->
                 <ins class="adsbygoogle"
                      style="display:block"
@@ -70,9 +58,6 @@
                      data-ad-slot="3989834481"
                      data-ad-format="auto"
                      data-full-width-responsive="true"></ins>
-                <script>
-                     (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
             @endif
         </div>
         @endif
@@ -84,7 +69,6 @@
 
 <div class="ad">
     <center>スポンサーリンク(広告)</center>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <!-- 投稿一覧フッター -->
     <ins class="adsbygoogle"
          style="display:block"
@@ -92,8 +76,5 @@
          data-ad-slot="4857027742"
          data-ad-format="auto"
          data-full-width-responsive="true"></ins>
-    <script>
-         (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
 </div>
 @endsection

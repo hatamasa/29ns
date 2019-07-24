@@ -1,5 +1,11 @@
 (() => {
 
+    document.addEventListener('DOMContentLoaded', function() {
+        $('.adsbygoogle').each(function() {
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        });
+    });
+
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

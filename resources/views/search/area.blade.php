@@ -88,9 +88,6 @@
          data-ad-layout-key="-gw-3+1f-3d+2z"
          data-ad-client="ca-pub-4702990894338882"
          data-ad-slot="9888752751"></ins>
-    <script>
-         (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
 
 <div>
     @include('common.landing_regist')
@@ -115,7 +112,6 @@
         <div class="ad">
             <center>スポンサーリンク(広告)</center>
             @if ($loop->iteration == 3)
-                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                 <!-- 検索画面コンテンツ間１ -->
                 <ins class="adsbygoogle"
                      style="display:block"
@@ -123,11 +119,7 @@
                      data-ad-slot="8105173466"
                      data-ad-format="auto"
                      data-full-width-responsive="true"></ins>
-                <script>
-                     (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
             @elseif ($loop->iteration == 6)
-                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                 <!-- 検索画面コンテンツ間２ -->
                 <ins class="adsbygoogle"
                      style="display:block"
@@ -135,11 +127,7 @@
                      data-ad-slot="4980316670"
                      data-ad-format="auto"
                      data-full-width-responsive="true"></ins>
-                <script>
-                     (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
             @elseif ($loop->iteration == 12)
-                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                 <!-- 検索画面コンテンツ間３ -->
                 <ins class="adsbygoogle"
                      style="display:block"
@@ -147,11 +135,7 @@
                      data-ad-slot="1041071665"
                      data-ad-format="auto"
                      data-full-width-responsive="true"></ins>
-                <script>
-                     (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
             @elseif ($loop->iteration == 15)
-                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                 <!-- 検索画面コンテンツ間４ -->
                 <ins class="adsbygoogle"
                      style="display:block"
@@ -159,11 +143,7 @@
                      data-ad-slot="5330836314"
                      data-ad-format="auto"
                      data-full-width-responsive="true"></ins>
-                <script>
-                     (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
             @elseif ($loop->iteration == 18)
-                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                 <!-- 検索画面コンテンツ間５ -->
                 <ins class="adsbygoogle"
                      style="display:block"
@@ -171,11 +151,7 @@
                      data-ad-slot="7454081557"
                      data-ad-format="auto"
                      data-full-width-responsive="true"></ins>
-                <script>
-                     (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
             @elseif ($loop->iteration == 21)
-                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                 <!-- 検索画面コンテンツ間６ -->
                 <ins class="adsbygoogle"
                      style="display:block"
@@ -183,11 +159,7 @@
                      data-ad-slot="6140999889"
                      data-ad-format="auto"
                      data-full-width-responsive="true"></ins>
-                <script>
-                     (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
             @elseif ($loop->iteration == 24)
-                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                 <!-- 検索画面コンテンツ間７ -->
                 <ins class="adsbygoogle"
                      style="display:block"
@@ -195,11 +167,7 @@
                      data-ad-slot="3514836547"
                      data-ad-format="auto"
                      data-full-width-responsive="true"></ins>
-                <script>
-                     (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
             @elseif ($loop->iteration == 27)
-                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                 <!-- 検索画面コンテンツ間８ -->
                 <ins class="adsbygoogle"
                      style="display:block"
@@ -207,9 +175,6 @@
                      data-ad-slot="8536418300"
                      data-ad-format="auto"
                      data-full-width-responsive="true"></ins>
-                <script>
-                     (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
             @endif
         </div>
         @endif
@@ -223,7 +188,6 @@
 </div>
 
 <div class="ad">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <!-- 検索画面フッター -->
     <ins class="adsbygoogle"
          style="display:block"
@@ -231,8 +195,5 @@
          data-ad-slot="3351185013"
          data-ad-format="auto"
          data-full-width-responsive="true"></ins>
-    <script>
-         (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
 </div>
 @endsection

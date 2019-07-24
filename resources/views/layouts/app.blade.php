@@ -52,6 +52,12 @@
     <meta name="twitter:title"       content="東京肉NS" />
     <meta name="twitter:description" content="肉は確かに旨いが、東京の肉はもっと旨い！肉好きの肉好きによる肉好きのためのサイト！" />
     <meta name="twitter:image"       content="https://img.29-ns.com/29ns_ogp.jpg" />
+
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+    <link rel="dns-prefetch" href="//pagead2.googlesyndication.com"/>
+    <link rel="dns-prefetch" href="//googleads.g.doubleclick.net"/>
+    <link rel="dns-prefetch" href="//tpc.googlesyndication.com"/>
+    <link rel="dns-prefetch" href="//www.gstatic.com"/>
 </head>
 <body>
     <!-- facebook -->
