@@ -70,7 +70,7 @@ class UsersService extends Service
     private function getPosts($page, $id)
     {
         // 一覧を取得
-        $posts = $this->PostsService->getList4RecentilyList(self::USER_PAGE_LIST_LIMIT, $page, $id);
+        $posts = $this->PostsService->getList4RecentlyList(self::USER_PAGE_LIST_LIMIT, $page, $id);
 
         $count = DB::table('posts')->where([
                 'is_deleted' => 0,

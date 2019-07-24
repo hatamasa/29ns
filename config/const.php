@@ -251,6 +251,11 @@ return [
     'user' => [
         // 自己紹介の例文
         'example' => '自己紹介文を書こう！&#13;&#10;例: &#13;&#10;港区在住の焼肉大好きサラリーマン！&#13;&#10;焼肉は断然タレ派。好きな部位はハラミ。庶民派思考。&#13;&#10;毎週末焼肉を食べに行ってるのでたくさん投稿していきます！',
-    ]
+    ],
+
+    'home' => [
+        'recently_post_shops_json' => 'cache/recently_post_shops.json',
+        'shop_ranking_shops_json' => 'cache/shop_ranking_shops.json',
+    ],
 
 ];

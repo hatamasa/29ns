@@ -34,9 +34,9 @@ class HomeController extends Controller
         session(['referrers' => []]);
         try {
             // 最近の肉ログ一覧を取得
-            $posts = $this->PostsService->getList4RecentilyList(self::POSTS_LIST_LIMIT);
+            $posts = $this->PostsService->getList4HomeRecentlyList(self::POSTS_LIST_LIMIT);
             // 人気のお店を取得
-            $shops = $this->ShopsService->getList4PopularityList(self::SHOPS_LIST_LIMIT);
+            $shops = $this->ShopsService->getList4HomePopularityList(self::SHOPS_LIST_LIMIT);
         } catch (\Exception $e) {
             $this->_log($e->getMessage(), "error");
             session()->flash("error", "店舗取得でエラーが発生しました。少し時間を置いてから再度お試しください。");

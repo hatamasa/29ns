@@ -134,6 +134,70 @@ class ShopsService extends Service
     }
 
     /**
+     * [ホーム]人気のお店を取得する
+     * @param int $limit
+     * @return Collection
+     */
+    public function getList4HomePopularityList(int $limit)
+    {
+        $shops = $this->Shops->getPopularityList($limit);
+        $shop_ids = [];
+        foreach ($shops as $shop) {
+            $shop_ids[] = $shop->shop_cd;
+        }
+        // Apiキャッシュを取得
+        $result = $this->getRestApiCache($shop_ids);
+        // 店舗の取得結果から投稿に必要な情報を取得する
+        foreach ($shops as $key => &$shop) {
+            $shop_exists = false;
+            foreach ($result as $res_shop) {
+                if ($shop->shop_cd == $res_shop['id']) {
+                    $shop->shop_name     = $res_shop['name'];
+                    $shop->shop_img_url  = !empty($res_shop['image_url']['shop_image1']) ? $res_shop['image_url']['shop_image1'] : null;
+                    $shop->line    = $res_shop['access']['line'];
+                    $shop->station = $res_shop['access']['station'];
+                    $shop->walk    = $res_shop['access']['walk'];
+                    $shop->note    = $res_shop['access']['note'];
+                    $shop->budget  = $res_shop['budget'];
+                    $shop_exists = true;
+                    break;
+                }
+            }
+            // 店舗がAPIから取得出来なかった場合
+            if (! $shop_exists) {
+                unset($shops[$key]);
+            }
+        }
+
+        return $shops;
+    }
+
+    /**
+     * ホーム人気店舗のキャッシュ取得と作成する
+     * @param array $shop_ids
+     * @return array|mixed|mixed
+     */
+    private function getRestApiCache(array $shop_ids)
+    {
+        $shops = [];
+        $json_path = storage_path('app/'.Config::get('const.home.shop_ranking_shops_json'));
+        if (file_exists($json_path) ) {
+            // キャッシュ有効
+            $shops = json_decode(file_get_contents($json_path), true);
+            if ($shops['shop_ids'] == implode('_', $shop_ids)) {
+                return $shops;
+            }
+        }
+        // キャッシュがなかったり店舗が異なる場合は取得する
+        $tmp = $this->ApiService->callGnaviRestSearchApi(['id' => implode(',', $shop_ids)]);
+        $shops = $tmp['rest'];
+        $shops['shop_ids'] = implode('_', $shop_ids);
+        file_put_contents($json_path, json_encode($shops));
+
+        return $shops;
+    }
+
+    /**
      * shop_cdでAPIとDBから店舗を取得する
      * @param string $shop_cd
      * @return array

@@ -38,7 +38,7 @@ class PostsController extends Controller
     {
         $page = $request->page ?? 1;
         // 一覧を取得
-        $posts = $this->PostsService->getList4RecentilyList(self::POSTS_LIST_LIMIT, $page);
+        $posts = $this->PostsService->getList4RecentlyList(self::POSTS_LIST_LIMIT, $page);
 
         $count = DB::table('posts')->where('is_deleted', 0)->count();
 

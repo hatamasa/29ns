@@ -2,6 +2,7 @@
 namespace App\Services;
 
 use App\Repositories\PostsRepository;
+use Illuminate\Support\Facades\Config;
 
 class PostsService extends Service
 {
@@ -42,7 +43,7 @@ class PostsService extends Service
      * @param int $user_id
      * @return object
      */
-    public function getList4RecentilyList(int $limit, int $page = 1, int $user_id = null)
+    public function getList4RecentlyList(int $limit, int $page = 1, int $user_id = null)
     {
         // 最近の投稿を取得
         $posts = $this->Posts->getRecentlyList($limit, $page, $user_id);
@@ -76,6 +77,66 @@ class PostsService extends Service
         }
 
         return $posts;
+    }
+
+    /**
+     * [ホーム]最近の肉ログ一覧を取得する
+     * @param int $id
+     * @return object
+     */
+    public function getList4HomeRecentlyList(int $limit)
+    {
+        // 最近の投稿を取得
+        $posts = $this->Posts->getRecentlyList($limit);
+        $shop_ids = [];
+        foreach ($posts as $post) {
+            $shop_ids[] = $post->shop_cd;
+        }
+        // Apiキャッシュを取得
+        $result = $this->getRestApiCache($shop_ids);
+        // 店舗の取得結果から投稿に必要な情報を取得する
+        foreach ($posts as $key => &$post) {
+            $post_exists = false;
+            foreach ($result as $shop) {
+                if ($post->shop_cd == $shop['id']) {
+                    $post->shop_name     = $shop['name'];
+                    $post->shop_img_url  = !empty($shop['image_url']['shop_image1']) ? $shop['image_url']['shop_image1'] : null;
+                    $post_exists = true;
+                    break;
+                }
+            }
+            // 投稿に対する店舗が取得出来なかった場合
+            if (! $post_exists) {
+                unset($posts[$key]);
+            }
+        }
+
+        return $posts;
+    }
+
+    /**
+     * ホーム最近の投稿のキャッシュ取得と作成する
+     * @param array $shop_ids
+     * @return array|mixed|mixed
+     */
+    private function getRestApiCache(array $shop_ids)
+    {
+        $shops = [];
+        $json_path = storage_path('app/'.Config::get('const.home.recently_post_shops_json'));
+        if (file_exists($json_path) ) {
+            // キャッシュ有効
+            $shops = json_decode(file_get_contents($json_path), true);
+            if ($shops['shop_ids'] == implode('_', $shop_ids)) {
+                return $shops;
+            }
+        }
+        // キャッシュがなかったり店舗が異なる場合は取得する
+        $tmp = $this->ApiService->callGnaviRestSearchApi(['id' => implode(',', $shop_ids)]);
+        $shops = $tmp['rest'];
+        $shops['shop_ids'] = implode('_', $shop_ids);
+        file_put_contents($json_path, json_encode($shops));
+
+        return $shops;
     }
 
     /**
