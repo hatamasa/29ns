@@ -61,7 +61,10 @@
     <input type="hidden" id="token" value="{{ $access_token ?? '' }}">
     <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
         <div class="nav-header">
-            @if (url()->current() == url('/') || url()->current() == url('/home'))
+            @if (url()->current() == url('/')
+                || url()->current() == url('/home')
+                || url()->current() == url('/shops/ranking')
+                || url()->current() == url('/posts'))
             <a href="{{ url('/home') }}" class="col-4">
                 <h1>東京の肉好きのためのSNS</h1>
                 <span>東京肉NS</span>

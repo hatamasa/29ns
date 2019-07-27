@@ -6,6 +6,8 @@
 
 @section('script')
 <script>
+    document.querySelector('.nav-header>a:nth-child(4)').style.backgroundColor = '#800000';
+
     $('.delete-post-form').submit(evt => {
         if (! confirm("投稿を削除しますか？")) return false;
         $(evt.target).prop("disabled", true);
@@ -19,6 +21,7 @@
 <div>
     @include('common.landing_regist')
 
+{{--
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <ins class="adsbygoogle"
          style="display:block"
@@ -26,6 +29,7 @@
          data-ad-layout-key="-fb+5w+4e-db+86"
          data-ad-client="ca-pub-4702990894338882"
          data-ad-slot="9413221989"></ins>
+         --}}
 
     <div class="block-body">
     @foreach ($posts as $post)
@@ -36,6 +40,7 @@
             <center>スポンサーリンク(広告)</center>
             @if ($loop->iteration == 8)
                 <!-- 投稿一覧コンテンツ間１ -->
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                 <ins class="adsbygoogle"
                      style="display:block"
                      data-ad-client="ca-pub-4702990894338882"

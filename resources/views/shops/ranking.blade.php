@@ -5,6 +5,9 @@
 @endsection
 
 @section('script')
+<script>
+    document.querySelector('.nav-header>a:nth-child(3)').style.backgroundColor = '#800000';
+</script>
 @endsection
 
 @section('title', '人気店舗ランキング')

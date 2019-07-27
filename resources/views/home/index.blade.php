@@ -10,6 +10,8 @@
 
 @section('script')
 <script>
+    document.querySelector('.nav-header>a:nth-child(2)').style.backgroundColor = '#800000';
+
     $('.delete-post-form').submit(evt => {
         if (! confirm("投稿を削除しますか？")) return false;
         $(evt.target).prop("disabled", true);
