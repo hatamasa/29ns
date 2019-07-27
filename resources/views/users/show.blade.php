@@ -67,10 +67,10 @@
                         <li>{{ floor((date('Ym') - $user->birth_ym) / 1000) * 10 }}代</li>
                         <li>{{ $users->post_count }}件の肉ログ</li>
                         <li>
-                            フォロー{{ $users->follow_count }}件
+                            フォロー{{ $users->follow_count }}人
                         </li>
                         <li>
-                            フォロワー{{ $users->follower_count }}件
+                            フォロワー{{ $users->follower_count }}人
                         </li>
                         <li class="contents">{{ $users->contents }}</li>
                     </ul>
