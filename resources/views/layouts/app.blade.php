@@ -66,9 +66,9 @@
                 <h1>東京の肉好きのためのSNS</h1>
                 <span>東京肉NS</span>
             </a>
-            <a href="{{ url('/home') }}" class="col-2"><img src="{{ asset('images/home.png') }}"><span>ホーム</span></a>
-            <a href="{{ url('/shops/ranking') }}" class="col-2"><img src="{{ asset('images/ranking.png') }}"><span>ランキング</span></a>
-            <a href="{{ url('/posts') }}" class="col-2"><img src="{{ asset('images/29log.png') }}"><span>みんなの<br>肉ログ</span></a>
+            <a href="{{ url('/home') }}" class="col-2"><img src="{{ asset('images/home.png') }}" alt="ホームボタン"><span>ホーム</span></a>
+            <a href="{{ url('/shops/ranking') }}" class="col-2"><img src="{{ asset('images/ranking.png') }}" alt="ランキングボタン"><span>ランキング</span></a>
+            <a href="{{ url('/posts') }}" class="col-2"><img src="{{ asset('images/29log.png') }}" alt="投稿一覧ボタン"><span>みんなの<br>肉ログ</span></a>
             @else
             <a href="{{ !empty(session('referrers')) ? session('referrers')[count(session('referrers'))-1] : url('/') }}" class="previous col-2">←</a>
             <h1 class="page-title col-8">@yield('title')</h1>
@@ -80,11 +80,11 @@
                 <input id="nav-input" type="checkbox" class="display-none">
                 <label id="nav-open" class="side-open col-2" for="nav-input">
                     @if ($user->thumbnail_url)
-                    <img alt="" src="{{ $user->thumbnail_url }}" class="icon">
+                    <img alt="" src="{{ $user->thumbnail_url }}" class="icon" alt="ユーザプロフィール画像">
                     @elseif ($user->sex == 1)
-                    <img alt="" src="{{ asset('/images/man.png') }}" class="icon">
+                    <img alt="" src="{{ asset('/images/man.png') }}" class="icon" alt="ユーザ男性デフォルトプロフィール画像">
                     @elseif ($user->sex == 2)
-                    <img alt="" src="{{ asset('/images/woman.png') }}" class="icon">
+                    <img alt="" src="{{ asset('/images/woman.png') }}" class="icon" alt="ユーザ女性デフォルトプロフィール画像">
                     @endif
                     <span></span>
                 </label>

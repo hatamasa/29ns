@@ -56,6 +56,7 @@
                 imgArea.remove();
                 previewArea.classList.add("uploaded");
                 let preview = document.createElement("img");
+                preview.alt = "投稿画像";
                 preview.classList.add("preview");
                 previewArea.insertBefore(preview, file);
             }
@@ -144,7 +145,7 @@
             </h2>
             <div class="card-body">
                 <div class="shop-img">
-                    <img alt="" src="{{ !empty($shop['image_url']['shop_image1']) ? $shop['image_url']['shop_image1'] : asset('images/shop.png') }}">
+                    <img alt="店舗TOP画像" src="{{ !empty($shop['image_url']['shop_image1']) ? $shop['image_url']['shop_image1'] : asset('images/shop.png') }}">
                 </div>
                 <div class="shop-text">
                     <ul>

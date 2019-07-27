@@ -25,7 +25,7 @@
         </div>
         <div class="card-body">
             <div class="shop-img">
-                <img alt="" src="{{ !empty($shop['image_url']['shop_image1']) ? $shop['image_url']['shop_image1'] : asset('images/shop.png') }}">
+                <img alt="" src="{{ !empty($shop['image_url']['shop_image1']) ? $shop['image_url']['shop_image1'] : asset('images/shop.png') }}" alt="店舗TOP画像">
             </div>
             <div class="shop-text">
                 <ul>

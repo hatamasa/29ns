@@ -55,11 +55,11 @@
             <div class="card-body">
                 <div class="user-img">
                     @if ($users->thumbnail_url)
-                    <img alt="" src="{{ $users->thumbnail_url }}" class="icon">
+                    <img alt="ユーザプロフィール画像" src="{{ $users->thumbnail_url }}" class="icon">
                     @elseif ($users->sex == 1)
-                    <img alt="" src="{{ asset('/images/man.png') }}" class="icon">
+                    <img alt="ユーザ男性デフォルトプロフィール画像" src="{{ asset('/images/man.png') }}" class="icon">
                     @elseif ($users->sex == 2)
-                    <img alt="" src="{{ asset('/images/woman.png') }}" class="icon">
+                    <img alt="ユーザ女性デフォルトプロフィール画像" src="{{ asset('/images/woman.png') }}" class="icon">
                     @endif
                 </div>
                 <div class="user-text">
@@ -114,11 +114,11 @@
                     <a href='{{ url("/users/{$user->id}") }}'>
                         <li>
                             @if ($user->thumbnail_url)
-                            <img alt="" src="{{ $user->thumbnail_url }}" class="icon">
+                            <img alt="ユーザプロフィール画像" src="{{ $user->thumbnail_url }}" class="icon">
                             @elseif ($user->sex == 1)
-                            <img alt="" src="{{ asset('/images/man.png') }}" class="icon">
+                            <img alt="ユーザ男性デフォルトプロフィール画像" src="{{ asset('/images/man.png') }}" class="icon">
                             @elseif ($user->sex == 2)
-                            <img alt="" src="{{ asset('/images/woman.png') }}" class="icon">
+                            <img alt="ユーザ女性デフォルトプロフィール画像" src="{{ asset('/images/woman.png') }}" class="icon">
                             @endif
                             {{ $user->name }}さん
                         </li>
@@ -139,11 +139,11 @@
                     <a href='{{ url("/users/{$user->id}") }}'>
                         <li>
                             @if ($user->thumbnail_url)
-                            <img alt="" src="{{ $user->thumbnail_url }}" class="icon">
+                            <img alt="ユーザプロフィール画像" src="{{ $user->thumbnail_url }}" class="icon">
                             @elseif ($user->sex == 1)
-                            <img alt="" src="{{ asset('/images/man.png') }}" class="icon">
+                            <img alt="ユーザ男性デフォルトプロフィール画像" src="{{ asset('/images/man.png') }}" class="icon">
                             @elseif ($user->sex == 2)
-                            <img alt="" src="{{ asset('/images/woman.png') }}" class="icon">
+                            <img alt="ユーザ女性デフォルトプロフィール画像" src="{{ asset('/images/woman.png') }}" class="icon">
                             @endif
                             {{ $user->name }}さん
                         </li>

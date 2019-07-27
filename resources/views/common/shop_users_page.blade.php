@@ -19,7 +19,7 @@
         </div>
         <div class="card-body">
             <div class="shop-img">
-                <img alt="" src="{{ $shop->shop_img_url ?? asset('images/shop.png') }}">
+                <img alt="" src="{{ $shop->shop_img_url ?? asset('images/shop.png') }}" alt="店舗TOP画像">
             </div>
             <div class="shop-text">
                 <ul>

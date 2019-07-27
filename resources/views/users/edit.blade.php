@@ -100,11 +100,11 @@
                     <div class="user-img">
                         <canvas id="canvas" width="0" height="0"></canvas>
                         @if ($users->thumbnail_url)
-                        <img alt="" src="{{ $users->thumbnail_url }}" class="icon">
+                        <img alt="ユーザプロフィール画像" src="{{ $users->thumbnail_url }}" class="icon">
                         @elseif ($users->sex == 1)
-                        <img alt="" src="{{ asset('/images/man.png') }}" class="icon">
+                        <img alt="ユーザ男性デフォルトプロフィール画像" src="{{ asset('/images/man.png') }}" class="icon">
                         @elseif ($users->sex == 2)
-                        <img alt="" src="{{ asset('/images/woman.png') }}" class="icon">
+                        <img alt="ユーザ女性デフォルトプロフィール画像" src="{{ asset('/images/woman.png') }}" class="icon">
                         @endif
                         <input type="file" id="user-img" accept="image/png, image/jpeg">
                         <label for="user-img">写真を変更する</label>

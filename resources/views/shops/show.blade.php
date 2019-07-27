@@ -19,11 +19,11 @@
 <div>
     <div class="block-head user-thumbnail">
         @if ($user->thumbnail_url)
-        <img alt="" src="{{ $user->thumbnail_url }}" class="icon">
+        <img alt="ユーザプロフィール画像" src="{{ $user->thumbnail_url }}" class="icon">
         @elseif ($user->sex == 1)
-        <img alt="" src="{{ asset('/images/man.png') }}" class="icon">
+        <img alt="ユーザ男性デフォルトプロフィール画像" src="{{ asset('/images/man.png') }}" class="icon">
         @elseif ($user->sex == 2)
-        <img alt="" src="{{ asset('/images/woman.png') }}" class="icon">
+        <img alt="ユーザ女性デフォルトプロフィール画像" src="{{ asset('/images/woman.png') }}" class="icon">
         @endif
         <a href='{{ url("/posts/create?shop_cd={$shop["id"]}") }}' class="icon">
             <div>このお店を肉ログする</div>
@@ -47,7 +47,7 @@
             </div>
             <div class="card-body">
                 <div class="shop-img">
-                    <img alt="" src="{{ !empty($shop['image_url']['shop_image1']) ? $shop['image_url']['shop_image1'] : asset('images/shop.png') }}">
+                    <img alt="店舗TOP画像" src="{{ !empty($shop['image_url']['shop_image1']) ? $shop['image_url']['shop_image1'] : asset('images/shop.png') }}">
                 </div>
                 <div class="shop-text">
                     <ul>
@@ -114,31 +114,31 @@
                 </div>
                 <ul class="post-img">
                     @if (!empty($post->img_url_1))
-                    <li><img alt="" src="{{ $post->img_url_1 }}"></li>
+                    <li><img alt="投稿画像1" src="{{ $post->img_url_1 }}"></li>
                     @endif
                     @if (!empty($post->img_url_2))
-                    <li><img alt="" src="{{ $post->img_url_2 }}"></li>
+                    <li><img alt="投稿画像2" src="{{ $post->img_url_2 }}"></li>
                     @endif
                     @if (!empty($post->img_url_3))
-                    <li><img alt="" src="{{ $post->img_url_3 }}"></li>
+                    <li><img alt="投稿画像3" src="{{ $post->img_url_3 }}"></li>
                     @endif
                 </ul>
             </div>
             <div class="card-body-footer">
                 <ul class="post-text-under">
                     <li class="like-disp"><img class="like-icon" src="{{ asset('images/like_black.png') }}">{{ $post->like_count }}</li>
-                    <li><a href='{{ url("/posts/{$post->id}") }}'><img class="comment-icon" src="{{ asset('images/comment.png') }}">{{ $post->comment_count }}</a></li>
+                    <li><a href='{{ url("/posts/{$post->id}") }}'><img alt="コメントアイコン画像" class="comment-icon" src="{{ asset('images/comment.png') }}">{{ $post->comment_count }}</a></li>
                 </ul>
                 @auth
                 <ul class="post-detail-link">
                     <li>
                     @if ($post->is_liked)
-                    <a href='javascript:void(0)' class="like liked" data-post_id="{{ $post->id }}"><img class="like-icon liked" src="{{ asset('images/like.png') }}">済</a>
+                    <a href='javascript:void(0)' class="like liked" data-post_id="{{ $post->id }}"><img class="like-icon liked" src="{{ asset('images/like.png') }}" alt="いいねアイコン">済</a>
                     @else
-                    <a href='javascript:void(0)' class="like" data-post_id="{{ $post->id }}"><img class="like-icon like" src="{{ asset('images/like.png') }}"></a>
+                    <a href='javascript:void(0)' class="like" data-post_id="{{ $post->id }}"><img class="like-icon like" src="{{ asset('images/like.png') }}" alt="いいねアイコン"></a>
                     @endif
                     </li>
-                    <li><a href='{{ url("/posts/{$post->id}") }}'><img class="comment-icon" src="{{ asset('images/comment.png') }}"></a></li>
+                    <li><a href='{{ url("/posts/{$post->id}") }}'><img class="comment-icon" src="{{ asset('images/comment.png') }}" alt="コメントアイコン"></a></li>
                     @if (Auth::id() == $post->user_id)
                     <li>
                         <form action='{{ url("/posts/{$post->id}") }}' method="POST" class="delete-post-form">

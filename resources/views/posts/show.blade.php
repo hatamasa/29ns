@@ -58,11 +58,11 @@
                     <a href='{{ url("/users/{$post->user_id}")}}'>
                         <p class="name">
                             @if ($post->user_thumbnail_url)
-                            <img alt="" src="{{ $post->user_thumbnail_url }}" class="icon">
+                            <img alt="" src="{{ $post->user_thumbnail_url }}" class="icon" alt="ユーザプロフィール画像">
                             @elseif ($post->user_sex == 1)
-                            <img alt="" src="{{ asset('/images/man.png') }}" class="icon">
+                            <img alt="" src="{{ asset('/images/man.png') }}" class="icon" alt="ユーザ男性デフォルトプロフィール画像">
                             @elseif ($post->user_sex == 2)
-                            <img alt="" src="{{ asset('/images/woman.png') }}" class="icon">
+                            <img alt="" src="{{ asset('/images/woman.png') }}" class="icon" alt="ユーザ女性デフォルトプロフィール画像">
                             @endif
                             {{ $post->user_name }}
                         </p>
@@ -76,20 +76,20 @@
         </div>
         <ul class="post-img">
             @if (!empty($post->img_url_1))
-            <li><img alt="" src="{{ $post->img_url_1 }}"></li>
+            <li><img alt="投稿画像1" src="{{ $post->img_url_1 }}"></li>
             @endif
             @if (!empty($post->img_url_2))
-            <li><img alt="" src="{{ $post->img_url_2 }}"></li>
+            <li><img alt="投稿画像2" src="{{ $post->img_url_2 }}"></li>
             @endif
             @if (!empty($post->img_url_3))
-            <li><img alt="" src="{{ $post->img_url_3 }}"></li>
+            <li><img alt="投稿画像3" src="{{ $post->img_url_3 }}"></li>
             @endif
         </ul>
     </div>
     <div class="card-body-footer">
         <ul class="post-text-under">
             <li class="like-disp"><img class="like-icon" src="{{ asset('images/like_black.png') }}">{{ $post->like_count }}</li>
-            <li><img class="comment-icon" src="{{ asset('images/comment_black.png') }}">{{ $post->comment_count }}</li>
+            <li><img class="comment-icon" src="{{ asset('images/comment_black.png') }}" alt="コメントアイコン画像">{{ $post->comment_count }}</li>
         </ul>
         @auth
         <ul class="post-detail-link">
@@ -109,11 +109,11 @@
     <div class="comment">
         <a href='{{ url("/users/{$post_comment->user_id}") }}'>
             @if ($post_comment->thumbnail_url)
-            <img alt="" src="{{ $post_comment->thumbnail_url }}" class="icon">
+            <img alt="ユーザプロフィール画像" src="{{ $post_comment->thumbnail_url }}" class="icon">
             @elseif ($post_comment->sex == 1)
-            <img alt="" src="{{ asset('/images/man.png') }}" class="icon">
+            <img alt="ユーザ男性デフォルトプロフィール画像" src="{{ asset('/images/man.png') }}" class="icon">
             @elseif ($post_comment->sex == 2)
-            <img alt="" src="{{ asset('/images/woman.png') }}" class="icon">
+            <img alt="ユーザ女性デフォルトプロフィール画像" src="{{ asset('/images/woman.png') }}" class="icon">
             @endif
         </a>
         <div class="comment-text">
@@ -134,11 +134,11 @@
     @csrf
     <div class="comment">
         @if ($user->thumbnail_url)
-        <img alt="" src="{{ $user->thumbnail_url }}">
+        <img alt="ユーザプロフィール画像" src="{{ $user->thumbnail_url }}">
         @elseif ($user->sex == 1)
-        <img alt="" src="{{ asset('/images/man.png') }}">
+        <img alt="ユーザ男性デフォルトプロフィール画像" src="{{ asset('/images/man.png') }}">
         @elseif ($user->sex == 2)
-        <img alt="" src="{{ asset('/images/woman.png') }}">
+        <img alt="ユーザ女性デフォルトプロフィール画像" src="{{ asset('/images/woman.png') }}">
         @endif
         <textarea name="contents" id="comment-text" class="comment-text comment-input text-required" value="" data-name="コメント" placeholder="コメントする..."></textarea>
         <input type="hidden" name="post_id" value="{{ $post->id }}">
