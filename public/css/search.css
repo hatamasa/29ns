@@ -1,13 +1,72 @@
-.line-wap {
-    padding-bottom: 15px;
+.line-wrap {
+    position: relative;
     background-color: #fff;
 }
+
 .line,
 .area-l {
+    display: block;
     background-color: #950000;
     color: #fff;
     padding: 10px;
 }
+
+.station-wrap,
+.area-m-wrap {
+    display: none;
+    flex-wrap: wrap;
+}
+.area-wrap {
+    position: relative;
+    background-color: #fff;
+}
+
+.station-wrap {
+    padding-left: 15px;
+    padding-bottom: 20px;
+    display: none;
+    flex-wrap: wrap;
+}
+
+.area-l:before,
+.line:before {
+    position: absolute;
+    top: 19px;
+    content: '';
+    width: 14px;
+    height: 14px;
+    border-top: 2px solid #fff;
+    right: 15px;
+}
+.area-l:after,
+.line:after {
+    position: absolute;
+    top: 13px;
+    content: '';
+    width: 14px;
+    height: 14px;
+    border-top: 2px solid #fff;
+    right: 21px;
+    transform: rotate(90deg);
+}
+.area-l-check:checked + .area-l:after,
+.line-check:checked + .line:after {
+    display: none;
+}
+.area-l-check:checked + .area-l + .area-m-wrap {
+    display: block;
+}
+.line-check:checked + .line + .station-wrap {
+    display: flex;
+}
+
+.area-m {
+    line-height: 1;
+    padding: 15px;
+    border-bottom: solid 1px #efefef;
+    margin: 0;
+}
+
 .station-l {
     line-height: 1;
     height: 35px;
@@ -15,44 +74,13 @@
     border-bottom: solid 1px #000;
     padding-bottom: 0px;
 }
-.station-wap {
-    padding-left: 15px;
-    display: flex;
-    flex-wrap: wrap;
-}
 .station {
     line-height: 1;
     padding-top: 15px;
     margin: 0 15px 0px 0px;
 }
-.station-search-submit-wap {
-    position: fixed;
-    bottom: 0;
-    z-index: 1;
-    display: block;
-    background-color: rgba(0,0,0,0.6);
-    width: 100%;
-    padding: 20px 15px 20px 15px;
-    left: 0;
-    display: none;
-}
-
-/**************************/
-/*********  area  *********/
-/**************************/
-.area-wap {
-    background-color: #fff;
-}
-.area-m-wap {
-    flex-wrap: wrap;
-}
-.area-m {
-    line-height: 1;
-    padding: 15px;
-    border-bottom: solid 1px #efefef;
-    margin: 0;
-}
-.area-search-submit-wap {
+.station-search-submit-wrap,
+.area-search-submit-wrap {
     position: fixed;
     bottom: 0;
     z-index: 1;

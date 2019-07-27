@@ -35,9 +35,9 @@
         // チェックされているエリアMが一つでもあればボタンを表示する
         let checkedInputM = tgt.parentNode.parentNode.querySelectorAll("._areaMInput:checked");
         if (checkedInputM.length > 0) {
-            document.getElementById("_areaSearchSubmitWap").style.display = "block";
+            document.getElementById("_areaSearchSubmitWrap").style.display = "block";
         } else {
-            document.getElementById("_areaSearchSubmitWap").style.display = "none";
+            document.getElementById("_areaSearchSubmitWrap").style.display = "none";
         }
     }
 
@@ -68,9 +68,9 @@
         }
         // チェックされているエリアMが一つでもあればボタンを表示する
         if (checkedInputM.length > 0) {
-            document.getElementById("_areaSearchSubmitWap").style.display = "block";
+            document.getElementById("_areaSearchSubmitWrap").style.display = "block";
         } else {
-            document.getElementById("_areaSearchSubmitWap").style.display = "none";
+            document.getElementById("_areaSearchSubmitWrap").style.display = "none";
         }
     }
 
@@ -94,9 +94,10 @@
 
     <form action="{{ url('/shops') }}" method="get">
     @foreach ($areas as $area_l_cd => $area)
-        <div class="area-wap">
-            <div class="area-l">{{ Config::get('const.area_l')[$area_l_cd] }}</div>
-            <div class="area-m-wap">
+        <div class="area-wrap">
+            <input type="checkbox" id="{{ $area_l_cd }}" class="area-l-check">
+            <label class="area-l" for="{{ $area_l_cd }}">{{ Config::get('const.area_l')[$area_l_cd] }}</label>
+            <div class="area-m-wrap">
                 <a href='{{ url("/shops?areacode_l=").$area_l_cd }}'>
                     <p class="area-m">{{ Config::get('const.area_l')[$area_l_cd] }}(全て)</p>
                 </a>
@@ -108,10 +109,10 @@
             </div>
         </div>
 
-        @if ($loop->iteration % 3 == 0)
+        @if ($loop->iteration % 12 == 0)
         <div class="ad">
             <center>スポンサーリンク(広告)</center>
-            @if ($loop->iteration == 3)
+        {{--@if ($loop->iteration == 3)
                 <!-- 検索画面コンテンツ間１ -->
                 <ins class="adsbygoogle"
                      style="display:block"
@@ -126,8 +127,8 @@
                      data-ad-client="ca-pub-4702990894338882"
                      data-ad-slot="4980316670"
                      data-ad-format="auto"
-                     data-full-width-responsive="true"></ins>
-            @elseif ($loop->iteration == 12)
+                     data-full-width-responsive="true"></ins>--}}
+            @if ($loop->iteration == 12)
                 <!-- 検索画面コンテンツ間３ -->
                 <ins class="adsbygoogle"
                      style="display:block"
@@ -135,7 +136,7 @@
                      data-ad-slot="1041071665"
                      data-ad-format="auto"
                      data-full-width-responsive="true"></ins>
-            @elseif ($loop->iteration == 15)
+            {{--@elseif ($loop->iteration == 15)
                 <!-- 検索画面コンテンツ間４ -->
                 <ins class="adsbygoogle"
                      style="display:block"
@@ -158,7 +159,7 @@
                      data-ad-client="ca-pub-4702990894338882"
                      data-ad-slot="6140999889"
                      data-ad-format="auto"
-                     data-full-width-responsive="true"></ins>
+                     data-full-width-responsive="true"></ins>--}}
             @elseif ($loop->iteration == 24)
                 <!-- 検索画面コンテンツ間７ -->
                 <ins class="adsbygoogle"
@@ -167,20 +168,20 @@
                      data-ad-slot="3514836547"
                      data-ad-format="auto"
                      data-full-width-responsive="true"></ins>
-            @elseif ($loop->iteration == 27)
+            {{--@elseif ($loop->iteration == 27)
                 <!-- 検索画面コンテンツ間８ -->
                 <ins class="adsbygoogle"
                      style="display:block"
                      data-ad-client="ca-pub-4702990894338882"
                      data-ad-slot="8536418300"
                      data-ad-format="auto"
-                     data-full-width-responsive="true"></ins>
+                     data-full-width-responsive="true"></ins>--}}
             @endif
         </div>
         @endif
 
     @endforeach
-        <div id="_areaSearchSubmitWap" class="area-search-submit-wap">
+        <div id="_areaSearchSubmitWrap" class="area-search-submit-wrap">
             <button type="submit" class="btn btn-primary btn-block">検索</button>
         </div>
     </form>
