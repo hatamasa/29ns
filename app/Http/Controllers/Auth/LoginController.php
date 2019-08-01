@@ -39,6 +39,16 @@ class LoginController extends Controller
         $this->middleware('verified')->except(['showLoginForm', 'login','logout']);
     }
 
+    /**
+     * Show the application's login form.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showLoginForm()
+    {
+        session(['url.intended' => $_SERVER['HTTP_REFERER']]); // この行を追加
+        return view('auth.login');
+    }
 
     /**
      * ログイン直後の処理
