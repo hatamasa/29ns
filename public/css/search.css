@@ -15,7 +15,9 @@
     position: relative;
     background-color: #fff;
 }
-
+.line-wrap:nth-child(1) {
+    margin-top: 15px;
+}
 .line,
 .area-l {
     display: block;
