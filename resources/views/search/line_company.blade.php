@@ -13,6 +13,7 @@
 
 @section('content')
 
+<div class="ad">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <ins class="adsbygoogle"
          style="display:block"
@@ -20,6 +21,7 @@
          data-ad-layout-key="-gw-3+1f-3d+2z"
          data-ad-client="ca-pub-4702990894338882"
          data-ad-slot="9888752751"></ins>
+</div>
 
 <div class="line-company">
     @include('common.landing_regist')
