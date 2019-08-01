@@ -67,7 +67,6 @@
 
     <p class="gnavi-link"><a href="{{ $shop['url_mobile'] }}" target="_blank">ぐるなびのページはこちらから→</a></p>
 
-<div class="ad">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <ins class="adsbygoogle"
          style="display:block"
@@ -75,7 +74,6 @@
          data-ad-layout-key="-fb+5w+4e-db+86"
          data-ad-client="ca-pub-4702990894338882"
          data-ad-slot="2417456843"></ins>
-</div>
 
     <div class="block-head">
         <h2>この店舗への肉ログ</h2>

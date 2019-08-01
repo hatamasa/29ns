@@ -20,7 +20,7 @@ class SearchController extends Controller
         $this->StationsService = $stations;
         $this->AreasService    = $areas;
 
-        $this->middleware('verified')->except(['area', 'station']);
+        $this->middleware('verified')->except(['lineCompany', 'area', 'station']);
     }
 
     public function index(Request $request)
@@ -30,13 +30,23 @@ class SearchController extends Controller
     }
 
     /**
+     * 路線の選択
+     * @param Request $request
+     * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory
+     */
+    public function lineCompany(Request $request)
+    {
+        return view('search.line_company');
+    }
+
+    /**
      * 駅から探す
      * @param Request $request
      * @return \Illuminate\View\View|\Illuminate\Contracts\View\Factory
      */
-    public function station(Request $request)
+    public function station(Request $request, $id)
     {
-        $stations = $this->StationsService->getStationList();
+        $stations = $this->StationsService->getStationList($id);
 
         return view('search.station', compact('stations'));
     }

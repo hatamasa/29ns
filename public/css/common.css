@@ -398,6 +398,7 @@ input[type="radio"]:checked + .radioDefault:after {
 /* ページ段落のヘッダー */
 .block-head {
     display: flex;
+    margin-top: 15px;
 }
 .block-head p,
 .block-head a,

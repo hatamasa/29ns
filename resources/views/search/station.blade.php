@@ -52,7 +52,7 @@
     @foreach ($stations as $line_cd => $station)
         <div class="line-wrap">
             <input type="checkbox" id="{{ $line_cd }}" class="line-check">
-            <label class="line" for="{{ $line_cd }}">{{ Config::get('const.station_line')[$line_cd] }}</label>
+            <label class="line" for="{{ $line_cd }}">{{ Config::get('const.station_line')[$line_cd]['name'] }}</label>
             <div class="station-wrap">
             @foreach ($station as $val)
                 <p class="station">

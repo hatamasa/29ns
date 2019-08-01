@@ -35,8 +35,9 @@ Route::group(['middleware' => 'web'], function () {
     Route::post('/user_like_shops', 'UserLikeShopsController@store');
     Route::delete('/user_like_shops/{shop_cd}', 'UserLikeShopsController@destroy')->where(['shop_cd' => '[a-z0-9]+']);
 
+    Route::get('/search/line_company', 'SearchController@lineCompany');
     Route::get('/search/area', 'SearchController@area');
-    Route::get('/search/station', 'SearchController@station');
+    Route::get('/search/station/{company_cd}', 'SearchController@station')->where(['company_cd' => '[0-9]+']);
 
     Route::get('/shops', 'ShopsController@index');
     Route::get('/shops/ranking', 'ShopsController@ranking');

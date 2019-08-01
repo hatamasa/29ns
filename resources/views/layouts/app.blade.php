@@ -143,7 +143,7 @@
             </a>
         </div>
     </div>
-    <script src='{{ "@addtimestamp(js/common.min.js)" }}'></script>
+    <script src='{{ "@addtimestamp(js/common.js)" }}'></script>
     @yield('script')
 </body>
 </html>
