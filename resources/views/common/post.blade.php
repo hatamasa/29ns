@@ -28,7 +28,11 @@
                 </li>
                 <a href='{{ url("/posts/{$post->id}") }}'>
                     <li class="post-text-center">
+                        @empty ($post->title)
+                        <p>{{ $post->shop_name }}へ行きました！</p>
+                        @else
                         <p>{{ $post->title }}</p><span>...詳細を見る</span>
+                        @endif
                     </li>
                 </a>
             </ul>

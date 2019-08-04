@@ -69,7 +69,11 @@
                     </a>
                 </li>
                 <li class="post-text-center">
+                    @empty ($post->title)
+                    <p>{{ $post->shop_name }}へ行きました！</p>
+                    @else
                     <p>{{ $post->title }}</p>
+                    @endif
                     <p>{{ $post->contents }}</p>
                 </li>
             </ul>

@@ -26,7 +26,7 @@
         <img alt="ユーザ女性デフォルトプロフィール画像" src="{{ asset('/images/woman.png') }}" class="icon">
         @endif
         <a href='{{ url("/posts/create?shop_cd={$shop["id"]}") }}' class="icon">
-            <div>このお店を肉ログする</div>
+            <div>このお店に行った場合はコチラ！</div>
         </a>
     </div>
     <div class="block-body">

@@ -210,8 +210,8 @@
                 </label>
             </div>
             <input type="hidden" name="shop_cd" value="{{ $shop['id'] ?? session('shop_cd') }}">
-            <button type="submit" class="btn btn-primary btn-block">投稿する</button>
             <a href="{{ url()->previous() }}" class="btn btn-default btn-block">キャンセル</a>
+            <button type="submit" class="btn btn-primary btn-block">行った登録をする</button>
         </form>
     </div>
 </div>
