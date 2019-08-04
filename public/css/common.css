@@ -172,6 +172,9 @@ a.check-clicked:active {
     text-align: center;
     margin: 0;
     border: solid 1px #e1e2e1;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 .nav-header img {
     max-height: 30px;
@@ -207,8 +210,7 @@ a.check-clicked:active {
 }
 @media screen and (max-width:480px){
     #nav-input:checked ~ #nav-side {;
-        -webkit-transform: translateX(calc(100vw - 175px));
-        transform: translateX(calc(100vw - 175px));/*中身を表示（左へスライド）*/
+        transform: translateX(calc(100%));
     }
 }
 #nav-close {
@@ -243,7 +245,15 @@ a.check-clicked:active {
     padding: 0;
 }
 #nav-side li:nth-child(1) {
+    display: flex;
     padding: 5px;
+}
+#nav-side li:nth-child(1) span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: calc(100% - 50px);
+    display: block;
 }
 #nav-side li a {
     display: block;

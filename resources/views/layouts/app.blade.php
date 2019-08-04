@@ -95,7 +95,7 @@
                 <div id="nav-side">
                     <ul>
                         <li>
-                            {{ $user->name }}さん
+                            <span>{{ $user->name }}</span>さん
                         </li>
                         <li>
                             <a href="{{ url('/users').'/'.Auth::id() }}">Myページ</a>
