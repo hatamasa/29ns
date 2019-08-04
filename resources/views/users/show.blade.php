@@ -81,7 +81,7 @@
 
         <ul class="users-page-tab">
             <a href="{{ url()->current().'?tab=1' }}"><li>肉ログ</li></a>
-            <a href="{{ url()->current().'?tab=2' }}"><li>お気に入り</li></a>
+            <a href="{{ url()->current().'?tab=2' }}"><li>行った<br>お気に入り</li></a>
             <a href="{{ url()->current().'?tab=3' }}"><li>フォロー</li></a>
             <a href="{{ url()->current().'?tab=4' }}"><li>フォロワー</li></a>
         </ul>
@@ -95,7 +95,7 @@
              data-ad-slot="8743192041"></ins>
 
         <div>
-        {{-- お気に入り --}}
+        {{-- 行った、お気に入り --}}
         @if (strpos(url()->full(), 'tab=2'))
             @if (count($list) != 0)
             @foreach ($list as $shop)

@@ -13,7 +13,11 @@
                 </div>
                 @endif
                 <div class="star-wrap shop-like" data-shop_cd="{{ $shop->shop_cd }}">
+                    @if ($shop->is_liked)
                     <i class="fas fa-star fa-lg"></i>
+                    @else
+                    <i class="far fa-star fa-lg"></i>
+                    @endif
                 </div>
             @endif
         </div>

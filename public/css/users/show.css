@@ -37,12 +37,15 @@
     text-align: center;
     border: solid 0.5px #efefef;
 }
+.users-page-tab a:nth-child(2) li {
+    line-height: 15px;
+    margin-top: 8px;
+}
 .users-page-tab a.current {
     background: #ffffff;
     color: #950000;
     font-weight: bold;
 }
-
 .user-card {
     display: flex;
     justify-content: space-between;

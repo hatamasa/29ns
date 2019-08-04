@@ -7,6 +7,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use App\Repositories\UserLikeShopsRepository;
 use App\Repositories\UserFollowsRepository;
+use App\Repositories\ShopsRepository;
 
 
 class UsersService extends Service
@@ -14,13 +15,14 @@ class UsersService extends Service
     // ユーザページ投稿表示件数
     const USER_PAGE_LIST_LIMIT = 30;
 
-    public function __construct(PostsService $postsService, ShopsService $shopsService, UserFollowsRepository $userFollows, UserLikeShopsRepository $userLikeShops)
+    public function __construct(PostsService $postsService, ShopsService $shopsService, UserFollowsRepository $userFollows, UserLikeShopsRepository $userLikeShops, ShopsRepository $shops)
     {
         parent::__construct();
         $this->PostsService = $postsService;
         $this->ShopsService = $shopsService;
         $this->UserFollows = $userFollows;
         $this->UserLikeShops = $userLikeShops;
+        $this->Shops = $shops;
     }
 
     /**
@@ -39,8 +41,8 @@ class UsersService extends Service
             case 1:// 投稿
                 list($list, $count) = $this->getPosts($page, $id);
                 break;
-            case 2:// お気に入り
-                list($list, $count) = $this->getLikeShops($page, $id);
+            case 2:// 行った、お気に入り
+                list($list, $count) = $this->getSaveShops($page, $id);
                 break;
             case 3:// フォロー
                 list($list, $count) = $this->getFollows($page, $id);
@@ -81,20 +83,17 @@ class UsersService extends Service
     }
 
     /**
-     * タブエリアのお気に入り店舗を取得する
+     * タブエリアの行った、お気に入り店舗を取得する
      * @param int $page
      * @param int $id
      * @return Collection|int
      */
-    private function getLikeShops($page, $id)
+    private function getSaveShops($page, $id)
     {
-        $user_like_shops = $this->UserLikeShops->getListByUserId(self::USER_PAGE_LIST_LIMIT, $page, $id);
+        $save_shops = $this->Shops->getPostedAndLikedList(self::USER_PAGE_LIST_LIMIT, $page, $id);
+        $count = $this->Shops->getPostedAndLikedListCount(self::USER_PAGE_LIST_LIMIT, $page, $id);
         // APIから必要なデータを取得する
-        $shops = $this->ShopsService->getAttrDataFromApi($user_like_shops);
-
-        $count = DB::table('user_like_shops')->where([
-            'user_id' => $id
-        ])->count();
+        $shops = $this->ShopsService->getAttrDataFromApi($save_shops);
 
         return [$shops, $count];
     }
