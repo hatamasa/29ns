@@ -131,6 +131,16 @@
         $(evt.target).find("[type='submit']").prop("disabled", true);
     });
 
+    [].forEach.call(document.getElementsByClassName('previous'), elem => {
+        elem.addEventListener('click', evt => confirmCancel(evt));
+    })
+    document.getElementById('cancel').addEventListener('click', evt => confirmCancel(evt));
+
+    function confirmCancel(evt) {
+        if (! confirm('行った登録をしていませんが、キャンセルしますか？')) {
+            evt.preventDefault();
+        }
+    }
 </script>
 @endsection
 
@@ -189,8 +199,8 @@
                         回
                     </div>
                 </div>
-                <input name="title" id="title" class="title form-control" value="{{ session('title') ?? '' }}" placeholder="タイトルを入力..." required>
-                <textarea name="contents" id="contents" class="contents form-control" placeholder='{!! Config::get("const.post.example") !!}' required>{{ session('contents') ?? '' }}</textarea>
+                <input name="title" id="title" class="title form-control" value="{{ session('title') ?? '' }}" placeholder="タイトルを入力...">
+                <textarea name="contents" id="contents" class="contents form-control" placeholder='{!! Config::get("const.post.example") !!}'>{{ session('contents') ?? '' }}</textarea>
             </div>
             <div class="file-list">
                 <label class="preview-area" id="preview-file1">
@@ -210,8 +220,8 @@
                 </label>
             </div>
             <input type="hidden" name="shop_cd" value="{{ $shop['id'] ?? session('shop_cd') }}">
-            <a href="{{ url()->previous() }}" class="btn btn-default btn-block">キャンセル</a>
             <button type="submit" class="btn btn-primary btn-block">行った登録をする</button>
+            <a href="{{ url()->previous() }}" id="cancel" class="btn btn-default btn-block">キャンセル</a>
         </form>
     </div>
 </div>
