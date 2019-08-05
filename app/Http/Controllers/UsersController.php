@@ -27,6 +27,7 @@ class UsersController extends Controller
         $input = $request->input();
         $params = $request->all();
         $tab = $params['tab'] ?? 1;
+        $filter = $params['filter'] ?? null;
 
         $count = DB::table('users')->where(['id' => $id, 'is_resigned' => 0])->count();
         if (! $count) {
@@ -36,7 +37,7 @@ class UsersController extends Controller
         }
         $users = $this->Users->getUserDetail($id);
         // タブに表示するリストを取得する
-        $list = $this->UsersService->getList4TabArea($request, $users->id, $tab);
+        $list = $this->UsersService->getList4TabArea($request, $users->id, $tab, $filter);
 
         return view('users.show', compact('users', 'list', 'tab', 'input'));
     }

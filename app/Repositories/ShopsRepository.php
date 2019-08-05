@@ -91,11 +91,13 @@ class ShopsRepository
      * @param int $limit
      * @param int $page
      * @param int $user_id
+     * @param int $filter
      * @return array
      */
-    public function getPostedAndLikedList(int $limit, $page, int $user_id)
+    public function getPostedAndLikedList(int $limit, $page, int $user_id, $filter)
     {
-        return $this->getPostedAndLikedListQuery($limit, $page, $user_id)->get()->toArray();
+        $query = $this->getPostedAndLikedListQuery($limit, $page, $user_id, $filter);
+        return $query->get()->toArray();
     }
 
     /**
@@ -103,20 +105,23 @@ class ShopsRepository
      * @param int $limit
      * @param int $page
      * @param int $user_id
+     * @param int $filter
      * @return number
      */
-    public function getPostedAndLikedListCount(int $limit, $page, int $user_id)
+    public function getPostedAndLikedListCount(int $limit, $page, int $user_id, $filter)
     {
-        return $this->getPostedAndLikedListQuery($limit, $page, $user_id)->count();
+        $query = $this->getPostedAndLikedListQuery($limit, $page, $user_id, $filter);
+        return $query->count();
     }
     /**
      * 行った、お気に入り店舗取得のクエリを返す
      * @param int $limit
      * @param int $page
      * @param int $user_id
+     * @param int $filter
      * @return \Illuminate\Database\Query\Builder
      */
-    private function getPostedAndLikedListQuery(int $limit, $page, int $user_id)
+    private function getPostedAndLikedListQuery(int $limit, $page, int $user_id, $filter)
     {
         $sub1 = DB::table('user_like_shops')
             ->select('shop_cd', 'created_at')
@@ -143,21 +148,33 @@ class ShopsRepository
                 DB::raw('CASE WHEN uls.shop_cd IS NOT NULL THEN 1 ELSE 0 END as is_liked'),
                 DB::raw('CASE WHEN uls.created_at IS NOT NULL THEN uls.created_at ELSE p.created_at END as created_at')
             )
-            ->whereExists(function($q) use($user_id) {
-                $q->select(DB::raw('1'))
-                    ->from('user_like_shops')
-                    ->whereRaw('shop_cd = s.shop_cd')
-                    ->where('user_id', $user_id);
-            })
-            ->orWhereExists(function($q) use($user_id) {
-                $q->select(DB::raw('1'))
-                    ->from('posts')
-                    ->whereRaw('shop_cd = s.shop_cd')
-                    ->where('user_id', $user_id);
+            ->where(function($q1) use($user_id) {
+                $q1->whereExists(function($q2) use($user_id) {
+                    $q2->select(DB::raw('1'))
+                        ->from('user_like_shops')
+                        ->whereRaw('shop_cd = s.shop_cd')
+                        ->where('user_id', $user_id);
+                });
+
+                $q1->orWhereExists(function($q2) use($user_id) {
+                    $q2->select(DB::raw('1'))
+                        ->from('posts')
+                        ->whereRaw('shop_cd = s.shop_cd')
+                        ->where('user_id', $user_id);
+                });
             })
             ->orderBy('created_at', 'desc')
             ->offset(($page-1) * $limit)
             ->limit($limit);
+
+            switch ($filter) {
+                case 1:
+                    $query->whereRaw('p.shop_cd IS NOT NULL');
+                    break;
+                case 2:
+                    $query->whereRaw('uls.shop_cd IS NOT NULL');
+                    break;
+            }
 
             return $query;
     }

@@ -33,7 +33,7 @@ class UsersService extends Service
      * @throws \Exception
      * @return array|\Illuminate\Pagination\LengthAwarePaginator
      */
-    public function getList4TabArea($request, $id, $tab)
+    public function getList4TabArea($request, $id, $tab, $filter)
     {
         $page = $request->page ?? 1;
 
@@ -42,7 +42,7 @@ class UsersService extends Service
                 list($list, $count) = $this->getPosts($page, $id);
                 break;
             case 2:// 行った、お気に入り
-                list($list, $count) = $this->getSaveShops($page, $id);
+                list($list, $count) = $this->getSaveShops($page, $id, $filter);
                 break;
             case 3:// フォロー
                 list($list, $count) = $this->getFollows($page, $id);
@@ -88,10 +88,10 @@ class UsersService extends Service
      * @param int $id
      * @return Collection|int
      */
-    private function getSaveShops($page, $id)
+    private function getSaveShops($page, $id, $filter)
     {
-        $save_shops = $this->Shops->getPostedAndLikedList(self::USER_PAGE_LIST_LIMIT, $page, $id);
-        $count = $this->Shops->getPostedAndLikedListCount(self::USER_PAGE_LIST_LIMIT, $page, $id);
+        $save_shops = $this->Shops->getPostedAndLikedList(self::USER_PAGE_LIST_LIMIT, $page, $id, $filter);
+        $count = $this->Shops->getPostedAndLikedListCount(self::USER_PAGE_LIST_LIMIT, $page, $id, $filter);
         // APIから必要なデータを取得する
         $shops = $this->ShopsService->getAttrDataFromApi($save_shops);
 

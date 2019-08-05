@@ -46,6 +46,22 @@
     color: #950000;
     font-weight: bold;
 }
+
+.filter-area {
+    width: 100%;
+}
+.filter-area a {
+    font-size: 14px;
+    background-color: #fff;
+    width: calc(33% - 12px);
+    margin: 15px 5px;
+}
+.filter-area a.filtered {
+    background-color: #ff8101;
+    box-shadow: unset;
+    border: unset;
+}
+
 .user-card {
     display: flex;
     justify-content: space-between;

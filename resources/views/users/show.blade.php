@@ -26,6 +26,14 @@
         document.getElementsByClassName("users-page-tab")[0].children[3].classList.add("current");
     }
 
+    if (arg.filter == 1) {
+        document.getElementById("posted-shops").classList.add("filtered");
+    } else if (arg.filter == 2) {
+        document.getElementById("liked-shops").classList.add("filtered");
+    } else {
+        document.getElementById("all-shops").classList.add("filtered");
+    }
+
     $('.delete-post-form').submit(evt => {
         if (! confirm("投稿を削除しますか？")) return false;
         $(evt.target).prop("disabled", true);
@@ -98,6 +106,11 @@
         {{-- 行った、お気に入り --}}
         @if (strpos(url()->full(), 'tab=2'))
             @if (count($list) != 0)
+            <div class="filter-area">
+                <a href="{{ url()->current().'?tab=2' }}" id="all-shops" class="btn btn-default btn-lg">全て</a>
+                <a href="{{ url()->current().'?tab=2&filter=1' }}" id="posted-shops" class="btn btn-default btn-lg">行った</a>
+                <a href="{{ url()->current().'?tab=2&filter=2' }}" id="liked-shops" class="btn btn-default btn-lg">お気に入り</a>
+            </div>
             @foreach ($list as $shop)
                 @include('common.shop_users_page', ['shop' => $shop])
                 @include('users.show_ad', ['loop' => $loop])
