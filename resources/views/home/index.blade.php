@@ -51,7 +51,8 @@
         @else
         <a href='{{ url("/login") }}' class="btn btn-default btn-lg">
         @endauth
-        行った/お気に入りの<br>店から探す</a>
+            行った/お気に入り<br>から探す
+        </a>
 
     </div>
 
