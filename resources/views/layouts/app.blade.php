@@ -38,13 +38,13 @@
     <meta property="og:type"        content="website" />
     <meta property="og:site_name"   content="東京肉NS">
     <meta property="og:title"       content="東京肉NS" />
-    <meta property="og:description" content="肉は確かに旨いが、東京の肉はもっと旨い！肉好きの肉好きによる肉好きのためのサイト！" />
+    <meta property="og:description" content="肉は確かに旨いが、東京の焼肉はもっと旨い！焼肉好きの焼肉好きによる焼肉好きのためのサイト！" />
     <meta property="og:image"       content="https://img.29-ns.com/29ns_ogp.jpg" />
     <!-- twitter -->
     <meta name="twitter:card"        content="summary_large_image" />
     <meta name="twitter:url"         content="{{ $url }}" />
     <meta name="twitter:title"       content="東京肉NS" />
-    <meta name="twitter:description" content="肉は確かに旨いが、東京の肉はもっと旨い！肉好きの肉好きによる肉好きのためのサイト！" />
+    <meta name="twitter:description" content="肉は確かに旨いが、東京の焼肉はもっと旨い！焼肉好きの焼肉好きによる焼肉好きのためのサイト！" />
     <meta name="twitter:image"       content="https://img.29-ns.com/29ns_ogp.jpg" />
 
     <meta http-equiv="x-dns-prefetch-control" content="on">
@@ -66,7 +66,7 @@
                 || url()->current() == url('/shops/ranking')
                 || url()->current() == url('/posts'))
             <a href="{{ url('/home') }}" class="col-4">
-                <h1>東京の肉好きのためのSNS</h1>
+                <h1>東京の焼肉好きのためのSNS</h1>
                 <span>東京肉NS</span>
             </a>
             <a href="{{ url('/home') }}" class="col-2"><img src="{{ asset('images/home.png') }}" alt="ホームボタン"><span>ホーム</span></a>
