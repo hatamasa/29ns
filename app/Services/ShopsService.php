@@ -146,7 +146,7 @@ class ShopsService extends Service
             $shop_ids[] = $shop->shop_cd;
         }
         // Apiキャッシュを取得
-        $result = $this->getRestApiCache($shop_ids);
+        $result = $this->getRestApiCache($shop_ids, $limit);
         // 店舗の取得結果から投稿に必要な情報を取得する
         foreach ($shops as $key => &$shop) {
             $shop_exists = false;
@@ -164,6 +164,7 @@ class ShopsService extends Service
                 }
             }
             // 店舗がAPIから取得出来なかった場合
+            // TODO 穴埋めを考える
             if (! $shop_exists) {
                 unset($shops[$key]);
             }
@@ -173,11 +174,12 @@ class ShopsService extends Service
     }
 
     /**
-     * ホーム人気店舗のキャッシュ取得と作成する
+     * ホーム人気店舗の店舗キャッシュ取得と作成する
      * @param array $shop_ids
+     * @param init $limit
      * @return array|mixed|mixed
      */
-    private function getRestApiCache(array $shop_ids)
+    private function getRestApiCache(array $shop_ids, $limit)
     {
         $shops = [];
         $json_path = storage_path('app/'.Config::get('const.home.shop_ranking_shops_json'));
@@ -185,14 +187,44 @@ class ShopsService extends Service
             // キャッシュ有効
             $shops = json_decode(file_get_contents($json_path), true);
             if ($shops['shop_ids'] == implode('_', $shop_ids)) {
+                unset($shops['shop_ids']);
                 return $shops;
             }
         }
         // キャッシュがなかったり店舗が異なる場合は取得する
         $tmp = $this->ApiService->callGnaviRestSearchApi(['id' => implode(',', $shop_ids)]);
         $shops = $tmp['rest'];
+
+        // apiから全部店舗を取得できてない場合は、件数を埋めるまで取得する
+        if (count($shops) != $limit) {
+            $i = 2;
+            while (count($shops) < $limit) {
+                // 再度取得
+                $tmp_shops = $this->Shops->getPopularityList($limit, $i);
+                $tmp_ids = [];
+                foreach ($tmp_shops as $shop) {
+                    $tmp_ids[] = $shop->shop_cd;
+                }
+                $tmp = $this->ApiService->callGnaviRestSearchApi(['id' => implode(',', $tmp_ids)]);
+                foreach ($tmp['rest'] as $rest) {
+                    $shops[] = $rest;
+                    $shop_ids[] = $rest['id'];
+                    if (count($shops) == $limit) {
+                        break;
+                    }
+                }
+                $i++;
+            }
+            // idの詰め替え
+            $shop_ids = [];
+            foreach ($shops as $shop) {
+                $shop_ids[] =  $shop['id'];
+            }
+        }
+
         $shops['shop_ids'] = implode('_', $shop_ids);
         file_put_contents($json_path, json_encode($shops));
+        unset($shops['shop_ids']);
 
         return $shops;
     }
