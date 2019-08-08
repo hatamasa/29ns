@@ -148,29 +148,34 @@ class ShopsService extends Service
         // Apiキャッシュを取得
         $result = $this->getRestApiCache($shop_ids, $limit);
         // 店舗の取得結果から投稿に必要な情報を取得する
-        foreach ($shops as $key => &$shop) {
-            $shop_exists = false;
+        $result_shops = [];
+        foreach ($shops as $shop) {
+            $resigned_shop_cd = $shop->shop_cd;
             foreach ($result as $res_shop) {
                 if ($shop->shop_cd == $res_shop['id']) {
-                    $shop->shop_name     = $res_shop['name'];
-                    $shop->shop_img_url  = !empty($res_shop['image_url']['shop_image1']) ? $res_shop['image_url']['shop_image1'] : null;
-                    $shop->line    = $res_shop['access']['line'];
-                    $shop->station = $res_shop['access']['station'];
-                    $shop->walk    = $res_shop['access']['walk'];
-                    $shop->note    = $res_shop['access']['note'];
-                    $shop->budget  = $res_shop['budget'];
-                    $shop_exists = true;
+                    $obj = $shop;
+                    $obj->shop_name     = $res_shop['name'];
+                    $obj->shop_img_url  = !empty($res_shop['image_url']['shop_image1']) ? $res_shop['image_url']['shop_image1'] : null;
+                    $obj->line    = $res_shop['access']['line'];
+                    $obj->station = $res_shop['access']['station'];
+                    $obj->walk    = $res_shop['access']['walk'];
+                    $obj->note    = $res_shop['access']['note'];
+                    $obj->budget  = $res_shop['budget'];
+                    $result_shops[] = $obj;
+                    $resigned_shop_cd = null;
                     break;
                 }
             }
-            // 店舗がAPIから取得出来なかった場合
-            // TODO 穴埋めを考える
-            if (! $shop_exists) {
-                unset($shops[$key]);
+            // 店舗がAPIから取得出来なかった場合は返却から解除して、DBを更新する
+            if (! is_null($resigned_shop_cd)) {
+                DB::table('shops')->where(['shop_cd' => $resigned_shop_cd])->update(['is_deleted' => 1]);
+            }
+            if (count($result_shops) == $limit) {
+                break;
             }
         }
 
-        return $shops;
+        return $result_shops;
     }
 
     /**

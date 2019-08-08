@@ -42,6 +42,7 @@ class ShopsRepository
                 DB::raw('CASE WHEN p.shop_cd IS NOT NULL THEN 1 ELSE 0 END as is_posted'),
                 DB::raw('CASE WHEN uls.shop_cd IS NOT NULL THEN 1 ELSE 0 END as is_liked')
             )
+            ->where('is_deleted', 0)
             ->orderBy('score', 'desc')
             ->offset(($page-1) * $limit)
             ->limit($limit)
@@ -163,6 +164,7 @@ class ShopsRepository
                         ->where('user_id', $user_id);
                 });
             })
+            ->where('s.is_deleted', 0)
             ->orderBy('created_at', 'desc')
             ->offset(($page-1) * $limit)
             ->limit($limit);

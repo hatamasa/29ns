@@ -31,6 +31,7 @@ class PostsRepository
             ->leftJoinSub($sub, 'plu', function ($join){
                 $join->on('p.id', '=', 'plu.post_id');
             })
+            ->join('shops as s', 'p.shop_cd', '=', 's.shop_cd')
             ->select(
                 'p.id',
                 'p.shop_cd',
@@ -46,7 +47,10 @@ class PostsRepository
                 'u.sex as user_sex',
                 DB::raw('CASE WHEN plu.post_id IS NOT NULL THEN 1 ELSE 0 END is_liked')
             )
-            ->where('p.is_deleted', 0)
+            ->where([
+                'p.is_deleted' => 0,
+                's.is_deleted' => 0
+            ])
             ->orderBy('p.id', 'desc')
             ->offset(($page-1) * $limit)
             ->limit($limit)
