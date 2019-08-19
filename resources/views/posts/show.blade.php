@@ -142,6 +142,7 @@
     </div>
 @endforeach
 
+@auth
 <form action='{{ url("/post_comments") }}' id="post-comment-form" method="POST">
     @csrf
     <div class="comment">
@@ -167,6 +168,9 @@
     </form>
 </div>
 @endif
+@else
+    @include('common.landing_regist')
+@endauth
 
 <div class="ad">
     <center>スポンサーリンク(広告)</center>

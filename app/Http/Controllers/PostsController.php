@@ -31,7 +31,7 @@ class PostsController extends Controller
         $this->PostComments = $postComments;
         $this->ImgUploader  = $imgUploader;
 
-        $this->middleware('verified')->except(['index']);
+        $this->middleware('verified')->except(['index', 'show']);
     }
 
     public function index(Request $request)
