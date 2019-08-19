@@ -1,5 +1,13 @@
 @extends('layouts.app')
 
+@section('metatitle')
+<title>東京肉NSログイン</title>
+@endsection
+
+@section('description')
+<meta name="description" content="ログインすると東京の焼肉店が探せるグルメサイト[東京肉NS]でお気に入り、レビューができるようになります。気になるお店は星マークからお気に入りしてマイページでチェック！他のユーザのお気に入り店やレビューもチェックできる！">
+@endsection
+
 @section('style')
 <link href='{{ "@addtimestamp(css/auth.css)" }}' rel="stylesheet">
 @endsection

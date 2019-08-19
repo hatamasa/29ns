@@ -1,5 +1,13 @@
 @extends('layouts.app')
 
+@section('metatitle')
+<title>{{ config('app.name', 'Laravel') }}</title>
+@endsection
+
+@section('description')
+<meta name="description" content="焼肉に特化したグルメサイト。東京の焼肉店やお肉が食べれる店を検索、お気に入り、口コミ。気になるお店は星マークからお気に入りしてマイページでチェック！他のユーザのお気に入り店や口コミもチェックできる！肉好きの肉好きによる肉好きのためのSNS。">
+@endsection
+
 @section('canonical')
 <link rel="canonical" href='{{ url("/")}}'>
 @endsection

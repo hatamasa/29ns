@@ -1,5 +1,13 @@
 @extends('layouts.app')
 
+@section('metatitle')
+<title>{{ $shop['name'] }} - 東京肉NS</title>
+@endsection
+
+@section('description')
+<meta name="description" content="{{ $shop['name'] }}の店舗情報や口コミをご紹介します！{{ $shop['name'] }}が気に入った時は星マークからお気に入り登録をしましょう！そして来店したら感謝の気持ちを込めて口コミしよう！">
+@endsection
+
 @section('style')
 <link href="{{ asset('css/shops/show.css') }}" rel="stylesheet">
 @endsection

@@ -1,5 +1,13 @@
 @extends('layouts.app')
 
+@section('metatitle')
+<title>{{ $post->shop_name }}の口コミ投稿画面 - 東京肉NS</title>
+@endsection
+
+@section('description')
+<meta name="description" content="{{ $post->shop_name }}への口コミ投稿画面です。東京肉NSは焼肉に特化したグルメサイトです！気になるお店は星マークからお気に入りしてマイページでチェック！他のユーザのお気に入り店や口コミもチェックできる！">
+@endsection
+
 @section('style')
 <link href="{{ asset('css/posts/create.css') }}" rel="stylesheet">
 <link href='{{ "@addtimestamp(css/posts/create.css)" }}' rel="stylesheet">

@@ -1,5 +1,13 @@
 @extends('layouts.app')
 
+@section('metatitle')
+<title>ユーザページ - 東京肉NS</title>
+@endsection
+
+@section('description')
+<meta name="description" content="ユーザの個人ページです。東京肉NSに登録してある情報や、レビュー履歴、行った/お気に入りお店、フォロー、フォロワーをみることができます。">
+@endsection
+
 @section('style')
 <link href='{{ "@addtimestamp(css/users/show.css)" }}' rel="stylesheet">
 @endsection

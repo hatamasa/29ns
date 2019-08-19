@@ -1,5 +1,13 @@
 @extends('layouts.app')
 
+@section('metatitle')
+<title>Myページ編集画面 - 東京肉NS</title>
+@endsection
+
+@section('description')
+<meta name="description" content="Myページ編集画面です。レビュー時に表示する個人情報やMyページに公開されている情報を修正することができます。">
+@endsection
+
 @section('style')
 <link href='{{ "@addtimestamp(css/users/edit.css)" }}' rel="stylesheet">
 @endsection

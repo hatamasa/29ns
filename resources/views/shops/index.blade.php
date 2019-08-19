@@ -1,5 +1,13 @@
 @extends('layouts.app')
 
+@section('metatitle')
+<title>{{ implode(",", $search_condition) }}の焼肉店の一覧 - 東京肉NS</title>
+@endsection
+
+@section('description')
+<meta name="description" content="{{ implode(',', $search_condition) }}の焼肉店の一覧画面です。東京肉NSは焼肉に特化したグルメサイトです！気になるお店は星マークからお気に入りしてマイページでチェック！他のユーザのお気に入り店や口コミもチェックできる！">
+@endsection
+
 @section('style')
 <link href='{{ "@addtimestamp(css/shops/index.css)" }}' rel="stylesheet">
 @endsection
