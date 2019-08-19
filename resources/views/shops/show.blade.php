@@ -48,12 +48,14 @@
                     <h2>{{ $shop['name'] }}</h2>
                     <div>{{ (isset($shop['score']) && !empty($shop['score'])) ? $shop['score'] : 5 }}点</div>
                 </div>
+                @auth
                 <div class="star-wrap shop-like" data-shop_cd="{{ $shop['id'] }}">
                 @if ($shop['is_liked'] ?? false)
                 <i class="fas fa-star fa-lg"></i>
                 @else
                 <i class="far fa-star fa-lg"></i>
                 @endif
+                @endauth
             </div>
             </form>
             </div>
@@ -117,7 +119,11 @@
                             <p>@time_diff($post->post_created_at)</p>
                         </li>
                         <li class="post-text-center">
+                            @empty ($post->title)
+                            <p>{{ $shop['name'] }}へ行きました！</p>
+                            @else
                             <p>{{ $post->title }}</p>
+                            @endif
                             <p>{{ $post->contents }}</p>
                         </li>
                     </ul>
