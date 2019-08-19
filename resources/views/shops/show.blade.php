@@ -25,6 +25,7 @@
 
 @section('content')
 <div>
+    @auth
     <div class="block-head user-thumbnail">
         @if ($user->thumbnail_url)
         <img alt="ユーザプロフィール画像" src="{{ $user->thumbnail_url }}" class="icon">
@@ -37,6 +38,9 @@
             <div>このお店に行った場合はコチラ！</div>
         </a>
     </div>
+    @else
+        @include('common.landing_regist')
+    @endauth
     <div class="block-body">
         <div class="card shop-detail">
             <div class="card-head">
@@ -100,11 +104,11 @@
                             <p>{{ $post->score }}点</p>
                             <p>
                                 <a href='{{ url("/users/{$post->user_id}")}}'>
-                                    @if ($user->thumbnail_url)
+                                    @if ($post->user_thumbnail_url)
                                     <img alt="" src="{{ $post->user_thumbnail_url }}" class="icon">
-                                    @elseif ($user->sex == 1)
+                                    @elseif ($post->user_sex == 1)
                                     <img alt="" src="{{ asset('/images/man.png') }}" class="icon">
-                                    @elseif ($user->sex == 2)
+                                    @elseif ($post->user_sex == 2)
                                     <img alt="" src="{{ asset('/images/woman.png') }}" class="icon">
                                     @endif
                                     {{ $post->user_name }}

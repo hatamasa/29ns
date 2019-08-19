@@ -31,7 +31,7 @@ class ShopsController extends Controller
 
         $this->Posts = $posts;
 
-        $this->middleware('verified')->except(['index']);
+        $this->middleware('verified')->except(['index', 'show']);
     }
 
     public function index(Request $request)
