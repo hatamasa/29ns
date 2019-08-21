@@ -7,6 +7,12 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+    <link rel="dns-prefetch" href="//pagead2.googlesyndication.com"/>
+    <link rel="dns-prefetch" href="//googleads.g.doubleclick.net"/>
+    <link rel="dns-prefetch" href="//tpc.googlesyndication.com"/>
+    <link rel="dns-prefetch" href="//www.gstatic.com"/>
+
     @yield('metatitle')
     @yield('description')
     @yield('canonical')
@@ -33,8 +39,6 @@
       gtag('config', 'UA-139979567-2');
     </script>
 
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-
     <!-- ogp -->
     <meta property="og:url"         content="{{ $url }}" />
     <meta property="og:type"        content="website" />
@@ -48,18 +52,8 @@
     <meta name="twitter:title"       content="東京肉NS" />
     <meta name="twitter:description" content="肉は確かに旨いが、東京の焼肉はもっと旨い！焼肉好きの焼肉好きによる焼肉好きのためのサイト！" />
     <meta name="twitter:image"       content="https://img.29-ns.com/29ns_ogp.jpg" />
-
-    <meta http-equiv="x-dns-prefetch-control" content="on">
-    <link rel="dns-prefetch" href="//pagead2.googlesyndication.com"/>
-    <link rel="dns-prefetch" href="//googleads.g.doubleclick.net"/>
-    <link rel="dns-prefetch" href="//tpc.googlesyndication.com"/>
-    <link rel="dns-prefetch" href="//www.gstatic.com"/>
 </head>
 <body>
-    <!-- facebook -->
-    <div id="fb-root"></div>
-    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v3.3"></script>
-
     <input type="hidden" id="token" value="{{ $access_token ?? '' }}">
     <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
         <div class="nav-header">
@@ -126,15 +120,13 @@
     <div class="footer">
         <div class="share-area">
             <!-- facebook -->
-           <div class="fb-share-button"
-               data-href="https://www.29-ns.com/"
-               data-layout="button_count"
-               data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.29-ns.com%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">シェア</a></div>
+            <iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fwww.29-ns.com&layout=button_count&size=small&appId=2855638677995149&width=78&height=20" width="78" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
             <!-- twitter -->
-            <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+            <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a>
+            <script src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
             <!-- LINE -->
             <div class="line-it-button" data-lang="ja" data-type="share-a" data-ver="3" data-url="https://www.29-ns.com" data-color="default" data-size="small" data-count="true" style="display: none;"></div>
-            <script src="https://d.line-scdn.net/r/web/social-plugin/js/thirdparty/loader.min.js" async="async" defer="defer"></script>
+            <script src="https://d.line-scdn.net/r/web/social-plugin/js/thirdparty/loader.min.js"></script>
         </div>
         <span class="ask">
             お問い合わせは<a href="mailto:hatamasa29&#64;yahoo.co.jp">こちら</a>まで
@@ -147,5 +139,6 @@
     </div>
     <script src='{{ "@addtimestamp(js/common.js)" }}'></script>
     @yield('script')
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 </body>
 </html>
