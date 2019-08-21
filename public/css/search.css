@@ -11,6 +11,13 @@
     margin-top: 15px;
 }
 
+.line-company a.register {
+    display: block;
+    background-color: #17a2b8;
+    width: auto;
+    padding: 6px;
+}
+
 .line-wrap {
     position: relative;
     background-color: #fff;

@@ -33,6 +33,8 @@
       gtag('config', 'UA-139979567-2');
     </script>
 
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
     <!-- ogp -->
     <meta property="og:url"         content="{{ $url }}" />
     <meta property="og:type"        content="website" />

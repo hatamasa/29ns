@@ -60,7 +60,6 @@
 
 <div class="ad">
     <center>スポンサーリンク(広告)</center>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <!-- ログインフッター -->
     <ins class="adsbygoogle"
          style="display:block"

@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
 @section('metatitle')
-<title>{{ $post->shop_name }}の口コミ投稿画面 - 東京肉NS</title>
+<title>{{ $shop['name'] }}の口コミ投稿画面 - 東京肉NS</title>
 @endsection
 
 @section('description')
-<meta name="description" content="{{ $post->shop_name }}への口コミ投稿画面です。東京肉NSは焼肉に特化したグルメサイトです！気になるお店は星マークからお気に入りしてマイページでチェック！他のユーザのお気に入り店や口コミもチェックできる！">
+<meta name="description" content="{{ $shop['name'] }}への口コミ投稿画面です。東京肉NSは焼肉に特化したグルメサイトです！気になるお店は星マークからお気に入りしてマイページでチェック！他のユーザのお気に入り店や口コミもチェックできる！">
 @endsection
 
 @section('style')
@@ -236,7 +236,6 @@
 
 <div class="ad">
     <center>スポンサーリンク(広告)</center>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <!-- 投稿登録フッター -->
     <ins class="adsbygoogle"
          style="display:block"

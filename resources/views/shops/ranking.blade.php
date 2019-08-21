@@ -34,7 +34,6 @@
             <div class="ad">
                 <center>スポンサーリンク(広告)</center>
                 @if ($loop->iteration == 6)
-                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                     <!-- 店舗一覧コンテンツ間１ -->
                     <ins class="adsbygoogle"
                          style="display:block"
