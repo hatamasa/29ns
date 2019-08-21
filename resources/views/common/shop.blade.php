@@ -3,19 +3,15 @@
         <div class="card-head">
             <h2 class="card-title">{{ $shop['name'] }}</h2>
             @if ($shop['is_posted'] ?? false)
-            <div class="posted-wrap posted" >
+            <div class="_postedWrap posted-wrap posted" >
                 <i class="fas fa-check-square fa-lg"></i>
             </div>
             @else
-            <div class="posted-wrap" data-link='{{ url("/posts/create?shop_cd={$shop["id"]}") }}'>
+            <div class="_postedWrap posted-wrap" data-link='{{ url("/posts/create?shop_cd={$shop["id"]}") }}'>
                 <i class="far fa-check-square fa-lg"></i>
             </div>
             @endif
-            @auth
-            <div class="star-wrap shop-like" data-shop_cd="{{ $shop['id'] }}">
-            @else
-            <div class="star-wrap" data-shop_cd="{{ $shop['id'] }}">
-            @endauth
+            <div class="star-wrap @auth _shopLike @else _loginLink @endauth" data-shop_cd="{{ $shop['id'] }}">
                 @if ($shop['is_liked'] ?? false)
                 <i class="fas fa-star fa-lg"></i>
                 @else

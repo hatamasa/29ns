@@ -45,6 +45,7 @@
 
 @section('content')
 
+<div>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <ins class="adsbygoogle"
          style="display:block"
@@ -52,6 +53,7 @@
          data-ad-layout-key="-fb+5w+4e-db+86"
          data-ad-client="ca-pub-4702990894338882"
          data-ad-slot="2361616529"></ins>
+</div>
 
 <div class="card">
     <h2 class="card-title"><a href='{{ url("/shops/{$post->shop_cd}") }}'>{{ $post->shop_name }}</a></h2>
@@ -106,11 +108,17 @@
         @auth
         <ul class="post-detail-link">
             <li>
-            @if ($post->is_liked)
-            <a href='javascript:void(0)' class="like liked" data-post_id="{{ $post->id }}"><img class="like-icon liked" src="{{ asset('images/like.png') }}">済</a>
-            @else
-            <a href='javascript:void(0)' class="like" data-post_id="{{ $post->id }}"><img class="like-icon like" src="{{ asset('images/like.png') }}"></a>
-            @endif
+                @if ($post->is_liked)
+                <a href='javascript:void(0)' class="like-link _liked" data-post_id="{{ $post->id }}"><img class="like-icon _liked" src="{{ asset('images/like.png') }}" alt="いいねアイコン画像">済</a>
+                @else
+                <a href='javascript:void(0)' class="like-link _notlike" data-post_id="{{ $post->id }}"><img class="like-icon _notlike" src="{{ asset('images/like.png') }}" alt="いいねアイコン画像"></a>
+                @endif
+            </li>
+        </ul>
+        @else
+        <ul class="post-detail-link">
+            <li>
+                <a href='javascript:void(0)' class="like-link _loginLink"><img class="like-icon" src="{{ asset('images/like.png') }}" alt="いいねアイコン画像"></a>
             </li>
         </ul>
         @endauth

@@ -48,16 +48,13 @@
                     <h2>{{ $shop['name'] }}</h2>
                     <div>{{ (isset($shop['score']) && !empty($shop['score'])) ? $shop['score'] : 5 }}点</div>
                 </div>
-                @auth
-                <div class="star-wrap shop-like" data-shop_cd="{{ $shop['id'] }}">
-                @if ($shop['is_liked'] ?? false)
-                <i class="fas fa-star fa-lg"></i>
-                @else
-                <i class="far fa-star fa-lg"></i>
-                @endif
-                @endauth
-            </div>
-            </form>
+                <div class="star-wrap @auth _shopLike @else _loginLink @endauth" data-shop_cd="{{ $shop['id'] }}">
+                    @if ($shop['is_liked'] ?? false)
+                    <i class="fas fa-star fa-lg"></i>
+                    @else
+                    <i class="far fa-star fa-lg"></i>
+                    @endif
+                </div>
             </div>
             <div class="card-body">
                 <div class="shop-img">
@@ -81,13 +78,15 @@
 
     <p class="gnavi-link"><a href="{{ $shop['url_mobile'] }}" target="_blank">ぐるなびのページはこちらから→</a></p>
 
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-    <ins class="adsbygoogle"
-         style="display:block"
-         data-ad-format="fluid"
-         data-ad-layout-key="-fb+5w+4e-db+86"
-         data-ad-client="ca-pub-4702990894338882"
-         data-ad-slot="2417456843"></ins>
+    <div>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-format="fluid"
+             data-ad-layout-key="-fb+5w+4e-db+86"
+             data-ad-client="ca-pub-4702990894338882"
+             data-ad-slot="2417456843"></ins>
+    </div>
 
     <div class="block-head">
         <h2>この店舗への肉ログ</h2>

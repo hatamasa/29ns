@@ -4,15 +4,15 @@
             <h2 class="card-title">{{ $shop->shop_name }}</h2>
             @if (Auth::id() == $users->id)
                 @if ($shop->is_posted)
-                <div class="posted-wrap posted">
+                <div class="_postedWrap posted-wrap posted">
                     <i class="fas fa-check-square fa-lg"></i>
                 </div>
                 @else
-                <div class="posted-wrap" data-link='{{ url("/posts/create?shop_cd={$shop->shop_cd}") }}'>
+                <div class="_postedWrap posted-wrap" data-link='{{ url("/posts/create?shop_cd={$shop->shop_cd}") }}'>
                     <i class="far fa-check-square fa-lg"></i>
                 </div>
                 @endif
-                <div class="star-wrap shop-like" data-shop_cd="{{ $shop->shop_cd }}">
+                <div class="star-wrap _shopLike" data-shop_cd="{{ $shop->shop_cd }}">
                     @if ($shop->is_liked)
                     <i class="fas fa-star fa-lg"></i>
                     @else

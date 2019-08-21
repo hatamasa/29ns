@@ -601,14 +601,11 @@ input[type="radio"]:checked + .radioDefault:after {
 .post-detail-link li {
     margin-right: 20px;
 }
-.like {
+
+.like-link {
     display: inline-block;
     width: 50px;
     color: #007bff !important;
-}
-.liked {
-    display: inline-block;
-    width: 50px;
     font-weight: bold;
 }
 .like-icon {

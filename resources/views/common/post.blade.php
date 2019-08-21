@@ -46,11 +46,11 @@
         @auth
         <ul class="post-detail-link">
             <li>
-            @if ($post->is_liked)
-            <a href='javascript:void(0)' class="like liked" data-post_id="{{ $post->id }}"><img class="like-icon liked" src="{{ asset('images/like.png') }}" alt="いいねアイコン画像">済</a>
-            @else
-            <a href='javascript:void(0)' class="like" data-post_id="{{ $post->id }}"><img class="like-icon like" src="{{ asset('images/like.png') }}" alt="いいねアイコン画像"></a>
-            @endif
+                @if ($post->is_liked)
+                <a href='javascript:void(0)' class="like-link _liked" data-post_id="{{ $post->id }}"><img class="like-icon _liked" src="{{ asset('images/like.png') }}" alt="いいねアイコン画像">済</a>
+                @else
+                <a href='javascript:void(0)' class="like-link _notlike" data-post_id="{{ $post->id }}"><img class="like-icon _notlike" src="{{ asset('images/like.png') }}" alt="いいねアイコン画像"></a>
+                @endif
             </li>
             <li><a href='{{ url("/posts/{$post->id}") }}'><img class="comment-icon" src="{{ asset('images/comment.png') }}" alt="コメントアイコン画像"></a></li>
             @if (Auth::id() == $post->user_id)
@@ -63,6 +63,13 @@
                 </form>
             </li>
             @endif
+        </ul>
+        @else
+        <ul class="post-detail-link">
+            <li>
+                <a href='javascript:void(0)' class="like-link _loginLink"><img class="like-icon" src="{{ asset('images/like.png') }}" alt="いいねアイコン画像"></a>
+            </li>
+            <li><a href='{{ url("/posts/{$post->id}") }}'><img class="comment-icon" src="{{ asset('images/comment.png') }}" alt="コメントアイコン画像"></a></li>
         </ul>
         @endauth
     </div>

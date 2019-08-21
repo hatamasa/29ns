@@ -19,8 +19,16 @@
         });
     }
 
+    // ログインへ飛ばす
+    [].forEach.call(document.getElementsByClassName("_loginLink"), elem => {
+        elem.addEventListener("click", evt => {
+            evt.preventDefault();
+            location.href = '/login';
+        });
+    });
+
     // 投稿イベント
-    [].forEach.call(document.getElementsByClassName("posted-wrap"), elem => {
+    [].forEach.call(document.getElementsByClassName("_postedWrap"), elem => {
         if (elem.classList.contains("posted")) {
             elem.addEventListener("click", evt => {
                 evt.preventDefault();
@@ -30,13 +38,13 @@
             elem.addEventListener("click", evt => {
                 evt.preventDefault();
                 $(evt.target).parents('a').addClass('no-active');
-                location.href = $(evt.target).parents('.card-head').find('.posted-wrap').data('link');
+                location.href = $(evt.target).parents('.card-head').find('._postedWrap').data('link');
             });
         }
     });
 
     // 店舗お気に入りイベント
-    [].forEach.call(document.getElementsByClassName("shop-like"), elem => {
+    [].forEach.call(document.getElementsByClassName("_shopLike"), elem => {
         elem.addEventListener('click', evt => {
             evt.preventDefault();
             $(evt.target).parents('a').addClass('no-active');
@@ -52,7 +60,7 @@
         cardHead.find('i.fa-star').removeClass('fas');
         cardHead.find('i.fa-star').addClass('far');
         $.ajax({
-            url: '/user_like_shops/'+cardHead.find('.shop-like').data('shop_cd'),
+            url: '/user_like_shops/'+cardHead.find('._shopLike').data('shop_cd'),
             type: 'POST',
             data: {
                 '_method': 'DELETE'
@@ -80,7 +88,7 @@
             url: '/user_like_shops',
             type: 'POST',
             data: {
-                'shop_cd': cardHead.find('.shop-like').data('shop_cd'),
+                'shop_cd': cardHead.find('._shopLike').data('shop_cd'),
             }
         })
         .done(result => {
@@ -102,10 +110,10 @@
     // 投稿いいねイベント
     document.addEventListener('click', evt => {
         switch (true) {
-            case evt.target.classList.contains('liked'):
+            case evt.target.classList.contains('_liked'):
                 removeLike(evt);
                 break;
-            case evt.target.classList.contains('like'):
+            case evt.target.classList.contains('_notlike'):
                 addLike(evt);
                 break;
         }
@@ -127,8 +135,9 @@
             }
             let url_base = location.protocol+"//"+location.host;
             $(evt.target).parents('.card-body-footer').find('.like-disp').html('<img class="like-icon" src="'+url_base+'/images/like_black.png">'+result.like_count);
-            like.classList.remove('liked');
-            like.innerHTML = '<img class="like-icon like" src="'+url_base+'/images/like.png">';
+            like.classList.remove('_liked');
+            like.classList.add('_notlike');
+            like.innerHTML = '<img class="like-icon notlike" src="'+url_base+'/images/like.png">';
         })
         .fail(data => {
             alert("予期せぬエラーが発生しました。");
@@ -148,7 +157,8 @@
             }
             let url_base = location.protocol+"//"+location.host;
             $(evt.target).parents('.card-body-footer').find('.like-disp').html('<img class="like-icon" src="'+url_base+'/images/like_black.png">'+result.like_count);
-            like.classList.add('liked');
+            like.classList.remove('_notlike');
+            like.classList.add('_liked');
             like.innerHTML = '<img class="like-icon liked" src="'+url_base+'/images/like.png">済';
         })
         .fail(data => {
