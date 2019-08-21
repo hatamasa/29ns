@@ -116,7 +116,7 @@
             </div>
         </div>
 
-        @if ($loop->iteration % 12 == 0)
+        @if ($loop->iteration % 15 == 0)
         <div class="ad">
             <center>スポンサーリンク(広告)</center>
         {{--@if ($loop->iteration == 3)
@@ -134,7 +134,7 @@
                      data-ad-client="ca-pub-4702990894338882"
                      data-ad-slot="4980316670"
                      data-ad-format="auto"
-                     data-full-width-responsive="true"></ins>--}}
+                     data-full-width-responsive="true"></ins>
             @if ($loop->iteration == 12)
                 <!-- 検索画面コンテンツ間３ -->
                 <ins class="adsbygoogle"
@@ -142,8 +142,8 @@
                      data-ad-client="ca-pub-4702990894338882"
                      data-ad-slot="1041071665"
                      data-ad-format="auto"
-                     data-full-width-responsive="true"></ins>
-            {{--@elseif ($loop->iteration == 15)
+                     data-full-width-responsive="true"></ins>--}}
+            @if ($loop->iteration == 15)
                 <!-- 検索画面コンテンツ間４ -->
                 <ins class="adsbygoogle"
                      style="display:block"
@@ -151,7 +151,7 @@
                      data-ad-slot="5330836314"
                      data-ad-format="auto"
                      data-full-width-responsive="true"></ins>
-            @elseif ($loop->iteration == 18)
+        {{--@elseif ($loop->iteration == 18)
                 <!-- 検索画面コンテンツ間５ -->
                 <ins class="adsbygoogle"
                      style="display:block"
@@ -166,7 +166,7 @@
                      data-ad-client="ca-pub-4702990894338882"
                      data-ad-slot="6140999889"
                      data-ad-format="auto"
-                     data-full-width-responsive="true"></ins>--}}
+                     data-full-width-responsive="true"></ins>
             @elseif ($loop->iteration == 24)
                 <!-- 検索画面コンテンツ間７ -->
                 <ins class="adsbygoogle"
@@ -175,7 +175,7 @@
                      data-ad-slot="3514836547"
                      data-ad-format="auto"
                      data-full-width-responsive="true"></ins>
-            {{--@elseif ($loop->iteration == 27)
+            @elseif ($loop->iteration == 27)
                 <!-- 検索画面コンテンツ間８ -->
                 <ins class="adsbygoogle"
                      style="display:block"

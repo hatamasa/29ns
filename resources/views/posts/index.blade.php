@@ -33,10 +33,10 @@
     @foreach ($posts as $post)
         @include ('common.post', ['post' => $post])
 
-        @if ($loop->iteration % 8 == 0)
+        @if ($loop->iteration % 12 == 0)
         <div class="ad">
             <center>スポンサーリンク(広告)</center>
-            @if ($loop->iteration == 8)
+            @if ($loop->iteration == 12)
                 <!-- 投稿一覧コンテンツ間１ -->
                 <ins class="adsbygoogle"
                      style="display:block"
@@ -44,14 +44,14 @@
                      data-ad-slot="6361681108"
                      data-ad-format="auto"
                      data-full-width-responsive="true"></ins>
-            @elseif ($loop->iteration == 16)
+           {{-- @elseif ($loop->iteration == 16)
                 <!-- 投稿一覧コンテンツ間２ -->
                 <ins class="adsbygoogle"
                      style="display:block"
                      data-ad-client="ca-pub-4702990894338882"
                      data-ad-slot="3735517765"
                      data-ad-format="auto"
-                     data-full-width-responsive="true"></ins>
+                     data-full-width-responsive="true"></ins> --}}
             @elseif ($loop->iteration == 24)
                 <!-- 投稿一覧コンテンツ間３ -->
                 <ins class="adsbygoogle"

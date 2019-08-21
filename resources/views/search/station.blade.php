@@ -70,7 +70,7 @@
             </div>
         </div>
 
-        @if ($loop->iteration % 12 == 0)
+        @if ($loop->iteration % 36 == 0)
         <div class="ad">
             <center>スポンサーリンク(広告)</center>
             {{--@if ($loop->iteration == 6)
@@ -80,7 +80,7 @@
                      data-ad-client="ca-pub-4702990894338882"
                      data-ad-slot="8105173466"
                      data-ad-format="auto"
-                     data-full-width-responsive="true"></ins>--}}
+                     data-full-width-responsive="true"></ins>
             @if ($loop->iteration == 12)
                 <!-- 検索画面コンテンツ間２ -->
                 <ins class="adsbygoogle"
@@ -89,15 +89,15 @@
                      data-ad-slot="4980316670"
                      data-ad-format="auto"
                      data-full-width-responsive="true"></ins>
-            {{--@elseif ($loop->iteration == 18)
+            @elseif ($loop->iteration == 18)
                 <!-- 検索画面コンテンツ間３ -->
                 <ins class="adsbygoogle"
                      style="display:block"
                      data-ad-client="ca-pub-4702990894338882"
                      data-ad-slot="1041071665"
                      data-ad-format="auto"
-                     data-full-width-responsive="true"></ins>--}}
-            @elseif ($loop->iteration == 24)
+                     data-full-width-responsive="true"></ins>
+            @if ($loop->iteration == 24)
                 <!-- 検索画面コンテンツ間４ -->
                 <ins class="adsbygoogle"
                      style="display:block"
@@ -105,15 +105,15 @@
                      data-ad-slot="5330836314"
                      data-ad-format="auto"
                      data-full-width-responsive="true"></ins>
-            {{--@elseif ($loop->iteration == 30)
+            @elseif ($loop->iteration == 30)
                 <!-- 検索画面コンテンツ間５ -->
                 <ins class="adsbygoogle"
                      style="display:block"
                      data-ad-client="ca-pub-4702990894338882"
                      data-ad-slot="7454081557"
                      data-ad-format="auto"
-                     data-full-width-responsive="true"></ins>--}}
-            @elseif ($loop->iteration == 36)
+                     data-full-width-responsive="true"></ins> --}}
+            @if ($loop->iteration == 36)
                 <!-- 検索画面コンテンツ間６ -->
                 <ins class="adsbygoogle"
                      style="display:block"
@@ -121,14 +121,14 @@
                      data-ad-slot="6140999889"
                      data-ad-format="auto"
                      data-full-width-responsive="true"></ins>
-            {{--@elseif ($loop->iteration == 42)
+            {{-- @elseif ($loop->iteration == 42)
                 <!-- 検索画面コンテンツ間７ -->
                 <ins class="adsbygoogle"
                      style="display:block"
                      data-ad-client="ca-pub-4702990894338882"
                      data-ad-slot="3514836547"
                      data-ad-format="auto"
-                     data-full-width-responsive="true"></ins>--}}
+                     data-full-width-responsive="true"></ins>
             @elseif ($loop->iteration == 48)
                 <!-- 検索画面コンテンツ間８ -->
                 <ins class="adsbygoogle"
@@ -137,14 +137,14 @@
                      data-ad-slot="8536418300"
                      data-ad-format="auto"
                      data-full-width-responsive="true"></ins>
-            {{--@elseif ($loop->iteration == 54)
+            @elseif ($loop->iteration == 54)
                 <!-- 検索画面コンテンツ間９ -->
                 <ins class="adsbygoogle"
                      style="display:block"
                      data-ad-client="ca-pub-4702990894338882"
                      data-ad-slot="2229675033"
                      data-ad-format="auto"
-                     data-full-width-responsive="true"></ins>--}}
+                     data-full-width-responsive="true"></ins>
             @elseif ($loop->iteration == 60)
                 <!-- 検索画面コンテンツ間１０ -->
                 <ins class="adsbygoogle"
@@ -153,14 +153,14 @@
                      data-ad-slot="8603511699"
                      data-ad-format="auto"
                      data-full-width-responsive="true"></ins>
-            {{--@elseif ($loop->iteration == 66)
+            @elseif ($loop->iteration == 66)
                 <!-- 検索画面コンテンツ間１１ -->
                 <ins class="adsbygoogle"
                      style="display:block"
                      data-ad-client="ca-pub-4702990894338882"
                      data-ad-slot="5977348358"
                      data-ad-format="auto"
-                     data-full-width-responsive="true"></ins>--}}
+                     data-full-width-responsive="true"></ins>
             @elseif ($loop->iteration == 72)
                 <!-- 検索画面コンテンツ間１２ -->
                 <ins class="adsbygoogle"
@@ -168,7 +168,7 @@
                      data-ad-client="ca-pub-4702990894338882"
                      data-ad-slot="4597173293"
                      data-ad-format="auto"
-                     data-full-width-responsive="true"></ins>
+                     data-full-width-responsive="true"></ins>--}}
             @endif
         </div>
         @endif

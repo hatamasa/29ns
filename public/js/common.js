@@ -1,7 +1,7 @@
 (() => {
 
     document.addEventListener('DOMContentLoaded', function() {
-        $('.adsbygoogle').each(function() {
+        [].forEach.call(document.getElementsByClassName('adsbygoogle'), () => {
             (adsbygoogle = window.adsbygoogle || []).push({});
         });
     });
@@ -20,42 +20,51 @@
     }
 
     // ログインへ飛ばす
-    [].forEach.call(document.getElementsByClassName("_loginLink"), elem => {
-        elem.addEventListener("click", evt => {
-            evt.preventDefault();
-            location.href = '/login';
+    const LOGIN_LINK = document.getElementsByClassName("_loginLink");
+    if (LOGIN_LINK) {
+        [].forEach.call(LOGIN_LINK, elem => {
+            elem.addEventListener("click", evt => {
+                evt.preventDefault();
+                location.href = '/login';
+            });
         });
-    });
+    }
 
     // 投稿イベント
-    [].forEach.call(document.getElementsByClassName("_postedWrap"), elem => {
-        if (elem.classList.contains("posted")) {
-            elem.addEventListener("click", evt => {
-                evt.preventDefault();
-                alert("すでに投稿しています。");
-            })
-        } else {
-            elem.addEventListener("click", evt => {
-                evt.preventDefault();
-                $(evt.target).parents('a').addClass('no-active');
-                location.href = $(evt.target).parents('.card-head').find('._postedWrap').data('link');
-            });
-        }
-    });
-
-    // 店舗お気に入りイベント
-    [].forEach.call(document.getElementsByClassName("_shopLike"), elem => {
-        elem.addEventListener('click', evt => {
-            evt.preventDefault();
-            $(evt.target).parents('a').addClass('no-active');
-            let cardHead = $(evt.target).parents('.card-head');
-            if (cardHead.find('i.fa-star').hasClass("fas")) {
-                unLikeShop(evt, cardHead);
+    const POSTED_WRAP = document.getElementsByClassName("_postedWrap");
+    if (POSTED_WRAP) {
+        [].forEach.call(POSTED_WRAP, elem => {
+            if (elem.classList.contains("posted")) {
+                elem.addEventListener("click", evt => {
+                    evt.preventDefault();
+                    alert("すでに投稿しています。");
+                })
             } else {
-                likeShop(evt, cardHead);
+                elem.addEventListener("click", evt => {
+                    evt.preventDefault();
+                    $(evt.target).parents('a').addClass('no-active');
+                    location.href = $(evt.target).parents('.card-head').find('._postedWrap').data('link');
+                });
             }
         });
-    });
+    }
+
+    // 店舗お気に入りイベント
+    const SHOP_LIKE = document.getElementsByClassName("_shopLike");
+    if (SHOP_LIKE) {
+        [].forEach.call(SHOP_LIKE, elem => {
+            elem.addEventListener('click', evt => {
+                evt.preventDefault();
+                $(evt.target).parents('a').addClass('no-active');
+                let cardHead = $(evt.target).parents('.card-head');
+                if (cardHead.find('i.fa-star').hasClass("fas")) {
+                    unLikeShop(evt, cardHead);
+                } else {
+                    likeShop(evt, cardHead);
+                }
+            });
+        });
+    }
     function unLikeShop(evt, cardHead) {
         cardHead.find('i.fa-star').removeClass('fas');
         cardHead.find('i.fa-star').addClass('far');
@@ -167,16 +176,19 @@
     }
 
     // ユーザフォローイベント
-    [].forEach.call(document.getElementsByClassName('follow-link'), elem => {
-        elem.addEventListener('click', evt => {
-            let span = $(evt.target).parents('.follow-icon').find('span').get(0);
-            if (span.classList.contains('followed')) {
-                unfollow(evt);
-            } else {
-                follow(evt);
-            }
+    const FOLLOW_LINK = document.getElementsByClassName('follow-link');
+    if (FOLLOW_LINK) {
+        [].forEach.call(FOLLOW_LINK, elem => {
+            elem.addEventListener('click', evt => {
+                let span = $(evt.target).parents('.follow-icon').find('span').get(0);
+                if (span.classList.contains('followed')) {
+                    unfollow(evt);
+                } else {
+                    follow(evt);
+                }
+            });
         });
-    });
+    }
     function unfollow(evt) {
         let followLink = $(evt.target).parents('.follow-icon').find('.follow-link');
         followLink.parent().removeClass('followed-li');

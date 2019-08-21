@@ -40,10 +40,10 @@
     @foreach ($shops as $shop)
         @include ('common.shop', ['shop' => $shop])
 
-        @if ($loop->iteration % 6 == 0)
+        @if ($loop->iteration % 24 == 0)
         <div class="ad">
             <center>スポンサーリンク(広告)</center>
-            @if ($loop->iteration == 6)
+            @if ($loop->iteration == 24)
                 <!-- 店舗一覧コンテンツ間１ -->
                 <ins class="adsbygoogle"
                      style="display:block"
@@ -51,7 +51,7 @@
                      data-ad-slot="2665144529"
                      data-ad-format="auto"
                      data-full-width-responsive="true"></ins>
-            @elseif ($loop->iteration == 12)
+            {{-- @elseif ($loop->iteration == 24)
                 <!-- 店舗一覧コンテンツ間２ -->
                 <ins class="adsbygoogle"
                      style="display:block"
@@ -74,7 +74,7 @@
                      data-ad-client="ca-pub-4702990894338882"
                      data-ad-slot="9015764607"
                      data-ad-format="auto"
-                     data-full-width-responsive="true"></ins>
+                     data-full-width-responsive="true"></ins> --}}
             @endif
         </div>
         @endif
