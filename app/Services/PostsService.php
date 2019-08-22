@@ -197,4 +197,27 @@ class PostsService extends Service
         return $post;
     }
 
+    /**
+     * 点数の計算ロジック
+     * 投稿が5件以下は5点との差分を変換して計算
+     * @param string $shop_cd
+     * @param int $post_count
+     * @param bool $is_add
+     * @return NULL|number|mixed
+     */
+    public function calcScore(string $shop_cd, int $post_count)
+    {
+        $result = null;
+        if ($post_count > 5) {
+            // 5件を超えていたら平均で算出する
+            $result = DB::table('posts')->where(['shop_cd' => $shop_cd])->avg('score');
+        } else {
+            // 5件を超えていない場合は計算ロジックで変換して加算する
+            $sum_diff_score = $this->Posts->getSumDiffScore($shop_cd);
+            $result = 5 + $sum_diff_score->score / 20;
+        }
+
+        return $result;
+    }
+
 }

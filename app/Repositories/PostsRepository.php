@@ -148,4 +148,19 @@ class PostsRepository
             return $query->first();
     }
 
+    /**
+     * 得点の合計値を取得する
+     * @param string $shop_cd
+     * @return \Illuminate\Database\Eloquent\Model|object|\Illuminate\Database\Query\Builder|NULL
+     */
+    public function getSumDiffScore(string $shop_cd)
+    {
+        $query = DB::table('posts')
+            ->selectRaw('sum(score - 5) as score')
+            ->where('shop_cd', $shop_cd)
+            ->groupBy('shop_cd');
+
+        return $query->first();
+    }
+
 }

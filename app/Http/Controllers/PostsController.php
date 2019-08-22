@@ -130,10 +130,9 @@ class PostsController extends Controller
                 'comment_count' => 0,
             ]);
             $shop = DB::table('shops')->where(['shop_cd' => $params["shop_cd"]])->first();
-            $score = DB::table('posts')->where(['shop_cd' => $params['shop_cd']])->avg('score');
             DB::table('shops')->where(['shop_cd' => $params["shop_cd"]])->update([
                 'post_count' => $shop->post_count+1,
-                'score'      => $score
+                'score'      => $this->PostsService->calcScore($params["shop_cd"], $shop->post_count+1)
             ]);
             $user = Auth::user();
             DB::table('users')->where(['id' => $user->id])->update(['post_count' => $user->post_count+1]);
@@ -192,10 +191,9 @@ class PostsController extends Controller
         try {
             DB::table('posts')->delete($id);
             $shop = DB::table('shops')->where(['shop_cd' => $post->shop_cd])->first();
-            $score = DB::table('posts')->where(['shop_cd' => $post->shop_cd])->avg('score');
             DB::table('shops')->where(['shop_cd' => $post->shop_cd])->update([
                 'post_count' => $shop->post_count-1,
-                'score'      => $score
+                'score'      => $this->PostsService->calcScore($post->shop_cd, $shop->post_count-1)
             ]);
             $user = Auth::user();
             DB::table('users')->where(['id' => $user->id])->update(['post_count' => $user->post_count-1]);
