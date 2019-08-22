@@ -66,10 +66,12 @@
     max-height: 100%;
 }
 .post-text-center p:nth-child(1) {
+    display: block;
     margin-bottom: 10px;
 }
 .post-text-center p:nth-child(2) {
     font-weight: normal;
+    white-space: pre-wrap;
 }
 
 .comment {

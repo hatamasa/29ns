@@ -83,7 +83,7 @@
                     @else
                     <p>{{ $post->title }}</p>
                     @endif
-                    <p>{{ $post->contents }}</p>
+                    <p>{!! nl2br(e($post->contents)) !!}</p>
                 </li>
             </ul>
         </div>
