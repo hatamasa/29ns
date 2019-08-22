@@ -18,6 +18,8 @@
     @yield('canonical')
 
     <link rel="icon" href="/favicon.ico">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="apple-touch-icon-precomposed" href="https://www.29-ns.com/images/icon_small.png">
 
     <!-- Styles -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -37,6 +39,14 @@
       gtag('js', new Date());
 
       gtag('config', 'UA-139979567-2');
+    </script>
+
+    <script>
+      if('serviceWorker' in navigator){
+        navigator.serviceWorker.register('/serviceworker.js').then(function(){
+            console.log("Service Worker Registered");
+        });
+      }
     </script>
 
     <!-- ogp -->
@@ -62,7 +72,7 @@
                 || url()->current() == url('/shops/ranking')
                 || url()->current() == url('/posts'))
             <a href="{{ url('/home') }}" class="col-4">
-                <h1>東京の焼肉好きのためのSNS</h1>
+                <h1>東京の焼肉好きのための<br>グルメサイト</h1>
                 <span>東京肉NS</span>
             </a>
             <a href="{{ url('/home') }}" class="col-2"><img src="{{ asset('images/home.png') }}" alt="ホームボタン"><span>ホーム</span></a>

@@ -1,0 +1,27 @@
+{
+  "name"              : "東京の肉好きのためのグルメサイト！ - 東京肉NS",
+  "short_name"        : "東京肉NS",
+  "description"       : "焼肉に特化したグルメサイト。東京の焼肉店やお肉が食べれる店を検索、お気に入り、口コミ。気になるお店は星マークからお気に入りしてマイページでチェック！他のユーザのお気に入り店や口コミもチェックできる！肉好きの肉好きによる肉好きのためのSNS。",
+  "start_url"         : "/?utm_source=homescreen",
+  "display"           : "standalone",
+  "orientation"       : "portrait",
+  "background_color"  : "#800000",
+  "theme_color"       : "#800000",
+  "icons": [
+    {
+      "src"           : "/images/icon_small.png",
+      "sizes"         : "192x192",
+      "type"          : "image/png"
+    },
+    {
+      "src"           : "/images/icon_middle.png",
+      "sizes"         : "256x256",
+      "type"          : "image/png"
+    },
+    {
+      "src"           : "/images/icon_large.png",
+      "sizes"         : "512x512",
+      "type"          : "image/png"
+    }
+  ]
+}
