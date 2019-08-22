@@ -43,7 +43,10 @@ class ShopsRepository
                 DB::raw('CASE WHEN uls.shop_cd IS NOT NULL THEN 1 ELSE 0 END as is_liked')
             )
             ->where('is_deleted', 0)
-            ->orderBy('score', 'desc')
+            ->orderBy('s.score', 'desc')
+            ->orderBy('s.post_count', 'desc')
+            ->orderBy('s.like_count', 'desc')
+            ->orderBy('s.updated_at', 'asc')
             ->offset(($page-1) * $limit)
             ->limit($limit)
             ;
