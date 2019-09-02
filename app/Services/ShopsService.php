@@ -110,7 +110,7 @@ class ShopsService extends Service
         }
         // 店舗の取得結果から投稿に必要な情報を取得する
         foreach ($shops as $key => &$shop) {
-            $shop_exists = false;
+            $resigned_shop_cd = $shop->shop_cd;
             foreach ($result as $res_shop) {
                 if ($shop->shop_cd == $res_shop['id']) {
                     $shop->shop_name     = $res_shop['name'];
@@ -120,13 +120,14 @@ class ShopsService extends Service
                     $shop->walk    = $res_shop['access']['walk'];
                     $shop->note    = $res_shop['access']['note'];
                     $shop->budget  = $res_shop['budget'];
-                    $shop_exists = true;
+                    $resigned_shop_cd = null;
                     break;
                 }
             }
-            // 店舗がAPIから取得出来なかった場合
-            if (! $shop_exists) {
+            // 店舗がAPIから取得出来なかった場合は返却から解除して、DBを更新する
+            if (! is_null($resigned_shop_cd)) {
                 unset($shops[$key]);
+                DB::table('shops')->where(['shop_cd' => $resigned_shop_cd])->update(['is_deleted' => 1]);
             }
         }
 
