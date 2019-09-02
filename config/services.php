@@ -57,6 +57,7 @@ return [
         'api_path' => [
             'restSearch' => 'RestSearchAPI/v3/',
             'erea'       => 'master/GAreaMiddleSearchAPI/v3/',
+            'photoSearch' => 'PhotoSearchAPI/v3/'
         ],
     ],
 
