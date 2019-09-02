@@ -66,12 +66,10 @@
                 <li class="post-text-top">
                     <a href='{{ url("/users/{$post->user_id}")}}'>
                         <p class="name">
-                            @if ($post->user_thumbnail_url)
+                            @if (isset($post->thumbnail_url) && !empty($post->thumbnail_url))
                             <img alt="" src="{{ $post->user_thumbnail_url }}" class="icon" alt="ユーザプロフィール画像">
-                            @elseif ($post->user_sex == 1)
-                            <img alt="" src="{{ asset('/images/man.png') }}" class="icon" alt="ユーザ男性デフォルトプロフィール画像">
-                            @elseif ($post->user_sex == 2)
-                            <img alt="" src="{{ asset('/images/woman.png') }}" class="icon" alt="ユーザ女性デフォルトプロフィール画像">
+                            @else
+                            <img alt="" src="{{ asset('/images/user.png') }}" class="icon" alt="ユーザデフォルトプロフィール画像">
                             @endif
                             {{ $post->user_name }}
                         </p>
@@ -127,12 +125,10 @@
 @foreach ($post_comments as $post_comment)
     <div class="comment">
         <a href='{{ url("/users/{$post_comment->user_id}") }}'>
-            @if ($post_comment->thumbnail_url)
+            @if (isset($post->thumbnail_url) && !empty($post->thumbnail_url))
             <img alt="ユーザプロフィール画像" src="{{ $post_comment->thumbnail_url }}" class="icon">
-            @elseif ($post_comment->sex == 1)
-            <img alt="ユーザ男性デフォルトプロフィール画像" src="{{ asset('/images/man.png') }}" class="icon">
-            @elseif ($post_comment->sex == 2)
-            <img alt="ユーザ女性デフォルトプロフィール画像" src="{{ asset('/images/woman.png') }}" class="icon">
+            @else
+            <img alt="ユーザデフォルトプロフィール画像" src="{{ asset('/images/user.png') }}" class="icon">
             @endif
         </a>
         <div class="comment-text">

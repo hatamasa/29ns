@@ -27,12 +27,10 @@
 <div>
     @auth
     <div class="block-head user-thumbnail">
-        @if ($user->thumbnail_url)
+        @if (isset($user->thumbnail_url) && !empty($user->thumbnail_url))
         <img alt="ユーザプロフィール画像" src="{{ $user->thumbnail_url }}" class="icon">
-        @elseif ($user->sex == 1)
-        <img alt="ユーザ男性デフォルトプロフィール画像" src="{{ asset('/images/man.png') }}" class="icon">
-        @elseif ($user->sex == 2)
-        <img alt="ユーザ女性デフォルトプロフィール画像" src="{{ asset('/images/woman.png') }}" class="icon">
+        @else
+        <img alt="ユーザデフォルトプロフィール画像" src="{{ asset('/images/user.png') }}" class="icon">
         @endif
         <a href='{{ url("/posts/create?shop_cd={$shop["id"]}") }}' class="icon">
             <div>このお店に行った場合はコチラ！</div>
@@ -102,12 +100,10 @@
                             <p>{{ $post->score }}点</p>
                             <p>
                                 <a href='{{ url("/users/{$post->user_id}")}}'>
-                                    @if ($post->user_thumbnail_url)
+                                    @if (isset($post->user_thumbnail_url) && !empty($post->user_thumbnail_url))
                                     <img alt="" src="{{ $post->user_thumbnail_url }}" class="icon">
-                                    @elseif ($post->user_sex == 1)
-                                    <img alt="" src="{{ asset('/images/man.png') }}" class="icon">
-                                    @elseif ($post->user_sex == 2)
-                                    <img alt="" src="{{ asset('/images/woman.png') }}" class="icon">
+                                    @else
+                                    <img alt="" src="{{ asset('/images/user.png') }}" class="icon">
                                     @endif
                                     {{ $post->user_name }}
                                 </a>

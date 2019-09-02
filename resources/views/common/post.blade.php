@@ -13,25 +13,32 @@
                     <p>@time_diff($post->post_created_at)</p>
                 </li>
                 <li class="post-text-top">
+                    @if ($post->user_id == 0)
+                    <a href='javascript:void(0)'>
+                        <p class="name">
+                            <img alt="" src="{{ asset('/images/user.png') }}" class="icon" alt="ユーザデフォルトプロフィール画像">
+                            {{ explode("/", $post->title)[1] }}
+                        </p>
+                    </a>
+                    @else
                     <a href='{{ url("/users/{$post->user_id}")}}'>
                         <p class="name">
-                            @if ($post->user_thumbnail_url)
+                            @if (isset($post->thumbnail_url) && !empty($post->thumbnail_url))
                             <img alt="" src="{{ $post->user_thumbnail_url }}" class="icon" alt="ユーザプロフィール画像">
-                            @elseif ($post->user_sex == 1)
-                            <img alt="" src="{{ asset('/images/man.png') }}" class="icon" alt="ユーザ男性デフォルトプロフィール画像">
-                            @elseif ($poser->user_sex == 2)
-                            <img alt="" src="{{ asset('/images/woman.png') }}" class="icon" alt="ユーザ女性デフォルトプロフィール画像">
+                            @else
+                            <img alt="" src="{{ asset('/images/user.png') }}" class="icon" alt="ユーザデフォルトプロフィール画像">
                             @endif
                             {{ $post->user_name }}
                         </p>
                     </a>
+                    @endif
                 </li>
                 <a href='{{ url("/posts/{$post->id}") }}'>
                     <li class="post-text-center">
                         @empty ($post->title)
                         <p>{{ $post->shop_name }}へ行きました！</p>
                         @else
-                        <p>{{ $post->title }}</p><span>...詳細を見る</span>
+                        <p>{{ explode("/", $post->title)[0] }}</p><span>...詳細を見る</span>
                         @endif
                     </li>
                 </a>
