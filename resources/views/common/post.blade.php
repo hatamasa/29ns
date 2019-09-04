@@ -26,11 +26,7 @@
                             @else
                             <img alt="" src="{{ asset('/images/user.png') }}" class="icon" alt="ユーザデフォルトプロフィール画像">
                             @endif
-                            @if ($post->is_resigned)
-                                退会済みユーザ
-                            @else
-                                {{ $post->user_name }}
-                            @endif
+                            {{ $post->user_name }}
                         </p>
                     </a>
                     @endif
