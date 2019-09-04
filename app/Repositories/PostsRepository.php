@@ -27,7 +27,7 @@ class PostsRepository
             ->where(['user_id' => Auth::id()]);
 
         $query = DB::table('posts as p')
-            ->join('users as u', 'p.user_id', '=', 'u.id')
+            ->leftJoin('users as u', 'p.user_id', '=', 'u.id')
             ->leftJoinSub($sub, 'plu', function ($join){
                 $join->on('p.id', '=', 'plu.post_id');
             })
@@ -41,7 +41,8 @@ class PostsRepository
                 'p.like_count',
                 'p.comment_count',
                 'p.created_at as post_created_at',
-                'u.id as user_id',
+                DB::raw('CASE WHEN u.id is null THEN 0 ELSE u.id END user_id'),
+                'u.is_resigned',
                 'u.name as user_name',
                 'u.thumbnail_url as user_thumbnail_url',
                 'u.sex as user_sex',
@@ -77,10 +78,10 @@ class PostsRepository
             ->where(['user_id' => Auth::id()]);
 
         $query = DB::table('posts as p')
+            ->leftJoin('users as u', 'p.user_id', '=', 'u.id')
             ->leftJoinSub($sub, 'plu', function ($join){
                 $join->on('p.id', '=', 'plu.post_id');
             })
-            ->join('users as u', 'p.user_id', '=', 'u.id')
             ->select(
                 'p.id',
                 'p.shop_cd',
@@ -93,7 +94,8 @@ class PostsRepository
                 'p.like_count',
                 'p.comment_count',
                 'p.created_at as post_created_at',
-                'u.id as user_id',
+                DB::raw('CASE WHEN u.id is null THEN 0 ELSE u.id END user_id'),
+                'u.is_resigned',
                 'u.name as user_name',
                 'u.thumbnail_url as user_thumbnail_url',
                 'u.sex as user_sex',
@@ -120,7 +122,7 @@ class PostsRepository
             ->where(['user_id' => Auth::id()]);
 
         $query = DB::table('posts as p')
-            ->join('users as u', 'p.user_id', '=', 'u.id')
+            ->leftJoin('users as u', 'p.user_id', '=', 'u.id')
             ->leftJoinSub($sub, 'plu', function ($join){
                 $join->on('p.id', '=', 'plu.post_id');
             })
@@ -136,7 +138,8 @@ class PostsRepository
                 'p.like_count',
                 'p.comment_count',
                 'p.created_at as post_created_at',
-                'u.id as user_id',
+                DB::raw('CASE WHEN u.id is null THEN 0 ELSE u.id END user_id'),
+                'u.is_resigned',
                 'u.name as user_name',
                 'u.thumbnail_url as user_thumbnail_url',
                 'u.sex as user_sex',

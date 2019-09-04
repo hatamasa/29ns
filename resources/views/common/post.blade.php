@@ -14,12 +14,10 @@
                 </li>
                 <li class="post-text-top">
                     @if ($post->user_id == 0)
-                    <a href='javascript:void(0)'>
-                        <p class="name">
-                            <img alt="" src="{{ asset('/images/user.png') }}" class="icon" alt="ユーザデフォルトプロフィール画像">
-                            {{ explode("/", $post->title)[1] }}
-                        </p>
-                    </a>
+                    <p class="name">
+                        <img alt="" src="{{ asset('/images/user.png') }}" class="icon" alt="ユーザデフォルトプロフィール画像">
+                        {{ strpos($post->title, '/') ? explode("/", $post->title)[1] : '' }}
+                    </p>
                     @else
                     <a href='{{ url("/users/{$post->user_id}")}}'>
                         <p class="name">
@@ -28,7 +26,11 @@
                             @else
                             <img alt="" src="{{ asset('/images/user.png') }}" class="icon" alt="ユーザデフォルトプロフィール画像">
                             @endif
-                            {{ $post->user_name }}
+                            @if ($post->is_resigned)
+                                退会済みユーザ
+                            @else
+                                {{ $post->user_name }}
+                            @endif
                         </p>
                     </a>
                     @endif

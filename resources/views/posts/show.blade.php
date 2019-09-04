@@ -64,6 +64,12 @@
                     <p>@time_diff($post->post_created_at)</p>
                 </li>
                 <li class="post-text-top">
+                    @if ($post->user_id == 0)
+                    <p class="name">
+                        <img alt="" src="{{ asset('/images/user.png') }}" class="icon" alt="ユーザデフォルトプロフィール画像">
+                        {{ strpos($post->title, '/') ? explode("/", $post->title)[1] : '' }}
+                    </p>
+                    @else
                     <a href='{{ url("/users/{$post->user_id}")}}'>
                         <p class="name">
                             @if (isset($post->thumbnail_url) && !empty($post->thumbnail_url))
@@ -71,9 +77,14 @@
                             @else
                             <img alt="" src="{{ asset('/images/user.png') }}" class="icon" alt="ユーザデフォルトプロフィール画像">
                             @endif
-                            {{ $post->user_name }}
+                            @if ($post->is_resigned)
+                                退会済みユーザ
+                            @else
+                                {{ $post->user_name }}
+                            @endif
                         </p>
                     </a>
+                    @endif
                 </li>
                 <li class="post-text-center">
                     @empty ($post->title)
@@ -125,14 +136,19 @@
 @foreach ($post_comments as $post_comment)
     <div class="comment">
         <a href='{{ url("/users/{$post_comment->user_id}") }}'>
-            @if (isset($post->thumbnail_url) && !empty($post->thumbnail_url))
+            @if (isset($post_comment->thumbnail_url) && !empty($post_comment->thumbnail_url))
             <img alt="ユーザプロフィール画像" src="{{ $post_comment->thumbnail_url }}" class="icon">
             @else
             <img alt="ユーザデフォルトプロフィール画像" src="{{ asset('/images/user.png') }}" class="icon">
             @endif
         </a>
         <div class="comment-text">
-            <a href='{{ url("/users/{$post_comment->user_id}") }}'><span>{{ $post_comment->name }}</span></a><span>@time_diff($post_comment->created_at)</span>
+            @if ($post_comment->is_resigned)
+                退会済みユーザ
+            @else
+                <a href='{{ url("/users/{$post_comment->user_id}") }}'><span>{{ $post_comment->name }}</span></a>
+            @endif
+            <span>@time_diff($post_comment->created_at)</span>
             <div>{{ $post_comment->contents }}</div>
         </div>
         @if (Auth::id() == $post_comment->user_id)
@@ -149,12 +165,10 @@
 <form action='{{ url("/post_comments") }}' id="post-comment-form" method="POST">
     @csrf
     <div class="comment">
-        @if ($user->thumbnail_url)
+        @if (isset($user->thumbnail_url) && !empty($user->thumbnail_url))
         <img alt="ユーザプロフィール画像" src="{{ $user->thumbnail_url }}">
-        @elseif ($user->sex == 1)
-        <img alt="ユーザ男性デフォルトプロフィール画像" src="{{ asset('/images/man.png') }}">
-        @elseif ($user->sex == 2)
-        <img alt="ユーザ女性デフォルトプロフィール画像" src="{{ asset('/images/woman.png') }}">
+        @else
+        <img alt="" src="{{ asset('/images/user.png') }}" class="icon" alt="ユーザデフォルトプロフィール画像">
         @endif
         <textarea name="contents" id="comment-text" class="comment-text comment-input text-required" value="" data-name="コメント" placeholder="コメントする..."></textarea>
         <input type="hidden" name="post_id" value="{{ $post->id }}">
