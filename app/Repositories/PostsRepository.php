@@ -42,7 +42,6 @@ class PostsRepository
                 'p.comment_count',
                 'p.created_at as post_created_at',
                 DB::raw('CASE WHEN u.id is null THEN 0 ELSE u.id END user_id'),
-                'u.is_resigned',
                 'u.name as user_name',
                 'u.thumbnail_url as user_thumbnail_url',
                 'u.sex as user_sex',
@@ -50,8 +49,10 @@ class PostsRepository
             )
             ->where([
                 'p.is_deleted' => 0,
-                's.is_deleted' => 0
+                's.is_deleted' => 0,
+                'u.is_resigned' => 0
             ])
+            ->orWhereNull('u.is_resigned')
             ->orderBy('p.id', 'desc')
             ->offset(($page-1) * $limit)
             ->limit($limit)
@@ -95,13 +96,13 @@ class PostsRepository
                 'p.comment_count',
                 'p.created_at as post_created_at',
                 DB::raw('CASE WHEN u.id is null THEN 0 ELSE u.id END user_id'),
-                'u.is_resigned',
                 'u.name as user_name',
                 'u.thumbnail_url as user_thumbnail_url',
                 'u.sex as user_sex',
                 DB::raw('CASE WHEN plu.post_id IS NOT NULL THEN 1 ELSE 0 END is_liked')
             )
-            ->where('p.shop_cd', $shop_cd)
+            ->where(['p.shop_cd' => $shop_cd, 'u.is_resigned' => 0])
+            ->orWhereNull('u.is_resigned')
             ->orderBy('p.id', 'desc')
             ->offset(($page-1) * $limit)
             ->limit($limit)
@@ -139,13 +140,13 @@ class PostsRepository
                 'p.comment_count',
                 'p.created_at as post_created_at',
                 DB::raw('CASE WHEN u.id is null THEN 0 ELSE u.id END user_id'),
-                'u.is_resigned',
                 'u.name as user_name',
                 'u.thumbnail_url as user_thumbnail_url',
                 'u.sex as user_sex',
                 DB::raw('CASE WHEN plu.post_id IS NOT NULL THEN 1 ELSE 0 END is_liked')
             )
-            ->where('p.id', $id)
+            ->where(['p.id' => $id, 'u.is_resigned' => 0])
+            ->orWhereNull('u.is_resigned')
             ;
 
             return $query->first();
