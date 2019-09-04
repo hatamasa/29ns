@@ -77,7 +77,11 @@
                             @else
                             <img alt="" src="{{ asset('/images/user.png') }}" class="icon" alt="ユーザデフォルトプロフィール画像">
                             @endif
-                            {{ $post->user_name }}
+                            @if ($post->is_resigned)
+                                退会済みユーザ
+                            @else
+                                {{ $post->user_name }}
+                            @endif
                         </p>
                     </a>
                     @endif
@@ -139,7 +143,11 @@
             @endif
         </a>
         <div class="comment-text">
-            <a href='{{ url("/users/{$post_comment->user_id}") }}'><span>{{ $post_comment->name }}</span></a>
+            @if ($post_comment->is_resigned)
+                退会済みユーザ
+            @else
+                <a href='{{ url("/users/{$post_comment->user_id}") }}'><span>{{ $post_comment->name }}</span></a>
+            @endif
             <span>@time_diff($post_comment->created_at)</span>
             <div>{{ $post_comment->contents }}</div>
         </div>

@@ -22,18 +22,13 @@ class PostsRepository
      */
     public function getRecentlyList(int $limit, int $page = 1, int $user_id = null)
     {
-        $users = DB::table('users')
-            ->where('is_resigned', 0);
-
-        $post_like_users = DB::table('post_like_users')
+        $sub = DB::table('post_like_users')
             ->select('post_id')
             ->where(['user_id' => Auth::id()]);
 
         $query = DB::table('posts as p')
-            ->leftJoinSub($users, 'u', function ($join){
-                $join->on('p.user_id', '=', 'u.id');
-            })
-            ->leftJoinSub($post_like_users, 'plu', function ($join){
+            ->leftJoin('users as u', 'p.user_id', '=', 'u.id')
+            ->leftJoinSub($sub, 'plu', function ($join){
                 $join->on('p.id', '=', 'plu.post_id');
             })
             ->join('shops as s', 'p.shop_cd', '=', 's.shop_cd')
@@ -47,6 +42,7 @@ class PostsRepository
                 'p.comment_count',
                 'p.created_at as post_created_at',
                 DB::raw('CASE WHEN u.id is null THEN 0 ELSE u.id END user_id'),
+                'u.is_resigned',
                 'u.name as user_name',
                 'u.thumbnail_url as user_thumbnail_url',
                 'u.sex as user_sex',
@@ -77,18 +73,13 @@ class PostsRepository
      */
     public function getListByShopCd(string $shop_cd, int $limit, int $page = 1)
     {
-        $users = DB::table('users')
-            ->where('is_resigned', 0);
-
-        $post_like_users = DB::table('post_like_users')
+        $sub = DB::table('post_like_users')
             ->select('post_id')
             ->where(['user_id' => Auth::id()]);
 
         $query = DB::table('posts as p')
-            ->leftJoinSub($users, 'u', function ($join){
-                $join->on('p.user_id', '=', 'u.id');
-            })
-            ->leftJoinSub($post_like_users, 'plu', function ($join){
+            ->leftJoin('users as u', 'p.user_id', '=', 'u.id')
+            ->leftJoinSub($sub, 'plu', function ($join){
                 $join->on('p.id', '=', 'plu.post_id');
             })
             ->select(
@@ -104,6 +95,7 @@ class PostsRepository
                 'p.comment_count',
                 'p.created_at as post_created_at',
                 DB::raw('CASE WHEN u.id is null THEN 0 ELSE u.id END user_id'),
+                'u.is_resigned',
                 'u.name as user_name',
                 'u.thumbnail_url as user_thumbnail_url',
                 'u.sex as user_sex',
@@ -125,18 +117,13 @@ class PostsRepository
      */
     public function getById(int $id)
     {
-        $users = DB::table('users')
-            ->where('is_resigned', 0);
-
-        $post_like_users = DB::table('post_like_users')
+        $sub = DB::table('post_like_users')
             ->select('post_id')
             ->where(['user_id' => Auth::id()]);
 
         $query = DB::table('posts as p')
-            ->leftJoinSub($users, 'u', function ($join){
-                $join->on('p.user_id', '=', 'u.id');
-            })
-            ->leftJoinSub($post_like_users, 'plu', function ($join){
+            ->leftJoin('users as u', 'p.user_id', '=', 'u.id')
+            ->leftJoinSub($sub, 'plu', function ($join){
                 $join->on('p.id', '=', 'plu.post_id');
             })
             ->select(
@@ -152,6 +139,7 @@ class PostsRepository
                 'p.comment_count',
                 'p.created_at as post_created_at',
                 DB::raw('CASE WHEN u.id is null THEN 0 ELSE u.id END user_id'),
+                'u.is_resigned',
                 'u.name as user_name',
                 'u.thumbnail_url as user_thumbnail_url',
                 'u.sex as user_sex',

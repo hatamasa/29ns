@@ -22,12 +22,13 @@ class PostCommentsRepository
                 "pc.contents",
                 "pc.user_id",
                 "pc.created_at",
+                "u.is_resigned",
                 "u.name",
                 "u.thumbnail_url",
                 "u.sex"
             )
             ->join('users as u', 'pc.user_id', '=', 'u.id')
-            ->where(['pc.post_id' => $id, 'u.is_resigned' => 0])
+            ->where('pc.post_id', $id)
             ->orderBy('pc.id', 'asc')
         ;
 
