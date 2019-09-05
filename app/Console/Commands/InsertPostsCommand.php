@@ -6,6 +6,7 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 use App\Repositories\ShopsRepository;
 use App\Services\ApiService;
+use App\Services\PostsService;
 
 class InsertPostsCommand extends Command
 {
@@ -14,7 +15,7 @@ class InsertPostsCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'insert:posts';
+    protected $signature = 'insert:posts {limit?} {offset?}';
 
     /**
      * The console command description.
@@ -28,10 +29,11 @@ class InsertPostsCommand extends Command
      *
      * @return void
      */
-    public function __construct(ApiService $apiService, ShopsRepository $shops)
+    public function __construct(ApiService $apiService, PostsService $postsService, ShopsRepository $shops)
     {
         parent::__construct();
         $this->ApiService = $apiService;
+        $this->PostsService = $postsService;
         $this->Shops = $shops;
     }
 
@@ -43,70 +45,101 @@ class InsertPostsCommand extends Command
     public function handle()
     {
         $this->info("start InsertPostsCommand");
-
-        $shops = DB::table('shops')->get();
-        $progressBar = $this->output->createProgressBar(count($shops));
+        $limit = $this->argument('limit') ?? 500;
+        $offset = $this->argument('offset') ?? 0;
+        $this->info("limit: ".$limit." offset: ".$offset);
 
         $posts = [];
+        $shop_list = [];
 
         DB::beginTransaction();
         try {
-            foreach ($shops as $shop) {
-                $this->processing();
-                $posts = array_merge($posts, $this->createPostsData($shop->shop_cd));
-                $progressBar->advance();
+            // 全店舗を10店舗ずつ口コミを取得する
+            $cnt = 0;
+            DB::table('shops')->orderBy('id')->offset($offset)
+                ->chunk(10, function ($shops) use(&$posts, &$shop_list, $limit, $offset, &$cnt) {
+                    // 指定件数を超えた場合はリターンする
+                    if ($limit < $offset+$cnt+1) {
+                        $this->info("return");
+                        return false;
+                    }
+                    $this->info("------------- chunk ".($offset+$cnt+1)." ~ ".($offset+$cnt+10)."-----------------------");
+                    $cnt += count($shops);
+
+                    $shop_ids = [];
+                    foreach ($shops as $shop) {
+                        $shop_ids[] = $shop->shop_cd;
+                    }
+                    $this->info(implode(",", $shop_ids));
+
+                    list($res_posts, $res_shops) = $this->createPostsData($shop_ids);
+                    $posts = array_merge($posts, $res_posts);
+                    $shop_list = array_merge($shop_list, $res_shops);
+                });
+            // マルチプルインサートで口コミを登録
+            DB::table('posts')->insert($posts);
+
+            $this->info("start shop post_count update");
+            // 店舗の点数を更新
+            foreach ($shop_list as $shop_cd) {
+                $post_count = DB::table("posts")->where(['shop_cd' => $shop_cd])->count();
+                DB::table('shops')->where(['shop_cd' => $shop_cd])->update([
+                    'post_count' => $post_count,
+                    'score'      => $this->PostsService->calcScore($shop_cd, $post_count)
+                ]);
             }
             DB::commit();
         } catch (\Exception $e) {
             DB::rollBack();
             $this->info("error!!");
+            $this->info($e->getMessage());
+            $this->info($e->getTraceAsString());
             return;
         }
 
-        DB::table('posts')->insert($posts);
-        $progressBar->finish();
         $this->info("end InsertPostsCommand");
     }
 
-    private function createPostsData($shop_cd)
+    private function createPostsData(array $shop_ids)
     {
         $posts = [];
+        $shops = [];
         try {
             $page = 0;
             do {
                 $page++;
                 $options = [
                     'hir_per_page' => 50,
-                    "offset_page" => 1+50*($page-1),
+                    "offset_page" => $page,
+                    "shop_id" => implode(",", $shop_ids)
                 ];
 
-                $logs = $this->ApiService->callGnaviPhotoSearchApi($options, $shop_cd);
-                foreach ($logs['photo'] as $log) {
+                $logs = $this->ApiService->callGnaviPhotoSearchApi($options);
+                $response = $logs['response'];
+                foreach ($response as $key => $log) {
+                    // キーが数値のデータだけが口コミデータ
+                    if (!is_numeric($key)) {
+                        continue;
+                    }
+                    $photo = $log['photo'];
+                    $shops[] = $photo["shop_id"];
                     $posts[] = [
                         "user_id" => 0,
-                        "shop_cd" => $shop_cd,
-                        "score" => $log["total_score"]*2,
+                        "shop_cd" => $photo["shop_id"],
+                        "score" => ($photo["total_score"]??2.5)*2,
                         "visit_count" => 1,
-                        "title" => $log["menu_name"].$log["category"]."/".$log["nickname"]."さん",
-                        "contents" => $log["comment"],
-                        "img_url_1" => $log["image_url"]["url_250"],
+                        "title" => ($photo["menu_name"]??'').$photo["category"]."/".$photo["nickname"]."さん",
+                        "contents" => $photo["comment"]??'',
+                        "img_url_1" => $photo["image_url"]["url_250"],
                     ];
                 }
 
-                $this->info("page: ".$page."/".ceil($logs['total_hit_count']/100));
-            } while(ceil($logs['total_hit_count']/100) > $page);
-
-            $post_count = DB::table("posts")->where(['shop_cd' => $shop_cd])->count();
-            DB::table('shops')->where(['shop_cd' => $shop_cd])->update([
-                'post_count' => $post_count,
-                'score'      => $this->PostsService->calcScore($shop_cd, $post_count)
-            ]);
-
+                $this->info("page: ".$page."/".ceil($response['total_hit_count']/50));
+            } while(ceil($response['total_hit_count']/50) > $page);
         } catch (\Exception $e) {
-            $this->info("error!!");
             throw new \Exception($e);
         }
 
-        return $posts;
+        return [$posts, $shops];
     }
 }

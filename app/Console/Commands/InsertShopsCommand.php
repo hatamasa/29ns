@@ -75,7 +75,7 @@ class InsertShopsCommand extends Command
         } catch (\Exception $e) {
             DB::rollBack();
             $this->info("error!!");
-            $this->info($e->getTrace());
+            $this->info($e->getTraceAsString());
             return;
         }
 

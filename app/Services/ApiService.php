@@ -113,17 +113,21 @@ class ApiService extends Service
      * @throws \Exception
      * @return mixed
      */
-    public function callGnaviPhotoSearchApi(array $options, string $shop_cd)
+    public function callGnaviPhotoSearchApi(array $options)
     {
         $base_url = Config::get('services.gnavi.base_url');
         $path     = Config::get('services.gnavi.api_path.photoSearch');
 
         $options = array_merge([
             'keyid' => Config::get('services.gnavi.key'),
-            'shop_id' => $shop_cd
         ], $options);
 
-        $url = $base_url.$path.'?'.http_build_query($options);
+        $query = [];
+        foreach ($options as $key => $val) {
+            $query[] = $key."=".$val;
+        }
+
+        $url = $base_url.$path.'?'.implode('&', $query);
         $this->_log("request url: ".$url);
 
         $response = @file_get_contents($url);
@@ -132,7 +136,7 @@ class ApiService extends Service
         if(count($http_response_header) > 0){
             $status_code = explode(' ', $http_response_header[0]);
             if ($status_code[1] != '200') {
-                throw new \Exception('callGnaviPhotoSearchApi error. '.json_encode($result['error']));
+                throw new \Exception('callGnaviPhotoSearchApi error. '.json_encode($result));
             }
         }
 
