@@ -201,14 +201,14 @@ class PostsService extends Service
      * 点数の計算ロジック
      * 投稿が5件以下は5点との差分を変換して計算
      * @param string $shop_cd
-     * @param int $post_count
      * @param bool $is_add
      * @return NULL|number|mixed
      */
-    public function calcScore(string $shop_cd, int $post_count)
+    public function calcScore(string $shop_cd)
     {
         $result = null;
-        if ($post_count > 5) {
+        $user_count = DB::table("posts")->where('shop_cd', $shop_cd)->where('user_id', '!=', 0)->count();
+        if ($user_count > 5) {
             // 5件を超えていたら平均で算出する
             $result = DB::table('posts')->where(['shop_cd' => $shop_cd])->avg('score');
         } else {

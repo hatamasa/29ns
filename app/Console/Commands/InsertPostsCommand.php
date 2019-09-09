@@ -85,7 +85,7 @@ class InsertPostsCommand extends Command
                 $post_count = DB::table("posts")->where(['shop_cd' => $shop_cd])->count();
                 DB::table('shops')->where(['shop_cd' => $shop_cd])->update([
                     'post_count' => $post_count,
-                    'score'      => $this->PostsService->calcScore($shop_cd, $post_count)
+                    'score'      => $this->PostsService->calcScore($shop_cd)
                 ]);
             }
             DB::commit();

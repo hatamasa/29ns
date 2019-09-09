@@ -132,7 +132,7 @@ class PostsController extends Controller
             $shop = DB::table('shops')->where(['shop_cd' => $params["shop_cd"]])->first();
             DB::table('shops')->where(['shop_cd' => $params["shop_cd"]])->update([
                 'post_count' => $shop->post_count+1,
-                'score'      => $this->PostsService->calcScore($params["shop_cd"], $shop->post_count+1)
+                'score'      => $this->PostsService->calcScore($params["shop_cd"])
             ]);
             $user = Auth::user();
             DB::table('users')->where(['id' => $user->id])->update(['post_count' => $user->post_count+1]);
@@ -193,7 +193,7 @@ class PostsController extends Controller
             $shop = DB::table('shops')->where(['shop_cd' => $post->shop_cd])->first();
             DB::table('shops')->where(['shop_cd' => $post->shop_cd])->update([
                 'post_count' => $shop->post_count-1,
-                'score'      => $this->PostsService->calcScore($post->shop_cd, $shop->post_count-1)
+                'score'      => $this->PostsService->calcScore($post->shop_cd)
             ]);
             $user = Auth::user();
             DB::table('users')->where(['id' => $user->id])->update(['post_count' => $user->post_count-1]);
