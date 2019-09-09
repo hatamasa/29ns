@@ -36,5 +36,15 @@ class UsersSeeder extends Seeder
         }
 
         DB::table('users')->insert($data);
+
+        $sql = '
+            update
+                users u inner join (select user_id, count(id) as post_count from posts group by user_id) p
+                on u.id = p.user_id
+            set
+                u.post_count = p.post_count
+            ';
+
+        DB::update($sql);
     }
 }
