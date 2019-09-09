@@ -86,7 +86,7 @@
                     @empty ($post->title)
                     <p>{{ $post->shop_name }}へ行きました！</p>
                     @else
-                    <p>{{ $post->title }}</p>
+                    <p>{{ explode("/", $post->title)[0] }}</p>
                     @endif
                     <p>{!! nl2br(e($post->contents)) !!}</p>
                 </li>

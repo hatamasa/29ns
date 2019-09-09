@@ -99,6 +99,12 @@
                         <li class="post-text-top">
                             <p>{{ $post->score }}点</p>
                             <p>
+                                @if ($post->user_id == 0)
+                                <p class="name">
+                                    <img alt="" src="{{ asset('/images/user.png') }}" class="icon" alt="ユーザデフォルトプロフィール画像">
+                                    {{ strpos($post->title, '/') ? explode("/", $post->title)[1] : '' }}
+                                </p>
+                                @else
                                 <a href='{{ url("/users/{$post->user_id}")}}'>
                                     @if (isset($post->user_thumbnail_url) && !empty($post->user_thumbnail_url))
                                     <img alt="" src="{{ $post->user_thumbnail_url }}" class="icon">
@@ -107,6 +113,7 @@
                                     @endif
                                     {{ $post->user_name }}
                                 </a>
+                                @endif
                             </p>
                             <p>@time_diff($post->post_created_at)</p>
                         </li>
@@ -114,7 +121,7 @@
                             @empty ($post->title)
                             <p>{{ $shop['name'] }}へ行きました！</p>
                             @else
-                            <p>{{ $post->title }}</p>
+                            <p>{{ explode("/", $post->title)[0] }}</p>
                             @endif
                             <p>{{ $post->contents }}</p>
                         </li>
