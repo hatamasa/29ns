@@ -50,9 +50,11 @@ class PostsRepository
             ->where([
                 'p.is_deleted' => 0,
                 's.is_deleted' => 0,
-                'u.is_resigned' => 0
             ])
-            ->orWhereNull('u.is_resigned')
+            ->where(function($q) {
+                $q->where('u.is_resigned', 0)
+                  ->orWhereNull('u.is_resigned');
+            })
             ->orderBy('p.id', 'desc')
             ->offset(($page-1) * $limit)
             ->limit($limit)
@@ -101,8 +103,11 @@ class PostsRepository
                 'u.sex as user_sex',
                 DB::raw('CASE WHEN plu.post_id IS NOT NULL THEN 1 ELSE 0 END is_liked')
             )
-            ->where(['p.shop_cd' => $shop_cd, 'u.is_resigned' => 0])
-            ->orWhereNull('u.is_resigned')
+            ->where('p.shop_cd', $shop_cd)
+            ->where(function($q) {
+                $q->where('u.is_resigned', 0)
+                    ->orWhereNull('u.is_resigned');
+            })
             ->orderBy('p.id', 'desc')
             ->offset(($page-1) * $limit)
             ->limit($limit)
@@ -145,8 +150,11 @@ class PostsRepository
                 'u.sex as user_sex',
                 DB::raw('CASE WHEN plu.post_id IS NOT NULL THEN 1 ELSE 0 END is_liked')
             )
-            ->where(['p.id' => $id, 'u.is_resigned' => 0])
-            ->orWhereNull('u.is_resigned')
+            ->where('p.id', $id)
+            ->where(function($q) {
+                $q->where('u.is_resigned', 0)
+                    ->orWhereNull('u.is_resigned');
+            })
             ;
 
             return $query->first();
