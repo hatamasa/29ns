@@ -135,8 +135,18 @@ class ApiService extends Service
 
         if(count($http_response_header) > 0){
             $status_code = explode(' ', $http_response_header[0]);
-            if ($status_code[1] != '200') {
-                throw new \Exception('callGnaviPhotoSearchApi error. '.json_encode($result));
+            switch($status_code[1]) {
+                case '400':
+                case '401':
+                case '405':
+                case '429':
+                case '500':
+                    throw new \Exception('callGnaviPhotoSearchApi error. '.json_encode($result));
+                    break;
+                case '404':
+                    throw new NotFoundShopException();
+                    break;
+                default:
             }
         }
 
