@@ -213,8 +213,9 @@ class PostsService extends Service
             $result = DB::table('posts')->where(['shop_cd' => $shop_cd])->avg('score');
         } else {
             // 5件を超えていない場合は計算ロジックで変換して加算する
-            $sum_diff_score = $this->Posts->getSumDiffScore($shop_cd);
-            $result = 5 + $sum_diff_score->score / 20;
+            $sum_diff_score_29ns = $this->Posts->getSumDiffScore29ns($shop_cd);
+            $sum_diff_score_gnavi = $this->Posts->getSumDiffScoreGnavi($shop_cd);
+            $result = 5 + ($sum_diff_score_29ns->score ?? 0) / 20 + ($sum_diff_score_gnavi->score ?? 0) / 20;
         }
 
         return $result;

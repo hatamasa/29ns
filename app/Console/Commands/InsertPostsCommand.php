@@ -46,7 +46,7 @@ class InsertPostsCommand extends Command
     public function handle()
     {
         $this->info("start InsertPostsCommand");
-        $limit = $this->argument('limit') ?? 500;
+        $limit = $this->argument('limit') ?? 5000;
         $offset = $this->argument('offset') ?? 0;
         $this->info("limit: ".$limit." offset: ".$offset);
 
