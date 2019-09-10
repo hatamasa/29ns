@@ -55,7 +55,7 @@ class PostsRepository
                 $q->where('u.is_resigned', 0)
                   ->orWhereNull('u.is_resigned');
             })
-            ->orderBy('p.id', 'desc')
+            ->orderBy('p.created_at', 'desc')
             ->offset(($page-1) * $limit)
             ->limit($limit)
             ;
@@ -108,7 +108,7 @@ class PostsRepository
                 $q->where('u.is_resigned', 0)
                     ->orWhereNull('u.is_resigned');
             })
-            ->orderBy('p.id', 'desc')
+            ->orderBy('p.created_at', 'desc')
             ->offset(($page-1) * $limit)
             ->limit($limit)
             ;
@@ -150,7 +150,7 @@ class PostsRepository
                 'u.sex as user_sex',
                 DB::raw('CASE WHEN plu.post_id IS NOT NULL THEN 1 ELSE 0 END is_liked')
             )
-            ->where('p.id', $id)
+            ->where('p.created_at', $id)
             ->where(function($q) {
                 $q->where('u.is_resigned', 0)
                     ->orWhereNull('u.is_resigned');
@@ -161,15 +161,32 @@ class PostsRepository
     }
 
     /**
-     * 得点の合計値を取得する
+     * 得点の合計値を取得する(29nsユーザ)
      * @param string $shop_cd
      * @return \Illuminate\Database\Eloquent\Model|object|\Illuminate\Database\Query\Builder|NULL
      */
-    public function getSumDiffScore(string $shop_cd)
+    public function getSumDiffScore29ns(string $shop_cd)
     {
         $query = DB::table('posts')
             ->selectRaw('sum(score - 5) as score')
             ->where('shop_cd', $shop_cd)
+            ->where('user_id', '!=', 0)
+            ->groupBy('shop_cd');
+
+        return $query->first();
+    }
+
+    /**
+     * 得点の合計値を取得する(ぐるなびユーザ)
+     * @param string $shop_cd
+     * @return \Illuminate\Database\Eloquent\Model|object|\Illuminate\Database\Query\Builder|NULL
+     */
+    public function getSumDiffScoreGnavi(string $shop_cd)
+    {
+        $query = DB::table('posts')
+            ->selectRaw('sum(score - 5)/4 as score')
+            ->where('shop_cd', $shop_cd)
+            ->where('user_id', 0)
             ->groupBy('shop_cd');
 
         return $query->first();
