@@ -150,7 +150,7 @@ class PostsRepository
                 'u.sex as user_sex',
                 DB::raw('CASE WHEN plu.post_id IS NOT NULL THEN 1 ELSE 0 END is_liked')
             )
-            ->where('p.created_at', $id)
+            ->where('p.id', $id)
             ->where(function($q) {
                 $q->where('u.is_resigned', 0)
                     ->orWhereNull('u.is_resigned');

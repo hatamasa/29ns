@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Services\PostsService;
 use App\Services\ShopsService;
 
@@ -39,13 +40,16 @@ class HomeController extends Controller
             $posts = $this->PostsService->getList4HomeRecentlyList(self::POSTS_LIST_LIMIT);
             // 人気のお店を取得
             $shops = $this->ShopsService->getList4HomePopularityList(self::SHOPS_LIST_LIMIT);
+
+            $posts_count = DB::table('posts')->count();
+            $shops_count = DB::table('shops')->count();
         } catch (\Exception $e) {
             $this->_log($e->getTraceAsString(), "error");
             $error_message = "店舗取得でエラーが発生しました。少し時間を置いてから再度お試しください。";
             return view('home.index', compact('posts', 'shops', 'error_message'));
         }
 
-        return view('home.index', compact('posts', 'shops'));
+        return view('home.index', compact('posts', 'shops', 'posts_count', 'shops_count'));
     }
 
 }

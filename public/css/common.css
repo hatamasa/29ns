@@ -263,6 +263,18 @@ a.check-clicked:active {
     line-height: 55px;
 }
 
+.counter {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 10px;
+}
+
+.counter span {
+    background: linear-gradient(#800000,#d00000,#d00000,#800000);
+    color: #fff;
+    padding: 2px 2px;
+}
+
 .landing-post {
     background: linear-gradient(#800000,#d00000,#d00000,#800000);
     padding: 10px;

@@ -29,6 +29,20 @@
 
 @section('content')
 <div>
+    <div class="counter">
+        <div>掲載店舗数
+            <span>{{ floor($shops_count/1000) }}</span>
+            <span>{{ floor($shops_count%1000/100 )}}</span>
+            <span>{{ floor($shops_count%100/10 )}}</span>
+            <span>{{ floor($shops_count%10 )}}</span>
+        </div>
+        <div>掲載口コミ数
+            <span>{{ floor($posts_count/1000) }}</span>
+            <span>{{ floor($posts_count%1000/100 )}}</span>
+            <span>{{ floor($posts_count%100/10 )}}</span>
+            <span>{{ floor($posts_count%10 )}}</span>
+        </div>
+    </div>
     <p class="catch">
         <span>使い方は簡単 2STEP</span>
         <span>1. お店を調べる!!そして行ったお店は感謝の気持ちを込めて肉ログ(レビュー)しよう!!</span>
