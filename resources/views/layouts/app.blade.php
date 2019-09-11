@@ -72,7 +72,7 @@
                 || url()->current() == url('/shops/ranking')
                 || url()->current() == url('/posts'))
             <a href="{{ url('/home') }}" class="col-4">
-                <h1>東京の焼肉好きのための<br>グルメサイト</h1>
+                <h1>東京の焼肉好き専用<br>グルメサイト</h1>
                 <span>東京肉NS</span>
             </a>
             <a href="{{ url('/home') }}" class="col-2"><img src="{{ asset('images/home.png') }}" alt="ホームボタン"><span>ホーム</span></a>
