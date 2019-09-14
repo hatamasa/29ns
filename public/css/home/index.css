@@ -6,9 +6,10 @@
     border: unset;
 }
 
-.search button {
-    background: #d00000;
-    border-color: #d00000;
+.search button,
+.search button:active {
+    background: #d00000 !important;
+    border-color: #d00000 !important;
 }
 .search-btn a span {
     display: block;
