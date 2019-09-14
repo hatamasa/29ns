@@ -14,7 +14,8 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         Commands\InsertShopsCommand::class,
-        Commands\InsertPostsCommand::class
+        Commands\InsertPostsCommand::class,
+        Commands\CreateSiteMapCommand::class
     ];
 
     /**
