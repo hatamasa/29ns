@@ -73,12 +73,9 @@ class InsertPostsCommand extends Command
                     }
                     $this->info(implode(",", $shop_ids));
 
-                    list($res_posts, $res_shops) = $this->createPostsData($shop_ids);
-                    $posts = array_merge($posts, $res_posts);
+                    $res_shops = $this->createPostsData($shop_ids);
                     $shop_list = array_merge($shop_list, $res_shops);
                 });
-            // マルチプルインサートで口コミを登録
-            DB::table('posts')->insert($posts);
 
             $this->info("start shop post_count update");
             // 店舗の点数を更新
@@ -103,7 +100,6 @@ class InsertPostsCommand extends Command
 
     private function createPostsData(array $shop_ids)
     {
-        $posts = [];
         $shops = [];
         $page = 0;
 
@@ -131,21 +127,23 @@ class InsertPostsCommand extends Command
                 }
                 $photo = $log['photo'];
                 $shops[] = $photo["shop_id"];
-                $posts[] = [
-                    "user_id" => 0,
-                    "shop_cd" => $photo["shop_id"],
-                    "score" => ($photo["total_score"]??2.5)*2,
-                    "visit_count" => 1,
-                    "title" => ($photo["menu_name"]??'').$photo["category"]."/".$photo["nickname"]."さん",
-                    "contents" => $photo["comment"]??'',
-                    "img_url_1" => $photo["image_url"]["url_250"],
-                    "created_at" => $photo["update_date"]
-                ];
+                DB::table("posts")->updateOrInsert([
+                        'vote_id' => $photo['vote_id'],
+                    ],[
+                        "user_id" => 0,
+                        "shop_cd" => $photo["shop_id"],
+                        "score" => ($photo["total_score"]??2.5)*2,
+                        "visit_count" => 1,
+                        "title" => ($photo["menu_name"]??'').$photo["category"]."/".$photo["nickname"]."さん",
+                        "contents" => $photo["comment"]??'',
+                        "img_url_1" => $photo["image_url"]["url_250"],
+                        "created_at" => $photo["update_date"]
+                    ]);
             }
 
             $this->info("page: ".$page."/".ceil($response['total_hit_count']/50));
         } while(ceil($response['total_hit_count']/50) > $page);
 
-        return [$posts, $shops];
+        return $shops;
     }
 }
