@@ -32,7 +32,8 @@
 .users-page-tab a {
     width: 25%;
     color: #fff;
-    background: linear-gradient(#800000,#d00000,#d00000,#800000);
+    /* background: linear-gradient(#800000,#d00000,#d00000,#800000); */
+    background: #d00000;
     line-height: 50px;
     text-align: center;
     border: solid 0.5px #efefef;
@@ -43,7 +44,7 @@
 }
 .users-page-tab a.current {
     background: #ffffff;
-    color: #950000;
+    color: #d00000;
     font-weight: bold;
 }
 
@@ -125,11 +126,11 @@
   position: relative;
   cursor: pointer;
   border-radius: 50%;
-  border: solid 0.5px #950000;
+  border: solid 0.5px #d00000;
   top: 5px;
 }
 .follow-icon.followed-li .follow-link div {
-  background-color: #950000;
+  background-color: #d00000;
 }
 .follow-icon .follow-link div span.follow {
     position: unset;
@@ -143,7 +144,7 @@
   left: 2px;
   width: 70%;
   height: 12%;
-  background: #950000;
+  background: #d00000;
 }
 .follow-icon .follow-link div span.follow::after {
   transform: rotate(90deg);

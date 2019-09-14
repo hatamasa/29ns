@@ -61,19 +61,20 @@
     <div class="form-group search">
         <form method="get" name="search_form" action="{{ url('/shops') }}">
             <input type="text" class="form-control" name="keyword" value="" placeholder="店名、駅名、住所など入力...">
-            <button type="submit" class="btn btn-primary btn-sm">検索</button>
+            <button type="submit" class="btn btn-primary btn-sm"><img alt="検索ボタン" src="{{ asset('images/search.png') }}"></button>
         </form>
     </div>
 
     <div class="form-group search-btn">
-        <a href="{{ url('/search/line_company') }}" class="btn btn-default btn-lg">駅から<br>探す</a>
-        <a href="{{ url('/search/area') }}" class="btn btn-default btn-lg">エリアから<br>探す</a>
+        <a href="{{ url('/search/line_company') }}" class="btn btn-default btn-lg"><img alt="駅から探す" src="{{ asset('images/station.png') }}"><span>駅から探す</span></a>
+        <a href="{{ url('/search/area') }}" class="btn btn-default btn-lg"><img alt="エリアから探す" src="{{ asset('images/erea.png') }}"><span>エリアから探す</span></a>
         @auth
         <a href='{{ url("/users/{$user->id}")."?tab=2" }}' class="btn btn-default btn-lg">
         @else
         <a href='{{ url("/login") }}' class="btn btn-default btn-lg">
         @endauth
-            行った/お気に入り<br>から探す
+            <img alt="行った/お気に入り" src="{{ asset('images/star.png') }}">
+            <span>行った/お気に入り</span>
         </a>
 
     </div>
