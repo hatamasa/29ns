@@ -21,7 +21,7 @@
                     @else
                     <a href='{{ url("/users/{$post->user_id}")}}'>
                         <p class="name">
-                            @if (isset($post->thumbnail_url) && !empty($post->thumbnail_url))
+                            @if (isset($post->user_thumbnail_url) && !empty($post->user_thumbnail_url))
                             <img alt="" src="{{ $post->user_thumbnail_url }}" class="icon" alt="ユーザプロフィール画像">
                             @else
                             <img alt="" src="{{ asset('/images/user.png') }}" class="icon" alt="ユーザデフォルトプロフィール画像">
