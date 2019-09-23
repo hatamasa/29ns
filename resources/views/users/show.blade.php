@@ -52,7 +52,7 @@
 @if (Auth::id() == $users->id)
     @section('title', "Myページ")
 @else
-    @section('title', $user->name."さんのページ")
+    @section('title', $users->name."さんのページ")
 @endif
 
 @section('content')
@@ -70,15 +70,15 @@
         <div class="user-card">
             <div class="card-body">
                 <div class="user-img">
-                    @if (isset($user->thumbnail_url) && !empty($user->thumbnail_url))
-                    <img alt="ユーザプロフィール画像" src="{{ $user->thumbnail_url }}" class="icon">
+                    @if (isset($users->thumbnail_url) && !empty($users->thumbnail_url))
+                    <img alt="ユーザプロフィール画像" src="{{ $users->thumbnail_url }}" class="icon">
                     @else
                     <img alt="ユーザデフォルトプロフィール画像" src="{{ asset('/images/user.png') }}" class="icon">
                     @endif
                 </div>
                 <div class="user-text">
                     <ul>
-                        <li>{{ floor((date('Ym') - $user->birth_ym) / 1000) * 10 }}代</li>
+                        <li>{{ floor((date('Ym') - $users->birth_ym) / 1000) * 10 }}代</li>
                         <li>{{ $users->post_count }}件の肉ログ</li>
                         <li>
                             フォロー{{ $users->follow_count }}人
