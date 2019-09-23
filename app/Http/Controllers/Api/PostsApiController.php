@@ -26,12 +26,8 @@ class PostsApiController extends Controller
     public function getPostList(Request $request)
     {
         $result = [];
-        // 認証ユーザIDを取得
-        $user_id = Auth::id();
-        // リクエスト取得
-        $page = $request->page;
         // 一覧を取得
-        $posts = $this->PostsService->getList($user_id, $page);
+        $posts = $this->PostsService->getList4HomeRecentlyList(5);
 
         $result['posts'] = $posts;
         $result['return_code'] = 0;
